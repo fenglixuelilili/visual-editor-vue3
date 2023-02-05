@@ -1,0 +1,53 @@
+$leftComWidth: 350px;
+$topMenuHeight: 60px;
+$rightMenuWidth: 275px;
+.visual-editor{
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  top: 20px;
+  bottom: 20px;
+  background-color: #fff;
+  &:before {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.1);
+  }
+  & > .visual-editor-topMenu {
+    position: absolute;
+    top: 0;
+    left: $leftComWidth;
+    height: $topMenuHeight;
+    right: $rightMenuWidth;
+    background-color: aquamarine;
+  }
+  & > .visual-editor-leftComponentsMenu {
+    width: $leftComWidth;
+    height: 100%;
+    position: absolute;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+  }
+  & > .visual-editor-right-seting {
+    width: $rightMenuWidth;
+    height: 100%;
+    position: absolute;
+    background-color: #567;
+    top: 0;
+    right: 0;
+  }
+  & > .visual-editor-area-body {
+    padding: $topMenuHeight $rightMenuWidth 0 $leftComWidth;
+    height: 100%;
+    .visual-editor-area-container{
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+    }
+  }
+}
