@@ -1,6 +1,6 @@
 <template>
   <div>
-    <visualEditor />
+    <visualEditor v-model="data" />
   </div>
 </template>
 <script lang="ts">
@@ -10,6 +10,26 @@ export default defineComponent({
   components: {
     visualEditor,
   },
+  data() { 
+    return {
+      data: {
+        container: {
+          width: 600,
+          height: 500
+        },
+        blocks: [
+          {
+            left: 200,
+            top: 40
+          },
+          {
+            left: 100,
+            top: 90
+          },
+        ]
+      }
+    }
+  }
 })
 </script>
 <style lang="scss">
