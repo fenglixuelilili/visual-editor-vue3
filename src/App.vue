@@ -1,35 +1,37 @@
 <template>
   <div>
-    <visualEditor v-model="data" />
+    <visualEditor v-model="data" :config="renderConfig" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue"
 import { visualEditor } from "./package/visual-editor/index"
+import renderConfig from "./package/visual-editor/visuaEditorComConfig"
 export default defineComponent({
   components: {
     visualEditor,
   },
-  data() { 
+  data() {
     return {
       data: {
         container: {
           width: 600,
-          height: 500
+          height: 500,
         },
         blocks: [
           {
             left: 200,
-            top: 40
+            top: 40,
           },
           {
             left: 100,
-            top: 90
+            top: 90,
           },
-        ]
-      }
+        ],
+      },
+      renderConfig,
     }
-  }
+  },
 })
 </script>
 <style lang="scss">
