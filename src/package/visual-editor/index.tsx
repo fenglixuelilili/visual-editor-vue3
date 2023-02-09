@@ -1,9 +1,10 @@
-import { computed, defineComponent, PropType } from "vue"
+import { computed, defineComponent, PropType, ref } from "vue"
 import "./index.scss"
 import {
   visualEditorModelValue,
   block,
   VisuaEditorComConfig,
+  VisualEditorComponent,
 } from "../../types/editor"
 import useModel from "../../utils/useModel"
 import editorBlock from "./editor-block"
@@ -29,24 +30,89 @@ export const visualEditor = defineComponent({
       width: model.value.container.width + "px",
       height: model.value.container.height + "px",
     }))
+    const containerInstance = ref<HTMLElement | null>(null)
+    // 拖拽相关
+    const menuDrag = {
+      current: {
+        component: null as null | VisualEditorComponent,
+      },
+      dragstart(e: DragEvent, component: VisualEditorComponent) {
+        // 左侧的菜单鼠标按下的时候  让画布监听拖拽事件
+        containerInstance.value?.addEventListener(
+          "dragenter",
+          menuDrag.dragenter
+        )
+        containerInstance.value?.addEventListener("dragover", menuDrag.dragover)
+        containerInstance.value?.addEventListener(
+          "dragleave",
+          menuDrag.dragleave
+        )
+        containerInstance.value?.addEventListener("drop", menuDrag.drop)
+        menuDrag.current.component = component
+      },
+      dragenter(e: DragEvent) {
+        // 拖拽进入渲染器画布事件
+        e.dataTransfer!.dropEffect = "move"
+      },
+      dragleave(e: DragEvent) {
+        // 拖拽离开渲染器画布事件
+        e.dataTransfer!.dropEffect = "none"
+      },
+      dragend(e: DragEvent) {
+        // 拖住结束
+        containerInstance.value?.removeEventListener(
+          "dragenter",
+          menuDrag.dragenter
+        )
+        containerInstance.value?.removeEventListener(
+          "dragover",
+          menuDrag.dragover
+        )
+        containerInstance.value?.removeEventListener(
+          "dragleave",
+          menuDrag.dragleave
+        )
+        containerInstance.value?.removeEventListener("drop", menuDrag.drop)
+
+        menuDrag.current.component = null
+      },
+      dragover(e: DragEvent) {
+        // 固定  阻止默认事件
+        e.preventDefault()
+      },
+      drop(e: DragEvent) {
+        // 拖拽到目标节点上了
+        props.modelValue?.blocks.push({
+          top: e.offsetY,
+          left: e.offsetX,
+        })
+      },
+    }
     return () => (
       <div class="visual-editor">
         <div class="visual-editor-topMenu">顶部菜单</div>
         <div class="visual-editor-leftComponentsMenu">
-          {props.config?.componentLists.map((config) => {
+          {props.config?.componentLists.map((component) => {
             return (
-              <div class="editer-menu-content-block">
-                <span class="editor-priview-label">{config.label}</span>
-                {config.priview()}
+              <div
+                class="editer-menu-content-block"
+                draggable
+                onDragstart={(e) => menuDrag.dragstart(e, component)}
+                onDragend={menuDrag.dragend.bind(menuDrag)}
+              >
+                <span class="editor-priview-label">{component.label}</span>
+                {component.priview()}
               </div>
             )
           })}
         </div>
         <div class="visual-editor-area-body">
           <div class="visual-editor-area-container">
+            {/* 渲染画布信息 */}
             <div
               class="visual-editor-area-content"
               style={containerStyle.value}
+              ref={containerInstance}
             >
               {model.value.blocks.map((block: block) => {
                 return <editorBlock block={block}></editorBlock>
