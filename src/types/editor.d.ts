@@ -16,15 +16,15 @@ export interface visualEditorModelValue {
 export interface VisualEditorComponent {
   name: string
   label: string
-  priview: () => JSX.Element
-  render: () => JSX.Element
+  priview: () => JSX.Element | string
+  render: () => JSX.Element | string
 }
 // 每次调用这个函数  就是创建一个组件
 export function createVisuaEditorComConfig() {
   // 所有组件队列
   const componentLists: VisualEditorComponent[] = []
   // 缓存组件
-  let componentMap: Record<string, VisualEditorComponent> = {}
+  const componentMap: Record<string, VisualEditorComponent> = {}
   return {
     /**
      * @name 组件名称
@@ -38,7 +38,9 @@ export function createVisuaEditorComConfig() {
       }
       componentMap[name] = comp
       componentLists.push(comp)
-    }
+    },
+    componentLists,
+    componentMap
   }
 }
 // 左侧菜单组件的数据

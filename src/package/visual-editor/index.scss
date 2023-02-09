@@ -36,6 +36,46 @@ $rightMenuWidth: 275px;
     background-color: #fff;
     top: 0;
     left: 0;
+    padding: 10px;
+    .editer-menu-content-block{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 80px;
+      border: 2px solid #eee;
+      margin-bottom: 10px;
+      position: relative;
+      .editor-priview-label{
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 20px;
+        font-size: 12px;
+        background-color: #567;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 50px;
+        box-sizing: border-box;
+        padding: 0 10px;
+      }
+      &::after{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+      }
+      &:hover{
+        border: 2px solid #821;
+        cursor: move;
+      }
+    }
+    
   }
 
   &>.visual-editor-right-seting {

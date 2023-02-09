@@ -32,7 +32,16 @@ export const visualEditor = defineComponent({
     return () => (
       <div class="visual-editor">
         <div class="visual-editor-topMenu">顶部菜单</div>
-        <div class="visual-editor-leftComponentsMenu">左侧菜单</div>
+        <div class="visual-editor-leftComponentsMenu">
+          {props.config?.componentLists.map((config) => {
+            return (
+              <div class="editer-menu-content-block">
+                <span class="editor-priview-label">{config.label}</span>
+                {config.priview()}
+              </div>
+            )
+          })}
+        </div>
         <div class="visual-editor-area-body">
           <div class="visual-editor-area-container">
             <div
