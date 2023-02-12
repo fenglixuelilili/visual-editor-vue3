@@ -5,7 +5,8 @@ import {
   block,
   VisuaEditorComConfig,
   VisualEditorComponent,
-} from "../../types/editor"
+  createBlockData,
+} from "../../types/editor.d"
 import useModel from "../../utils/useModel"
 import editorBlock from "./editor-block"
 export const visualEditor = defineComponent({
@@ -85,12 +86,13 @@ export const visualEditor = defineComponent({
         },
         drop(e: DragEvent) {
           // 拖拽到目标节点上了
-          props.modelValue?.blocks.push({
-            top: e.offsetY,
-            left: e.offsetX,
-            componentKey: current.component?.name as string,
-            adjustmentPosition: true,
-          })
+          props.modelValue?.blocks.push(
+            createBlockData({
+              top: e.offsetY,
+              left: e.offsetX,
+              componentKey: current.component?.name as string,
+            })
+          )
         },
       }
       return menuDrag

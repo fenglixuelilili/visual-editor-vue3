@@ -32,8 +32,12 @@ export default defineComponent({
         props.block.adjustmentPosition = false
       }
     })
+    let classes = computed(() => [
+      "editor-bloack",
+      props.block.focus ? "editor-bloack-focus" : "",
+    ])
     return () => (
-      <div class="editor-bloack" style={style.value} ref={blockInstance}>
+      <div class={classes.value} style={style.value} ref={blockInstance}>
         {componentRenderIinfo?.render()}
       </div>
     )

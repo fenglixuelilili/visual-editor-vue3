@@ -24,12 +24,14 @@ export default defineComponent({
             top: 40,
             // 渲染哪个组件的属性
             componentKey: "text",
+            // focus: true,
           },
           {
             left: 100,
             top: 90,
             // 渲染哪个组件的属性
             componentKey: "button",
+            focus: true,
           },
         ],
       },

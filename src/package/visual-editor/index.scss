@@ -110,6 +110,25 @@ $rightMenuWidth: 275px;
           position: absolute;
           left: 0;
           top: 0;
+          cursor: pointer;
+          user-select: none;
+          &::after{
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: -3px;
+            bottom: -3px;
+            right: -3px;
+            
+          }
+        }
+        // 组件获取焦点时候的信息
+        .editor-bloack-focus{
+
+          &::after{
+            border: 1px dashed #821;
+            cursor: move;
+          }
         }
       }
     }

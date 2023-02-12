@@ -3,6 +3,7 @@ export interface block  {
   top: number
   adjustmentPosition?: boolean
   componentKey: string
+  focus?: boolean
 }
 // 这是容器的绑定信息
 export interface visualEditorModelValue {
@@ -48,3 +49,18 @@ export function createVisuaEditorComConfig() {
 }
 // 左侧菜单组件的数据
 export type VisuaEditorComConfig = ReturnType<typeof createVisuaEditorComConfig>
+
+
+// TODO
+export const createBlockData = function (data: {
+  top: number
+  left: number
+  componentKey: string
+  [key: string]: any
+}) {
+  return {
+    adjustmentPosition: true,
+    focus: false,
+    ...data
+  }
+}
