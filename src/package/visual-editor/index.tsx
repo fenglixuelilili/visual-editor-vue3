@@ -89,6 +89,7 @@ export const visualEditor = defineComponent({
             top: e.offsetY,
             left: e.offsetX,
             componentKey: current.component?.name as string,
+            adjustmentPosition: true,
           })
         },
       }

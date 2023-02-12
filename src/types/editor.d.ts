@@ -1,6 +1,7 @@
 export interface block  {
   left: number
   top: number
+  adjustmentPosition?: boolean
   componentKey: string
 }
 // 这是容器的绑定信息
