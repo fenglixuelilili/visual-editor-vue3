@@ -1,6 +1,7 @@
 export interface block  {
   left: number
   top: number
+  componentKey: string
 }
 // 这是容器的绑定信息
 export interface visualEditorModelValue {
@@ -16,6 +17,7 @@ export interface visualEditorModelValue {
 export interface VisualEditorComponent {
   name: string
   label: string
+  disabled?: boolean
   priview: () => JSX.Element | string
   render: () => JSX.Element | string
 }

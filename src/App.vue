@@ -22,10 +22,14 @@ export default defineComponent({
           {
             left: 200,
             top: 40,
+            // 渲染哪个组件的属性
+            componentKey: "text",
           },
           {
             left: 100,
             top: 90,
+            // 渲染哪个组件的属性
+            componentKey: "button",
           },
         ],
       },
