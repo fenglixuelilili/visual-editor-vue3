@@ -32,7 +32,7 @@ export const visualEditor = defineComponent({
       height: model.value.container.height + "px",
     }))
     const containerInstance = ref<HTMLElement | null>(null)
-    // 拖拽相关
+    // 拖拽相关的事件
     const menuDragInfo = (function () {
       let current = {
         component: null as null | VisualEditorComponent,
@@ -97,6 +97,39 @@ export const visualEditor = defineComponent({
       }
       return menuDrag
     })()
+    // 点击状态相关的状态
+    let mehtods = {
+      block: {
+        onMousedown(e: MouseEvent, block: block) {
+          e.stopPropagation()
+          e.preventDefault()
+          // 当点击某一个快的时候
+          // console.log(e)
+          if (e.ctrlKey || e.shiftKey) {
+            // 按住shift 或者 ctrl
+            block.focus = !block.focus
+          } else {
+            // 需要先把其他的给取消选择
+            ;(props.modelValue?.blocks || []).map((block: block) => {
+              block.focus = false
+              return block
+            })
+            block.focus = !block.focus
+          }
+        },
+      },
+      container: {
+        onMousedown(e: Event) {
+          e.preventDefault()
+          e.stopPropagation()
+          // 点击空白区域  将所有的块取消选择
+          ;(props.modelValue?.blocks || []).map((block: block) => {
+            block.focus = false
+            return block
+          })
+        },
+      },
+    }
     return () => (
       <div class="visual-editor">
         <div class="visual-editor-topMenu">顶部菜单</div>
@@ -129,12 +162,16 @@ export const visualEditor = defineComponent({
               class="visual-editor-area-content"
               style={containerStyle.value}
               ref={containerInstance}
+              onMousedown={(e: Event) => mehtods.container.onMousedown(e)}
             >
               {model.value.blocks.map((block: block) => {
                 return (
                   <editorBlock
                     block={block}
                     config={props.config}
+                    onMousedown={(e: MouseEvent) =>
+                      mehtods.block.onMousedown(e, block)
+                    }
                   ></editorBlock>
                 )
               })}
