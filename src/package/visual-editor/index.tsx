@@ -31,6 +31,13 @@ export const visualEditor = defineComponent({
       width: model.value.container.width + "px",
       height: model.value.container.height + "px",
     }))
+    // 清除选中状态
+    function clearFocus() {
+      ;(props.modelValue?.blocks || []).map((block: block) => {
+        block.focus = false
+        return block
+      })
+    }
     const containerInstance = ref<HTMLElement | null>(null)
     // 拖拽相关的事件
     const menuDragInfo = (function () {
@@ -104,18 +111,18 @@ export const visualEditor = defineComponent({
           e.stopPropagation()
           e.preventDefault()
           // 当点击某一个快的时候
-          // console.log(e)
           if (e.ctrlKey || e.shiftKey) {
             // 按住shift 或者 ctrl
             block.focus = !block.focus
           } else {
             // 需要先把其他的给取消选择
-            ;(props.modelValue?.blocks || []).map((block: block) => {
-              block.focus = false
-              return block
-            })
-            block.focus = !block.focus
+            if (!block.focus) {
+              // 没选中 就选中
+              clearFocus()
+              block.focus = !block.focus
+            }
           }
+          blockDrag.mousedown(e)
         },
       },
       container: {
@@ -123,13 +130,57 @@ export const visualEditor = defineComponent({
           e.preventDefault()
           e.stopPropagation()
           // 点击空白区域  将所有的块取消选择
-          ;(props.modelValue?.blocks || []).map((block: block) => {
-            block.focus = false
-            return block
-          })
+          clearFocus()
         },
       },
     }
+    // 计算block选中的与没选中的信息
+    const focusBlock = computed(() => {
+      props.modelValue?.blocks
+      return {
+        blurBlock: props.modelValue?.blocks.filter((block) => !block.focus),
+        focusBlock: props.modelValue?.blocks.filter((block) => block.focus),
+      }
+    })
+    // 拖拽画布元素相关事件
+    const blockDrag = (function () {
+      // 当鼠标按下的时候存储的信息
+      const info = {
+        startX: 0,
+        startY: 0,
+        // block元素的初始位置 - 所有的计算都是基于当前值计算的
+        startPositon: [] as { left: number; top: number }[],
+      }
+      function mousedown(e: MouseEvent) {
+        info.startX = e.clientX
+        info.startY = e.clientY
+        info.startPositon = (focusBlock.value.focusBlock || [])?.map(
+          (block) => {
+            return { left: block.left, top: block.top }
+          }
+        )
+        // 鼠标移动
+        document.addEventListener("mousemove", mousemove)
+        document.addEventListener("mouseup", mouseup)
+      }
+      function mousemove(e: MouseEvent) {
+        // 鼠标移动逻辑
+        const x = e.clientX - info.startX
+        const y = e.clientY - info.startY
+        // 只移动聚焦的元素
+        console.log(info.startPositon)
+        focusBlock.value.focusBlock?.forEach((block, index) => {
+          block.left = info.startPositon[index].left + x
+          block.top = info.startPositon[index].top + y
+        })
+      }
+      function mouseup(e: MouseEvent) {
+        document.removeEventListener("mousemove", mousemove)
+        document.removeEventListener("mouseup", mouseup)
+      }
+
+      return { mousedown }
+    })()
     return () => (
       <div class="visual-editor">
         <div class="visual-editor-topMenu">顶部菜单</div>
