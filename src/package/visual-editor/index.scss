@@ -27,6 +27,18 @@ $rightMenuWidth: 275px;
     height: $topMenuHeight;
     right: $rightMenuWidth;
     background-color: aquamarine;
+    .buttons{
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 20px;
+      .button{
+        margin-right: 10px;
+        button{
+          cursor: pointer;
+        }
+      }
+    }
   }
 
   &>.visual-editor-leftComponentsMenu {

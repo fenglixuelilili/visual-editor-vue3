@@ -9,6 +9,7 @@ import {
 } from "../../types/editor.d"
 import useModel from "../../utils/useModel"
 import editorBlock from "./editor-block"
+import { useVisualCommand } from "../utils/visual.command"
 export const visualEditor = defineComponent({
   components: {
     editorBlock,
@@ -37,6 +38,13 @@ export const visualEditor = defineComponent({
         block.focus = false
         return block
       })
+    }
+    // 更新block数据
+    function updateBlocks(blocks: block[]) {
+      model.value = {
+        ...model.value,
+        blocks: blocks,
+      }
     }
     const containerInstance = ref<HTMLElement | null>(null)
     // 拖拽相关的事件
@@ -104,6 +112,7 @@ export const visualEditor = defineComponent({
       }
       return menuDrag
     })()
+
     // 点击状态相关的状态
     let mehtods = {
       block: {
@@ -142,6 +151,7 @@ export const visualEditor = defineComponent({
         focusBlock: props.modelValue?.blocks.filter((block) => block.focus),
       }
     })
+
     // 拖拽画布元素相关事件
     const blockDrag = (function () {
       // 当鼠标按下的时候存储的信息
@@ -168,7 +178,6 @@ export const visualEditor = defineComponent({
         const x = e.clientX - info.startX
         const y = e.clientY - info.startY
         // 只移动聚焦的元素
-        console.log(info.startPositon)
         focusBlock.value.focusBlock?.forEach((block, index) => {
           block.left = info.startPositon[index].left + x
           block.top = info.startPositon[index].top + y
@@ -181,9 +190,48 @@ export const visualEditor = defineComponent({
 
       return { mousedown }
     })()
+    const commder = useVisualCommand({
+      fouceData: focusBlock as any,
+      updateBlocks: updateBlocks,
+      dataModel: model as any,
+    })
+    // 所有的顶部按钮
+    const buttons = [
+      {
+        label: "删除",
+        icon: "",
+        handler: () => {
+          if (!focusBlock.value.focusBlock?.length) {
+            return
+          }
+          commder.delete()
+        },
+        tip: "delete",
+      },
+      {
+        label: "撤销",
+        icon: "",
+        handler: commder.undo,
+        tip: "ctrl + z",
+      },
+      {
+        label: "重做",
+        icon: "",
+        handler: commder.redo,
+        tip: "ctrl + y",
+      },
+    ]
     return () => (
       <div class="visual-editor">
-        <div class="visual-editor-topMenu">顶部菜单</div>
+        <div class="visual-editor-topMenu">
+          <div class="buttons">
+            {buttons.map((btn) => (
+              <div class="button">
+                <button onClick={btn.handler}>{btn.label}</button>
+              </div>
+            ))}
+          </div>
+        </div>
         <div class="visual-editor-leftComponentsMenu">
           {/* 左侧所有在服役的组件 */}
           {props.config?.componentLists
