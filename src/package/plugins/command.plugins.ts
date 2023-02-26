@@ -1,4 +1,4 @@
-import { reactive } from "vue"
+import { onUnmounted, reactive } from "vue"
 
 export interface declarationPeriod {
   // 撤销
@@ -15,6 +15,8 @@ export interface Command {
   // 执行此方法后返回undo和redo 用户回退和前进
   excute: (...args: any[]) => declarationPeriod
   followQueue?: boolean
+  // 执行命令前的初始化钩子 - 可选的
+  init?: () => ( () => void ) | any
 }
 
 // 注册管理命令
@@ -22,12 +24,34 @@ export function createCommanderManger() {
   const state = reactive({
     // 当前索引
     current: -1,
-    // 缓冲队列
+    // 是撤销和回退的队列
     queue: [] as declarationPeriod[],
-    // 快捷寻找命令对象
+    // 通过key往外暴露执行comman的执行和收集过程
     commands: {
 
-    } as Record<string, (...args: any[]) => void>
+    } as Record<string, (...args: any[]) => void>,
+    commandArray: [] as Command[],
+    destoryList: [] as (( () => void ) | undefined)[]
+  })
+  /**
+   * @命令注册完成之后执行的回调
+  */
+  const init = () => {
+    const onKeydown = (e: KeyboardEvent) => { 
+      console.log('呵呵呵')
+      return () => {
+        console.log('卸载。。。')
+      }
+    }
+    window.addEventListener('keydown', onKeydown)
+    state.commandArray.forEach(command => !!command.init && state.destoryList.push(command.init()))
+    state.destoryList.push(() => {
+      window.removeEventListener('keydown', onKeydown)
+    })
+  }
+  onUnmounted(() => {
+    // 声明周期卸载的时候
+    state.destoryList.forEach(fn => fn && fn())
   })
   // 增加命令步骤
   function registor(command: Command) {
@@ -45,6 +69,12 @@ export function createCommanderManger() {
       }
       state.queue.push({ undo, redo })
       state.current++
+    }
+    // command.init && command.init()
+    // state.commandArray.push(command.init())
+    if (command.init) {
+      let destory = command.init()
+      destory && state.commandArray.push(destory)
     }
   }
   // 默认注册两个 一个是撤回  一个是重做
@@ -70,7 +100,6 @@ export function createCommanderManger() {
       }
      }
   })
-
   // 重做按钮
   registor({
     name: 'redo',
@@ -102,6 +131,7 @@ export function createCommanderManger() {
   })
   return {
     state,
-    registor
+    registor,
+    init
   }
 }

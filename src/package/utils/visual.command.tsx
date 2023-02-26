@@ -3,6 +3,7 @@ import { block, visualEditorModelValue } from "../../types/editor.d"
 
 // undo 撤销 redo 重做
 export function useVisualCommand({
+  // 需要传入一些响应式的数据
   fouceData,
   updateBlocks,
   dataModel,
@@ -19,7 +20,7 @@ export function useVisualCommand({
   let conmmander = createCommanderManger()
   conmmander.registor({
     name: "delete",
-    keyboard: ["delete", "ctrl+d"],
+    keyboard: ["delete", "ctrl + d"],
     excute() {
       let data = {
         before: [] as block[], // 保存之前
@@ -40,6 +41,25 @@ export function useVisualCommand({
       }
     },
   })
+  conmmander.registor({
+    name: "add",
+    init() {
+      return () => {
+        // 这里是执行销毁的地方
+      }
+    },
+    excute() {
+      return {
+        undo() {
+          // 撤销回原来的信息
+        },
+        redo() {
+          // 立马做的事情
+        },
+      }
+    },
+  })
+  conmmander.init()
   return {
     undo: () => conmmander.state.commands["undo"](), // 撤销
     redo: () => conmmander.state.commands["redo"](), // 重做

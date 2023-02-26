@@ -11,12 +11,6 @@ import useModel from "../../utils/useModel"
 import editorBlock from "./editor-block"
 import { useVisualCommand } from "../utils/visual.command"
 import { Listener } from "../utils/event"
-let listerner = new Listener()
-listerner.once("test", function () {
-  console.log(this, "test")
-})
-listerner.emit("test")
-
 export const visualEditor = defineComponent({
   components: {
     editorBlock,
@@ -54,6 +48,13 @@ export const visualEditor = defineComponent({
       }
     }
     const containerInstance = ref<HTMLElement | null>(null)
+    let event = new Listener()
+    event.on("dragstart", function () {
+      console.log("dragstart")
+    })
+    event.on("dragend", function () {
+      console.log("dragend")
+    })
     // 拖拽相关的事件
     const menuDragInfo = (function () {
       let current = {
@@ -76,6 +77,7 @@ export const visualEditor = defineComponent({
           )
           containerInstance.value?.addEventListener("drop", menuDrag.drop)
           current.component = component
+          event.emit("dragstart")
         },
         dragenter(e: DragEvent) {
           // 拖拽进入渲染器画布事件
@@ -101,6 +103,7 @@ export const visualEditor = defineComponent({
           )
           containerInstance.value?.removeEventListener("drop", menuDrag.drop)
           current.component = null
+          event.emit("dragend")
         },
         dragover(e: DragEvent) {
           // 固定  阻止默认事件

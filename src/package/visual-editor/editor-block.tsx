@@ -28,7 +28,7 @@ export default defineComponent({
         props.block.left =
           props.block.left - blockInstance.value.offsetWidth / 2
         props.block.top = props.block.top - blockInstance.value.offsetHeight / 2
-        console.log(props.block.left, blockInstance.value.offsetWidth)
+        // console.log(props.block.left, blockInstance.value.offsetWidth)
         props.block.adjustmentPosition = false
       }
     })
