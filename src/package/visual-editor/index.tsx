@@ -10,6 +10,13 @@ import {
 import useModel from "../../utils/useModel"
 import editorBlock from "./editor-block"
 import { useVisualCommand } from "../utils/visual.command"
+import { Listener } from "../utils/event"
+let listerner = new Listener()
+listerner.once("test", function () {
+  console.log(this, "test")
+})
+listerner.emit("test")
+
 export const visualEditor = defineComponent({
   components: {
     editorBlock,

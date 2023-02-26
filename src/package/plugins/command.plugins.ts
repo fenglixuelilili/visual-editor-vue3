@@ -1,7 +1,9 @@
 import { reactive } from "vue"
 
-export interface declarationPeriod { 
+export interface declarationPeriod {
+  // 撤销
   undo?: () => void
+  // 重做
   redo?: () => void
 }
 // 命令
@@ -22,6 +24,7 @@ export function createCommanderManger() {
     current: -1,
     // 缓冲队列
     queue: [] as declarationPeriod[],
+    // 快捷寻找命令对象
     commands: {
 
     } as Record<string, (...args: any[]) => void>
@@ -37,6 +40,7 @@ export function createCommanderManger() {
       }
       // 往队列中增加
       if (state.queue.length > 0) {
+        // 这块是走到哪一步了  将后面的都干掉 要不然的话操作就乱了
         state.queue.slice( 0, state.current )
       }
       state.queue.push({ undo, redo })
