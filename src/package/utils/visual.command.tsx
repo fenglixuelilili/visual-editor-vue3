@@ -1,6 +1,6 @@
 import { createCommanderManger } from "../plugins/command.plugins"
 import { block, visualEditorModelValue } from "../../types/editor.d"
-
+import { dragStart } from "../utils/event"
 // undo 撤销 redo 重做
 export function useVisualCommand({
   // 需要传入一些响应式的数据
@@ -42,19 +42,37 @@ export function useVisualCommand({
     },
   })
   conmmander.registor({
-    name: "add",
+    name: "drag",
     init() {
+      this.data = {
+        before: null as null | block[],
+        after: null as null | block[],
+      }
+      const handler = {
+        dragstart: () => {
+          // 拖拽刚开始前做的事情
+          // 深拷贝初始化前的数据
+          this.data.before = JSON.parse(
+            JSON.stringify((dataModel as any).value.blocks || [])
+          )
+        },
+      }
+      dragStart.on(handler.dragstart)
       return () => {
         // 这里是执行销毁的地方
+        dragStart.on(handler.dragstart)
       }
     },
     excute() {
+      this.data.after = JSON.stringify((dataModel as any).value.blocks || [])
       return {
         undo() {
-          // 撤销回原来的信息
+          // 撤回
+          updateBlocks(this.data.before)
         },
         redo() {
           // 立马做的事情
+          updateBlocks(this.data.after)
         },
       }
     },
@@ -64,5 +82,6 @@ export function useVisualCommand({
     undo: () => conmmander.state.commands["undo"](), // 撤销
     redo: () => conmmander.state.commands["redo"](), // 重做
     delete: () => conmmander.state.commands["delete"](), // 删除
+    drag: () => conmmander.state.commands["drag"](), // 删除
   }
 }

@@ -1,5 +1,5 @@
 type cb = (...arg: any) => unknown | void
-export class Listener { 
+export class Listener {
   Listener: {
     [key: string]: cb[]
   }
@@ -45,5 +45,19 @@ export class Listener {
     for (let key in this.Listener) { 
       this.Listener[key].forEach(cb => cb.call(this))
     }
+  }
+}
+
+export default new Listener()
+let event = new Listener()
+export const dragStart = {
+  on: function (cb: cb) {
+    event.on('dragstart', cb)
+  },
+  emit:  function (...args: any) {
+    event.emit('dragstart', ...args)
+  },
+  off: function (cb: cb) {
+    event.off('dragstart', cb)
   }
 }
