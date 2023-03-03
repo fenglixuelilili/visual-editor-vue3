@@ -8,7 +8,7 @@ config.registry("text", {
 })
 config.registry("button", {
   render: () => <button>按钮</button>,
-  priview: () => <button>按钮</button>,
+  priview: () => <button>按钮预览</button>,
   label: "按钮",
 })
 config.registry("input", {

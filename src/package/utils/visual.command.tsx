@@ -45,8 +45,8 @@ export function useVisualCommand({
     name: "drag",
     init() {
       this.data = {
-        before: null as null | block[],
-        after: null as null | block[],
+        before: null as null | block[], // 之前的数据
+        after: null as null | block[], // 之后的数据 - 也就是当前的数据
       }
       const handler = {
         dragstart: () => {
@@ -55,6 +55,10 @@ export function useVisualCommand({
           this.data.before = JSON.parse(
             JSON.stringify((dataModel as any).value.blocks || [])
           )
+        },
+        dragend: () => {
+          // 拖拽结束 - 去重新执行drag
+          conmmander.state.commands.drag()
         },
       }
       dragStart.on(handler.dragstart)
