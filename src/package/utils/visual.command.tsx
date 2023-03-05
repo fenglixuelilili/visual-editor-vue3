@@ -1,12 +1,12 @@
 import { createCommanderManger } from "../plugins/command.plugins"
 import { block, visualEditorModelValue } from "../../types/editor.d"
-import { dragStart } from "../utils/event"
+import { dragStart, dragEnd } from "../utils/event"
 // undo 撤销 redo 重做
 export function useVisualCommand({
   // 需要传入一些响应式的数据
-  fouceData,
-  updateBlocks,
-  dataModel,
+  fouceData, //  获得焦点的数据
+  updateBlocks, // 更新组件模块数据
+  dataModel, // 双向绑定的数据
 }: {
   fouceData: {
     value: {
@@ -50,39 +50,49 @@ export function useVisualCommand({
       }
       const handler = {
         dragstart: () => {
-          // 拖拽刚开始前做的事情
-          // 深拷贝初始化前的数据
+          /**
+           * 记录刚开始时的数据
+           * 拖拽刚开始前做的事情
+           * 深拷贝初始化前的数据
+           */
           this.data.before = JSON.parse(
             JSON.stringify((dataModel as any).value.blocks || [])
           )
         },
         dragend: () => {
-          // 拖拽结束 - 去重新执行drag
+          // 拖拽结束 - 去重新执行drag的excute方法 记录数据  生成回退记录
+          // 利用闭包保存当前数据
           conmmander.state.commands.drag()
         },
       }
       dragStart.on(handler.dragstart)
+      dragEnd.on(handler.dragend)
       return () => {
         // 这里是执行销毁的地方
-        dragStart.on(handler.dragstart)
+        dragStart.off(handler.dragstart)
+        dragEnd.off(handler.dragend)
       }
     },
     excute() {
-      this.data.after = JSON.stringify((dataModel as any).value.blocks || [])
+      let before = JSON.parse(JSON.stringify(this.data.before))
+      let after = JSON.parse(
+        JSON.stringify((dataModel as any).value.blocks || [])
+      ) // 这个是已经更新过后的数据模型了
       return {
         undo() {
           // 撤回
-          updateBlocks(this.data.before)
+          updateBlocks(before)
         },
         redo() {
-          // 立马做的事情
-          updateBlocks(this.data.after)
+          // 重做
+          updateBlocks(after)
         },
       }
     },
   })
   conmmander.init()
   return {
+    // 可以弄一些默认导出
     undo: () => conmmander.state.commands["undo"](), // 撤销
     redo: () => conmmander.state.commands["redo"](), // 重做
     delete: () => conmmander.state.commands["delete"](), // 删除

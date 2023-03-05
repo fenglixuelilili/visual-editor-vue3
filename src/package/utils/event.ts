@@ -61,3 +61,15 @@ export const dragStart = {
     event.off('dragstart', cb)
   }
 }
+
+export const dragEnd = {
+  on: function (cb: cb) {
+    event.on('dragend', cb)
+  },
+  emit:  function (...args: any) {
+    event.emit('dragend', ...args)
+  },
+  off: function (cb: cb) {
+    event.off('dragend', cb)
+  }
+}

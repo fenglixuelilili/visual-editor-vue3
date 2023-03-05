@@ -10,7 +10,7 @@ import {
 import useModel from "../../utils/useModel"
 import editorBlock from "./editor-block"
 import { useVisualCommand } from "../utils/visual.command"
-import { Listener } from "../utils/event"
+import { dragStart, dragEnd } from "../utils/event"
 export const visualEditor = defineComponent({
   components: {
     editorBlock,
@@ -44,18 +44,11 @@ export const visualEditor = defineComponent({
     function updateBlocks(blocks: block[]) {
       model.value = {
         ...model.value,
-        blocks: blocks,
+        blocks: JSON.parse(JSON.stringify(blocks)),
       }
     }
     const containerInstance = ref<HTMLElement | null>(null)
-    let event = new Listener()
-    event.on("dragstart", function () {
-      console.log("dragstart")
-    })
-    event.on("dragend", function () {
-      console.log("dragend")
-    })
-    // 拖拽相关的事件
+    // 组件拖拽添加到画布上的相关的事件
     const menuDragInfo = (function () {
       let current = {
         component: null as null | VisualEditorComponent,
@@ -77,7 +70,7 @@ export const visualEditor = defineComponent({
           )
           containerInstance.value?.addEventListener("drop", menuDrag.drop)
           current.component = component
-          event.emit("dragstart")
+          dragStart.emit()
         },
         dragenter(e: DragEvent) {
           // 拖拽进入渲染器画布事件
@@ -103,7 +96,7 @@ export const visualEditor = defineComponent({
           )
           containerInstance.value?.removeEventListener("drop", menuDrag.drop)
           current.component = null
-          event.emit("dragend")
+          dragEnd.emit()
         },
         dragover(e: DragEvent) {
           // 固定  阻止默认事件
@@ -122,7 +115,6 @@ export const visualEditor = defineComponent({
       }
       return menuDrag
     })()
-
     // 点击状态相关的状态
     let mehtods = {
       block: {
@@ -161,7 +153,6 @@ export const visualEditor = defineComponent({
         focusBlock: props.modelValue?.blocks.filter((block) => block.focus),
       }
     })
-
     // 拖拽画布元素相关事件
     const blockDrag = (function () {
       // 当鼠标按下的时候存储的信息
@@ -170,6 +161,7 @@ export const visualEditor = defineComponent({
         startY: 0,
         // block元素的初始位置 - 所有的计算都是基于当前值计算的
         startPositon: [] as { left: number; top: number }[],
+        draging: false, // 是否在拖拽
       }
       function mousedown(e: MouseEvent) {
         info.startX = e.clientX
@@ -179,11 +171,16 @@ export const visualEditor = defineComponent({
             return { left: block.left, top: block.top }
           }
         )
+        info.draging = false
         // 鼠标移动
         document.addEventListener("mousemove", mousemove)
         document.addEventListener("mouseup", mouseup)
       }
       function mousemove(e: MouseEvent) {
+        if (!info.draging) {
+          info.draging = true
+          dragStart.emit()
+        }
         // 鼠标移动逻辑
         const x = e.clientX - info.startX
         const y = e.clientY - info.startY
@@ -196,8 +193,8 @@ export const visualEditor = defineComponent({
       function mouseup(e: MouseEvent) {
         document.removeEventListener("mousemove", mousemove)
         document.removeEventListener("mouseup", mouseup)
+        dragEnd.emit()
       }
-
       return { mousedown }
     })()
     const commder = useVisualCommand({
