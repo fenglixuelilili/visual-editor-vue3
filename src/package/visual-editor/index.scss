@@ -124,6 +124,13 @@ $rightMenuWidth: 275px;
           top: 0;
           cursor: pointer;
           user-select: none;
+          .editor-bloack-delete {
+            position: absolute;
+            left: calc(100% + 5px);
+            bottom: calc(100% + 5px);
+            font-size: 12px;
+            white-space: nowrap;
+          }
           &::after{
             content: '';
             position: absolute;

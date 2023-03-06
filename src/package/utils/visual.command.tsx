@@ -21,7 +21,7 @@ export function useVisualCommand({
   conmmander.registor({
     name: "delete",
     keyboard: ["delete", "ctrl + d"],
-    excute() {
+    excute(delblock?: block) {
       let data = {
         before: [] as block[], // 保存之前
         after: [] as block[], // 之后
@@ -32,8 +32,21 @@ export function useVisualCommand({
           updateBlocks(data.after)
         },
         redo() {
+          if (delblock) {
+            // 说明是删除的某一个组件
+            data.after = (dataModel as any).value.blocks
+            data.before = data.after.filter((block) => {
+              return block != delblock
+            })
+            updateBlocks(data.before)
+            return
+          }
           // 立马做的事情
           const { blurBlock, focusBlock } = fouceData.value
+          if (!focusBlock.length) {
+            console.warn("暂无需要删除的组件")
+            return
+          }
           data.after = (dataModel as any).value.blocks
           data.before = blurBlock
           updateBlocks(blurBlock) // 只拿失去焦点的信息

@@ -38,7 +38,10 @@ export default defineComponent({
     ])
     return () => (
       <div class={classes.value} style={style.value} ref={blockInstance}>
+        {/* 组件渲染项 */}
         {componentRenderIinfo?.render()}
+        {/* 操作 */}
+        <div class="editor-bloack-delete">删除</div>
       </div>
     )
   },
