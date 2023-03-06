@@ -28,21 +28,75 @@ export function createCommanderManger() {
     // 是撤销和回退的队列
     queue: [] as declarationPeriod[],
     // 通过key往外暴露执行comman的执行和收集过程
-    commands: {
-
-    } as Record<string, (...args: any[]) => void>,
+    commandMap: {} as Record<string, (...args: any[]) => void>,
     commandArray: [] as Command[], // 存放command命令对象
     destoryList: [] as (( () => void ) | undefined)[] // 存放销毁回调的
   })
+  let codeMap: Record<number, string> = {
+    89: 'y',
+    65: 'a',
+    67: 'c',
+    86: 'v',
+    90: 'z',
+    83: 's',
+    68: 'd',
+    46: 'delete'
+  }
+  // 快捷键处理
+  const keyboardEvent = () => { 
+    const onKeyDown = (e: KeyboardEvent) => {
+      e.preventDefault()
+      if (document.activeElement !== document.body) { 
+        // 说明焦点在某个组件或者元素上
+        return
+      }
+      const { keyCode, shiftKey, altKey, ctrlKey } = e
+      let keystring: string[] = [] 
+      if (ctrlKey) { 
+        keystring.push('ctrl')
+      }
+      if (shiftKey) { 
+        keystring.push('shift')
+      }
+      if (altKey) { 
+        keystring.push('alt')
+      }
+      keystring.push(codeMap[keyCode])
+      // console.log('当前快捷键', keystring.join('+'))
+      let makeup = keystring.join('+')
+      // console.log(state.commandArray)
+      state.commandArray.forEach(command => {
+        let { keyboard, name } = command
+        if (!keyboard) {
+          return
+        }
+        if (typeof keyboard == 'string') {
+          keyboard = [ keyboard ]
+        }
+        // console.log(keyboard, makeup, keyboard?.includes(makeup), 'xxxxx')
+        keyboard = keyboard.map(str => {
+          return str.replace(/\s+/g, '')
+        })
+        console.log(keyboard, makeup)
+        if (keyboard?.includes(makeup)) {
+          state.commandMap[name]()
+          e.stopPropagation()
+        }
+      })
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }
   /**
    * @命令注册完成之后执行的回调
   */
   const init = () => {
-    state.commandArray.forEach(command => { 
-      if (!!command.init) {
-        state.destoryList.push(command.init())
-      }
-    })
+    // state.commandArray.forEach(command => { 
+    //   if (!!command.init) {
+    //     state.destoryList.push(command.init())
+    //   }
+    // })
+    state.destoryList.push(keyboardEvent())
   }
   onUnmounted(() => {
     // 声明周期卸载的时候
@@ -50,18 +104,18 @@ export function createCommanderManger() {
   })
   // 增加命令步骤
   function registor(command: Command) {
+    // 收集需要执行init函数的命令
+    state.commandArray.push(command)
     if (command.init) {
-      // 收集需要执行init函数的命令
-      state.commandArray.push(command)
-      // let destory = command.init() // 得到一个销毁函数
-      // if (destory && typeof destory == 'function') {
-      //   state.commandArray.push(destory)
-      // } else {
-      //   console.error(`为了性能优化，请在${command.name}这个命令中加入销毁函数！`)
-      // }
+      let destory = command.init() // 得到一个销毁函数
+      if (destory && typeof destory == 'function') {
+        state.commandArray.push(destory)
+      } else {
+        console.error(`为了性能优化，请在${command.name}这个命令中加入销毁函数！`)
+      }
     }
     // 将命令通过表结构进行缓存
-    state.commands[command.name] = (...args) => {
+    state.commandMap[command.name] = (...args) => {
       const { undo, redo } = command.excute(...args)
       redo && redo() // 也就是点击按钮会立即执行的函数  是重做，所以是重做
       if (command.followQueue == false) {

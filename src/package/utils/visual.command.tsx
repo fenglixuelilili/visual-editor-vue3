@@ -62,7 +62,7 @@ export function useVisualCommand({
         dragend: () => {
           // 拖拽结束 - 去重新执行drag的excute方法 记录数据  生成回退记录
           // 利用闭包保存当前数据
-          conmmander.state.commands.drag()
+          conmmander.state.commandMap.drag()
         },
       }
       dragStart.on(handler.dragstart)
@@ -93,9 +93,9 @@ export function useVisualCommand({
   conmmander.init()
   return {
     // 可以弄一些默认导出
-    undo: () => conmmander.state.commands["undo"](), // 撤销
-    redo: () => conmmander.state.commands["redo"](), // 重做
-    delete: () => conmmander.state.commands["delete"](), // 删除
-    drag: () => conmmander.state.commands["drag"](), // 删除
+    undo: () => conmmander.state.commandMap["undo"](), // 撤销
+    redo: () => conmmander.state.commandMap["redo"](), // 重做
+    delete: () => conmmander.state.commandMap["delete"](), // 删除
+    drag: () => conmmander.state.commandMap["drag"](), // 删除
   }
 }
