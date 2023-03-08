@@ -180,7 +180,7 @@ export function createCommanderManger() {
           }
         }
       }
-     }
+    }
   })
   return {
     state,

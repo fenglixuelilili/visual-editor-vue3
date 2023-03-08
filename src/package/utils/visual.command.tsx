@@ -103,12 +103,38 @@ export function useVisualCommand({
       }
     },
   })
+  conmmander.registor({
+    name: "clear",
+    keyboard: ["ctrl + alt + d"],
+    excute() {
+      // 保存数据
+      let data = {
+        before: [] as block[], // 保存之前
+        after: [] as block[], // 之后
+      }
+      return {
+        undo() {
+          // 撤销
+          updateBlocks(data.before)
+        },
+        redo() {
+          // 重做
+          data.before = JSON.parse(
+            JSON.stringify((dataModel as any).value.blocks || [])
+          )
+          data.after = []
+          updateBlocks(data.after)
+        },
+      }
+    },
+  })
   conmmander.init()
   return {
     // 可以弄一些默认导出
     undo: () => conmmander.state.commandMap["undo"](), // 撤销
     redo: () => conmmander.state.commandMap["redo"](), // 重做
-    delete: () => conmmander.state.commandMap["delete"](), // 删除
+    delete: (...arg: any) => conmmander.state.commandMap["delete"](...arg), // 删除
     drag: () => conmmander.state.commandMap["drag"](), // 删除
+    clear: () => conmmander.state.commandMap["clear"](), // 清空
   }
 }

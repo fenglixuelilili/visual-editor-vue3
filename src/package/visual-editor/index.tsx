@@ -216,6 +216,17 @@ export const visualEditor = defineComponent({
         tip: "delete",
       },
       {
+        label: "清空",
+        icon: "",
+        handler: () => {
+          if (!focusBlock.value.focusBlock?.length) {
+            return
+          }
+          commder.clear()
+        },
+        tip: "ctrl + alt + d",
+      },
+      {
         label: "撤销",
         icon: "",
         handler: commder.undo,
@@ -228,6 +239,9 @@ export const visualEditor = defineComponent({
         tip: "ctrl + y",
       },
     ]
+    function delBlock(block: block) {
+      commder.delete(block)
+    }
     return () => (
       <div class="visual-editor">
         <div class="visual-editor-topMenu">
@@ -278,6 +292,7 @@ export const visualEditor = defineComponent({
                     onMousedown={(e: MouseEvent) =>
                       mehtods.block.onMousedown(e, block)
                     }
+                    onDelBlock={() => delBlock(block)}
                   ></editorBlock>
                 )
               })}

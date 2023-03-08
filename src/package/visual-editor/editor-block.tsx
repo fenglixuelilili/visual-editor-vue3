@@ -14,7 +14,7 @@ export default defineComponent({
       type: Object as PropType<VisuaEditorComConfig>,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const style = computed(() => ({
       left: props.block.left + "px",
       top: props.block.top + "px",
@@ -28,7 +28,6 @@ export default defineComponent({
         props.block.left =
           props.block.left - blockInstance.value.offsetWidth / 2
         props.block.top = props.block.top - blockInstance.value.offsetHeight / 2
-        // console.log(props.block.left, blockInstance.value.offsetWidth)
         props.block.adjustmentPosition = false
       }
     })
@@ -36,12 +35,19 @@ export default defineComponent({
       "editor-bloack",
       props.block.focus ? "editor-bloack-focus" : "",
     ])
+    function delBlock() {
+      emit("delBlock")
+    }
     return () => (
       <div class={classes.value} style={style.value} ref={blockInstance}>
         {/* 组件渲染项 */}
         {componentRenderIinfo?.render()}
         {/* 操作 */}
-        <div class="editor-bloack-delete">删除</div>
+        {props.block.focus ? (
+          <div class="editor-bloack-delete" onClick={delBlock}>
+            删除
+          </div>
+        ) : null}
       </div>
     )
   },
