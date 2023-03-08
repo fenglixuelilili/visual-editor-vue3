@@ -8,6 +8,7 @@ export interface declarationPeriod {
 }
 // 命令
 export interface Command {
+  disabled?: boolean
   // 注册命令的名称
   name: string
   // 快捷键 命令注册
@@ -40,7 +41,11 @@ export function createCommanderManger() {
     90: 'z',
     83: 's',
     68: 'd',
-    46: 'delete'
+    46: 'delete',
+    84: 't',
+    66: 'b',
+    79: 'o',
+    80: 'p'
   }
   // 快捷键处理
   const keyboardEvent = () => { 
@@ -51,11 +56,12 @@ export function createCommanderManger() {
         return
       }
       const { keyCode, shiftKey, altKey, ctrlKey } = e
+      // console.log(keyCode)
       let keystring: string[] = [] 
       if (ctrlKey) { 
         keystring.push('ctrl')
       }
-      if (shiftKey) { 
+      if (shiftKey) {
         keystring.push('shift')
       }
       if (altKey) { 
@@ -77,7 +83,7 @@ export function createCommanderManger() {
         keyboard = keyboard.map(str => {
           return str.replace(/\s+/g, '')
         })
-        console.log(keyboard, makeup)
+        // console.log(keyboard, makeup)
         if (keyboard?.includes(makeup)) {
           state.commandMap[name]()
           e.stopPropagation()
@@ -116,6 +122,10 @@ export function createCommanderManger() {
     }
     // 将命令通过表结构进行缓存
     state.commandMap[command.name] = (...args) => {
+      if (command.disabled) { 
+        alert('该快捷命令已禁用！')
+        return
+      }
       const { undo, redo } = command.excute(...args)
       redo && redo() // 也就是点击按钮会立即执行的函数  是重做，所以是重做
       if (command.followQueue == false) {

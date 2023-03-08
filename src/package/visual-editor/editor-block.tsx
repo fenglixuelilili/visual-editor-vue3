@@ -18,6 +18,7 @@ export default defineComponent({
     const style = computed(() => ({
       left: props.block.left + "px",
       top: props.block.top + "px",
+      zIndex: props.block.zIndex,
     }))
     const blockInstance = ref({} as HTMLElement)
     let componentRenderIinfo =

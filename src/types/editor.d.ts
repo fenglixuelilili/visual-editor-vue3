@@ -1,6 +1,7 @@
 export interface block  {
   left: number
   top: number
+  zIndex: number
   adjustmentPosition?: boolean
   componentKey: string
   focus?: boolean
@@ -61,6 +62,7 @@ export const createBlockData = function (data: {
   return {
     adjustmentPosition: true,
     focus: false,
+    zIndex: 0,
     ...data
   }
 }

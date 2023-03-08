@@ -128,6 +128,95 @@ export function useVisualCommand({
       }
     },
   })
+  conmmander.registor({
+    name: "top",
+    keyboard: ["ctrl + o"],
+    excute() {
+      // 保存数据
+      let data = {
+        before: [] as block[], // 保存之前
+        after: [] as block[], // 之后
+      }
+      return {
+        undo() {
+          // 撤销
+          updateBlocks(data.before)
+        },
+        redo() {
+          // 立马做的事情
+          const { focusBlock } = fouceData.value
+          if (!focusBlock.length) {
+            console.warn("暂无需要置顶的组件")
+            return
+          }
+          // 数据存储
+          data.before = JSON.parse(
+            JSON.stringify((dataModel as any).value.blocks)
+          )
+
+          let max =
+            (dataModel as any).value.blocks.reduce(
+              (pre: number, block: block) => {
+                return Math.max(block.zIndex, pre)
+              },
+              -Infinity
+            ) + 1
+          focusBlock.forEach((block) => {
+            block.zIndex = max
+          })
+          // 置顶寻找最大的 然后
+          data.after = (dataModel as any).value.blocks
+          updateBlocks((dataModel as any).value.blocks) // 只拿失去焦点的信息
+        },
+      }
+    },
+  })
+  conmmander.registor({
+    name: "bottom",
+    keyboard: ["ctrl + b"],
+    excute() {
+      // 保存数据
+      let data = {
+        before: [] as block[], // 保存之前
+        after: [] as block[], // 之后
+      }
+      return {
+        undo() {
+          // 撤销
+          updateBlocks(data.before)
+        },
+        redo() {
+          // 立马做的事情
+          const { focusBlock } = fouceData.value
+          if (!focusBlock.length) {
+            console.warn("暂无需要置顶的组件")
+            return
+          }
+          // 数据存储
+          data.before = JSON.parse(
+            JSON.stringify((dataModel as any).value.blocks)
+          )
+          let min =
+            (dataModel as any).value.blocks.reduce(
+              (pre: number, block: block) => {
+                if (block.zIndex <= 0) {
+                  block.zIndex += Math.abs(block.zIndex)
+                }
+                block.zIndex += 1
+                return Math.min(block.zIndex, pre)
+              },
+              Infinity
+            ) - 1
+          focusBlock.forEach((block) => {
+            block.zIndex = min
+          })
+          // 置底寻找最小的
+          data.after = (dataModel as any).value.blocks
+          updateBlocks((dataModel as any).value.blocks) // 只拿失去焦点的信息
+        },
+      }
+    },
+  })
   conmmander.init()
   return {
     // 可以弄一些默认导出
