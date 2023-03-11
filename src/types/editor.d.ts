@@ -2,10 +2,36 @@ export interface block  {
   left: number
   top: number
   zIndex: number
-  adjustmentPosition?: boolean
+  adjustmentPosition?: boolean // 是否需要自动调整位置
   componentKey: string
   focus?: boolean
+  width: number
+  height: number
+  hasResize: boolean // 是否调整过宽高
 }
+export const createBlockData = function (data: {
+  top: number
+  left: number
+  
+  componentKey: string
+  [key: string]: any
+}) {
+  return {
+    adjustmentPosition: true,
+    focus: false,
+    zIndex: 0,
+    hasResize: false,
+    width: 0,
+    height: 0,
+    ...data
+  }
+}
+
+export interface markline {
+  x: { left: number; showLeft: number }[]
+  y: { top: number; showTop: number }[]
+}
+
 // 这是容器的绑定信息
 export interface visualEditorModelValue {
   // 容器的宽高信息 等等
@@ -51,18 +77,3 @@ export function createVisuaEditorComConfig() {
 // 左侧菜单组件的数据
 export type VisuaEditorComConfig = ReturnType<typeof createVisuaEditorComConfig>
 
-
-// TODO
-export const createBlockData = function (data: {
-  top: number
-  left: number
-  componentKey: string
-  [key: string]: any
-}) {
-  return {
-    adjustmentPosition: true,
-    focus: false,
-    zIndex: 0,
-    ...data
-  }
-}

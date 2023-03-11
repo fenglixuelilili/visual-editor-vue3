@@ -113,6 +113,7 @@ $rightMenuWidth: 275px;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
 
       .visual-editor-area-content {
         background-color: #fff;
@@ -149,6 +150,22 @@ $rightMenuWidth: 275px;
             cursor: move;
           }
         }
+      }
+      .visual-editor-mark-y{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px dashed red;
+      }
+      .visual-editor-mark-x{
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        border-left: 1px dashed red;
       }
     }
   }

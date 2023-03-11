@@ -25,11 +25,18 @@ export default defineComponent({
       props.config?.componentMap[props.block!.componentKey]
     onMounted(() => {
       if (props.block.adjustmentPosition) {
-        // 需要调整位置
+        /**
+         * @需要调整位置
+         */
         props.block.left =
           props.block.left - blockInstance.value.offsetWidth / 2
         props.block.top = props.block.top - blockInstance.value.offsetHeight / 2
         props.block.adjustmentPosition = false
+        /**
+         * @调整完位置之后再把宽高信息调整
+         */
+        props.block.width = blockInstance.value.offsetWidth
+        props.block.height = blockInstance.value.offsetHeight
       }
     })
     let classes = computed(() => [
