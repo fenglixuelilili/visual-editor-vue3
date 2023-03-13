@@ -49,7 +49,8 @@ export default defineComponent({
     return () => (
       <div class={classes.value} style={style.value} ref={blockInstance}>
         {/* 组件渲染项 */}
-        {componentRenderIinfo?.render()}
+        {props.block.props.color ? props.block.props.color : ""}
+        {componentRenderIinfo?.render(props.block)}
         {/* 操作 */}
         {props.block.focus ? (
           <div class="editor-bloack-delete" onClick={delBlock}>

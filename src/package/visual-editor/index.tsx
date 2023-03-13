@@ -13,6 +13,7 @@ import editorBlock from "./editor-block"
 import { useVisualCommand } from "../utils/visual.command"
 import { dragStart, dragEnd } from "../utils/event"
 import { isMarkLine, isShiftMove } from "../config"
+import { controlView } from "./control-view"
 export const visualEditor = defineComponent({
   components: {
     editorBlock,
@@ -45,12 +46,22 @@ export const visualEditor = defineComponent({
         return block
       })
     }
-    // 更新block数据
+    // 更新所有block数据
     function updateBlocks(blocks: block[]) {
       model.value = {
         ...model.value,
         blocks: JSON.parse(JSON.stringify(blocks)),
       }
+    }
+    // 更新一个block
+    function updateBlock(block: any) {
+      model.value.blocks.forEach((oldblock: any) => {
+        if (block.id == oldblock.id) {
+          for (let key in oldblock) {
+            oldblock[key] = block[key]
+          }
+        }
+      })
     }
     const containerInstance = ref<HTMLElement | null>(null)
     // 组件拖拽添加到画布上的相关的事件
@@ -108,12 +119,13 @@ export const visualEditor = defineComponent({
           e.preventDefault()
         },
         drop(e: DragEvent) {
-          // 拖拽到目标节点上了
+          // 拖拽到目标节点上了 -- 新添加的
           props.modelValue?.blocks.push(
             createBlockData({
               top: e.offsetY,
               left: e.offsetX,
               componentKey: current.component?.name as string,
+              props: current.component?.props ?? {},
             })
           )
         },
@@ -470,7 +482,16 @@ export const visualEditor = defineComponent({
             </div>
           </div>
         </div>
-        <div class="visual-editor-right-seting">右侧操作</div>
+        <div class="visual-editor-right-seting">
+          {/* 右侧操作 */}
+          {controlView(() =>
+            state.selectedBlock?.componentKey && props.config
+              ? props.config.componentMap[
+                  state.selectedBlock.componentKey
+                ].controlView(state.selectedBlock, updateBlock)
+              : null
+          )}
+        </div>
       </div>
     )
   },

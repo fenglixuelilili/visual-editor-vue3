@@ -20,6 +20,7 @@ export default defineComponent({
         },
         blocks: [
           {
+            id: 1,
             adjustmentPosition: false,
             focus: false,
             zIndex: 0,
@@ -29,8 +30,14 @@ export default defineComponent({
             top: 184.5,
             left: 206,
             componentKey: "text",
+            props: {
+              fontSize: 18,
+              color: "green",
+              text: "你好请教",
+            },
           },
           {
+            id: 2,
             adjustmentPosition: false,
             focus: false,
             zIndex: 0,
@@ -40,8 +47,10 @@ export default defineComponent({
             top: 118.5,
             left: 312.5,
             componentKey: "button",
+            props: {},
           },
           {
+            id: 3,
             adjustmentPosition: false,
             focus: false,
             zIndex: 0,
@@ -51,6 +60,7 @@ export default defineComponent({
             top: 305.5,
             left: 259.5,
             componentKey: "input",
+            props: {},
           },
         ],
       },

@@ -8,12 +8,16 @@ export interface block  {
   width: number
   height: number
   hasResize: boolean // 是否调整过宽高
+  id: number
+  props: {
+    [key: string]: any
+  }
 }
 export const createBlockData = function (data: {
   top: number
   left: number
-  
   componentKey: string
+  props: any
   [key: string]: any
 }) {
   return {
@@ -23,6 +27,7 @@ export const createBlockData = function (data: {
     hasResize: false,
     width: 0,
     height: 0,
+    id: Math.floor((Math.random() * 100000000)),
     ...data
   }
 }
@@ -47,8 +52,12 @@ export interface VisualEditorComponent {
   name: string
   label: string
   disabled?: boolean
+  props: {
+    [key: string]: any
+  }
   priview: () => JSX.Element | string
-  render: () => JSX.Element | string
+  render: (...args) => JSX.Element | string
+  controlView: (block: block, updateBlock: ( block: block ) => void) => JSX.Element | string
 }
 // 每次调用这个函数  就是创建一个组件
 export function createVisuaEditorComConfig() {
