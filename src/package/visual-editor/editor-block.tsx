@@ -1,5 +1,6 @@
 import { computed, defineComponent, onMounted, PropType, ref } from "vue"
-import { block, VisuaEditorComConfig } from "../../types/editor"
+import { block, VisuaEditorComponents } from "../../types/editor"
+import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 export default defineComponent({
   props: {
     // 外壳 定位 放大缩小用的
@@ -10,9 +11,6 @@ export default defineComponent({
         top: 0,
       },
     },
-    config: {
-      type: Object as PropType<VisuaEditorComConfig>,
-    },
   },
   setup(props, { emit }) {
     const style = computed(() => ({
@@ -22,7 +20,7 @@ export default defineComponent({
     }))
     const blockInstance = ref({} as HTMLElement)
     let componentRenderIinfo =
-      props.config?.componentMap[props.block!.componentKey]
+      editorInstance?.componentMap[props.block!.componentKey]
     onMounted(() => {
       if (props.block.adjustmentPosition) {
         /**

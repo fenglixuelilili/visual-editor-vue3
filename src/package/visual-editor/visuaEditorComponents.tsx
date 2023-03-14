@@ -1,6 +1,7 @@
 import { createVisuaEditorComponents } from "../../types/editor.d"
 import { block } from "../../types/editor"
 import { computed } from "vue"
+// 内置组件
 let editor = createVisuaEditorComponents()
 editor.registry("text", {
   render: (block: block) => {

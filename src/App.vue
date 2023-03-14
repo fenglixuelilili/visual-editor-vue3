@@ -1,12 +1,11 @@
 <template>
   <div>
-    <visualEditor v-model="data" :config="renderConfig" />
+    <visualEditor v-model="data" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue"
-import { visualEditor } from "./package/visual-editor/index"
-import renderConfig from "./package/visual-editor/visuaEditorComponents"
+import { visualEditor, logConfig } from "./package/visual-editor/index"
 export default defineComponent({
   components: {
     visualEditor,
@@ -64,8 +63,10 @@ export default defineComponent({
           },
         ],
       },
-      renderConfig,
     }
+  },
+  mounted() {
+    logConfig()
   },
 })
 </script>

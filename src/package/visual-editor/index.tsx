@@ -3,7 +3,6 @@ import "./index.scss"
 import {
   visualEditorModelValue,
   block,
-  VisuaEditorComponents,
   VisualEditorComponent,
   createBlockData,
   markline,
@@ -14,6 +13,7 @@ import { useVisualCommand } from "../utils/visual.command"
 import { dragStart, dragEnd } from "../utils/event"
 import { isMarkLine, isShiftMove } from "../config"
 import { controlView } from "./control-view"
+import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 export const visualEditor = defineComponent({
   components: {
     editorBlock,
@@ -21,9 +21,6 @@ export const visualEditor = defineComponent({
   props: {
     modelValue: {
       type: Object as PropType<visualEditorModelValue>,
-    },
-    config: {
-      type: Object as PropType<VisuaEditorComponents>,
     },
   },
   emits: ["update:modelValue"],
@@ -413,7 +410,7 @@ export const visualEditor = defineComponent({
         </div>
         <div class="visual-editor-leftComponentsMenu">
           {/* 左侧所有在服役的组件 */}
-          {props.config?.componentLists
+          {editorInstance?.componentLists
             .filter((component) => {
               return component.disabled == undefined
                 ? true
@@ -446,7 +443,6 @@ export const visualEditor = defineComponent({
                 return (
                   <editorBlock
                     block={block}
-                    config={props.config}
                     onMousedown={(e: MouseEvent) =>
                       canvas.block.onMousedown(e, block)
                     }
@@ -485,8 +481,8 @@ export const visualEditor = defineComponent({
         <div class="visual-editor-right-seting">
           {/* 右侧操作 */}
           {controlView(() =>
-            state.selectedBlock?.componentKey && props.config
-              ? props.config.componentMap[
+            state.selectedBlock?.componentKey && editorInstance
+              ? editorInstance.componentMap[
                   state.selectedBlock.componentKey
                 ].controlView(state.selectedBlock, updateBlock)
               : null
@@ -496,3 +492,46 @@ export const visualEditor = defineComponent({
     )
   },
 })
+// 单个注册
+visualEditor.registry = function (com: VisualEditorComponent) {
+  // 注册前需要验重
+  let allComLists = logConfig()
+  let nams = allComLists.map((item) => item.name)
+  if (nams.includes("com.name")) {
+    console.warn("组件命名重复，如果不修改将覆盖内置组件！")
+  }
+  editorInstance.registry(com.name, com)
+}
+// 批量注册
+visualEditor.batchRegistry = function (
+  arrs: VisualEditorComponent[] & Record<string, VisualEditorComponent>
+) {
+  // 验重
+  let allComLists = logConfig()
+  let nams = allComLists.map((item) => item.name)
+  if (Object.prototype.toString.call(arrs) == "[object Array]") {
+    arrs.forEach((com) => {
+      if (nams.includes(com.name)) {
+        console.warn("组件命名重复，如果不修改将覆盖内置组件！")
+      }
+      editorInstance.registry(com.name, com)
+    })
+  } else if (Object.prototype.toString.call(arrs) == "[object Object]") {
+    for (let key in arrs) {
+      if (nams.includes(key)) {
+        console.warn("组件命名重复，如果不修改将覆盖内置组件！")
+      }
+      editorInstance.registry(key, arrs[key])
+    }
+  } else {
+    throw new Error("出入类型错误！")
+  }
+}
+// 单个注册
+export const registry = visualEditor.registry
+// 批量注册
+export const batchRegistry = visualEditor.batchRegistry
+// 查看所有注册组件
+export const logConfig = function () {
+  return editorInstance?.componentLists
+}
