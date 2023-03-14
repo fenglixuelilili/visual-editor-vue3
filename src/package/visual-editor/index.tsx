@@ -544,9 +544,16 @@ visualEditor.batchRegistry = function (
   }
 }
 // 单个注册
-export const registry = visualEditor.registry
+export const registry = function (com: VisualEditorComponent) {
+  visualEditor.registry(com)
+}
+export const _registry = editorInstance.registry
 // 批量注册
-export const batchRegistry = visualEditor.batchRegistry
+export const batchRegistry = function (
+  arrs: VisualEditorComponent[] & Record<string, VisualEditorComponent>
+) {
+  visualEditor.batchRegistry(arrs)
+}
 // 查看所有注册组件
 export const logConfig = function () {
   return editorInstance?.componentLists

@@ -6,6 +6,7 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import { visualEditor, logConfig } from "./package/visual-editor/index"
+import "./demoComs/textarea"
 export default defineComponent({
   components: {
     visualEditor,
