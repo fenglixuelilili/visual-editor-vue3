@@ -1,5 +1,5 @@
 import { createCommanderManger } from "../plugins/command.plugins"
-import { block, visualEditorModelValue } from "../../types/editor.d"
+import { visualCommand, block } from "../../types/editor.d"
 import { dragStart, dragEnd } from "../utils/event"
 // undo 撤销 redo 重做
 export function useVisualCommand({
@@ -7,17 +7,9 @@ export function useVisualCommand({
   fouceData, //  获得焦点的数据
   updateBlocks, // 更新组件模块数据
   dataModel, // 双向绑定的数据
-}: {
-  fouceData: {
-    value: {
-      blurBlock: block[]
-      focusBlock: block[]
-    }
-  }
-  updateBlocks: (blocks: block[]) => void
-  dataModel: visualEditorModelValue
-}) {
-  let conmmander = createCommanderManger()
+  shortcutKeys, // 是否开启快捷键操作
+}: visualCommand) {
+  let conmmander = createCommanderManger(shortcutKeys)
   conmmander.registor({
     name: "delete",
     keyboard: ["delete", "ctrl + d"],

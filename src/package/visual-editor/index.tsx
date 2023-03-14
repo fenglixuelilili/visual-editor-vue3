@@ -6,13 +6,13 @@ import {
   VisualEditorComponent,
   createBlockData,
   markline,
+  config,
 } from "../../types/editor.d"
 import useModel from "../../utils/useModel"
 import editorBlock from "./editor-block"
 import { useVisualCommand } from "../utils/visual.command"
 import { dragStart, dragEnd } from "../utils/event"
-import { isMarkLine, isShiftMove } from "../config"
-import { controlView } from "./control-view"
+import { controlView } from "./control-view" // 控制台渲染器
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 export const visualEditor = defineComponent({
   components: {
@@ -22,9 +22,22 @@ export const visualEditor = defineComponent({
     modelValue: {
       type: Object as PropType<visualEditorModelValue>,
     },
+    config: {
+      type: Object as PropType<config>,
+      default: () => ({
+        markLine: false, // 是否开启标线对齐功能
+        shiftMove: false, // 是否开启按住shift键移动
+        shortcutKeys: false, // 是否开启快捷键操作
+      }),
+    },
   },
   emits: ["update:modelValue"],
   setup(props, { emit }) {
+    const {
+      markLine = false,
+      shiftMove = false,
+      shortcutKeys = false,
+    } = props.config
     let model = useModel(
       () => props.modelValue,
       (val) => emit("update:modelValue", val)
@@ -200,7 +213,7 @@ export const visualEditor = defineComponent({
           }
         )
         info.draging = false
-        if (isMarkLine) {
+        if (markLine) {
           info.marks = (function () {
             let lines = {
               x: [],
@@ -285,16 +298,18 @@ export const visualEditor = defineComponent({
         let { clientX: moveX, clientY: moveY } = e
         let { startX, startY } = info
         // 按住shift键的时候处理的逻辑
-        if (e.shiftKey && isShiftMove) {
+        if (e.shiftKey && shiftMove) {
           if (Math.abs(moveX - startX) > Math.abs(moveY - startY)) {
             moveY = startY
           } else {
             moveX = startX
           }
-        } else if (e.shiftKey && !isShiftMove) {
-          console.warn("您没有开启按住shift键移动元素功能！请联系开发人员")
+        } else if (e.shiftKey && !shiftMove) {
+          console.warn(
+            "您没有开启按住shift键移动元素功能！请将配置项中的shiftMove置为true"
+          )
         }
-        if (isMarkLine) {
+        if (markLine) {
           let currentLeft: number = info.startLeft + moveX - startX
           let currentTop: number = info.startTop + moveY - startY
           // 进行比对
@@ -356,6 +371,7 @@ export const visualEditor = defineComponent({
       fouceData: focusBlock as any,
       updateBlocks: updateBlocks,
       dataModel: model as any,
+      shortcutKeys,
     })
     // 所有的顶部按钮
     const buttons = [
@@ -452,7 +468,7 @@ export const visualEditor = defineComponent({
               })}
               {/* 渲染标线信息 */}
               {(function () {
-                if (!isMarkLine) {
+                if (!markLine) {
                   return null
                 } else {
                   return (

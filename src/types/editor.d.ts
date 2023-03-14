@@ -41,6 +41,25 @@ export interface markline {
   y: { top: number; showTop: number }[]
 }
 
+// 组件配置
+export interface config   {
+  markLine?: boolean // 是否开启标线对齐功能
+  shiftMove?: boolean // 是否开启按住shift键移动
+  shortcutKeys?: boolean // 是否开启快捷键操作
+}
+
+export type visualCommand = {
+  fouceData: {
+    value: {
+      blurBlock: block[]
+      focusBlock: block[]
+    }
+  }
+  updateBlocks: (blocks: block[]) => void
+  dataModel: visualEditorModelValue
+  shortcutKeys: boolean
+}
+
 // 这是容器的绑定信息
 export interface visualEditorModelValue {
   // 容器的宽高信息 等等

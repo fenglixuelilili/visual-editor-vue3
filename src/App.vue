@@ -1,6 +1,6 @@
 <template>
   <div>
-    <visualEditor v-model="data" />
+    <visualEditor v-model="data" :config="config" />
   </div>
 </template>
 <script lang="ts">
@@ -62,6 +62,11 @@ export default defineComponent({
             props: {},
           },
         ],
+      },
+      config: {
+        shortcutKeys: true,
+        markLine: true,
+        shiftMove: true,
       },
     }
   },
