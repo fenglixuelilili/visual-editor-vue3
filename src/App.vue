@@ -6,7 +6,7 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import { visualEditor } from "./package/visual-editor/index"
-import renderConfig from "./package/visual-editor/visuaEditorComConfig"
+import renderConfig from "./package/visual-editor/visuaEditorComponents"
 export default defineComponent({
   components: {
     visualEditor,

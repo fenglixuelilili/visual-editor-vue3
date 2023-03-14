@@ -1,8 +1,7 @@
-import { createVisuaEditorComConfig } from "../../types/editor.d"
+import { createVisuaEditorComponents } from "../../types/editor.d"
 import { block } from "../../types/editor"
-import { computed, ref } from "vue"
-let editor = createVisuaEditorComConfig()
-
+import { computed } from "vue"
+let editor = createVisuaEditorComponents()
 editor.registry("text", {
   render: (block: block) => {
     let style = computed(() => ({

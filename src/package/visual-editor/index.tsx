@@ -3,7 +3,7 @@ import "./index.scss"
 import {
   visualEditorModelValue,
   block,
-  VisuaEditorComConfig,
+  VisuaEditorComponents,
   VisualEditorComponent,
   createBlockData,
   markline,
@@ -23,7 +23,7 @@ export const visualEditor = defineComponent({
       type: Object as PropType<visualEditorModelValue>,
     },
     config: {
-      type: Object as PropType<VisuaEditorComConfig>,
+      type: Object as PropType<VisuaEditorComponents>,
     },
   },
   emits: ["update:modelValue"],

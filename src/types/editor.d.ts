@@ -64,7 +64,7 @@ export interface VisualEditorComponent {
   controlView: (block: block & { props:  v<VisualEditorComponent.props> }, updateBlock: ( block: block ) => void) => JSX.Element | string
 }
 // 每次调用这个函数  就是创建一个组件
-export function createVisuaEditorComConfig() {
+export function createVisuaEditorComponents() {
   // 所有组件队列
   const componentLists: VisualEditorComponent[] = []
   // 缓存组件
@@ -87,6 +87,5 @@ export function createVisuaEditorComConfig() {
     componentMap
   }
 }
-// 左侧菜单组件的数据
-export type VisuaEditorComConfig = ReturnType<typeof createVisuaEditorComConfig>
+export type VisuaEditorComponents = ReturnType<typeof createVisuaEditorComponents>
 
