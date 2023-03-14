@@ -1,3 +1,6 @@
+type v<T extends any> = {
+  [ x in keyof k ]: T[x]
+}
 export interface block  {
   left: number
   top: number
@@ -9,9 +12,10 @@ export interface block  {
   height: number
   hasResize: boolean // 是否调整过宽高
   id: number
-  props: {
-    [key: string]: any
-  }
+  // props: {
+  //   [key: string]: any
+  // }
+  props: v[VisualEditorComponent.props]
 }
 export const createBlockData = function (data: {
   top: number
@@ -57,7 +61,7 @@ export interface VisualEditorComponent {
   }
   priview: () => JSX.Element | string
   render: (...args) => JSX.Element | string
-  controlView: (block: block, updateBlock: ( block: block ) => void) => JSX.Element | string
+  controlView: (block: block & { props:  v<VisualEditorComponent.props> }, updateBlock: ( block: block ) => void) => JSX.Element | string
 }
 // 每次调用这个函数  就是创建一个组件
 export function createVisuaEditorComConfig() {
