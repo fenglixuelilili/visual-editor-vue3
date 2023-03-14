@@ -1,15 +1,21 @@
 <template>
   <div>
-    <visualEditor v-model="data" :config="config" />
+    <!-- <visualEditor v-model="data" :config="config" /> -->
+    <priviewVisualEditor v-model="data" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue"
-import { visualEditor, logConfig } from "./package/visual-editor/index"
+import {
+  visualEditor,
+  logConfig,
+  priviewVisualEditor,
+} from "./package/visual-editor/index"
 import "./demoComs/textarea"
 export default defineComponent({
   components: {
     visualEditor,
+    priviewVisualEditor,
   },
   data() {
     return {
