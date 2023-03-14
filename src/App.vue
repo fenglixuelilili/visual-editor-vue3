@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- <visualEditor v-model="data" :config="config" /> -->
-    <priviewVisualEditor v-model="data" />
+    <visualEditor v-model="data" :config="config" />
+    <!-- <priviewVisualEditor v-model="data" /> -->
   </div>
 </template>
 <script lang="ts">
@@ -78,7 +78,7 @@ export default defineComponent({
     }
   },
   mounted() {
-    logConfig()
+    console.log(logConfig())
   },
 })
 </script>

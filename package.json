@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vue-tsc --noEmit --skipLibCheck && vite build",
     "preview": "vite preview",
     "docs:dev": "vitepress dev src/docs",
     "docs:build": "vitepress build src/docs",
@@ -17,6 +17,7 @@
     "vue": "^3.2.45"
   },
   "devDependencies": {
+    "@types/node": "^18.15.3",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "typescript": "^4.9.3",
