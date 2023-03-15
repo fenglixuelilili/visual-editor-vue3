@@ -21,8 +21,9 @@ export default defineComponent({
     return {
       data: {
         container: {
-          width: 600,
+          width: 800,
           height: 500,
+          wrapper: 600,
         },
         blocks: [
           {
@@ -41,6 +42,7 @@ export default defineComponent({
               color: "green",
               text: "你好请教",
             },
+            dragMode: "free",
           },
           {
             id: 2,
@@ -54,6 +56,7 @@ export default defineComponent({
             left: 312.5,
             componentKey: "button",
             props: {},
+            dragMode: "free",
           },
           {
             id: 3,
@@ -67,6 +70,7 @@ export default defineComponent({
             left: 259.5,
             componentKey: "input",
             props: {},
+            dragMode: "updown",
           },
         ],
       },

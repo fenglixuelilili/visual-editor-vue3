@@ -1,21 +1,25 @@
 type v<T extends any> = {
   [ x in keyof k ]: T[x]
 }
-export interface block  {
-  left: number
-  top: number
-  zIndex: number
-  adjustmentPosition?: boolean // 是否需要自动调整位置
-  componentKey: string
-  focus?: boolean
+export type container = {
   width: number
   height: number
+  wrapper: number
+}
+export interface block  {
+  left: number  // 定位的left值
+  top: number // 定位的top值
+  zIndex: number // 定位时候的层级
+  adjustmentPosition?: boolean // 是否需要自动调整位置
+  componentKey: string // 标识
+  focus?: boolean // 是否点住了
+  width: number // 组件的宽度
+  widthAdaption100?: boolean // dragMode 在值为updown的情况下好使，宽度是否自适应： 如果为true的话 宽度和屏幕一样，如果为false则和设置的wrapper宽度一致
+  height: number // 组件的高度
   hasResize: boolean // 是否调整过宽高
-  id: number
-  // props: {
-  //   [key: string]: any
-  // }
-  props: v[VisualEditorComponent.props]
+  id: number // 每个组件的id
+  props: v[VisualEditorComponent.props] // 组件的属性
+  dragMode?: string // 拖拽模式 'free' | 'updown' 只有两种
 }
 export const createBlockData = function (data: {
   top: number
@@ -23,6 +27,8 @@ export const createBlockData = function (data: {
   componentKey: string
   props: any
   [key: string]: any
+  dragMode: string // 拖拽模式
+  widthAdaption100?: boolean // 宽度调整方式
 }) {
   return {
     adjustmentPosition: true,
@@ -63,10 +69,7 @@ export type visualCommand = {
 // 这是容器的绑定信息
 export interface visualEditorModelValue {
   // 容器的宽高信息 等等
-  container: {
-    width: number
-    height: number
-  }
+  container: container
   // 容器内的元素信息 包含 位置 元素 大小等信息
   blocks: block[]
 }
@@ -78,6 +81,8 @@ export interface VisualEditorComponent {
   props: {
     [key: string]: any
   }
+  dragMode?: string // 拖拽模式
+  widthAdaption100?: boolean // 宽度调整方式
   priview: () => JSX.Element | string
   render: (...args) => JSX.Element | string
   controlView: (block: block & { props:  v<VisualEditorComponent.props> }, updateBlock: ( block: block ) => void) => JSX.Element | string

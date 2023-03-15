@@ -35,6 +35,14 @@ export const visualEditor = defineComponent({
   },
   emits: ["update:modelValue"],
   setup(props, { emit }) {
+    if (!props.modelValue?.container) {
+      throw new Error("请检查传入的container！")
+    }
+    if (
+      props.modelValue?.container?.wrapper > props.modelValue?.container?.width
+    ) {
+      throw new Error("wrapper宽度不合适，请检查！")
+    }
     const {
       markLine = false,
       shiftMove = false,
@@ -132,15 +140,22 @@ export const visualEditor = defineComponent({
           e.preventDefault()
         },
         drop(e: DragEvent) {
+          console.log(e)
           // 拖拽到目标节点上了 -- 新添加的
-          props.modelValue?.blocks.push(
-            createBlockData({
-              top: e.offsetY,
-              left: e.offsetX,
-              componentKey: current.component?.name as string,
-              props: current.component?.props ?? {},
-            })
-          )
+          let block = createBlockData({
+            dragMode: current.component?.dragMode
+              ? current.component?.dragMode
+              : "free",
+            widthAdaption100: current.component?.widthAdaption100
+              ? current.component?.widthAdaption100
+              : false,
+            top: e.offsetY,
+            left: e.offsetX,
+            componentKey: current.component?.name as string,
+            props: current.component?.props ?? {},
+          })
+          console.log(block, "这是？？？？")
+          props.modelValue?.blocks.push(block)
         },
       }
       return menuDrag
@@ -285,7 +300,6 @@ export const visualEditor = defineComponent({
             return lines
           })()
         }
-
         info.startLeft = state.selectedBlock?.left as number
         info.startTop = state.selectedBlock?.top as number
         document.addEventListener("mousemove", mousemove)
@@ -434,7 +448,6 @@ export const visualEditor = defineComponent({
             state.selectedBlock,
             updateBlock
           )
-          console.log(this.originData, "我是原数据")
           return this.cacheView
         } else {
           return null
@@ -465,6 +478,31 @@ export const visualEditor = defineComponent({
         }
       }
     )
+    // 标线渲染函数
+    function renderMakrLine() {
+      if (!markLine) {
+        return null
+      } else {
+        return (
+          <>
+            {/* y标线 */}
+            {canvasDrag.mark.y != null && (
+              <div
+                class="visual-editor-mark-y"
+                style={{ top: `${canvasDrag.mark.y}px` }}
+              ></div>
+            )}
+            {/* x标线 */}
+            {canvasDrag.mark.x != null && (
+              <div
+                class="visual-editor-mark-x"
+                style={{ left: `${canvasDrag.mark.x}px` }}
+              ></div>
+            )}
+          </>
+        )
+      }
+    }
     return () => (
       <div class="visual-editor">
         <div class="visual-editor-topMenu">
@@ -511,6 +549,7 @@ export const visualEditor = defineComponent({
                 return (
                   <editorBlock
                     block={block}
+                    container={props.modelValue?.container}
                     onMousedown={(e: MouseEvent) =>
                       canvas.block.onMousedown(e, block)
                     }
@@ -519,30 +558,7 @@ export const visualEditor = defineComponent({
                 )
               })}
               {/* 渲染标线信息 */}
-              {(function () {
-                if (!markLine) {
-                  return null
-                } else {
-                  return (
-                    <>
-                      {/* y标线 */}
-                      {canvasDrag.mark.y != null && (
-                        <div
-                          class="visual-editor-mark-y"
-                          style={{ top: `${canvasDrag.mark.y}px` }}
-                        ></div>
-                      )}
-                      {/* x标线 */}
-                      {canvasDrag.mark.x != null && (
-                        <div
-                          class="visual-editor-mark-x"
-                          style={{ left: `${canvasDrag.mark.x}px` }}
-                        ></div>
-                      )}
-                    </>
-                  )
-                }
-              })()}
+              {renderMakrLine()}
             </div>
           </div>
         </div>
