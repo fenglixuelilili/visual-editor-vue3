@@ -1,5 +1,5 @@
 import { computed, defineComponent, onMounted, PropType, ref } from "vue"
-import { block, VisuaEditorComponents } from "../../types/editor"
+import { block } from "../../types/editor.d"
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 export default defineComponent({
   props: {
@@ -23,7 +23,7 @@ export default defineComponent({
       zIndex: props.block.zIndex,
     }))
     const blockInstance = ref({} as HTMLElement)
-    let componentRenderIinfo =
+    let componentRenderInfo =
       editorInstance?.componentMap[props.block!.componentKey]
     onMounted(() => {
       if (props.block.adjustmentPosition) {
@@ -51,7 +51,7 @@ export default defineComponent({
     return () => (
       <div class={classes.value} style={style.value} ref={blockInstance}>
         {/* 组件核心 */}
-        {componentRenderIinfo?.render(props.block)}
+        {componentRenderInfo?.render(props.block)}
         {/* 操作 */}
         {props.block.focus && !props.priview ? (
           <div class="editor-bloack-delete" onClick={delBlock}>
