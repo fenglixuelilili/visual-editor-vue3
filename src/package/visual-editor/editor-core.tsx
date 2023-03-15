@@ -1,4 +1,4 @@
-import { computed, defineComponent, PropType, reactive, ref } from "vue"
+import { computed, defineComponent, PropType, reactive, ref, watch } from "vue"
 import "../scss/index.scss"
 import {
   visualEditorModelValue,
@@ -45,6 +45,7 @@ export const visualEditor = defineComponent({
       (val) => emit("update:modelValue", val)
     )
     let state = reactive({
+      // 当前选中的元素
       selectedBlock: null as null | block,
     })
     let containerStyle = computed(() => ({
@@ -70,7 +71,7 @@ export const visualEditor = defineComponent({
       model.value.blocks.forEach((oldblock: any) => {
         if (block.id == oldblock.id) {
           for (let key in oldblock) {
-            oldblock[key] = block[key]
+            oldblock[key] = deepClone(block[key])
           }
         }
       })
@@ -417,29 +418,53 @@ export const visualEditor = defineComponent({
     // 控制器中的信息
     const controlMethods = {
       // 操作的原数据
-      originData: null,
+      originData: null as null | block,
+      // 视图缓存
+      cacheView: null as null | JSX.Element,
       // 控制层渲染函数
       controlRender() {
+        if (this.originData?.id === state.selectedBlock?.id && this.cacheView) {
+          return this.cacheView
+        }
         let componentKey = state.selectedBlock?.componentKey
         let componentMap = editorInstance?.componentMap
         if (componentKey && componentMap && state.selectedBlock) {
           this.originData = deepClone(state.selectedBlock)
-          return componentMap[componentKey].controlView(
+          this.cacheView = componentMap[componentKey].controlView(
             state.selectedBlock,
             updateBlock
           )
+          console.log(this.originData, "我是原数据")
+          return this.cacheView
         } else {
           return null
         }
       },
-      // 点确定的时候触发的回调
-      sure() {},
-      // 点取消的时候触发的函数
+      sure() {
+        // this.cancleEffect()
+        state.selectedBlock = null
+      },
       cancle() {
-        // 回滚操作
-        console.log(this.originData, "原数据")
+        updateBlock(this.originData)
+        // this.cancleEffect()
+        state.selectedBlock = null
+      },
+      cancleEffect() {
+        this.originData = null
+        this.cacheView = null
+        console.log("取消副作用")
       },
     }
+    // 监听选中取消， 说明需要取消副作用
+    watch(
+      () => state.selectedBlock,
+      (val: any) => {
+        if (!val) {
+          // 说明是清空
+          controlMethods.cancleEffect()
+        }
+      }
+    )
     return () => (
       <div class="visual-editor">
         <div class="visual-editor-topMenu">
