@@ -1,6 +1,7 @@
 export function controlView(
   controlView: () => JSX.Element | string | null,
-  sure?: (...args: any) => any
+  sure?: (...args: any) => any,
+  cancle?: (...args: any) => any
 ) {
   return (
     <div>
@@ -8,7 +9,7 @@ export function controlView(
       <div>{controlView()}</div>
       <div>
         <button onClick={sure}>确定按钮</button>
-        <button>取消按钮</button>
+        <button onClick={cancle}>取消按钮</button>
       </div>
     </div>
   )

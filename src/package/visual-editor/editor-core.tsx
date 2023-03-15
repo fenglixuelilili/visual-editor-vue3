@@ -14,6 +14,7 @@ import { useVisualCommand } from "../utils/visual.command"
 import { dragStart, dragEnd } from "../utils/event"
 import { controlView } from "./control-view" // 控制台渲染器
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
+import { deepClone } from "../utils/index"
 // 编辑器
 export const visualEditor = defineComponent({
   components: {
@@ -61,7 +62,7 @@ export const visualEditor = defineComponent({
     function updateBlocks(blocks: block[]) {
       model.value = {
         ...model.value,
-        blocks: JSON.parse(JSON.stringify(blocks)),
+        blocks: deepClone(blocks),
       }
     }
     // 更新一个block
@@ -413,6 +414,32 @@ export const visualEditor = defineComponent({
     function delBlock(block: block) {
       commder.delete(block)
     }
+    // 控制器中的信息
+    const controlMethods = {
+      // 操作的原数据
+      originData: null,
+      // 控制层渲染函数
+      controlRender() {
+        let componentKey = state.selectedBlock?.componentKey
+        let componentMap = editorInstance?.componentMap
+        if (componentKey && componentMap && state.selectedBlock) {
+          this.originData = deepClone(state.selectedBlock)
+          return componentMap[componentKey].controlView(
+            state.selectedBlock,
+            updateBlock
+          )
+        } else {
+          return null
+        }
+      },
+      // 点确定的时候触发的回调
+      sure() {},
+      // 点取消的时候触发的函数
+      cancle() {
+        // 回滚操作
+        console.log(this.originData, "原数据")
+      },
+    }
     return () => (
       <div class="visual-editor">
         <div class="visual-editor-topMenu">
@@ -496,12 +523,10 @@ export const visualEditor = defineComponent({
         </div>
         <div class="visual-editor-right-seting">
           {/* 右侧操作 */}
-          {controlView(() =>
-            state.selectedBlock?.componentKey && editorInstance
-              ? editorInstance.componentMap[
-                  state.selectedBlock.componentKey
-                ].controlView(state.selectedBlock, updateBlock)
-              : null
+          {controlView(
+            controlMethods.controlRender.bind(controlMethods),
+            controlMethods.sure.bind(controlMethods),
+            controlMethods.cancle.bind(controlMethods)
           )}
         </div>
       </div>

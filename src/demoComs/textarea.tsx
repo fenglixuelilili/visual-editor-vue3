@@ -8,6 +8,7 @@ registry({
   label: "测试文本域",
   props: {},
   controlView: (block, updateBlock) => {
+    console.log(this)
     let props = block.props
     function onChange(e: any) {
       block.props.fontSize = e.target.value
