@@ -97,11 +97,11 @@ export function createCommanderManger() {
    * @命令注册完成之后执行的回调
   */
   const init = () => {
-    // state.commandArray.forEach(command => { 
-    //   if (!!command.init) {
-    //     state.destoryList.push(command.init())
-    //   }
-    // })
+    state.commandArray.forEach(command => { 
+      if (!!command.init) {
+        state.destoryList.push(command.init())
+      }
+    })
     state.destoryList.push(keyboardEvent())
   }
   onUnmounted(() => {
@@ -161,7 +161,7 @@ export function createCommanderManger() {
           }
         }
       }
-     }
+    }
   })
   // 重做按钮
   registor({
