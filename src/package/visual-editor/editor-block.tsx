@@ -1,30 +1,57 @@
 import { computed, defineComponent, onMounted, PropType, ref } from "vue"
-import { block, VisuaEditorComConfig } from "../../types/editor"
+import { block, container } from "../../types/editor.d"
+import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
+import "../scss/editor.block.scss"
 export default defineComponent({
   props: {
     // 外壳 定位 放大缩小用的
     block: {
       type: Object as PropType<block>,
-      default: {
+      default: () => ({
         left: 0,
         top: 0,
-      },
+      }),
     },
-    config: {
-      type: Object as PropType<VisuaEditorComConfig>,
+    priview: {
+      type: Boolean,
+      default: false,
+    },
+    container: {
+      type: Object as PropType<container>,
+      default: () => ({
+        width: 0,
+        height: 0,
+        wrapper: 0,
+      }),
     },
   },
   setup(props, { emit }) {
-    const style = computed(() => ({
-      left: props.block.left + "px",
-      top: props.block.top + "px",
-      zIndex: props.block.zIndex,
-    }))
+    const style = computed(() => {
+      if (props.block.dragMode == "free") {
+        // 自由模式
+        return {
+          left: props.block.left + "px",
+          top: props.block.top + "px",
+          zIndex: props.block.zIndex,
+          width: props.block.widthAdaption100 ? "100%" : "auto",
+        }
+      } else if (props.block.dragMode == "updown") {
+        // 上下模式
+        return {
+          margin: "0 auto",
+          width: props.block.widthAdaption100
+            ? "100%"
+            : props.container.width + "px",
+          position: "relative",
+        }
+      }
+      return {}
+    })
     const blockInstance = ref({} as HTMLElement)
-    let componentRenderIinfo =
-      props.config?.componentMap[props.block!.componentKey]
+    let componentRenderInfo =
+      editorInstance?.componentMap[props.block!.componentKey]
     onMounted(() => {
-      if (props.block.adjustmentPosition) {
+      if (props.block.adjustmentPosition && props.block.dragMode == "free") {
         /**
          * @需要调整位置
          */
@@ -47,11 +74,11 @@ export default defineComponent({
       emit("delBlock")
     }
     return () => (
-      <div class={classes.value} style={style.value} ref={blockInstance}>
-        {/* 组件渲染项 */}
-        {componentRenderIinfo?.render()}
+      <div class={classes.value} style={style.value as any} ref={blockInstance}>
+        {/* 组件核心 */}
+        {componentRenderInfo?.render(props.block)}
         {/* 操作 */}
-        {props.block.focus ? (
+        {props.block.focus && !props.priview ? (
           <div class="editor-bloack-delete" onClick={delBlock}>
             删除
           </div>

@@ -1,25 +1,33 @@
 <template>
   <div>
-    <visualEditor v-model="data" :config="renderConfig" />
+    <visualEditor v-model="data" :config="config" />
+    <!-- <priviewVisualEditor v-model="data" /> -->
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue"
-import { visualEditor } from "./package/visual-editor/index"
-import renderConfig from "./package/visual-editor/visuaEditorComConfig"
+import {
+  visualEditor,
+  logConfig,
+  priviewVisualEditor,
+} from "./package/visual-editor/index"
+import "./demoComs/textarea"
 export default defineComponent({
   components: {
     visualEditor,
+    priviewVisualEditor,
   },
   data() {
     return {
       data: {
         container: {
-          width: 600,
+          width: 800,
           height: 500,
+          wrapper: 600,
         },
         blocks: [
           {
+            id: 1,
             adjustmentPosition: false,
             focus: false,
             zIndex: 0,
@@ -29,8 +37,15 @@ export default defineComponent({
             top: 184.5,
             left: 206,
             componentKey: "text",
+            props: {
+              fontSize: 18,
+              color: "green",
+              text: "你好请教",
+            },
+            dragMode: "free",
           },
           {
+            id: 2,
             adjustmentPosition: false,
             focus: false,
             zIndex: 0,
@@ -40,8 +55,11 @@ export default defineComponent({
             top: 118.5,
             left: 312.5,
             componentKey: "button",
+            props: {},
+            dragMode: "free",
           },
           {
+            id: 3,
             adjustmentPosition: false,
             focus: false,
             zIndex: 0,
@@ -51,11 +69,20 @@ export default defineComponent({
             top: 305.5,
             left: 259.5,
             componentKey: "input",
+            props: {},
+            dragMode: "updown",
           },
         ],
       },
-      renderConfig,
+      config: {
+        shortcutKeys: true,
+        markLine: true,
+        shiftMove: true,
+      },
     }
+  },
+  mounted() {
+    console.log(logConfig())
   },
 })
 </script>

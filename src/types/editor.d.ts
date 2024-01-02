@@ -1,20 +1,34 @@
-export interface block  {
-  left: number
-  top: number
-  zIndex: number
-  adjustmentPosition?: boolean // 是否需要自动调整位置
-  componentKey: string
-  focus?: boolean
+type v<T extends any> = {
+  [ x in keyof k ]: T[x]
+}
+export type container = {
   width: number
   height: number
+  wrapper: number
+}
+export interface block  {
+  left: number  // 定位的left值
+  top: number // 定位的top值
+  zIndex: number // 定位时候的层级
+  adjustmentPosition?: boolean // 是否需要自动调整位置
+  componentKey: string // 标识
+  focus?: boolean // 是否点住了
+  width: number // 组件的宽度
+  widthAdaption100?: boolean // dragMode 在值为updown的情况下好使，宽度是否自适应： 如果为true的话 宽度和屏幕一样，如果为false则和设置的wrapper宽度一致
+  height: number // 组件的高度
   hasResize: boolean // 是否调整过宽高
+  id: number // 每个组件的id
+  props: v[VisualEditorComponent.props] // 组件的属性
+  dragMode?: string // 拖拽模式 'free' | 'updown' 只有两种
 }
 export const createBlockData = function (data: {
   top: number
   left: number
-  
   componentKey: string
+  props: any
   [key: string]: any
+  dragMode: string // 拖拽模式
+  widthAdaption100?: boolean // 宽度调整方式
 }) {
   return {
     adjustmentPosition: true,
@@ -23,6 +37,7 @@ export const createBlockData = function (data: {
     hasResize: false,
     width: 0,
     height: 0,
+    id: Math.floor((Math.random() * 100000000)),
     ...data
   }
 }
@@ -32,13 +47,29 @@ export interface markline {
   y: { top: number; showTop: number }[]
 }
 
+// 组件配置
+export interface config   {
+  markLine?: boolean // 是否开启标线对齐功能
+  shiftMove?: boolean // 是否开启按住shift键移动
+  shortcutKeys?: boolean // 是否开启快捷键操作
+}
+
+export type visualCommand = {
+  fouceData: {
+    value: {
+      blurBlock: block[]
+      focusBlock: block[]
+    }
+  }
+  updateBlocks: (blocks: block[]) => void
+  dataModel: visualEditorModelValue
+  shortcutKeys: boolean
+}
+
 // 这是容器的绑定信息
 export interface visualEditorModelValue {
   // 容器的宽高信息 等等
-  container: {
-    width: number
-    height: number
-  }
+  container: container
   // 容器内的元素信息 包含 位置 元素 大小等信息
   blocks: block[]
 }
@@ -47,11 +78,17 @@ export interface VisualEditorComponent {
   name: string
   label: string
   disabled?: boolean
+  props: {
+    [key: string]: any
+  }
+  dragMode?: string // 拖拽模式
+  widthAdaption100?: boolean // 宽度调整方式
   priview: () => JSX.Element | string
-  render: () => JSX.Element | string
+  render: (...args) => JSX.Element | string
+  controlView: (block: block & { props:  v<VisualEditorComponent.props> }, updateBlock: ( block: block ) => void) => JSX.Element | string
 }
 // 每次调用这个函数  就是创建一个组件
-export function createVisuaEditorComConfig() {
+export function createVisuaEditorComponents() {
   // 所有组件队列
   const componentLists: VisualEditorComponent[] = []
   // 缓存组件
@@ -74,6 +111,5 @@ export function createVisuaEditorComConfig() {
     componentMap
   }
 }
-// 左侧菜单组件的数据
-export type VisuaEditorComConfig = ReturnType<typeof createVisuaEditorComConfig>
+export type VisuaEditorComponents = ReturnType<typeof createVisuaEditorComponents>
 

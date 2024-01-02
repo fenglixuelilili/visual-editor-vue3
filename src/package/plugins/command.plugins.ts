@@ -22,7 +22,7 @@ export interface Command {
 }
 
 // 注册管理命令总线
-export function createCommanderManger() {
+export function createCommanderManger(shortcutKeys: boolean) {
   const state = reactive({
     // 当前索引
     current: -1,
@@ -48,10 +48,10 @@ export function createCommanderManger() {
     80: 'p'
   }
   // 快捷键处理
-  const keyboardEvent = () => { 
+  const keyboardEvent = () => {
     const onKeyDown = (e: KeyboardEvent) => {
-      e.preventDefault()
-      if (document.activeElement !== document.body) { 
+      // e.preventDefault() TODO: 会影响页面上的操作
+      if (document.activeElement !== document.body) {
         // 说明焦点在某个组件或者元素上
         return
       }
@@ -90,8 +90,11 @@ export function createCommanderManger() {
         }
       })
     }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
+    if (shortcutKeys) {
+      window.addEventListener('keydown', onKeyDown)
+      return () => window.removeEventListener('keydown', onKeyDown)
+    }
+    return () => { }
   }
   /**
    * @命令注册完成之后执行的回调

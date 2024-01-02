@@ -13,6 +13,7 @@
     "prepare": "husky install",
     "test:unit": "vitest run"
   },
+  "main": "./index.ts",
   "dependencies": {
     "husky": "^8.0.3",
     "sass": "^1.58.0",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@types/node": "^18.15.3",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "lint-staged": "^15.2.0",

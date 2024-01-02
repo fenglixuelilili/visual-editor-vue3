@@ -1,23 +1,16 @@
 import { createCommanderManger } from "../plugins/command.plugins"
-import { block, visualEditorModelValue } from "../../types/editor.d"
+import { visualCommand, block } from "../../types/editor.d"
 import { dragStart, dragEnd } from "../utils/event"
+import { deepClone } from "../utils/index"
 // undo 撤销 redo 重做
 export function useVisualCommand({
   // 需要传入一些响应式的数据
   fouceData, //  获得焦点的数据
   updateBlocks, // 更新组件模块数据
   dataModel, // 双向绑定的数据
-}: {
-  fouceData: {
-    value: {
-      blurBlock: block[]
-      focusBlock: block[]
-    }
-  }
-  updateBlocks: (blocks: block[]) => void
-  dataModel: visualEditorModelValue
-}) {
-  let conmmander = createCommanderManger()
+  shortcutKeys, // 是否开启快捷键操作
+}: visualCommand) {
+  let conmmander = createCommanderManger(shortcutKeys)
   conmmander.registor({
     name: "delete",
     keyboard: ["delete", "ctrl + d"],
@@ -68,9 +61,7 @@ export function useVisualCommand({
            * 拖拽刚开始前做的事情
            * 深拷贝初始化前的数据
            */
-          this.data.before = JSON.parse(
-            JSON.stringify((dataModel as any).value.blocks || [])
-          )
+          this.data.before = deepClone((dataModel as any).value.blocks || [])
         },
         dragend: () => {
           // 拖拽结束 - 去重新执行drag的excute方法 记录数据  生成回退记录
@@ -87,10 +78,8 @@ export function useVisualCommand({
       }
     },
     excute() {
-      let before = JSON.parse(JSON.stringify(this.data.before))
-      let after = JSON.parse(
-        JSON.stringify((dataModel as any).value.blocks || [])
-      ) // 这个是已经更新过后的数据模型了
+      let before = deepClone(this.data.before)
+      let after = deepClone((dataModel as any).value.blocks || []) // 这个是已经更新过后的数据模型了
       return {
         undo() {
           // 撤回
@@ -119,9 +108,7 @@ export function useVisualCommand({
         },
         redo() {
           // 重做
-          data.before = JSON.parse(
-            JSON.stringify((dataModel as any).value.blocks || [])
-          )
+          data.before = deepClone((dataModel as any).value.blocks || [])
           data.after = []
           updateBlocks(data.after)
         },
@@ -150,10 +137,7 @@ export function useVisualCommand({
             return
           }
           // 数据存储
-          data.before = JSON.parse(
-            JSON.stringify((dataModel as any).value.blocks)
-          )
-
+          data.before = deepClone((dataModel as any).value.blocks)
           let max =
             (dataModel as any).value.blocks.reduce(
               (pre: number, block: block) => {
@@ -193,9 +177,7 @@ export function useVisualCommand({
             return
           }
           // 数据存储
-          data.before = JSON.parse(
-            JSON.stringify((dataModel as any).value.blocks)
-          )
+          data.before = deepClone((dataModel as any).value.blocks)
           let min =
             (dataModel as any).value.blocks.reduce(
               (pre: number, block: block) => {
