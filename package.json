@@ -15,11 +15,13 @@
   },
   "main": "./index.ts",
   "dependencies": {
+    "add": "^2.0.6",
     "husky": "^8.0.3",
     "sass": "^1.58.0",
     "scss": "^0.2.4",
     "vitest": "0.34.6",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-grid-layout": "3.0.0-beta1"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",

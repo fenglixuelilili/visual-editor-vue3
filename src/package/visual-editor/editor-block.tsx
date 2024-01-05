@@ -2,6 +2,7 @@ import { computed, defineComponent, onMounted, PropType, ref } from "vue"
 import { block, container } from "../../types/editor.d"
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import "../scss/editor.block.scss"
+
 // 每个组件上的外壳 + block组件
 export default defineComponent({
   props: {
