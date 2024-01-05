@@ -15,10 +15,12 @@ import { dragStart, dragEnd } from "../utils/event"
 import { controlView } from "./control-view" // 控制台渲染器
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import { deepClone } from "../utils/index"
+import VueGridLayout from "vue-grid-layout"
 // 编辑器
 export const visualEditor = defineComponent({
   components: {
     editorBlock,
+    GridLayout: VueGridLayout.GridLayout,
   },
   props: {
     modelValue: {
@@ -153,6 +155,10 @@ export const visualEditor = defineComponent({
             left: e.offsetX,
             componentKey: current.component?.name as string,
             props: current.component?.props ?? {},
+            x: 1,
+            y: 1,
+            w: 1,
+            h: 1,
           })
           console.log(block, "这是？？？？")
           props.modelValue?.blocks.push(block)
@@ -545,20 +551,37 @@ export const visualEditor = defineComponent({
               ref={containerInstance}
               onMousedown={(e: Event) => canvas.container.onMousedown(e)}
             >
-              {model.value.blocks.map((block: block) => {
-                return (
-                  <editorBlock
-                    block={block}
-                    container={props.modelValue?.container}
-                    onMousedown={(e: MouseEvent) =>
-                      canvas.block.onMousedown(e, block)
-                    }
-                    onDelBlock={() => delBlock(block)}
-                  ></editorBlock>
-                )
-              })}
-              {/* 渲染标线信息 */}
-              {renderMakrLine()}
+              <grid-layout
+                layout={model.value.blocks}
+                col-num={12}
+                row-height={30}
+                is-draggable={true}
+                is-resizable={true}
+                is-mirrored={false}
+                vertical-compact={true}
+                margin={[10, 10]}
+                use-css-transforms={true}
+                onUpdate:layout={(val: any) => {
+                  console.log(val, "这是？？")
+                }}
+              >
+                {model.value.blocks.map((block: block) => {
+                  return (
+                    <div>
+                      <editorBlock
+                        block={block}
+                        container={props.modelValue?.container}
+                        onMousedown={(e: MouseEvent) =>
+                          canvas.block.onMousedown(e, block)
+                        }
+                        onDelBlock={() => delBlock(block)}
+                      ></editorBlock>
+                    </div>
+                  )
+                })}
+                {/* 渲染标线信息 */}
+                {renderMakrLine()}
+              </grid-layout>
             </div>
           </div>
         </div>

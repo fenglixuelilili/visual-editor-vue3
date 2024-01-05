@@ -2,7 +2,7 @@ import { computed, defineComponent, onMounted, PropType, ref } from "vue"
 import { block, container } from "../../types/editor.d"
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import "../scss/editor.block.scss"
-
+// import VueGridLayout from "vue-grid-layout"
 // 每个组件上的外壳 + block组件
 export default defineComponent({
   props: {
@@ -27,6 +27,9 @@ export default defineComponent({
       }),
     },
   },
+  // components: {
+  //   GridItem: VueGridLayout.GridItem,
+  // },
   setup(props, { emit }) {
     const style = computed(() => {
       if (props.block.dragMode == "free") {
@@ -75,17 +78,41 @@ export default defineComponent({
     function delBlock() {
       emit("delBlock")
     }
-    return () => (
-      <div class={classes.value} style={style.value as any} ref={blockInstance}>
-        {/* 组件核心 */}
-        {componentRenderInfo?.render(props.block)}
-        {/* 操作 */}
-        {props.block.focus && !props.priview ? (
-          <div class="editor-bloack-delete" onClick={delBlock}>
-            删除
+    return () => {
+      if (props.block.dragMode == "free" && false) {
+        // 自由拖拽模式
+        return (
+          <div
+            class={classes.value}
+            style={style.value as any}
+            ref={blockInstance}
+          >
+            {/* 组件核心 */}
+            {/* 操作 */}
+            {props.block.focus && !props.priview ? (
+              <div class="editor-bloack-delete" onClick={delBlock}>
+                删除
+              </div>
+            ) : null}
           </div>
-        ) : null}
-      </div>
-    )
+        )
+      } else {
+        // 布局模式
+        return (
+          <div style={{ backgroundColor: "gray" }}>
+            <grid-item
+              x={props.block.x}
+              y={props.block.y}
+              w={props.block.w}
+              h={props.block.h}
+              i={1}
+              key={props.block.id}
+            >
+              {componentRenderInfo?.render(props.block)}
+            </grid-item>
+          </div>
+        )
+      }
+    }
   },
 })

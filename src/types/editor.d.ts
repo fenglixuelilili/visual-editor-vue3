@@ -20,6 +20,11 @@ export interface block  {
   id: number // 每个组件的id
   props: v[VisualEditorComponent.props] // 组件的属性
   dragMode?: string // 拖拽模式 'free' | 'updown' 只有两种
+
+  x: number
+  y: number
+  w: number
+  h: number
 }
 export const createBlockData = function (data: {
   top: number
@@ -29,7 +34,7 @@ export const createBlockData = function (data: {
   [key: string]: any
   dragMode: string // 拖拽模式
   widthAdaption100?: boolean // 宽度调整方式
-}) {
+}): block {
   return {
     adjustmentPosition: true,
     focus: false,
