@@ -7,10 +7,15 @@ export default defineComponent({
       default: [],
     },
     menuDragInfo: {
-      type: Object as PropType<{ dragstart: Function; dragend: Function }>,
+      type: Object as PropType<{
+        dragstart: Function
+        dragend: Function
+        click: Function
+      }>,
       default: () => ({
         dragstart: () => {},
         dragend: () => {},
+        click: () => {},
       }),
     },
   },
@@ -46,8 +51,8 @@ export default defineComponent({
                       onDragend={props.menuDragInfo.dragend.bind(
                         props.menuDragInfo
                       )}
+                      onClick={(e) => props.menuDragInfo.click(e, component)}
                     >
-                      {/* <span> {component.icon} </span> */}
                       <div class="icon-box">
                         <img class="icon" src={component.icon} alt="" />
                         <img

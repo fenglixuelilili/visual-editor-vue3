@@ -19,7 +19,7 @@ export interface block  {
   hasResize: boolean // 是否调整过宽高
   id: number // 每个组件的id
   props: v[VisualEditorComponent.props] // 组件的属性
-  dragMode?: string // 拖拽模式 'free' | 'updown' 只有两种
+  dragMode?: string // 拖拽模式 'free' | 'updown'('') 只有两种
 
   x: number
   y: number

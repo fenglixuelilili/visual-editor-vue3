@@ -199,6 +199,32 @@ export function useVisualCommand({
       }
     },
   })
+  conmmander.registor({
+    name: "add",
+    // keyboard: ["ctrl + alt + d"],
+    excute(block) {
+      // 保存数据
+      let data = {
+        before: [] as block[], // 保存之前
+        after: [] as block[], // 之后
+      }
+      return {
+        undo() {
+          // 撤销
+          updateBlocks(data.before)
+        },
+        redo() {
+          // 重做
+          let blocks = (dataModel as any).value.blocks
+          data.before = deepClone(blocks)
+          blocks.push(block) // 之后的数据
+          data.after = blocks
+          console.log(data.after, "data.afterdata.afterdata.after")
+          updateBlocks(data.after)
+        },
+      }
+    },
+  })
   conmmander.init()
   return {
     // 可以弄一些默认导出
@@ -207,5 +233,6 @@ export function useVisualCommand({
     delete: (...arg: any) => conmmander.state.commandMap["delete"](...arg), // 删除
     drag: () => conmmander.state.commandMap["drag"](), // 删除
     clear: () => conmmander.state.commandMap["clear"](), // 清空
+    add: (...arg: any) => conmmander.state.commandMap["add"](...arg), // 清空
   }
 }

@@ -21,6 +21,7 @@
     position: relative;
     display: flex;
     background-color: #fff;
+    height: calc(100% - 40px);
     &>.visual-editor-topMenu {
       flex-shrink: 0;
       height: 100%;

@@ -144,7 +144,6 @@ export const visualEditor = defineComponent({
           e.preventDefault()
         },
         drop(e: DragEvent) {
-          console.log(e)
           // 拖拽到目标节点上了 -- 新添加的
           let block = createBlockData({
             dragMode: current.component?.dragMode
@@ -163,6 +162,26 @@ export const visualEditor = defineComponent({
             h: 1,
           })
           props.modelValue?.blocks.push(block)
+        },
+        click(e: Event, component: VisualEditorComponent) {
+          // 拖拽到目标节点上了 -- 新添加的
+          let block = createBlockData({
+            dragMode: component.dragMode ? component.dragMode : "",
+            widthAdaption100: component.widthAdaption100
+              ? component.widthAdaption100
+              : false,
+            top: 0,
+            left: 0,
+            componentKey: component.name as string,
+            props: component.props ?? {},
+            x: 1,
+            y: 1,
+            w: 1,
+            h: 1,
+          })
+          // props.modelValue?.blocks.push(block)
+          // console.log(block, props.modelValue?.blocks, component)
+          commder.add(block)
         },
       }
       return menuDrag
@@ -224,7 +243,7 @@ export const visualEditor = defineComponent({
         // block元素的初始位置 - 所有的计算都是基于当前值计算的
         startPositon: [] as { left: number; top: number }[],
         draging: false, // 是否在拖拽
-        marks: { x: [], y: [] } as markline,
+        // marks: { x: [], y: [] } as markline,
         startLeft: 0,
         startTop: 0,
       }
@@ -237,76 +256,76 @@ export const visualEditor = defineComponent({
           }
         )
         info.draging = false
-        if (markLine) {
-          info.marks = (function () {
-            let lines = {
-              x: [],
-              y: [],
-            } as markline
+        // if (markLine) {
+        //   info.marks = (function () {
+        //     let lines = {
+        //       x: [],
+        //       y: [],
+        //     } as markline
 
-            const { width, height, left, top } = state.selectedBlock!
-            let _blurBlock = focusBlock.value.blurBlock
-            /**
-             * @收集未聚焦的元素的位置信息用于后面计算线的位置
-             */
-            _blurBlock?.forEach((block) => {
-              const { width: w, height: h, top: t, left: l } = block
-              /**
-               *@top 是应该对比的位置
-               *@showTop 是线条的位置
-               */
-              //第一种情况 是顶部对齐顶部
-              lines.y.push({
-                top: t,
-                showTop: t,
-              })
-              // 第二种情况 是顶部对齐底部
-              lines.y.push({
-                top: t + h,
-                showTop: t + h,
-              })
-              // 第三种情况 中间对中间
-              lines.y.push({
-                top: t + h / 2 - height / 2,
-                showTop: t + h / 2,
-              })
-              // 第四种情况  底部对齐顶部
-              lines.y.push({
-                top: t - height,
-                showTop: t,
-              })
-              // 第五种情况  底部对底部
-              lines.y.push({
-                top: t - h + height,
-                showTop: t - h + height,
-              })
-              // x轴同理
+        //     const { width, height, left, top } = state.selectedBlock!
+        //     let _blurBlock = focusBlock.value.blurBlock
+        //     /**
+        //      * @收集未聚焦的元素的位置信息用于后面计算线的位置
+        //      */
+        //     _blurBlock?.forEach((block) => {
+        //       const { width: w, height: h, top: t, left: l } = block
+        //       /**
+        //        *@top 是应该对比的位置
+        //        *@showTop 是线条的位置
+        //        */
+        //       //第一种情况 是顶部对齐顶部
+        //       lines.y.push({
+        //         top: t,
+        //         showTop: t,
+        //       })
+        //       // 第二种情况 是顶部对齐底部
+        //       lines.y.push({
+        //         top: t + h,
+        //         showTop: t + h,
+        //       })
+        //       // 第三种情况 中间对中间
+        //       lines.y.push({
+        //         top: t + h / 2 - height / 2,
+        //         showTop: t + h / 2,
+        //       })
+        //       // 第四种情况  底部对齐顶部
+        //       lines.y.push({
+        //         top: t - height,
+        //         showTop: t,
+        //       })
+        //       // 第五种情况  底部对底部
+        //       lines.y.push({
+        //         top: t - h + height,
+        //         showTop: t - h + height,
+        //       })
+        //       // x轴同理
 
-              lines.x.push({
-                left: l,
-                showLeft: l,
-              })
-              lines.x.push({
-                left: l,
-                showLeft: l + w,
-              })
-              lines.x.push({
-                left: l + w / 2 - width / 2,
-                showLeft: l + w / 2,
-              })
-              lines.x.push({
-                left: l - width,
-                showLeft: l,
-              })
-              lines.x.push({
-                left: l - w + width,
-                showLeft: l - w + width,
-              })
-            })
-            // 收集完成之后我们去
-            return lines
-          })()
-        }
+        //       lines.x.push({
+        //         left: l,
+        //         showLeft: l,
+        //       })
+        //       lines.x.push({
+        //         left: l,
+        //         showLeft: l + w,
+        //       })
+        //       lines.x.push({
+        //         left: l + w / 2 - width / 2,
+        //         showLeft: l + w / 2,
+        //       })
+        //       lines.x.push({
+        //         left: l - width,
+        //         showLeft: l,
+        //       })
+        //       lines.x.push({
+        //         left: l - w + width,
+        //         showLeft: l - w + width,
+        //       })
+        //     })
+        //     // 收集完成之后我们去
+        //     return lines
+        //   })()
+        // }
         info.startLeft = state.selectedBlock?.left as number
         info.startTop = state.selectedBlock?.top as number
         document.addEventListener("mousemove", mousemove)
@@ -332,49 +351,49 @@ export const visualEditor = defineComponent({
             "您没有开启按住shift键移动元素功能！请将配置项中的shiftMove置为true"
           )
         }
-        if (markLine) {
-          let currentLeft: number = info.startLeft + moveX - startX
-          let currentTop: number = info.startTop + moveY - startY
-          // 进行比对
-          let flag_y = false
-          let flag_x = false
-          for (let i = 0; i < info.marks.y.length; i++) {
-            /**
-             * @top 是目标对齐的top值
-             * @showTop 是标准的位置
-             */
-            const { top, showTop } = info.marks.y[i]
-            if (Math.abs(top - currentTop) < 5) {
-              // 满足一种情况后就立即跳出循环
-              flag_y = true
-              moveY = top + startY - info.startTop // 吸过来
-              mark.y = showTop
-              break
-            }
-          }
-          for (let i = 0; i < info.marks.x.length; i++) {
-            /**
-             * @top 是目标对齐的top值
-             * @showTop 是标准的位置
-             */
-            const { left, showLeft } = info.marks.x[i]
-            if (Math.abs(left - currentLeft) < 5) {
-              // 满足一种情况后就立即跳出循环
-              moveX = left + startX - info.startLeft // 吸过来
-              mark.x = showLeft
-              flag_x = true
-              break
-            }
-          }
-          if (!flag_x) {
-            mark.x = null
-          }
-          if (!flag_y) {
-            mark.y = null
-          }
-        } else {
-          console.warn("元素移动标线功能已关闭！")
-        }
+        // if (markLine) {
+        //   let currentLeft: number = info.startLeft + moveX - startX
+        //   let currentTop: number = info.startTop + moveY - startY
+        //   // 进行比对
+        //   let flag_y = false
+        //   let flag_x = false
+        //   for (let i = 0; i < info.marks.y.length; i++) {
+        //     /**
+        //      * @top 是目标对齐的top值
+        //      * @showTop 是标准的位置
+        //      */
+        //     const { top, showTop } = info.marks.y[i]
+        //     if (Math.abs(top - currentTop) < 5) {
+        //       // 满足一种情况后就立即跳出循环
+        //       flag_y = true
+        //       moveY = top + startY - info.startTop // 吸过来
+        //       mark.y = showTop
+        //       break
+        //     }
+        //   }
+        //   for (let i = 0; i < info.marks.x.length; i++) {
+        //     /**
+        //      * @top 是目标对齐的top值
+        //      * @showTop 是标准的位置
+        //      */
+        //     const { left, showLeft } = info.marks.x[i]
+        //     if (Math.abs(left - currentLeft) < 5) {
+        //       // 满足一种情况后就立即跳出循环
+        //       moveX = left + startX - info.startLeft // 吸过来
+        //       mark.x = showLeft
+        //       flag_x = true
+        //       break
+        //     }
+        //   }
+        //   if (!flag_x) {
+        //     mark.x = null
+        //   }
+        //   if (!flag_y) {
+        //     mark.y = null
+        //   }
+        // } else {
+        //   console.warn("元素移动标线功能已关闭！")
+        // }
         // 只移动聚焦的元素
         focusBlock.value.focusBlock?.forEach((block, index) => {
           block.left = info.startPositon[index].left + (moveX - startX)
@@ -486,37 +505,36 @@ export const visualEditor = defineComponent({
       }
     )
     // 标线渲染函数
-    function renderMakrLine() {
-      if (!markLine) {
-        return null
-      } else {
-        return (
-          <>
-            {/* y标线 */}
-            {canvasDrag.mark.y != null && (
-              <div
-                class="visual-editor-mark-y"
-                style={{ top: `${canvasDrag.mark.y}px` }}
-              ></div>
-            )}
-            {/* x标线 */}
-            {canvasDrag.mark.x != null && (
-              <div
-                class="visual-editor-mark-x"
-                style={{ left: `${canvasDrag.mark.x}px` }}
-              ></div>
-            )}
-          </>
-        )
-      }
-    }
+    // function renderMakrLine() {
+    //   if (!markLine) {
+    //     return null
+    //   } else {
+    //     return (
+    //       <>
+    //         {/* y标线 */}
+    //         {canvasDrag.mark.y != null && (
+    //           <div
+    //             class="visual-editor-mark-y"
+    //             style={{ top: `${canvasDrag.mark.y}px` }}
+    //           ></div>
+    //         )}
+    //         {/* x标线 */}
+    //         {canvasDrag.mark.x != null && (
+    //           <div
+    //             class="visual-editor-mark-x"
+    //             style={{ left: `${canvasDrag.mark.x}px` }}
+    //           ></div>
+    //         )}
+    //       </>
+    //     )
+    //   }
+    // }
     return () => (
       <div class="visual-editor-container">
         <div class="visual-editor-header">
           <button>发布</button>
           <button>退出</button>
         </div>
-
         <div class="visual-editor-core visual-editor">
           <div class="visual-editor-leftComponentsMenu">
             <div class="visual-tab-type">
@@ -544,7 +562,7 @@ export const visualEditor = defineComponent({
                 ref={containerInstance}
                 onMousedown={(e: Event) => canvas.container.onMousedown(e)}
               >
-                <grid-layout
+                {/* <grid-layout
                   layout={model.value.blocks}
                   col-num={12}
                   row-height={30}
@@ -557,24 +575,24 @@ export const visualEditor = defineComponent({
                   onUpdate:layout={(val: any) => {
                     console.log(val, "这是？？")
                   }}
-                >
-                  {model.value.blocks.map((block: block) => {
-                    return (
-                      <div>
-                        <editorBlock
-                          block={block}
-                          container={props.modelValue?.container}
-                          onMousedown={(e: MouseEvent) =>
-                            canvas.block.onMousedown(e, block)
-                          }
-                          onDelBlock={() => delBlock(block)}
-                        ></editorBlock>
-                      </div>
-                    )
-                  })}
-                  {/* 渲染标线信息 */}
-                  {renderMakrLine()}
-                </grid-layout>
+                > */}
+                {model.value.blocks.map((block: block) => {
+                  return (
+                    <div>
+                      <editorBlock
+                        block={block}
+                        container={props.modelValue?.container}
+                        onMousedown={(e: MouseEvent) =>
+                          canvas.block.onMousedown(e, block)
+                        }
+                        onDelBlock={() => delBlock(block)}
+                      ></editorBlock>
+                    </div>
+                  )
+                })}
+                {/* 渲染标线信息 */}
+                {/* {renderMakrLine()} */}
+                {/* </grid-layout> */}
               </div>
             </div>
           </div>

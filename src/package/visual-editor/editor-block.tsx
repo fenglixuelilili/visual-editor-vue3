@@ -40,7 +40,10 @@ export default defineComponent({
           zIndex: props.block.zIndex,
           width: props.block.widthAdaption100 ? "100%" : "auto",
         }
-      } else if (props.block.dragMode == "updown") {
+      } else if (
+        props.block.dragMode == "updown" ||
+        props.block.dragMode == ""
+      ) {
         // 上下模式
         return {
           margin: "0 auto",
@@ -88,6 +91,28 @@ export default defineComponent({
             ref={blockInstance}
           >
             {/* 组件核心 */}
+            {componentRenderInfo?.render(props.block)}
+            {/* 操作 */}
+            {props.block.focus && !props.priview ? (
+              <div class="editor-bloack-delete" onClick={delBlock}>
+                删除
+              </div>
+            ) : null}
+          </div>
+        )
+      } else if (
+        props.block.dragMode == "default" ||
+        props.block.dragMode == ""
+      ) {
+        // 正常的上下排列
+        return (
+          <div
+            class={classes.value}
+            style={style.value as any}
+            ref={blockInstance}
+          >
+            {/* 组件核心 */}
+            {componentRenderInfo?.render(props.block)}
             {/* 操作 */}
             {props.block.focus && !props.priview ? (
               <div class="editor-bloack-delete" onClick={delBlock}>
