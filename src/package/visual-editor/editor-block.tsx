@@ -115,8 +115,16 @@ export default defineComponent({
             {componentRenderInfo?.render(props.block)}
             {/* 操作 */}
             {props.block.focus && !props.priview ? (
-              <div class="editor-bloack-delete" onClick={delBlock}>
-                删除
+              <div class="editor-bloack-operate">
+                <div class="editor-bloack-delete" onClick={delBlock}>
+                  删除
+                </div>
+                <div class="editor-bloack-delete" onClick={delBlock}>
+                  上移
+                </div>
+                <div class="editor-bloack-delete" onClick={delBlock}>
+                  下移
+                </div>
               </div>
             ) : null}
           </div>

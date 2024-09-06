@@ -5,13 +5,16 @@
     top: 0;
     cursor: pointer;
     user-select: none;
-    .editor-bloack-delete {
+    .editor-bloack-operate{
       position: absolute;
       left: calc(100% + 5px);
       bottom: calc(100% + 5px);
-      font-size: 12px;
-      white-space: nowrap;
+      .editor-bloack-delete {
+        font-size: 12px;
+        white-space: nowrap;
+      }
     }
+    
     &::after{
       content: '';
       position: absolute;
@@ -26,7 +29,9 @@
   .editor-bloack-focus{
     &::after{
       border: 1px dashed #821;
-      cursor: move;
+      // cursor: move;
+      cursor: pointer;
+      background-color: rgba(0,0,0, .2);
     }
   }
 }

@@ -2,9 +2,26 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import path from "path"
+import { vitePluginForArco } from '@arco-plugins/vite-vue'
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx()],
+  css: {
+    preprocessorOptions: {
+      less: {
+        modifyVars: {
+          'arcoblue-6': '#f85959',
+        },
+        javascriptEnabled: true,
+      }
+    }
+  },
+  plugins: [
+    vue(),
+    vueJsx(),
+    vitePluginForArco({
+      style: 'css'
+    })
+  ],
   // 配置组件库打包模式
   build: {
     outDir: "visualEditor", //输出文件名称
