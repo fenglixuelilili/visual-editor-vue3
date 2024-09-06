@@ -60,7 +60,7 @@ export const visualEditor = defineComponent({
     })
     let containerStyle = computed(() => ({
       width: model.value.container.width + "px",
-      height: model.value.container.height + "px",
+      minHeight: model.value.container.height + "px",
     }))
     // 清除选中状态
     function clearFocus() {
@@ -160,7 +160,6 @@ export const visualEditor = defineComponent({
             w: 1,
             h: 1,
           })
-          console.log(block, "这是？？？？")
           props.modelValue?.blocks.push(block)
         },
       }
@@ -510,88 +509,96 @@ export const visualEditor = defineComponent({
       }
     }
     return () => (
-      <div class="visual-editor">
-        <div class="visual-editor-topMenu">
-          <div class="buttons">
-            {buttons.map((btn) => (
-              <div class="button">
-                <button onClick={btn.handler}>{btn.label}</button>
-              </div>
-            ))}
+      <div class="visual-editor-container">
+        <div class="visual-editor-header">
+          <button>发布</button>
+          <button>退出</button>
+        </div>
+
+        <div class="visual-editor-core visual-editor">
+          <div class="visual-editor-leftComponentsMenu">
+            {/* 左侧所有在服役的组件 */}
+            {editorInstance?.componentLists
+              .filter((component) => {
+                return component.disabled == undefined
+                  ? true
+                  : !component.disabled
+              })
+              .map((component) => {
+                return (
+                  <div
+                    class="editer-menu-content-block"
+                    draggable
+                    onDragstart={(e) => menuDragInfo.dragstart(e, component)}
+                    onDragend={menuDragInfo.dragend.bind(menuDragInfo)}
+                  >
+                    <span class="editor-priview-label">{component.label}</span>
+                    {component.priview()}
+                  </div>
+                )
+              })}
           </div>
-        </div>
-        <div class="visual-editor-leftComponentsMenu">
-          {/* 左侧所有在服役的组件 */}
-          {editorInstance?.componentLists
-            .filter((component) => {
-              return component.disabled == undefined
-                ? true
-                : !component.disabled
-            })
-            .map((component) => {
-              return (
-                <div
-                  class="editer-menu-content-block"
-                  draggable
-                  onDragstart={(e) => menuDragInfo.dragstart(e, component)}
-                  onDragend={menuDragInfo.dragend.bind(menuDragInfo)}
-                >
-                  <span class="editor-priview-label">{component.label}</span>
-                  {component.priview()}
-                </div>
-              )
-            })}
-        </div>
-        <div class="visual-editor-area-body">
-          <div class="visual-editor-area-container">
-            {/* 渲染画布信息 */}
-            <div
-              class="visual-editor-area-content"
-              style={containerStyle.value}
-              ref={containerInstance}
-              onMousedown={(e: Event) => canvas.container.onMousedown(e)}
-            >
-              <grid-layout
-                layout={model.value.blocks}
-                col-num={12}
-                row-height={30}
-                is-draggable={true}
-                is-resizable={true}
-                is-mirrored={false}
-                vertical-compact={true}
-                margin={[10, 10]}
-                use-css-transforms={true}
-                onUpdate:layout={(val: any) => {
-                  console.log(val, "这是？？")
-                }}
+          <div class="visual-editor-area-body">
+            <div class="visual-editor-area-container">
+              {/* 渲染画布信息 */}
+              <div
+                class="visual-editor-area-content"
+                style={containerStyle.value}
+                ref={containerInstance}
+                onMousedown={(e: Event) => canvas.container.onMousedown(e)}
               >
-                {model.value.blocks.map((block: block) => {
-                  return (
-                    <div>
-                      <editorBlock
-                        block={block}
-                        container={props.modelValue?.container}
-                        onMousedown={(e: MouseEvent) =>
-                          canvas.block.onMousedown(e, block)
-                        }
-                        onDelBlock={() => delBlock(block)}
-                      ></editorBlock>
-                    </div>
-                  )
-                })}
-                {/* 渲染标线信息 */}
-                {renderMakrLine()}
-              </grid-layout>
+                <grid-layout
+                  layout={model.value.blocks}
+                  col-num={12}
+                  row-height={30}
+                  is-draggable={true}
+                  is-resizable={true}
+                  is-mirrored={false}
+                  vertical-compact={true}
+                  margin={[10, 10]}
+                  use-css-transforms={true}
+                  onUpdate:layout={(val: any) => {
+                    console.log(val, "这是？？")
+                  }}
+                >
+                  {model.value.blocks.map((block: block) => {
+                    return (
+                      <div>
+                        <editorBlock
+                          block={block}
+                          container={props.modelValue?.container}
+                          onMousedown={(e: MouseEvent) =>
+                            canvas.block.onMousedown(e, block)
+                          }
+                          onDelBlock={() => delBlock(block)}
+                        ></editorBlock>
+                      </div>
+                    )
+                  })}
+                  {/* 渲染标线信息 */}
+                  {renderMakrLine()}
+                </grid-layout>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="visual-editor-right-seting">
-          {/* 右侧操作 */}
-          {controlView(
-            controlMethods.controlRender.bind(controlMethods),
-            controlMethods.sure.bind(controlMethods),
-            controlMethods.cancle.bind(controlMethods)
-          )}
+          {/* 操作按钮 */}
+          <div class="visual-editor-topMenu">
+            <div class="buttons">
+              {buttons.map((btn) => (
+                <div class="button">
+                  <button onClick={btn.handler}>{btn.label}</button>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="visual-editor-right-seting">
+            {/* 右侧操作 */}
+            {controlView(
+              controlMethods.controlRender.bind(controlMethods),
+              controlMethods.sure.bind(controlMethods),
+              controlMethods.cancle.bind(controlMethods)
+            )}
+          </div>
         </div>
       </div>
     )

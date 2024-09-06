@@ -79,7 +79,7 @@ export default defineComponent({
       emit("delBlock")
     }
     return () => {
-      if (props.block.dragMode == "free" && false) {
+      if (props.block.dragMode == "free") {
         // 自由拖拽模式
         return (
           <div
