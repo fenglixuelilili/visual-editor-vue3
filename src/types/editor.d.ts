@@ -88,6 +88,9 @@ export interface VisualEditorComponent {
   }
   dragMode?: string // 拖拽模式
   widthAdaption100?: boolean // 宽度调整方式
+  group: string // 所属分组
+  icon: string // 默认icon
+  activeIcon: string // 激活icon
   priview: () => JSX.Element | string
   render: (...args) => JSX.Element | string
   controlView: (block: block & { props:  v<VisualEditorComponent.props> }, updateBlock: ( block: block ) => void) => JSX.Element | string

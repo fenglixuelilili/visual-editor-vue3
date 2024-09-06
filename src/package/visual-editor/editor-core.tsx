@@ -14,6 +14,7 @@ import { useVisualCommand } from "../utils/visual.command"
 import { dragStart, dragEnd } from "../utils/event"
 import { controlView } from "./control-view" // 控制台渲染器
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
+import renderIconComponents from "./help-coms/render-icon-components"
 import { deepClone } from "../utils/index"
 import VueGridLayout from "vue-grid-layout"
 // 编辑器
@@ -21,6 +22,7 @@ export const visualEditor = defineComponent({
   components: {
     editorBlock,
     GridLayout: VueGridLayout.GridLayout,
+    renderIconComponents,
   },
   props: {
     modelValue: {
@@ -517,26 +519,21 @@ export const visualEditor = defineComponent({
 
         <div class="visual-editor-core visual-editor">
           <div class="visual-editor-leftComponentsMenu">
-            {/* 左侧所有在服役的组件 */}
-            {editorInstance?.componentLists
-              .filter((component) => {
-                return component.disabled == undefined
-                  ? true
-                  : !component.disabled
-              })
-              .map((component) => {
-                return (
-                  <div
-                    class="editer-menu-content-block"
-                    draggable
-                    onDragstart={(e) => menuDragInfo.dragstart(e, component)}
-                    onDragend={menuDragInfo.dragend.bind(menuDragInfo)}
-                  >
-                    <span class="editor-priview-label">{component.label}</span>
-                    {component.priview()}
-                  </div>
-                )
-              })}
+            <div class="visual-tab-type">
+              <div class="visual-tab-type-com">
+                <span>组件</span>
+              </div>
+              <div class="visual-tab-type-com">
+                <span>模版</span>
+              </div>
+            </div>
+            <div class="visual-com-group">
+              {/* 左侧所有在服役的组件 */}
+              <renderIconComponents
+                componentLists={editorInstance?.componentLists}
+                menuDragInfo={menuDragInfo}
+              ></renderIconComponents>
+            </div>
           </div>
           <div class="visual-editor-area-body">
             <div class="visual-editor-area-container">
