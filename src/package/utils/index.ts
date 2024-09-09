@@ -1,4 +1,7 @@
- // 深拷贝
+import { visualCommand, block } from "../../types/editor.d" 
+import { useVisualCommand } from "./visual.command"
+// import { useVisualCommand } from ''
+// 深拷贝
  export function deepClone(data: any): any {
   if (data && typeof data === "object") {
     //针对函数的拷贝
@@ -35,4 +38,56 @@
     //string,number,bool,null,undefined,symbol
     return data
   }
+ }
+// 获取所有快捷按钮
+export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentBlockInfo: any) {
+  const buttons = [
+    {
+      label: "删除",
+      icon: "",
+      handler: () => {
+        if (!currentBlockInfo.value.focusBlock?.length) {
+          return
+        }
+        commder.delete()
+      },
+      tip: "delete",
+    },
+    {
+      label: "清空",
+      icon: "",
+      handler: () => {
+        if (!currentBlockInfo.value.focusBlock?.length) {
+          return
+        }
+        commder.clear()
+      },
+      tip: "ctrl + alt + d",
+    },
+    {
+      label: "撤销",
+      icon: "",
+      handler: commder.undo,
+      tip: "ctrl + z",
+    },
+    {
+      label: "重做",
+      icon: "",
+      handler: commder.redo,
+      tip: "ctrl + y",
+    },
+    {
+      label: "上移",
+      icon: "",
+      handler: commder.up,
+      tip: "alt + up",
+    },
+    {
+      label: "下移",
+      icon: "",
+      handler: commder.down,
+      tip: "alt + down",
+    },
+  ]
+  return buttons
 }

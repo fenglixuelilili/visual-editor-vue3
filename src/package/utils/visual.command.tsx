@@ -6,7 +6,7 @@ import { Message } from "@arco-design/web-vue"
 // undo 撤销 redo 重做
 export function useVisualCommand({
   // 需要传入一些响应式的数据
-  fouceData, //  获得焦点的数据
+  currentBlockInfo, //  获得焦点的数据
   updateBlocks, // 更新组件模块数据
   dataModel, // 双向绑定的数据
   shortcutKeys, // 是否开启快捷键操作
@@ -36,7 +36,7 @@ export function useVisualCommand({
             return
           }
           // 立马做的事情
-          const { blurBlock, focusBlock } = fouceData.value
+          const { blurBlock, focusBlock } = currentBlockInfo.value
           if (!focusBlock.length) {
             console.warn("暂无需要删除的组件")
             return
@@ -132,7 +132,7 @@ export function useVisualCommand({
         },
         redo() {
           // 立马做的事情
-          const { focusBlock } = fouceData.value
+          const { focusBlock } = currentBlockInfo.value
           if (!focusBlock.length) {
             console.warn("暂无需要置顶的组件")
             return
@@ -172,7 +172,7 @@ export function useVisualCommand({
         },
         redo() {
           // 立马做的事情
-          const { focusBlock } = fouceData.value
+          const { focusBlock } = currentBlockInfo.value
           if (!focusBlock.length) {
             console.warn("暂无需要置顶的组件")
             return

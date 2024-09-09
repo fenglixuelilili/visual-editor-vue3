@@ -11,7 +11,7 @@ import {
   logConfig,
   priviewVisualEditor,
 } from "./package/visual-editor/index"
-import "./demoComs/textarea"
+import "./built-in-coms/textarea"
 export default defineComponent({
   components: {
     visualEditor,
@@ -23,6 +23,8 @@ export default defineComponent({
         container: {
           width: 350,
           height: 600,
+          backgroundColor: "#fff",
+          scale: 100,
           // wrapper: 600,
         },
         blocks: [

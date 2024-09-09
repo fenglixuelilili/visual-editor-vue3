@@ -131,8 +131,13 @@
     &>.visual-editor-right-seting {
       width: $rightMenuWidth;
       height: 100%;
-      background-color: #567;
+      // background-color: #567;
       flex-shrink: 0;
+      .control-container{
+        .control-form-comtainer{
+          padding: 0 10px;
+        }
+      }
     }
     &>.visual-editor-area-body {
       height: 100%;

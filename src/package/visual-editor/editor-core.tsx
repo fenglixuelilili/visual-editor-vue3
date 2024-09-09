@@ -5,7 +5,7 @@ import {
   block,
   VisualEditorComponent,
   createBlockData,
-  markline,
+  // markline,
   config,
 } from "../../types/editor.d"
 import useModel from "../../utils/useModel"
@@ -15,14 +15,14 @@ import { dragStart, dragEnd } from "../utils/event"
 import { controlView } from "./control-view" // 控制台渲染器
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import renderIconComponents from "./help-coms/render-icon-components"
-import { deepClone } from "../utils/index"
-import VueGridLayout from "vue-grid-layout"
+import { deepClone, getBtns } from "../utils/index"
+// import VueGridLayout from "vue-grid-layout"
 import { Message } from "@arco-design/web-vue"
 // 编辑器
 export const visualEditor = defineComponent({
   components: {
     editorBlock,
-    GridLayout: VueGridLayout.GridLayout,
+    // GridLayout: VueGridLayout.GridLayout,
     renderIconComponents,
   },
   props: {
@@ -43,11 +43,11 @@ export const visualEditor = defineComponent({
     if (!props.modelValue?.container) {
       throw new Error("请检查传入的container！")
     }
-    if (
-      props.modelValue?.container?.wrapper > props.modelValue?.container?.width
-    ) {
-      throw new Error("wrapper宽度不合适，请检查！")
-    }
+    // if (
+    //   props.modelValue?.container?.wrapper > props.modelValue?.container?.width
+    // ) {
+    //   throw new Error("wrapper宽度不合适，请检查！")
+    // }
     // markLine = false,
     const { shiftMove = false, shortcutKeys = false } = props.config
     let model = useModel(
@@ -61,6 +61,8 @@ export const visualEditor = defineComponent({
     let containerStyle = computed(() => ({
       width: model.value.container.width + "px",
       minHeight: model.value.container.height + "px",
+      backgroundColor: model.value.container.backgroundColor,
+      transform: `scale(${model.value.container.scale / 100})`,
     }))
     // 清除选中状态
     function clearFocus() {
@@ -75,7 +77,6 @@ export const visualEditor = defineComponent({
         ...model.value,
         blocks: deepClone(blocks),
       }
-      console.log(model.value, "zheshisha???????")
     }
     // 更新一个block
     function updateBlock(block: any) {
@@ -187,11 +188,11 @@ export const visualEditor = defineComponent({
     })()
 
     // 计算block选中的与没选中的信息
-    const focusBlock = computed(() => {
+    const currentBlockInfo = computed(() => {
       props.modelValue?.blocks
       return {
-        blurBlock: props.modelValue?.blocks.filter((block) => !block.focus),
-        focusBlock: props.modelValue?.blocks.filter((block) => block.focus),
+        blurBlock: props.modelValue?.blocks.filter((block) => !block.focus), // 当前失去焦点的模块
+        focusBlock: props.modelValue?.blocks.filter((block) => block.focus), // 当前获得焦点的模块
       }
     })
     // 画布区域中的内容点击相关事件
@@ -251,7 +252,7 @@ export const visualEditor = defineComponent({
       function mousedown(e: MouseEvent) {
         info.startX = e.clientX
         info.startY = e.clientY
-        info.startPositon = (focusBlock.value.focusBlock || [])?.map(
+        info.startPositon = (currentBlockInfo.value.focusBlock || [])?.map(
           (block) => {
             return { left: block.left, top: block.top }
           }
@@ -396,7 +397,7 @@ export const visualEditor = defineComponent({
         //   console.warn("元素移动标线功能已关闭！")
         // }
         // 只移动聚焦的元素
-        focusBlock.value.focusBlock?.forEach((block, index) => {
+        currentBlockInfo.value.focusBlock?.forEach((block, index) => {
           block.left = info.startPositon[index].left + (moveX - startX)
           block.top = info.startPositon[index].top + (moveY - startY)
         })
@@ -412,68 +413,15 @@ export const visualEditor = defineComponent({
       return { mousedown }
     })()
     const commder = useVisualCommand({
-      fouceData: focusBlock as any,
+      currentBlockInfo: currentBlockInfo as any,
       updateBlocks: updateBlocks,
       dataModel: model as any,
       shortcutKeys,
     })
     // 所有的顶部按钮
-    const buttons = [
-      {
-        label: "删除",
-        icon: "",
-        handler: () => {
-          if (!focusBlock.value.focusBlock?.length) {
-            return
-          }
-          commder.delete()
-        },
-        tip: "delete",
-      },
-      {
-        label: "清空",
-        icon: "",
-        handler: () => {
-          if (!focusBlock.value.focusBlock?.length) {
-            return
-          }
-          commder.clear()
-        },
-        tip: "ctrl + alt + d",
-      },
-      {
-        label: "撤销",
-        icon: "",
-        handler: commder.undo,
-        tip: "ctrl + z",
-      },
-      {
-        label: "重做",
-        icon: "",
-        handler: commder.redo,
-        tip: "ctrl + y",
-      },
-      {
-        label: "上移",
-        icon: "",
-        handler: commder.up,
-        tip: "alt + up",
-      },
-      {
-        label: "下移",
-        icon: "",
-        handler: commder.down,
-        tip: "alt + down",
-      },
-    ]
+    const buttons = getBtns(commder, currentBlockInfo)
     function delBlock(block: block) {
       commder.delete(block)
-    }
-    function onUpBlock() {
-      commder.up()
-    }
-    function onDownBlock() {
-      commder.down()
     }
     // 控制器中的信息
     const controlMethods = {
@@ -490,6 +438,7 @@ export const visualEditor = defineComponent({
         let componentMap = editorInstance?.componentMap
         if (componentKey && componentMap && state.selectedBlock) {
           this.originData = deepClone(state.selectedBlock)
+          // 获取组件的渲染视图
           this.cacheView = componentMap[componentKey].controlView(
             state.selectedBlock,
             updateBlock
@@ -606,8 +555,8 @@ export const visualEditor = defineComponent({
                           canvas.block.onMousedown(e, block)
                         }
                         onDelBlock={() => delBlock(block)}
-                        onUpBlock={() => onUpBlock()}
-                        onDownBlock={() => onDownBlock()}
+                        onUpBlock={commder.up}
+                        onDownBlock={commder.down}
                         key={block.id}
                       ></editorBlock>
                     </div>
@@ -633,8 +582,11 @@ export const visualEditor = defineComponent({
             {/* 右侧操作 */}
             {controlView(
               controlMethods.controlRender.bind(controlMethods),
-              controlMethods.sure.bind(controlMethods),
-              controlMethods.cancle.bind(controlMethods)
+              currentBlockInfo,
+              props.modelValue as any,
+              updateBlock
+              // controlMethods.sure.bind(controlMethods),
+              // controlMethods.cancle.bind(controlMethods)
             )}
           </div>
         </div>

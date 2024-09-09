@@ -4,7 +4,9 @@ type v<T extends any> = {
 export type container = {
   width: number
   height: number
-  wrapper: number
+  backgroundColor: string
+  scale: number
+  wrapper?: number
 }
 export interface block  {
   left: number  // 定位的left值
@@ -60,7 +62,7 @@ export interface config   {
 }
 
 export type visualCommand = {
-  fouceData: {
+  currentBlockInfo: {
     value: {
       blurBlock: block[]
       focusBlock: block[]
