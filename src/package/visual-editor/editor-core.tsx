@@ -37,17 +37,16 @@ export const visualEditor = defineComponent({
         shortcutKeys: true, // 是否开启快捷键操作
       }),
     },
+    fileUploadHandler: {
+      type: Function,
+      default: () => () => {},
+    },
   },
   emits: ["update:modelValue"],
   setup(props, { emit }) {
     if (!props.modelValue?.container) {
       throw new Error("请检查传入的container！")
     }
-    // if (
-    //   props.modelValue?.container?.wrapper > props.modelValue?.container?.width
-    // ) {
-    //   throw new Error("wrapper宽度不合适，请检查！")
-    // }
     // markLine = false,
     const { shiftMove = false, shortcutKeys = false } = props.config
     let model = useModel(
@@ -165,6 +164,7 @@ export const visualEditor = defineComponent({
           props.modelValue?.blocks.push(block)
         },
         click(e: Event, component: VisualEditorComponent) {
+          console.log(component)
           // 新添加一个元素块
           let dragMode = current.component?.dragMode as string
           let block = createBlockData({

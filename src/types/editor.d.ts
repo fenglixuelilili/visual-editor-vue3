@@ -86,7 +86,11 @@ export interface VisualEditorComponent {
   label: string
   disabled?: boolean
   props: {
-    [key: string]: any
+    [key: string]: {
+      defaultValue: number | string
+      type?: string
+      label?: string
+    }
   }
   dragMode?: string // 拖拽模式
   widthAdaption100?: boolean // 宽度调整方式

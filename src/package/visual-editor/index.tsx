@@ -1,12 +1,12 @@
 import { VisualEditorComponent } from "../../types/editor.d"
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
-import { visualEditor as visualEditor2 } from "./editor-core"
-import { priviewVisualEditor as priviewVisualEditor2 } from "./editor-priview"
+import { visualEditor as visualEditorInstance } from "./editor-core"
+import { priviewVisualEditor as priviewVisualEditorInstance } from "./editor-priview"
 export const _registry = editorInstance.registry
 // 导出编辑器
-export const visualEditor = visualEditor2
+export const visualEditor = visualEditorInstance
 // 导出预览器
-export const priviewVisualEditor = priviewVisualEditor2
+export const priviewVisualEditor = priviewVisualEditorInstance
 // 单个注册
 export const registry = function (com: VisualEditorComponent) {
   _registry(com.name, com)
