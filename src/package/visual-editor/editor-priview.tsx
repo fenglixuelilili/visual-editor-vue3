@@ -1,4 +1,4 @@
-import { computed, defineComponent, PropType, ref } from "vue"
+import { computed, defineComponent, PropType } from "vue"
 import "../scss/index.priview.scss"
 import { visualEditorModelValue, block } from "../../types/editor.d"
 import useModel from "../../utils/useModel"

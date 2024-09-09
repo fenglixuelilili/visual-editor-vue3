@@ -18,7 +18,7 @@ export interface Command {
   // 是否往队列中添加命令
   followQueue?: boolean
   // 执行命令前的初始化钩子 - 可选的
-  init?: () => ( () => void ) | any
+  init?: () => (() => void) | any
 }
 
 // 注册管理命令总线
@@ -31,21 +31,23 @@ export function createCommanderManger(shortcutKeys: boolean) {
     // 通过key往外暴露执行comman的执行和收集过程
     commandMap: {} as Record<string, (...args: any[]) => void>,
     commandArray: [] as Command[], // 存放command命令对象
-    destoryList: [] as (( () => void ) | undefined)[] // 存放销毁回调的
+    destoryList: [] as ((() => void) | undefined)[], // 存放销毁回调的
   })
   let codeMap: Record<number, string> = {
-    89: 'y',
-    65: 'a',
-    67: 'c',
-    86: 'v',
-    90: 'z',
-    83: 's',
-    68: 'd',
-    46: 'delete',
-    84: 't',
-    66: 'b',
-    79: 'o',
-    80: 'p'
+    89: "y",
+    65: "a",
+    67: "c",
+    86: "v",
+    90: "z",
+    83: "s",
+    68: "d",
+    46: "delete",
+    84: "t",
+    66: "b",
+    79: "o",
+    80: "p",
+    38: "up",
+    40: "down",
   }
   // 快捷键处理
   const keyboardEvent = () => {
@@ -57,31 +59,31 @@ export function createCommanderManger(shortcutKeys: boolean) {
       }
       const { keyCode, shiftKey, altKey, ctrlKey } = e
       // console.log(keyCode)
-      let keystring: string[] = [] 
-      if (ctrlKey) { 
-        keystring.push('ctrl')
+      let keystring: string[] = []
+      if (ctrlKey) {
+        keystring.push("ctrl")
       }
       if (shiftKey) {
-        keystring.push('shift')
+        keystring.push("shift")
       }
-      if (altKey) { 
-        keystring.push('alt')
+      if (altKey) {
+        keystring.push("alt")
       }
       keystring.push(codeMap[keyCode])
       // console.log('当前快捷键', keystring.join('+'))
-      let makeup = keystring.join('+')
+      let makeup = keystring.join("+")
       // console.log(state.commandArray)
-      state.commandArray.forEach(command => {
+      state.commandArray.forEach((command) => {
         let { keyboard, name } = command
         if (!keyboard) {
           return
         }
-        if (typeof keyboard == 'string') {
-          keyboard = [ keyboard ]
+        if (typeof keyboard == "string") {
+          keyboard = [keyboard]
         }
         // console.log(keyboard, makeup, keyboard?.includes(makeup), 'xxxxx')
-        keyboard = keyboard.map(str => {
-          return str.replace(/\s+/g, '')
+        keyboard = keyboard.map((str) => {
+          return str.replace(/\s+/g, "")
         })
         // console.log(keyboard, makeup)
         if (keyboard?.includes(makeup)) {
@@ -91,16 +93,16 @@ export function createCommanderManger(shortcutKeys: boolean) {
       })
     }
     if (shortcutKeys) {
-      window.addEventListener('keydown', onKeyDown)
-      return () => window.removeEventListener('keydown', onKeyDown)
+      window.addEventListener("keydown", onKeyDown)
+      return () => window.removeEventListener("keydown", onKeyDown)
     }
-    return () => { }
+    return () => {}
   }
   /**
    * @命令注册完成之后执行的回调
-  */
+   */
   const init = () => {
-    state.commandArray.forEach(command => { 
+    state.commandArray.forEach((command) => {
       if (!!command.init) {
         state.destoryList.push(command.init())
       }
@@ -109,7 +111,7 @@ export function createCommanderManger(shortcutKeys: boolean) {
   }
   onUnmounted(() => {
     // 声明周期卸载的时候
-    state.destoryList.forEach(fn => fn && fn())
+    state.destoryList.forEach((fn) => fn && fn())
   })
   // 增加命令步骤
   function registor(command: Command) {
@@ -117,16 +119,18 @@ export function createCommanderManger(shortcutKeys: boolean) {
     state.commandArray.push(command)
     if (command.init) {
       let destory = command.init() // 得到一个销毁函数
-      if (destory && typeof destory == 'function') {
+      if (destory && typeof destory == "function") {
         state.commandArray.push(destory)
       } else {
-        console.error(`为了性能优化，请在${command.name}这个命令中加入销毁函数！`)
+        console.error(
+          `为了性能优化，请在${command.name}这个命令中加入销毁函数！`
+        )
       }
     }
     // 将命令通过表结构进行缓存
     state.commandMap[command.name] = (...args) => {
-      if (command.disabled) { 
-        alert('该快捷命令已禁用！')
+      if (command.disabled) {
+        alert("该快捷命令已禁用！")
         return
       }
       const { undo, redo } = command.excute(...args)
@@ -137,7 +141,7 @@ export function createCommanderManger(shortcutKeys: boolean) {
       // 往队列中增加
       if (state.queue.length > 0) {
         // 这块是走到哪一步了  将后面的都干掉 要不然的话操作就乱了
-        state.queue.slice( 0, state.current )
+        state.queue.slice(0, state.current)
       }
       state.queue.push({ undo, redo })
       state.current++
@@ -146,9 +150,9 @@ export function createCommanderManger(shortcutKeys: boolean) {
   // 默认注册两个 一个是撤回  一个是重做
   // 撤销按钮
   registor({
-    name: 'undo',
+    name: "undo",
     // 撤销
-    keyboard: 'ctrl + z',
+    keyboard: "ctrl + z",
     followQueue: false,
     excute() {
       // 命令被执行的时候注册的命令
@@ -156,21 +160,21 @@ export function createCommanderManger(shortcutKeys: boolean) {
         redo() {
           // 撤销命令执行的事情
           let { current } = state
-          if( current <=  -1 ) return
+          if (current <= -1) return
           const { undo } = state.queue[current]
           if (undo) {
             undo()
             state.current -= 1
           }
-        }
+        },
       }
-    }
+    },
   })
   // 重做按钮
   registor({
-    name: 'redo',
+    name: "redo",
     // 重做
-    keyboard: 'ctrl + y',
+    keyboard: "ctrl + y",
     followQueue: false,
     excute() {
       // 命令被执行的时候注册的命令
@@ -181,7 +185,7 @@ export function createCommanderManger(shortcutKeys: boolean) {
           // if ((current + 1) <= -1) {
           //   return
           // }
-          // if (state.queue[current + 1]) { 
+          // if (state.queue[current + 1]) {
           //   const { redo } = state.queue[ current + 1 ]
           //   redo && redo()
           //   state.current += 1
@@ -191,13 +195,13 @@ export function createCommanderManger(shortcutKeys: boolean) {
             queueItem.redo && queueItem.redo()
             state.current += 1
           }
-        }
+        },
       }
-    }
+    },
   })
   return {
     state,
     registor,
-    init
+    init,
   }
 }

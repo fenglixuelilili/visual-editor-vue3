@@ -2,6 +2,7 @@ import { createCommanderManger } from "../plugins/command.plugins"
 import { visualCommand, block } from "../../types/editor.d"
 import { dragStart, dragEnd } from "../utils/event"
 import { deepClone } from "../utils/index"
+import { Message } from "@arco-design/web-vue"
 // undo 撤销 redo 重做
 export function useVisualCommand({
   // 需要传入一些响应式的数据
@@ -201,7 +202,6 @@ export function useVisualCommand({
   })
   conmmander.registor({
     name: "add",
-    // keyboard: ["ctrl + alt + d"],
     excute(block) {
       // 保存数据
       let data = {
@@ -225,6 +225,93 @@ export function useVisualCommand({
       }
     },
   })
+  conmmander.registor({
+    name: "up", // 向上移动
+    keyboard: ["ctrl + up", "alt + up"],
+    excute() {
+      // 保存数据
+      let data = {
+        before: [] as block[], // 保存之前
+        after: [] as block[], // 之后
+      }
+      return {
+        undo() {
+          // 撤销
+          updateBlocks(data.before)
+        },
+        redo() {
+          // 重做
+          let blocks: block[] = (dataModel as any).value.blocks
+          if (blocks.length <= 1) {
+            Message.warning("元素不需要移动！")
+            return
+          }
+          // block.focus 是选中状态， 如果没有选中状态 则不需要移动
+          let fouceIndex = blocks.findIndex((block) => block.focus)
+          if (fouceIndex < 0) {
+            Message.warning("当前没有要移动的元素！")
+            return
+          }
+          if (fouceIndex == 0) {
+            Message.warning("移动无效！")
+            return
+          }
+          data.before = deepClone(blocks)
+          // 当前元素向上移动
+          let prelock = blocks[fouceIndex - 1]
+          let currentBlock = blocks[fouceIndex]
+          blocks[fouceIndex] = prelock
+          blocks[fouceIndex - 1] = currentBlock
+          data.after = blocks
+          updateBlocks(data.after)
+        },
+      }
+    },
+  })
+  conmmander.registor({
+    name: "down", // 向下移动
+    keyboard: ["ctrl + down", "alt + down"],
+    excute() {
+      // 保存数据
+      let data = {
+        before: [] as block[], // 保存之前
+        after: [] as block[], // 之后
+      }
+      return {
+        undo() {
+          // 撤销
+          updateBlocks(data.before)
+        },
+        redo() {
+          // 重做
+          let blocks: block[] = (dataModel as any).value.blocks
+          if (blocks.length <= 1) {
+            Message.warning("移动无效！")
+            return
+          }
+          // block.focus 是选中状态， 如果没有选中状态 则不需要移动
+          let fouceIndex = blocks.findIndex((block) => block.focus)
+          if (fouceIndex < 0) {
+            Message.warning("当前没有要移动的元素！")
+            return
+          }
+          if (fouceIndex == blocks.length - 1) {
+            Message.warning("移动的无效！")
+            return
+          }
+          data.before = deepClone(blocks)
+          // 当前元素向下移动
+          let nextlock = blocks[fouceIndex + 1]
+          let currentBlock = blocks[fouceIndex]
+          blocks[fouceIndex] = nextlock
+          blocks[fouceIndex + 1] = currentBlock
+          data.after = blocks
+          updateBlocks(data.after)
+        },
+      }
+    },
+  })
+
   conmmander.init()
   return {
     // 可以弄一些默认导出
@@ -233,6 +320,8 @@ export function useVisualCommand({
     delete: (...arg: any) => conmmander.state.commandMap["delete"](...arg), // 删除
     drag: () => conmmander.state.commandMap["drag"](), // 删除
     clear: () => conmmander.state.commandMap["clear"](), // 清空
-    add: (...arg: any) => conmmander.state.commandMap["add"](...arg), // 清空
+    add: (...arg: any) => conmmander.state.commandMap["add"](...arg), // 添加一个新元素
+    up: (...arg: any) => conmmander.state.commandMap["up"](...arg), // 元素向上移动
+    down: (...arg: any) => conmmander.state.commandMap["down"](...arg), // 元素向下移动
   }
 }

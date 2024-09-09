@@ -17,6 +17,7 @@ import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import renderIconComponents from "./help-coms/render-icon-components"
 import { deepClone } from "../utils/index"
 import VueGridLayout from "vue-grid-layout"
+import { Message } from "@arco-design/web-vue"
 // 编辑器
 export const visualEditor = defineComponent({
   components: {
@@ -33,7 +34,7 @@ export const visualEditor = defineComponent({
       default: () => ({
         markLine: false, // 是否开启标线对齐功能
         shiftMove: false, // 是否开启按住shift键移动
-        shortcutKeys: false, // 是否开启快捷键操作
+        shortcutKeys: true, // 是否开启快捷键操作
       }),
     },
   },
@@ -47,11 +48,8 @@ export const visualEditor = defineComponent({
     ) {
       throw new Error("wrapper宽度不合适，请检查！")
     }
-    const {
-      markLine = false,
-      shiftMove = false,
-      shortcutKeys = false,
-    } = props.config
+    // markLine = false,
+    const { shiftMove = false, shortcutKeys = false } = props.config
     let model = useModel(
       () => props.modelValue,
       (val) => emit("update:modelValue", val)
@@ -77,6 +75,7 @@ export const visualEditor = defineComponent({
         ...model.value,
         blocks: deepClone(blocks),
       }
+      console.log(model.value, "zheshisha???????")
     }
     // 更新一个block
     function updateBlock(block: any) {
@@ -144,11 +143,12 @@ export const visualEditor = defineComponent({
           e.preventDefault()
         },
         drop(e: DragEvent) {
+          Message.warning("自由模式暂未开启，请选择点选方式！")
+          return
           // 拖拽到目标节点上了 -- 新添加的
+          let dragMode = current.component?.dragMode as string
           let block = createBlockData({
-            dragMode: current.component?.dragMode
-              ? current.component?.dragMode
-              : "free",
+            dragMode: dragMode ? dragMode : "free",
             widthAdaption100: current.component?.widthAdaption100
               ? current.component?.widthAdaption100
               : false,
@@ -164,9 +164,10 @@ export const visualEditor = defineComponent({
           props.modelValue?.blocks.push(block)
         },
         click(e: Event, component: VisualEditorComponent) {
-          // 拖拽到目标节点上了 -- 新添加的
+          // 新添加一个元素块
+          let dragMode = current.component?.dragMode as string
           let block = createBlockData({
-            dragMode: component.dragMode ? component.dragMode : "",
+            dragMode: dragMode ? dragMode : "",
             widthAdaption100: component.widthAdaption100
               ? component.widthAdaption100
               : false,
@@ -179,8 +180,6 @@ export const visualEditor = defineComponent({
             w: 1,
             h: 1,
           })
-          // props.modelValue?.blocks.push(block)
-          // console.log(block, props.modelValue?.blocks, component)
           commder.add(block)
         },
       }
@@ -202,18 +201,20 @@ export const visualEditor = defineComponent({
         onMousedown(e: MouseEvent, block: block) {
           e.stopPropagation()
           e.preventDefault()
-          // 当点击某一个快的时候
-          if (e.ctrlKey || e.shiftKey) {
-            // 按住shift 或者 ctrl
-            block.focus = !block.focus
-          } else {
-            // 需要先把其他的给取消选择
-            if (!block.focus) {
-              // 没选中 就选中
-              clearFocus()
-              block.focus = !block.focus
-            }
-          }
+          // // 当点击某一个快的时候
+          // if (e.ctrlKey || e.shiftKey) {
+          //   // 按住shift 或者 ctrl
+          //   block.focus = !block.focus
+          // } else {
+          //   // 需要先把其他的给取消选择
+          //   if (!block.focus) {
+          //     // 没选中 就选中
+          //     clearFocus()
+          //     block.focus = !block.focus
+          //   }
+          // }
+          clearFocus()
+          block.focus = !block.focus
           state.selectedBlock = block
           canvasDrag.mousedown(e)
         },
@@ -232,10 +233,10 @@ export const visualEditor = defineComponent({
     // 拖拽画布元素相关事件
     const canvasDrag = (function () {
       // 标线位置
-      let mark = reactive({
-        x: null as null | number,
-        y: null as null | number,
-      })
+      // let mark = reactive({
+      //   x: null as null | number,
+      //   y: null as null | number,
+      // })
       // 当鼠标按下的时候存储的信息
       const info = {
         startX: 0,
@@ -403,11 +404,12 @@ export const visualEditor = defineComponent({
       function mouseup(e: MouseEvent) {
         document.removeEventListener("mousemove", mousemove)
         document.removeEventListener("mouseup", mouseup)
-        mark.x = null
-        mark.y = null
+        // mark.x = null
+        // mark.y = null
         dragEnd.emit()
       }
-      return { mousedown, mark }
+      // mark
+      return { mousedown }
     })()
     const commder = useVisualCommand({
       fouceData: focusBlock as any,
@@ -451,9 +453,27 @@ export const visualEditor = defineComponent({
         handler: commder.redo,
         tip: "ctrl + y",
       },
+      {
+        label: "上移",
+        icon: "",
+        handler: commder.up,
+        tip: "alt + up",
+      },
+      {
+        label: "下移",
+        icon: "",
+        handler: commder.down,
+        tip: "alt + down",
+      },
     ]
     function delBlock(block: block) {
       commder.delete(block)
+    }
+    function onUpBlock() {
+      commder.up()
+    }
+    function onDownBlock() {
+      commder.down()
     }
     // 控制器中的信息
     const controlMethods = {
@@ -586,6 +606,9 @@ export const visualEditor = defineComponent({
                           canvas.block.onMousedown(e, block)
                         }
                         onDelBlock={() => delBlock(block)}
+                        onUpBlock={() => onUpBlock()}
+                        onDownBlock={() => onDownBlock()}
+                        key={block.id}
                       ></editorBlock>
                     </div>
                   )

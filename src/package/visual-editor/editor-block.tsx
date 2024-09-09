@@ -78,8 +78,8 @@ export default defineComponent({
       "editor-bloack",
       props.block.focus ? "editor-bloack-focus" : "",
     ])
-    function delBlock() {
-      emit("delBlock")
+    function operate(type: string) {
+      emit(type)
     }
     return () => {
       if (props.block.dragMode == "free") {
@@ -94,7 +94,10 @@ export default defineComponent({
             {componentRenderInfo?.render(props.block)}
             {/* 操作 */}
             {props.block.focus && !props.priview ? (
-              <div class="editor-bloack-delete" onClick={delBlock}>
+              <div
+                class="editor-bloack-delete"
+                onClick={() => operate("delBlock")}
+              >
                 删除
               </div>
             ) : null}
@@ -113,16 +116,25 @@ export default defineComponent({
           >
             {/* 组件核心 */}
             {componentRenderInfo?.render(props.block)}
-            {/* 操作 */}
+            {/* 操作: 元素获得焦点 并且不是预览模式下 */}
             {props.block.focus && !props.priview ? (
               <div class="editor-bloack-operate">
-                <div class="editor-bloack-delete" onClick={delBlock}>
+                <div
+                  class="editor-bloack-delete"
+                  onClick={() => operate("delBlock")}
+                >
                   删除
                 </div>
-                <div class="editor-bloack-delete" onClick={delBlock}>
+                <div
+                  class="editor-bloack-delete"
+                  onClick={() => operate("upBlock")}
+                >
                   上移
                 </div>
-                <div class="editor-bloack-delete" onClick={delBlock}>
+                <div
+                  class="editor-bloack-delete"
+                  onClick={() => operate("downBlock")}
+                >
                   下移
                 </div>
               </div>

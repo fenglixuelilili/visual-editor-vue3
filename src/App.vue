@@ -92,7 +92,7 @@ export default defineComponent({
       config: {
         shortcutKeys: true,
         markLine: true,
-        shiftMove: true,
+        shiftMove: false,
       },
     }
   },
