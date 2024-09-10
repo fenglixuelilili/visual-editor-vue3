@@ -42,11 +42,6 @@
           'defaultValue' in currentBlock.props[config.key]
         "
       >
-        <!-- <a-input
-          :style="{ width: '250px' }"
-          :placeholder="`请输入${config.label}`"
-          v-model="currentBlock.props[config.key].defaultValue"
-        /> -->
         <a-input-number
           v-model="currentBlock.props[config.key].defaultValue"
           :style="{ width: '250px' }"
