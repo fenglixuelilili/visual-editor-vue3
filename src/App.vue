@@ -11,7 +11,7 @@ import {
   logConfig,
   priviewVisualEditor,
 } from "./package/visual-editor/index"
-import "./built-in-coms/textarea"
+// import "./built-in-registor/textarea"
 export default defineComponent({
   components: {
     visualEditor,

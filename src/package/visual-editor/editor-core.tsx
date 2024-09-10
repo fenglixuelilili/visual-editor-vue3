@@ -7,6 +7,7 @@ import {
   createBlockData,
   // markline,
   config,
+  builtIn,
 } from "../../types/editor.d"
 import useModel from "../../utils/useModel"
 import editorBlock from "./editor-block"
@@ -16,8 +17,10 @@ import { controlView } from "./control-view" // 控制台渲染器
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import renderIconComponents from "./help-coms/render-icon-components"
 import { deepClone, getBtns } from "../utils/index"
+import { registorBuiltIn } from "../../built-in-registor/index"
 // import VueGridLayout from "vue-grid-layout"
 import { Message } from "@arco-design/web-vue"
+import {} from "../../built-in-registor/index"
 // 编辑器
 export const visualEditor = defineComponent({
   components: {
@@ -38,14 +41,37 @@ export const visualEditor = defineComponent({
       }),
     },
     fileUploadHandler: {
+      // 文件上传的函数
       type: Function,
       default: () => () => {},
+    },
+    builtInComs: {
+      type: Array as PropType<builtIn[]>,
+      default: () => [
+        "baseImg",
+        "baseSubmit",
+        "baseText",
+        "baseTitle",
+        "commenMultiple",
+        "commenRadio",
+        "checkPhone",
+        "personName",
+        "personOther",
+        "personPhone",
+        "personProvince",
+        "personSchool",
+        "personUpload",
+        "personYear",
+      ],
     },
   },
   emits: ["update:modelValue"],
   setup(props, { emit }) {
     if (!props.modelValue?.container) {
       throw new Error("请检查传入的container！")
+    }
+    if (props?.builtInComs?.length) {
+      registorBuiltIn(editorInstance, props.builtInComs)
     }
     // markLine = false,
     const { shiftMove = false, shortcutKeys = false } = props.config

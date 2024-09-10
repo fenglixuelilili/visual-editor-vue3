@@ -1,6 +1,6 @@
-import { registry } from "../../../package/visual-editor/index"
-registry({
-  group: "自定义组件",
+import { VisualEditorComponent } from "../../../types/editor"
+export default {
+  group: "个人信息",
   name: "textarea",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17256065550116851172560655501118550_1.png",
   activeIcon:
@@ -9,7 +9,7 @@ registry({
     return <textarea name="" id="" cols="30" rows="10"></textarea>
   },
   priview: () => <textarea placeholder="请输入内容"></textarea>,
-  label: "测试文本域",
+  label: "学校",
   props: {},
   controlView: (block, updateBlock) => {
     let props = block.props
@@ -48,4 +48,4 @@ registry({
       </div>
     )
   },
-})
+} as VisualEditorComponent

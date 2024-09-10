@@ -1,5 +1,5 @@
 type v<T extends any> = {
-  [ x in keyof k ]: T[x]
+  [x in keyof k]: T[x]
 }
 export type container = {
   width: number
@@ -8,8 +8,8 @@ export type container = {
   scale: number
   wrapper?: number
 }
-export interface block  {
-  left: number  // 定位的left值
+export interface block {
+  left: number // 定位的left值
   top: number // 定位的top值
   zIndex: number // 定位时候的层级
   adjustmentPosition?: boolean // 是否需要自动调整位置
@@ -44,8 +44,8 @@ export const createBlockData = function (data: {
     hasResize: false,
     width: 0,
     height: 0,
-    id: Math.floor((Math.random() * 100000000)),
-    ...data
+    id: Math.floor(Math.random() * 100000000),
+    ...data,
   }
 }
 
@@ -55,7 +55,7 @@ export interface markline {
 }
 
 // 组件配置
-export interface config   {
+export interface config {
   markLine?: boolean // 是否开启标线对齐功能
   shiftMove?: boolean // 是否开启按住shift键移动
   shortcutKeys?: boolean // 是否开启快捷键操作
@@ -99,12 +99,15 @@ export interface VisualEditorComponent {
   activeIcon: string // 激活icon
   priview: () => JSX.Element | string
   render: (...args) => JSX.Element | string
-  controlView: (block: block & { props:  v<VisualEditorComponent.props> }, updateBlock: ( block: block ) => void) => JSX.Element | string
+  controlView: (
+    block: block & { props: v<VisualEditorComponent.props> },
+    updateBlock: (block: block) => void
+  ) => JSX.Element | string
 }
 export interface controlViewConfigtype {
   key?: string
   label?: string
-  type?: 'color' | 'input' | 'number'
+  type?: "color" | "input" | "number"
   defaultValue: string | number
 }
 // 每次调用这个函数  就是创建一个组件
@@ -118,18 +121,35 @@ export function createVisuaEditorComponents() {
      * @name 组件名称
      * @component 组件
      * Omit类型是排除属性
-    */
-    registry(name: string, component: Omit<VisualEditorComponent, 'name'>) {
+     */
+    registry(name: string, component: Omit<VisualEditorComponent, "name">) {
       let comp = {
         ...component,
-        name
+        name,
       }
       componentMap[name] = comp
       componentLists.push(comp)
     },
     componentLists,
-    componentMap
+    componentMap,
   }
 }
-export type VisuaEditorComponents = ReturnType<typeof createVisuaEditorComponents>
-
+export type VisuaEditorComponents = ReturnType<
+  typeof createVisuaEditorComponents
+>
+// 内置组件
+export type builtIn =
+  | "baseImg"
+  | "baseSubmit"
+  | "baseText"
+  | "baseTitle"
+  | "commenMultiple"
+  | "commenRadio"
+  | "checkPhone"
+  | "personName"
+  | "personOther"
+  | "personPhone"
+  | "personProvince"
+  | "personSchool"
+  | "personUpload"
+  | "personYear"

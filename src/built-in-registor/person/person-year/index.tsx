@@ -1,7 +1,7 @@
-import { registry } from "../../../package/visual-editor/index"
-registry({
-  group: "基础组件",
-  name: "form-title",
+import { VisualEditorComponent } from "../../../types/editor"
+export default {
+  group: "个人信息",
+  name: "textarea",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17256065550116851172560655501118550_1.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1725606726670cb0d172560672667050664_2.png",
@@ -9,10 +9,9 @@ registry({
     return <textarea name="" id="" cols="30" rows="10"></textarea>
   },
   priview: () => <textarea placeholder="请输入内容"></textarea>,
-  label: "测试文本域",
+  label: "考试年份",
   props: {},
   controlView: (block, updateBlock) => {
-    console.log(this)
     let props = block.props
     function onChange(e: any) {
       block.props.fontSize = e.target.value
@@ -49,4 +48,4 @@ registry({
       </div>
     )
   },
-})
+} as VisualEditorComponent
