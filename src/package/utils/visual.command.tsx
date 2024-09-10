@@ -219,7 +219,6 @@ export function useVisualCommand({
           data.before = deepClone(blocks)
           blocks.push(block) // 之后的数据
           data.after = blocks
-          console.log(data.after, "data.afterdata.afterdata.after")
           updateBlocks(data.after)
         },
       }

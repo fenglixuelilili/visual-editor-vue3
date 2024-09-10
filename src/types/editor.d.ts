@@ -101,6 +101,12 @@ export interface VisualEditorComponent {
   render: (...args) => JSX.Element | string
   controlView: (block: block & { props:  v<VisualEditorComponent.props> }, updateBlock: ( block: block ) => void) => JSX.Element | string
 }
+export interface controlViewConfigtype {
+  key?: string
+  label?: string
+  type?: 'color' | 'input' | 'number'
+  defaultValue: string | number
+}
 // 每次调用这个函数  就是创建一个组件
 export function createVisuaEditorComponents() {
   // 所有组件队列

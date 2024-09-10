@@ -10,7 +10,6 @@ editor.registry("testText", {
       fontSize: fontSize.defaultValue + "px",
       color: color.defaultValue,
     }))
-    console.log("执行了吗？？？？", block)
     return (
       <span style={style.value}>
         {text.defaultValue ? text.defaultValue : "暂无"}
@@ -29,7 +28,7 @@ editor.registry("testText", {
     // text: "默认文本",
     fontSize: {
       defaultValue: 20, // 默认值
-      type: "input", // 类型是啥 控制器用哪个组件渲染
+      type: "number", // 类型是啥 控制器用哪个组件渲染
       label: "字体大小",
     },
     text: {

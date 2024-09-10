@@ -1,11 +1,13 @@
 import { visualEditorModelValue } from "@/types/editor"
 import { Message } from "@arco-design/web-vue"
-import { ref } from "vue"
+import { defineComponent, ref, createVNode } from "vue"
+import builtInControl from "./help-coms/built-in-control.vue"
+import { controlViewConfigtype } from "@/types/editor"
 export function controlView(
   controlView: () => JSX.Element | string | null,
   currentBlockInfo: any,
   modelValue: visualEditorModelValue,
-  updateBlocks: (block: any) => void
+  updateBlock: (block: any) => void
 ) {
   let cacheView = controlView()
   function colorChange(val: string) {
@@ -18,6 +20,17 @@ export function controlView(
     }
     modelValue.container.scale = val
   }
+  // 当前正在操作的
+  let currentBlock = currentBlockInfo.value.cBlock || {}
+  let editorPros = currentBlock.props ? currentBlock.props : {}
+  let editorControlView = ref<controlViewConfigtype[]>([])
+  Object.keys(editorPros).forEach((key) => {
+    if (editorPros[key].type) {
+      editorPros[key].key = key
+      editorControlView.value.push(editorPros[key])
+    }
+  })
+  let builtInControlCom = createVNode(builtInControl)
   return (
     <div>
       {!currentBlockInfo.value.focusBlock.length ? (
@@ -63,7 +76,14 @@ export function controlView(
         <div class="control-container">
           <a-tabs type="line" size="large">
             <a-tab-pane key="1" title="组件设置">
-              <div>{cacheView}</div>
+              <div class="control-form-comtainer">
+                {/* 这里是内置属性 */}
+                <builtInControlCom
+                  editorControlView={editorControlView.value}
+                  currentBlock={currentBlock}
+                ></builtInControlCom>
+                <div>{cacheView}</div>
+              </div>
             </a-tab-pane>
             <a-tab-pane key="2" title="动画">
               <span>暂不支持</span>

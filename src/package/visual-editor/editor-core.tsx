@@ -193,6 +193,7 @@ export const visualEditor = defineComponent({
       return {
         blurBlock: props.modelValue?.blocks.filter((block) => !block.focus), // 当前失去焦点的模块
         focusBlock: props.modelValue?.blocks.filter((block) => block.focus), // 当前获得焦点的模块
+        cBlock: props.modelValue?.blocks.find((block) => block.focus), // 当前获得焦点的模块
       }
     })
     // 画布区域中的内容点击相关事件
