@@ -318,7 +318,7 @@ export function useVisualCommand({
     undo: () => conmmander.state.commandMap["undo"](), // 撤销
     redo: () => conmmander.state.commandMap["redo"](), // 重做
     delete: (...arg: any) => conmmander.state.commandMap["delete"](...arg), // 删除
-    drag: () => conmmander.state.commandMap["drag"](), // 删除
+    drag: () => conmmander.state.commandMap["drag"](), // 拖拽
     clear: () => conmmander.state.commandMap["clear"](), // 清空
     add: (...arg: any) => conmmander.state.commandMap["add"](...arg), // 添加一个新元素
     up: (...arg: any) => conmmander.state.commandMap["up"](...arg), // 元素向上移动

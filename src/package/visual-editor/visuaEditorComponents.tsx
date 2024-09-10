@@ -5,13 +5,15 @@ import { computed } from "vue"
 let editor = createVisuaEditorComponents()
 editor.registry("testText", {
   render: (block: block) => {
+    const { fontSize, text, color } = block.props
     let style = computed(() => ({
-      fontSize: block.props.fontSize + "px",
-      color: block.props.color,
+      fontSize: fontSize.defaultValue + "px",
+      color: color.defaultValue,
     }))
+    console.log("执行了吗？？？？", block)
     return (
       <span style={style.value}>
-        {block.props.text ? block.props.text : "暂无"}
+        {text.defaultValue ? text.defaultValue : "暂无"}
       </span>
     )
   },

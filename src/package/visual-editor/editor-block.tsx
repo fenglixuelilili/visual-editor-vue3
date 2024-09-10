@@ -1,7 +1,7 @@
 import { computed, defineComponent, onMounted, PropType, ref } from "vue"
 import { block, container } from "../../types/editor.d"
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
-import "../scss/editor.block.scss"
+import editorBloackOperate from "./help-coms/editor-bloack-operate.vue"
 // import VueGridLayout from "vue-grid-layout"
 // 每个组件上的外壳 + block组件
 export default defineComponent({
@@ -27,9 +27,10 @@ export default defineComponent({
       }),
     },
   },
-  // components: {
-  //   GridItem: VueGridLayout.GridItem,
-  // },
+  components: {
+    // GridItem: VueGridLayout.GridItem,
+    editorBloackOperate,
+  },
   setup(props, { emit }) {
     const style = computed(() => {
       if (props.block.dragMode == "free") {
@@ -118,26 +119,9 @@ export default defineComponent({
             {componentRenderInfo?.render(props.block)}
             {/* 操作: 元素获得焦点 并且不是预览模式下 */}
             {props.block.focus && !props.priview ? (
-              <div class="editor-bloack-operate">
-                <div
-                  class="editor-bloack-delete"
-                  onClick={() => operate("delBlock")}
-                >
-                  删除
-                </div>
-                <div
-                  class="editor-bloack-delete"
-                  onClick={() => operate("upBlock")}
-                >
-                  上移
-                </div>
-                <div
-                  class="editor-bloack-delete"
-                  onClick={() => operate("downBlock")}
-                >
-                  下移
-                </div>
-              </div>
+              <editor-bloack-operate
+                onOperate={operate}
+              ></editor-bloack-operate>
             ) : null}
           </div>
         )

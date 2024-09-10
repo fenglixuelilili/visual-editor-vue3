@@ -31,7 +31,6 @@ export default defineComponent({
         }
         map[item.group].push(item)
       })
-    console.log(map)
     return () => (
       <>
         {/* 左侧所有在服役的组件 */}

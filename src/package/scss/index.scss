@@ -6,11 +6,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f1f2f5;
+  background-color: #F0F2F5;
   .visual-editor-header{
     height: 40px;
     width: 100%;
     background-color: #fff;
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.1);
   }
   .visual-editor {
     $leftComWidth: 250px;
@@ -151,8 +152,8 @@
         align-items: flex-start;
         justify-content: center;
         position: relative;
-        padding-top: 20px;
-        background-color: #f1f2f5;
+        padding-top: 40px;
+        background-color: #F0F2F5;
         .visual-editor-area-content {
           background-color: #fff;
           position: relative;
