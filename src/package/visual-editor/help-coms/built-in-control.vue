@@ -55,6 +55,7 @@
         />
       </div>
       <div
+        class="w100"
         v-if="
           config.type == 'slider' &&
           'defaultValue' in currentBlock.props[config.key]
@@ -71,12 +72,24 @@
           />
         </a-space>
       </div>
+      <div
+        v-if="
+          config.type == 'imgUpload' &&
+          'defaultValue' in currentBlock.props[config.key]
+        "
+        class="w100"
+      >
+        <upload-img
+          v-model="currentBlock.props[config.key].defaultValue"
+        ></upload-img>
+      </div>
     </a-form-item>
   </a-form>
 </template>
 <script setup lang="ts">
 import { defineProps, PropType } from "vue"
 import type { block, controlViewConfigtype } from "@/types/editor"
+import uploadImg from "./control-views/upload-img.vue"
 type requireTyep<T> = {
   [key in keyof T]: T[key]
 }
@@ -90,6 +103,9 @@ const props = defineProps({
     default: () => {},
   },
 })
-console.log(props.currentBlock, props.editorControlView, "内部属性")
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.w100 {
+  width: 100%;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div class="editor-built-in-registor-base-title" :style="style">
-    {{ text ? text : "默认标题" }}
+    {{ text }}
   </div>
 </template>
 <script lang="ts" setup>

@@ -80,6 +80,8 @@ export interface visualEditorModelValue {
   // 容器内的元素信息 包含 位置 元素 大小等信息
   blocks: block[]
 }
+// 内置控制器组件类型
+type builtInContrlComType = "color" | "input" | "number" | 'slider' | 'imgUpload'
 // 这是具体的组件类型
 export interface VisualEditorComponent {
   name: string
@@ -88,8 +90,9 @@ export interface VisualEditorComponent {
   props: {
     [key: string]: {
       defaultValue: number | string
-      type?: string
+      type?: builtInContrlComType
       label?: string
+      disabled?: boolean
     }
   }
   dragMode?: string // 拖拽模式
@@ -107,7 +110,7 @@ export interface VisualEditorComponent {
 export interface controlViewConfigtype {
   key?: string
   label?: string
-  type?: "color" | "input" | "number" | 'slider'
+  type?: builtInContrlComType
   defaultValue: string | number
 }
 // 每次调用这个函数  就是创建一个组件

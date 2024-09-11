@@ -9,7 +9,6 @@ export default {
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260208210133537172602082101375623_1.png",
   render: (block) => {
-    console.log(block, "blockblockblockblockblockblock")
     let style = computed(() => {
       return {
         color: block.props.color.defaultValue,
