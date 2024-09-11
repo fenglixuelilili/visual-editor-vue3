@@ -20,11 +20,6 @@ export default {
     },
   },
   controlView: (block, updateBlock) => {
-    // let props = block.props
-    // function onChange(e: any) {
-    //   block.props.fontSize = e.target.value
-    //   updateBlock(block)
-    // }
     return <div></div>
   },
 } as VisualEditorComponent

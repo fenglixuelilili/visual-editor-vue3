@@ -29,7 +29,7 @@ const props = defineProps({
     default: "",
   },
 })
-const emit = defineEmits(["update:modelValue"])
+const emit = defineEmits(["update:modelValue", "change"])
 // console.log(props.currentBlock, props.editorControlView, "内部属性")
 const methods = {
   fileChange(e: any) {
@@ -37,10 +37,12 @@ const methods = {
     let file: File = e.target.files[0]
     convertBase64(file).then((res) => {
       emit("update:modelValue", res)
+      emit("change", res)
     })
   },
   del() {
     emit("update:modelValue", "")
+    emit("change", "")
   },
 }
 </script>

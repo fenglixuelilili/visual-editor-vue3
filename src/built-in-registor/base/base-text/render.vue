@@ -1,9 +1,12 @@
 <template>
   <div class="editor-built-in-registor-base-title" :style="style">
-    {{ text }}
+    <div class="text" :class="{ minHeight: !text }">
+      {{ text ? text : "请在右侧控制器中输入内容" }}
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
+import { defineProps } from "vue"
 const props = defineProps({
   style: {
     type: Object,
@@ -17,9 +20,14 @@ const props = defineProps({
 </script>
 <style lang="scss" scoped>
 .editor-built-in-registor-base-title {
-  height: 48px;
-  line-height: 48px;
-  text-align: center;
-  font-weight: 800;
+  .text {
+    &.minHeight {
+      min-height: 150px;
+      text-align: center;
+      line-height: 150px;
+      border: 1px dashed #ccc;
+      color: #ccc;
+    }
+  }
 }
 </style>

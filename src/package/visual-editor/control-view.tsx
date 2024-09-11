@@ -32,7 +32,7 @@ export function controlView(
   })
   let builtInControlCom = createVNode(builtInControl)
   return (
-    <div>
+    <div style="height: 100%">
       {!currentBlockInfo.value.focusBlock.length ? (
         <div class="control-container">
           <a-tabs type="line" size="large" style="height: 100%">
