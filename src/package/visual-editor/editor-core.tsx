@@ -550,7 +550,10 @@ export const visualEditor = defineComponent({
             </div>
           </div>
           <div class="visual-editor-area-body">
-            <div class="visual-editor-area-container">
+            <div
+              class="visual-editor-area-container"
+              onMousedown={() => clearFocus()}
+            >
               {/* 渲染画布信息 */}
               <div
                 class="visual-editor-area-content"
