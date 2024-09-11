@@ -81,7 +81,7 @@ export interface visualEditorModelValue {
   blocks: block[]
 }
 // 内置控制器组件类型
-type builtInContrlComType = "color" | "input" | "number" | 'slider' | 'imgUpload'
+type builtInContrlComType = "color" | "input" | "number" | 'slider' | 'imgUpload' | 'textarea' | 'select'
 // 这是具体的组件类型
 export interface VisualEditorComponent {
   name: string
@@ -89,10 +89,14 @@ export interface VisualEditorComponent {
   disabled?: boolean
   props: {
     [key: string]: {
-      defaultValue: number | string
+      defaultValue: number | string | number
       type?: builtInContrlComType
       label?: string
       disabled?: boolean
+      options?: {
+        name: string
+        value: string | number
+      }[]
     }
   }
   dragMode?: string // 拖拽模式
@@ -104,7 +108,7 @@ export interface VisualEditorComponent {
   render: (...args) => JSX.Element | string
   controlView: (
     block: block & { props: v<VisualEditorComponent.props> },
-    updateBlock: (block: block) => void
+    updateBlock: (block: block) => void,
   ) => JSX.Element | string
 }
 export interface controlViewConfigtype {

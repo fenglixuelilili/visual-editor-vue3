@@ -40,6 +40,24 @@
       </div>
       <div
         v-if="
+          config.type == 'textarea' &&
+          'defaultValue' in currentBlock.props[config.key]
+        "
+      >
+        <a-textarea
+          :auto-size="{
+            minRows: 2,
+            maxRows: 6,
+          }"
+          v-model="currentBlock.props[config.key].defaultValue"
+          :style="{ width: '250px' }"
+          :placeholder="`请输入${config.label}`"
+          allow-clear
+          :disabled="!!currentBlock.props[config.key]?.disabled"
+        />
+      </div>
+      <div
+        v-if="
           config.type == 'number' &&
           'defaultValue' in currentBlock.props[config.key]
         "
@@ -82,6 +100,27 @@
         <upload-img
           v-model="currentBlock.props[config.key].defaultValue"
         ></upload-img>
+      </div>
+      <div
+        class="w100"
+        v-if="
+          config.type == 'select' &&
+          'defaultValue' in currentBlock.props[config.key]
+        "
+      >
+        <a-select
+          :style="{ width: '250px' }"
+          :placeholder="`请输入${config.label}`"
+          v-model="currentBlock.props[config.key].defaultValue"
+        >
+          <a-option
+            v-for="(item, i) in currentBlock.props[config.key].options"
+            :key="i"
+            :value="item.value"
+          >
+            {{ item.name }}
+          </a-option>
+        </a-select>
       </div>
     </a-form-item>
   </a-form>
