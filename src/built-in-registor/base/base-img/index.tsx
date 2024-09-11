@@ -2,9 +2,9 @@ import { VisualEditorComponent } from "../../../types/editor"
 export default {
   group: "基础组件",
   name: "textarea",
-  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17256065550116851172560655501118550_1.png",
+  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260208888133402172602088881394742_3.png",
   activeIcon:
-    "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1725606726670cb0d172560672667050664_2.png",
+    "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260208888133402172602088881394742_3.png",
   render: (block) => {
     return <textarea name="" id="" cols="30" rows="10"></textarea>
   },

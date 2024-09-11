@@ -22,6 +22,7 @@
           show-preset
           showText
           disabledAlpha
+          :disabled="!!currentBlock.props[config.key]?.disabled"
         />
       </div>
       <div
@@ -34,6 +35,7 @@
           :style="{ width: '250px' }"
           :placeholder="`请输入${config.label}`"
           v-model="currentBlock.props[config.key].defaultValue"
+          :disabled="!!currentBlock.props[config.key]?.disabled"
         />
       </div>
       <div
@@ -44,12 +46,30 @@
       >
         <a-input-number
           v-model="currentBlock.props[config.key].defaultValue"
-          :style="{ width: '250px' }"
+          :style="{ width: '150px' }"
           :placeholder="`请输入${config.label}`"
+          :disabled="!!currentBlock.props[config.key]?.disabled"
           :min="0"
           mode="button"
           size="large"
         />
+      </div>
+      <div
+        v-if="
+          config.type == 'slider' &&
+          'defaultValue' in currentBlock.props[config.key]
+        "
+      >
+        <a-space size="large">
+          <a-slider
+            :min="0"
+            :max="200"
+            :disabled="!!currentBlock.props[config.key]?.disabled"
+            v-model="currentBlock.props[config.key].defaultValue"
+            style="width: 250px; display: flex"
+            show-input
+          />
+        </a-space>
       </div>
     </a-form-item>
   </a-form>

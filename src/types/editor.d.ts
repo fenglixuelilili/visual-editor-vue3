@@ -107,7 +107,7 @@ export interface VisualEditorComponent {
 export interface controlViewConfigtype {
   key?: string
   label?: string
-  type?: "color" | "input" | "number"
+  type?: "color" | "input" | "number" | 'slider'
   defaultValue: string | number
 }
 // 每次调用这个函数  就是创建一个组件
