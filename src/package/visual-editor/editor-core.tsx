@@ -575,6 +575,7 @@ export const visualEditor = defineComponent({
                     console.log(val, "这是？？")
                   }}
                 > */}
+                {/* 渲染各个注册的核心组件 */}
                 {model.value.blocks.map((block: block) => {
                   return (
                     <div>

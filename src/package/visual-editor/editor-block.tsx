@@ -95,12 +95,9 @@ export default defineComponent({
             {componentRenderInfo?.render(props.block)}
             {/* 操作 */}
             {props.block.focus && !props.priview ? (
-              <div
-                class="editor-bloack-delete"
-                onClick={() => operate("delBlock")}
-              >
-                删除
-              </div>
+              <editor-bloack-operate
+                onOperate={operate}
+              ></editor-bloack-operate>
             ) : null}
           </div>
         )
