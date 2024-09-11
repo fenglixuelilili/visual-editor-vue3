@@ -98,6 +98,7 @@ export const visualEditor = defineComponent({
     }
     // 更新所有block数据
     function updateBlocks(blocks: block[]) {
+      controlMethods.cacheView = null
       model.value = {
         ...model.value,
         blocks: deepClone(blocks),
@@ -108,6 +109,7 @@ export const visualEditor = defineComponent({
       model.value.blocks.forEach((oldblock: any) => {
         if (block.id == oldblock.id) {
           for (let key in oldblock) {
+            controlMethods.cacheView = null
             oldblock[key] = deepClone(block[key])
           }
         }
@@ -215,7 +217,7 @@ export const visualEditor = defineComponent({
 
     // 计算block选中的与没选中的信息
     const currentBlockInfo = computed(() => {
-      props.modelValue?.blocks
+      // props.modelValue?.blocks
       return {
         blurBlock: props.modelValue?.blocks.filter((block) => !block.focus), // 当前失去焦点的模块
         focusBlock: props.modelValue?.blocks.filter((block) => block.focus), // 当前获得焦点的模块
@@ -450,6 +452,9 @@ export const visualEditor = defineComponent({
     function delBlock(block: block) {
       commder.delete(block)
     }
+    // function getNewBlock() {
+    //   return currentBlockInfo.value.cBlock as block
+    // }
     // 控制器中的信息
     const controlMethods = {
       // 操作的原数据
@@ -458,16 +463,36 @@ export const visualEditor = defineComponent({
       cacheView: null as null | JSX.Element,
       // 控制层渲染函数
       controlRender() {
-        if (this.originData?.id === state.selectedBlock?.id && this.cacheView) {
+        // if (this.originData?.id === state.selectedBlock?.id && this.cacheView) {
+        //   return this.cacheView
+        // }
+        // let componentKey = state.selectedBlock?.componentKey
+        // let componentMap = editorInstance?.componentMap
+        // if (componentKey && componentMap && state.selectedBlock) {
+        //   this.originData = deepClone(state.selectedBlock)
+        //   // 获取组件的渲染视图
+        //   this.cacheView = componentMap[componentKey].controlView(
+        //     state.selectedBlock,
+        //     updateBlock,
+        //     getNewBlock
+        //   )
+        //   return this.cacheView
+        // } else {
+        //   return null
+        // }
+        if (
+          this.originData?.id === currentBlockInfo.value.cBlock?.id &&
+          this.cacheView
+        ) {
           return this.cacheView
         }
-        let componentKey = state.selectedBlock?.componentKey
+        let componentKey = currentBlockInfo.value.cBlock?.componentKey
         let componentMap = editorInstance?.componentMap
-        if (componentKey && componentMap && state.selectedBlock) {
-          this.originData = deepClone(state.selectedBlock)
+        if (componentKey && componentMap && currentBlockInfo.value.cBlock) {
+          this.originData = deepClone(currentBlockInfo.value.cBlock)
           // 获取组件的渲染视图
           this.cacheView = componentMap[componentKey].controlView(
-            state.selectedBlock,
+            currentBlockInfo.value.cBlock,
             updateBlock
           )
           return this.cacheView
@@ -525,6 +550,7 @@ export const visualEditor = defineComponent({
     //     )
     //   }
     // }
+    let controlNum = ref(0)
     return () => (
       <div class="visual-editor-container">
         <div class="visual-editor-header">
