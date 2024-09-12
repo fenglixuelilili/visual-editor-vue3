@@ -4,7 +4,7 @@ import control from "./control.vue"
 import render from "./render.vue"
 export default {
   group: "个人信息",
-  name: "textarea",
+  name: "personYear",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260212731331ddc172602127313340233_6.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260212731331ddc172602127313340233_6.png",

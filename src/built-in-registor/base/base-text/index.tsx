@@ -4,7 +4,7 @@ import control from "./control.vue"
 import render from "./render.vue"
 export default {
   group: "基础组件",
-  name: "textarea",
+  name: "baseText",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172602085635655aa172602085635629144_2.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172602085635655aa172602085635629144_2.png",
