@@ -40,6 +40,7 @@ const props = defineProps({
 function setBottom(isSet: boolean) {
   if (baseSubmit.value?.parentNode && isSet) {
     ;(baseSubmit.value?.parentNode as any).style.position = "absolute"
+    ;(baseSubmit.value?.parentNode as any).style.zIndex = 10
     ;(baseSubmit.value?.parentNode as any).style.bottom = props.visibleSubmitNum
       ? "0px"
       : "20px"
