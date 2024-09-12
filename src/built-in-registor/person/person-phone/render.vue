@@ -1,6 +1,16 @@
 <template>
-  <div class="editor-built-in-registor-base-title" :style="style">
-    {{ text }}
+  <div class="editor-built-in-registor-person-phone" :style="style">
+    <div class="title-tip mb8">
+      <span class="red" v-if="isRequire">*</span>
+      <span>{{ title }}</span>
+    </div>
+    <div class="form-item">
+      <a-input
+        style="height: 40px; line-height: 40px; width: 100%"
+        :placeholder="placeholder"
+        :model-value="value"
+      />
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -9,17 +19,36 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
-  text: {
+  title: {
     type: String,
     default: "",
+  },
+  value: {
+    type: String,
+    default: "",
+  },
+  placeholder: {
+    type: String,
+    default: "",
+  },
+  isRequire: {
+    type: Boolean,
+    default: false,
+  },
+  only: {
+    type: Boolean,
+    default: false,
   },
 })
 </script>
 <style lang="scss" scoped>
-.editor-built-in-registor-base-title {
-  height: 48px;
-  line-height: 48px;
-  text-align: center;
-  font-weight: 800;
+@import "../../commen.scss";
+.editor-built-in-registor-person-phone {
+  // height: 48px;
+  // line-height: 48px;
+  // text-align: center;
+  // font-weight: 800;
+  height: 94px;
+  padding: 10px 24px;
 }
 </style>

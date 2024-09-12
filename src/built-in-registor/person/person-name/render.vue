@@ -6,7 +6,7 @@
     </div>
     <div class="form-item">
       <a-input
-        style="height: 44px; line-height: 44px; width: 100%"
+        style="height: 40px; line-height: 40px; width: 100%"
         :placeholder="placeholder"
         :model-value="value"
       />
