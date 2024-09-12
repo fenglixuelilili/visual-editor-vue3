@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-built-in-control-person-year">
+  <div class="editor-built-in-control-person-upload">
     <div class="h-line"></div>
     <div class="group-title">校验</div>
     <div class="flex mt24 options">
@@ -28,7 +28,7 @@ function switchChange(bol: boolean, type: string) {
 </script>
 <style lang="scss" scoped>
 @import "../../commen.scss";
-.editor-built-in-control-person-year {
+.editor-built-in-control-person-upload {
   .options {
     justify-content: space-between;
     span {
