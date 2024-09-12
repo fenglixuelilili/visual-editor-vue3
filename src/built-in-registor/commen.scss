@@ -30,6 +30,9 @@
 .mb48 {
   margin-bottom: 58px;
 }
+.mb8{
+  margin-bottom: 8px;
+}
 .h-line {
   width: 100%;
   height: 1px;
@@ -39,6 +42,25 @@
 .option-label{
   font-family: PingFangSC, PingFang SC;
   font-weight: 400;
+  font-size: 14px;
+  color: rgba(3,32,61,0.65);
+  line-height: 22px;
+  text-align: left;
+  font-style: normal;
+}
+.title-tip{
+  font-weight: 400;
+  font-size: 14px;
+  color: #03203D;
+  line-height: 22px;
+  text-align: left;
+}
+.red{
+  color: red;
+}
+.group-title{
+  font-size: 16px;
+  font-weight: 800;
   font-size: 14px;
   color: rgba(3,32,61,0.65);
   line-height: 22px;
