@@ -137,8 +137,9 @@
       >
         <a-select
           :style="{ width: '250px' }"
-          :placeholder="`请输入${config.label}`"
+          :placeholder="`请选择${config.label}`"
           v-model="currentBlock.props[config.key].defaultValue"
+          allow-clear
         >
           <a-option
             v-for="(item, i) in currentBlock.props[config.key].options"
