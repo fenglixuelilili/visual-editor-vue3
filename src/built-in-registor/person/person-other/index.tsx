@@ -16,7 +16,6 @@ export default {
       value: props.value.defaultValue,
       placeholder: props.placeholder.defaultValue,
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
-      only: props.only.defaultValue == "1" ? true : false,
       min: props.min.defaultValue * 1,
       max: props.max.defaultValue * 1,
     })
@@ -27,7 +26,7 @@ export default {
     title: {
       label: "标题",
       type: "input",
-      defaultValue: "姓名",
+      defaultValue: "其他信息",
     },
     value: {
       label: "默认文本",
@@ -37,14 +36,10 @@ export default {
     placeholder: {
       label: "提示",
       type: "input",
-      defaultValue: "请输入姓名",
+      defaultValue: "请输入其他信息",
     },
     isRequire: {
       label: "设为必填",
-      defaultValue: "2",
-    },
-    only: {
-      label: "唯一性",
       defaultValue: "2",
     },
     min: {

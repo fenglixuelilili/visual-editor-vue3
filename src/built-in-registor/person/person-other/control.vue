@@ -11,15 +11,6 @@
         />
       </div>
     </div>
-    <div class="flex mt24 options">
-      <span class="option-label">提交时校验数据唯一性</span>
-      <div>
-        <a-switch
-          :default-checked="block.props.only.defaultValue == '1'"
-          @change="switchChange($event, 'only')"
-        />
-      </div>
-    </div>
     <div class="group-title mt24">填写限制</div>
     <div class="flex mt24 options">
       <span class="option-label">最少填</span>
