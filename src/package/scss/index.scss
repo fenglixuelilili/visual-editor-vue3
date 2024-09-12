@@ -29,7 +29,8 @@
       flex-shrink: 0;
       height: 100%;
       width: 50px;
-      background-color: aquamarine;
+      // background-color: aquamarine;
+      border-right: 1px solid #eee;
       .buttons {
         display: flex;
         align-items: center;
@@ -165,6 +166,7 @@
           padding: 0 10px;
           height: 100%;
           overflow-y: auto;
+          padding-bottom: 60px;
         }
       }
     }

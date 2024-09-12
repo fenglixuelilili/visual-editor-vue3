@@ -42,6 +42,7 @@ export function controlView(
                   style={{ width: "100%" }}
                   label-align="left"
                   auto-label-width={true}
+                  model={{}}
                   layout="vertical"
                 >
                   <a-form-item tooltip="设置表单的背景色" label="背景色">

@@ -4,6 +4,7 @@
     label-align="left"
     auto-label-width
     layout="vertical"
+    :model="{}"
   >
     <a-form-item
       :label="config.label"
@@ -37,6 +38,9 @@
           v-model="currentBlock.props[config.key].defaultValue"
           :disabled="!!currentBlock.props[config.key]?.disabled"
         />
+        <span class="ml12" v-if="currentBlock.props[config.key]?.unit">
+          {{ currentBlock.props[config.key]?.unit }}
+        </span>
       </div>
       <div
         v-if="
@@ -67,10 +71,22 @@
           :style="{ width: '150px' }"
           :placeholder="`请输入${config.label}`"
           :disabled="!!currentBlock.props[config.key]?.disabled"
-          :min="0"
+          :min="
+            currentBlock.props[config.key]?.min
+              ? currentBlock.props[config.key]?.min * 1
+              : 0
+          "
+          :max="
+            currentBlock.props[config.key]?.max
+              ? currentBlock.props[config.key]?.max * 1
+              : 100
+          "
           mode="button"
           size="large"
         />
+        <span class="ml12" v-if="currentBlock.props[config.key]?.unit">
+          {{ currentBlock.props[config.key]?.unit }}
+        </span>
       </div>
       <div
         class="w100"
@@ -81,14 +97,25 @@
       >
         <a-space size="large">
           <a-slider
-            :min="0"
-            :max="200"
+            :min="
+              currentBlock.props[config.key]?.min
+                ? currentBlock.props[config.key]?.min * 1
+                : 0
+            "
+            :max="
+              currentBlock.props[config.key]?.max
+                ? currentBlock.props[config.key]?.max * 1
+                : 100
+            "
             :disabled="!!currentBlock.props[config.key]?.disabled"
             v-model="currentBlock.props[config.key].defaultValue"
             style="width: 250px; display: flex"
             show-input
           />
         </a-space>
+        <span class="ml12" v-if="currentBlock.props[config.key]?.unit">
+          {{ currentBlock.props[config.key]?.unit }}
+        </span>
       </div>
       <div
         v-if="
@@ -146,5 +173,8 @@ const props = defineProps({
 <style lang="scss" scoped>
 .w100 {
   width: 100%;
+}
+.ml12 {
+  margin-left: 12px;
 }
 </style>

@@ -22,7 +22,6 @@ export interface block {
   id: number // 每个组件的id
   props: v[VisualEditorComponent.props] // 组件的属性
   dragMode?: string // 拖拽模式 'free' | 'updown'('') 只有两种
-
   x: number
   y: number
   w: number
@@ -93,6 +92,9 @@ export interface VisualEditorComponent {
       type?: builtInContrlComType
       label?: string
       disabled?: boolean
+      unit?: string
+      min?: number
+      max?: number
       options?: {
         name: string
         value: string | number
@@ -104,6 +106,7 @@ export interface VisualEditorComponent {
   group: string // 所属分组
   icon: string // 默认icon
   activeIcon: string // 激活icon
+  editorBlockShellStyle?: (block: block, style: T) => T // 每个组件的外壳的样式
   priview: () => JSX.Element | string
   render: (...args) => JSX.Element | string
   controlView: (

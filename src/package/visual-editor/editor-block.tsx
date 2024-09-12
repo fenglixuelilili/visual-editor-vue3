@@ -32,33 +32,42 @@ export default defineComponent({
     editorBloackOperate,
   },
   setup(props, { emit }) {
+    let componentRenderInfo =
+      editorInstance?.componentMap[props.block!.componentKey]
     const style = computed(() => {
       if (props.block.dragMode == "free") {
         // 自由模式
-        return {
+        let baseStyle = {
+          position: "absolute",
           left: props.block.left + "px",
           top: props.block.top + "px",
           zIndex: props.block.zIndex,
           width: props.block.widthAdaption100 ? "100%" : "auto",
         }
+        return componentRenderInfo.editorBlockShellStyle
+          ? componentRenderInfo.editorBlockShellStyle(props.block, baseStyle)
+          : baseStyle
       } else if (
         props.block.dragMode == "updown" ||
+        props.block.dragMode == "default" ||
         props.block.dragMode == ""
       ) {
         // 上下模式
-        return {
+        let baseStyle = {
           margin: "0 auto",
-          width: props.block.widthAdaption100
-            ? "100%"
-            : props.container.width + "px",
+          width: "100%",
+          // width: props.block.widthAdaption100
+          //   ? "100%"
+          //   : props.container.width + "px",
           position: "relative",
         }
+        return componentRenderInfo.editorBlockShellStyle
+          ? componentRenderInfo.editorBlockShellStyle(props.block, baseStyle)
+          : baseStyle
       }
       return {}
     })
     const blockInstance = ref({} as HTMLElement)
-    let componentRenderInfo =
-      editorInstance?.componentMap[props.block!.componentKey]
     onMounted(() => {
       if (props.block.adjustmentPosition && props.block.dragMode == "free") {
         /**
@@ -103,6 +112,7 @@ export default defineComponent({
         )
       } else if (
         props.block.dragMode == "default" ||
+        props.block.dragMode == "updown" ||
         props.block.dragMode == ""
       ) {
         // 正常的上下排列

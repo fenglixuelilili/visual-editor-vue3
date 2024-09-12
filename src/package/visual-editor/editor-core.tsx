@@ -20,7 +20,6 @@ import { deepClone, getBtns } from "../utils/index"
 import { registorBuiltIn } from "../../built-in-registor/index"
 // import VueGridLayout from "vue-grid-layout"
 import { Message } from "@arco-design/web-vue"
-import {} from "../../built-in-registor/index"
 // 编辑器
 export const visualEditor = defineComponent({
   components: {
@@ -550,7 +549,6 @@ export const visualEditor = defineComponent({
     //     )
     //   }
     // }
-    let controlNum = ref(0)
     return () => (
       <div class="visual-editor-container">
         <div class="visual-editor-header">
