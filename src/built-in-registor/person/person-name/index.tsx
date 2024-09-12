@@ -1,6 +1,6 @@
 import { createVNode } from "vue"
 import { VisualEditorComponent } from "../../../types/editor"
-import render from "./render.vue"
+import render from "../../utils/base-input-render.vue"
 import control from "./control.vue"
 export default {
   group: "个人信息",

@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-built-in-registor-person-phone" :style="style">
+  <div class="editor-built-in-registor-person-name" :style="style">
     <div class="title-tip mb8">
       <span class="red" v-if="isRequire">*</span>
       <span>{{ title }}</span>
@@ -39,11 +39,19 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  min: {
+    type: Number,
+    default: 0,
+  },
+  max: {
+    type: Number,
+    default: 100,
+  },
 })
 </script>
 <style lang="scss" scoped>
-@import "../../commen.scss";
-.editor-built-in-registor-person-phone {
+@import "../commen.scss";
+.editor-built-in-registor-person-name {
   // height: 48px;
   // line-height: 48px;
   // text-align: center;
