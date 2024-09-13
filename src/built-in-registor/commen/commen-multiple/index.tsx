@@ -5,9 +5,9 @@ import control from "./control.vue"
 export default {
   group: "个人信息（自定义）",
   name: "commenMultiple",
-  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
+  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262319235156e36172623192351612382_m.png",
   activeIcon:
-    "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
+    "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262319235156e36172623192351612382_m.png",
   render: (block) => {
     let props = block.props
     return createVNode(render, {

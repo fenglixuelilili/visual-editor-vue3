@@ -5,9 +5,9 @@ import control from "./control.vue"
 export default {
   group: "个人信息",
   name: "personSchool",
-  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
+  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262318368565036172623183685718112_school.png",
   activeIcon:
-    "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
+    "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262318368565036172623183685718112_school.png",
   render: (block) => {
     let props = block.props
     return createVNode(render, {
