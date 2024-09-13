@@ -14526,8 +14526,8 @@ const Tt = (e) => (Qe("data-v-32ae4908"), e = e(), Je(), e), Gb = {
 const hy = /* @__PURE__ */ je(vy, [["__scopeId", "data-v-32ae4908"]]), my = {
   group: "个人信息（自定义）",
   name: "commenMultiple",
-  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
-  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
+  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262319235156e36172623192351612382_m.png",
+  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262319235156e36172623192351612382_m.png",
   render: (e) => {
     let t = e.props;
     return c(kb, {
@@ -14848,8 +14848,8 @@ const Cy = /* @__PURE__ */ je(ky, [["__scopeId", "data-v-81c3802d"]]), rn = (e) 
 const Ly = /* @__PURE__ */ je(Ay, [["__scopeId", "data-v-86c5cbf1"]]), Fy = {
   group: "个人信息（自定义）",
   name: "commenRadio",
-  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
-  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
+  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623195284521e2172623195284525206_r.png",
+  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623195284521e2172623195284525206_r.png",
   render: (e) => {
     let t = e.props;
     return c(Cy, {
@@ -15012,8 +15012,8 @@ const Xy = /* @__PURE__ */ je(Gy, [["__scopeId", "data-v-5f4c52a5"]]), tl = (e) 
 const s0 = /* @__PURE__ */ je(i0, [["__scopeId", "data-v-f4a10f1d"]]), u0 = {
   group: "个人信息",
   name: "checkPhone",
-  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
-  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
+  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",
+  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",
   render: (e) => {
     let t = e.props;
     return c(Xy, {
@@ -15312,8 +15312,8 @@ const x0 = /* @__PURE__ */ je(O0, [["__scopeId", "data-v-05a6c9a4"]]), B0 = {
 const H0 = /* @__PURE__ */ je(q0, [["__scopeId", "data-v-3fd74b8f"]]), W0 = {
   group: "个人信息",
   name: "personOther",
-  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
-  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
+  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",
+  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",
   render: (e) => {
     let t = e.props;
     return c(no, {
@@ -15420,8 +15420,8 @@ const H0 = /* @__PURE__ */ je(q0, [["__scopeId", "data-v-3fd74b8f"]]), W0 = {
 const l1 = /* @__PURE__ */ je(n1, [["__scopeId", "data-v-df798f6e"]]), o1 = {
   group: "个人信息",
   name: "personPhone",
-  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
-  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
+  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262317879488159172623178794864654_phone.png",
+  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262317879488159172623178794864654_phone.png",
   render: (e) => {
     let t = e.props;
     return c(no, {
@@ -15575,8 +15575,8 @@ const l1 = /* @__PURE__ */ je(n1, [["__scopeId", "data-v-df798f6e"]]), o1 = {
 const y1 = /* @__PURE__ */ je(b1, [["__scopeId", "data-v-1418313e"]]), _1 = {
   group: "个人信息",
   name: "personSchool",
-  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
-  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
+  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262318368565036172623183685718112_school.png",
+  activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262318368565036172623183685718112_school.png",
   render: (e) => {
     let t = e.props;
     return c(no, {
@@ -16347,5 +16347,10 @@ const Q1 = /* @__PURE__ */ N({
   visualEditor: Ls
 }, Symbol.toStringTag, { value: "Module" }));
 export {
-  a_ as default
+  t_ as batchRegistry,
+  a_ as default,
+  n_ as logConfig,
+  J1 as priviewVisualEditor,
+  e_ as registry,
+  Ls as visualEditor
 };

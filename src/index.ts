@@ -8,7 +8,10 @@
 //   _registry,
 //   batchRegistry
 // } from "./package/visual-editor/index"
+// 下面是要导出的组件和所有需要的方法：
+export type { VisualEditorComponent, builtInContrlComType } from './types/editor'
 import * as all from "./package/visual-editor/index"
+export { visualEditor, priviewVisualEditor, registry, batchRegistry, logConfig } from "./package/visual-editor/index"
 // export default {
 //   visualEditor,
 //   logConfig,
