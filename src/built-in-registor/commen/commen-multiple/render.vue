@@ -37,7 +37,6 @@ const props = defineProps({
 @import "../../commen.scss";
 .editor-built-in-check-phone {
   padding: 10px 24px;
-  // padding-bottom: 1px;
   .form-item {
     display: flex;
     align-items: center;
