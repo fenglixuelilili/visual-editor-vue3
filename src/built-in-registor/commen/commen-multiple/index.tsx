@@ -14,6 +14,7 @@ export default {
       style: {},
       title: props.title.defaultValue,
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
+      options: props.options.defaultValue,
     })
   },
   priview: () => <textarea placeholder="请输入内容"></textarea>,
@@ -22,7 +23,7 @@ export default {
     title: {
       label: "标题",
       type: "input",
-      defaultValue: "电话",
+      defaultValue: "多选",
     },
     options: {
       label: "选项",

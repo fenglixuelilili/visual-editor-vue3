@@ -160,7 +160,6 @@ export const visualEditor = defineComponent({
             )
           ) {
             // 说明是拖拽到块上了
-            console.log("拖拽到块上了")
             updateDragBlock(e.target as HTMLElement)
           } else {
             // console.log("拖拽到画布上了")

@@ -222,7 +222,7 @@ export function useVisualCommand({
             data.after = blocks
             updateBlocks(data.after)
           } else {
-            console.log("插入数据", index, block)
+            // console.log("插入数据", index, block)
             // 插入数据
             let blocks = (dataModel as any).value.blocks
             data.before = deepClone(blocks)
