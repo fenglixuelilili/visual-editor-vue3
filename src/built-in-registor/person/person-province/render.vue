@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-built-in-registor-base-title" :style="style">
+  <div class="editor-built-in-registor-person-province" :style="style">
     {{ text }}
   </div>
 </template>
@@ -16,7 +16,7 @@ const props = defineProps({
 })
 </script>
 <style lang="scss" scoped>
-.editor-built-in-registor-base-title {
+.editor-built-in-registor-person-province {
   height: 48px;
   line-height: 48px;
   text-align: center;

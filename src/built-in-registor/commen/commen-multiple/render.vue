@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-built-in-check-phone" :style="style">
+  <div class="editor-built-in-commen-multiple" :style="style">
     <div class="title-tip">
       <span class="red" v-if="isRequire">*</span>
       <span>{{ title }}</span>
@@ -35,7 +35,7 @@ const props = defineProps({
 </script>
 <style lang="scss" scoped>
 @import "../../commen.scss";
-.editor-built-in-check-phone {
+.editor-built-in-commen-multiple {
   padding: 10px 24px;
   .form-item {
     display: flex;

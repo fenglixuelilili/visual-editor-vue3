@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-built-in-control-person-name">
+  <div class="editor-built-in-control-commen-multiple">
     <div class="h-line"></div>
     <div class="group-title">选项</div>
     <div class="flex mt24 options">
@@ -104,7 +104,9 @@ function add() {
 }
 
 onMounted(() => {
-  let el = document.querySelector(".select-group")
+  let el = document.querySelector(
+    ".editor-built-in-control-commen-multiple .select-group"
+  )
   const sortable = new Sortable(el, {
     // or { name: "...", pull: [true, false, 'clone', array], put: [true, false, array] }
     // group: "name",
@@ -262,7 +264,7 @@ onMounted(() => {
 </script>
 <style lang="scss" scoped>
 @import "../../commen.scss";
-.editor-built-in-control-person-name {
+.editor-built-in-control-commen-multiple {
   .options {
     justify-content: space-between;
     span {
