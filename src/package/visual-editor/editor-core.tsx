@@ -220,7 +220,7 @@ export const visualEditor = defineComponent({
             // 说明是插入
             commder.add(block, currenthtml.index)
           } else {
-            // commder.add(block)
+            commder.add(block)
           }
           return
           // 拖拽到目标节点上了 -- 新添加的
