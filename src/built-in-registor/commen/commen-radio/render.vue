@@ -5,9 +5,18 @@
       <span>{{ title }}</span>
     </div>
     <div class="form-item">
-      <div class="item" v-for="(item, i) in options" :key="i">
+      <!-- <div class="item" v-for="(item, i) in options" :key="i">
         <div class="control-input"></div>
         <div class="text">{{ item.name ? item.name : "请填写内容" }}</div>
+      </div> -->
+      <div class="item">
+        <span>{{ placeholder }}</span>
+        <div class="right">
+          <img
+            src="https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262332381814dfe172623323818180331_right%20(1).png"
+            alt=""
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -20,6 +29,10 @@ const props = defineProps({
     default: () => ({}),
   },
   title: {
+    type: String,
+    default: "",
+  },
+  placeholder: {
     type: String,
     default: "",
   },
@@ -38,36 +51,29 @@ const props = defineProps({
 .editor-built-in-commen-radio {
   padding: 10px 24px;
   .form-item {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: -8px;
+    // display: flex;
+    // align-items: center;
+    // flex-wrap: wrap;
+    margin-top: 8px;
+    background: #f5f7fa;
+    height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
     .item {
-      width: 50%;
+      height: 100%;
+
       display: flex;
       align-items: center;
-      margin-top: 16px;
-      .control-input {
-        width: 16px;
-        height: 16px;
-        background: #ffffff;
-        border-radius: 2px;
-        border: 1px solid rgba(3, 32, 61, 0.35);
-        margin-right: 10px;
+      // margin-top: 16px;
+      justify-content: space-between;
+      padding: 0 12px;
+      span {
+        color: #c0c7ce;
       }
-      .text {
-        flex: 1;
-        font-family: PingFangSC, PingFang SC;
-        font-weight: 400;
-        font-size: 16px;
-        color: #03203d;
-        line-height: 22px;
-        text-align: left;
-        font-style: normal;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1; /* 显示三行，超出部分使用省略号 */
-        overflow: hidden;
+      .right {
+        img {
+          width: 16px;
+        }
       }
     }
   }
