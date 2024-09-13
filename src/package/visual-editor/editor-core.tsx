@@ -68,6 +68,13 @@ export const visualEditor = defineComponent({
   setup(props, { emit }) {
     if (!props.modelValue?.container) {
       throw new Error("请检查传入的container！")
+    } else {
+      if (!props.modelValue?.container.width) {
+        props.modelValue.container.width = 350
+      }
+      if (!props.modelValue?.container.height) {
+        props.modelValue.container.height = 600
+      }
     }
     if (props?.builtInComs?.length) {
       registorBuiltIn(editorInstance, props.builtInComs)

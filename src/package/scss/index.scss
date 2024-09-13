@@ -27,7 +27,7 @@
     height: calc(100% - 40px);
     &>.visual-editor-topMenu {
       flex-shrink: 0;
-      height: 100%;
+      // height: 100%;
       width: 50px;
       // background-color: aquamarine;
       border-right: 1px solid #eee;
@@ -49,7 +49,7 @@
     &>.visual-editor-leftComponentsMenu {
       flex-shrink: 0;
       width: $leftComWidth;
-      height: 100%;
+      // height: 100%;
       background-color: #fff;
       display: flex;
       .visual-tab-type{
@@ -144,7 +144,7 @@
     }
     &>.visual-editor-right-seting {
       width: $rightMenuWidth;
-      height: 100%;
+      // height: 100%;
       // background-color: #567;
       flex-shrink: 0;
       .control-container{
