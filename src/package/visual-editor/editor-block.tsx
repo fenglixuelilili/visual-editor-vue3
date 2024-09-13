@@ -26,6 +26,10 @@ export default defineComponent({
         wrapper: 0,
       }),
     },
+    index: {
+      type: Number,
+      default: 0,
+    },
   },
   components: {
     // GridItem: VueGridLayout.GridItem,
@@ -99,6 +103,7 @@ export default defineComponent({
             class={classes.value}
             style={style.value as any}
             ref={blockInstance}
+            data-index={props.index}
           >
             {/* 组件核心 */}
             {componentRenderInfo?.render(props.block)}
@@ -121,6 +126,7 @@ export default defineComponent({
             class={classes.value}
             style={style.value as any}
             ref={blockInstance}
+            data-index={props.index}
           >
             {/* 组件核心 */}
             {componentRenderInfo?.render(props.block)}

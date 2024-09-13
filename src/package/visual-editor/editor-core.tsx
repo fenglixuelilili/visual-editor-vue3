@@ -114,6 +114,18 @@ export const visualEditor = defineComponent({
         }
       })
     }
+    function updateDragBlock(target?: HTMLElement) {
+      let editorBloacks: any = document.querySelectorAll(".editor-bloack")
+      if (editorBloacks) {
+        editorBloacks = Array.from(editorBloacks)
+      }
+      editorBloacks.forEach((item: HTMLElement) => {
+        item.classList.remove("editor-bloack-drag-active")
+      })
+      if (target) {
+        target.classList.add("editor-bloack-drag-active")
+      }
+    }
     const containerInstance = ref<HTMLElement | null>(null)
     // 组件拖拽添加到画布上的相关的事件
     const menuDragInfo = (function () {
@@ -140,6 +152,20 @@ export const visualEditor = defineComponent({
           dragStart.emit()
         },
         dragenter(e: DragEvent) {
+          // visual-editor-area-content
+          // console.log(e.target.classList)
+          if (
+            Array.from((e.target as HTMLElement).classList).includes(
+              "editor-bloack"
+            )
+          ) {
+            // 说明是拖拽到块上了
+            console.log("拖拽到块上了")
+            updateDragBlock(e.target as HTMLElement)
+          } else {
+            // console.log("拖拽到画布上了")
+            updateDragBlock()
+          }
           // 拖拽进入渲染器画布事件
           e.dataTransfer!.dropEffect = "move"
         },
@@ -164,36 +190,61 @@ export const visualEditor = defineComponent({
           containerInstance.value?.removeEventListener("drop", menuDrag.drop)
           current.component = null
           dragEnd.emit()
+          updateDragBlock()
         },
         dragover(e: DragEvent) {
           // 固定  阻止默认事件
           e.preventDefault()
         },
         drop(e: DragEvent) {
-          Message.warning("自由模式暂未开启，请选择点选方式！")
-          return
-          // 拖拽到目标节点上了 -- 新添加的
-          let dragMode = current.component?.dragMode as string
+          // Message.warning("自由模式暂未开启，请选择点选方式！")
+          let component = current.component as VisualEditorComponent
+          let dragMode = component?.dragMode as string
           let block = createBlockData({
-            dragMode: dragMode ? dragMode : "free",
-            widthAdaption100: current.component?.widthAdaption100
-              ? current.component?.widthAdaption100
+            dragMode: dragMode ? dragMode : "",
+            widthAdaption100: component.widthAdaption100
+              ? component.widthAdaption100
               : false,
-            top: e.offsetY,
-            left: e.offsetX,
-            componentKey: current.component?.name as string,
-            props: current.component?.props ?? {},
+            top: 0,
+            left: 0,
+            componentKey: component.name as string,
+            props: component.props ?? {},
             x: 1,
             y: 1,
             w: 1,
             h: 1,
           })
-          props.modelValue?.blocks.push(block)
+
+          let currenthtml = (e.target as HTMLElement).dataset
+          if ("index" in currenthtml) {
+            // 说明是插入
+            commder.add(block, currenthtml.index)
+          } else {
+            // commder.add(block)
+          }
+          return
+          // 拖拽到目标节点上了 -- 新添加的
+          // let dragMode = current.component?.dragMode as string
+          // let block = createBlockData({
+          //   dragMode: dragMode ? dragMode : "free",
+          //   widthAdaption100: current.component?.widthAdaption100
+          //     ? current.component?.widthAdaption100
+          //     : false,
+          //   top: e.offsetY,
+          //   left: e.offsetX,
+          //   componentKey: current.component?.name as string,
+          //   props: current.component?.props ?? {},
+          //   x: 1,
+          //   y: 1,
+          //   w: 1,
+          //   h: 1,
+          // })
+          // props.modelValue?.blocks.push(block)
         },
         click(e: Event, component: VisualEditorComponent) {
           console.log(component)
           // 新添加一个元素块
-          let dragMode = current.component?.dragMode as string
+          let dragMode = component?.dragMode as string
           let block = createBlockData({
             dragMode: dragMode ? dragMode : "",
             widthAdaption100: component.widthAdaption100
@@ -600,10 +651,11 @@ export const visualEditor = defineComponent({
                   }}
                 > */}
                 {/* 渲染各个注册的核心组件 */}
-                {model.value.blocks.map((block: block) => {
+                {model.value.blocks.map((block: block, index: number) => {
                   return (
                     <div>
                       <editorBlock
+                        index={index}
                         block={block}
                         container={props.modelValue?.container}
                         onMousedown={(e: MouseEvent) =>

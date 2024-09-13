@@ -202,7 +202,7 @@ export function useVisualCommand({
   })
   conmmander.registor({
     name: "add",
-    excute(block) {
+    excute(block, index: any) {
       // 保存数据
       let data = {
         before: [] as block[], // 保存之前
@@ -214,12 +214,23 @@ export function useVisualCommand({
           updateBlocks(data.before)
         },
         redo() {
-          // 重做
-          let blocks = (dataModel as any).value.blocks
-          data.before = deepClone(blocks)
-          blocks.push(block) // 之后的数据
-          data.after = blocks
-          updateBlocks(data.after)
+          if (index === undefined) {
+            // 重做
+            let blocks = (dataModel as any).value.blocks
+            data.before = deepClone(blocks)
+            blocks.push(block) // 之后的数据
+            data.after = blocks
+            updateBlocks(data.after)
+          } else {
+            console.log("插入数据", index, block)
+            // 插入数据
+            let blocks = (dataModel as any).value.blocks
+            data.before = deepClone(blocks)
+            // blocks.push(block) // 之后的数据
+            blocks.splice(index, 0, block)
+            data.after = blocks
+            updateBlocks(data.after)
+          }
         },
       }
     },
