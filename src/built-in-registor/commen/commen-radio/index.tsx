@@ -1,7 +1,7 @@
 import { VisualEditorComponent } from "../../../types/editor"
 export default {
   group: "个人信息（自定义）",
-  name: "textarea",
+  name: "commenRadio",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260224360084756172602243600813801_r.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260224360084756172602243600813801_r.png",

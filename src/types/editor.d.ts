@@ -88,7 +88,7 @@ export interface VisualEditorComponent {
   disabled?: boolean
   props: {
     [key: string]: {
-      defaultValue: number | string | number
+      defaultValue: number | string |  any[]
       type?: builtInContrlComType
       label?: string
       disabled?: boolean
@@ -118,7 +118,7 @@ export interface controlViewConfigtype {
   key?: string
   label?: string
   type?: builtInContrlComType
-  defaultValue: string | number
+  defaultValue: string | number | any[]
 }
 // 每次调用这个函数  就是创建一个组件
 export function createVisuaEditorComponents() {

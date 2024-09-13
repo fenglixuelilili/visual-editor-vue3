@@ -1,51 +1,54 @@
+import { createVNode } from "vue"
 import { VisualEditorComponent } from "../../../types/editor"
+import render from "./render.vue"
+import control from "./control.vue"
 export default {
   group: "个人信息（自定义）",
-  name: "textarea",
-  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260224687104fd9172602246871086504_m.png",
+  name: "commenMultiple",
+  icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
   activeIcon:
-    "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260224687104fd9172602246871086504_m.png",
+    "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
   render: (block) => {
-    return <textarea name="" id="" cols="30" rows="10"></textarea>
+    let props = block.props
+    return createVNode(render, {
+      style: {},
+      title: props.title.defaultValue,
+      isRequire: props.isRequire.defaultValue == "1" ? true : false,
+    })
   },
   priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "多选",
-  props: {},
+  props: {
+    title: {
+      label: "标题",
+      type: "input",
+      defaultValue: "电话",
+    },
+    options: {
+      label: "选项",
+      defaultValue: [
+        {
+          name: "",
+          id: "",
+        },
+      ],
+    },
+    isRequire: {
+      label: "设为必填",
+      defaultValue: "2",
+    },
+    selectMin: {
+      label: "最少选择项",
+      defaultValue: "",
+    },
+    selectMax: {
+      label: "最多选择项",
+      defaultValue: "",
+    },
+  },
   controlView: (block, updateBlock) => {
-    let props = block.props
-    function onChange(e: any) {
-      block.props.fontSize = e.target.value
-      updateBlock(block)
-    }
-    return (
-      <div>
-        <div>
-          <span>字體大小</span>
-          <input type="number" value={props.fontSize} onChange={onChange} />
-        </div>
-        <div>
-          <span>文本内容</span>
-          <input
-            type="text"
-            v-model={props.text}
-            onChange={(e: any) => {
-              block.props.text = e.target.value
-              updateBlock(block)
-            }}
-          />
-        </div>
-        <div>
-          <span>文本颜色</span>
-          <input
-            type="text"
-            v-model={props.color}
-            onChange={(e: any) => {
-              block.props.color = e.target.value
-              updateBlock(block)
-            }}
-          />
-        </div>
-      </div>
-    )
+    return createVNode(control, {
+      block,
+    })
   },
 } as VisualEditorComponent

@@ -19,6 +19,7 @@
     "husky": "^8.0.3",
     "sass": "^1.58.0",
     "scss": "^0.2.4",
+    "sortablejs": "^1.15.3",
     "vitest": "0.34.6",
     "vue": "^3.2.45",
     "vue-grid-layout": "3.0.0-beta1"
