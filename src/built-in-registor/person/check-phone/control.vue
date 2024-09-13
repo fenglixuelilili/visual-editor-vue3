@@ -44,7 +44,7 @@ const props = defineProps({
     default: () => ({}),
   },
 })
-function switchChange(bol: boolean, type: string) {
+function switchChange(bol: any, type: string) {
   props.block.props[type].defaultValue = bol ? "1" : "2"
 }
 </script>
