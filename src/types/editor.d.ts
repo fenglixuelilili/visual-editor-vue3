@@ -81,26 +81,27 @@ export interface visualEditorModelValue {
 }
 // 内置控制器组件类型
 type builtInContrlComType = "color" | "input" | "number" | 'slider' | 'imgUpload' | 'textarea' | 'select'
+type  VisualEditorComponentProps = {
+  [key: string]: {
+    defaultValue: number | string |  any[]
+    type?: builtInContrlComType
+    label?: string
+    disabled?: boolean
+    unit?: string
+    min?: number
+    max?: number
+    options?: {
+      name: string
+      value: string | number
+    }[]
+  }
+}
 // 这是具体的组件类型
 export interface VisualEditorComponent {
   name: string
   label: string
   disabled?: boolean
-  props: {
-    [key: string]: {
-      defaultValue: number | string |  any[]
-      type?: builtInContrlComType
-      label?: string
-      disabled?: boolean
-      unit?: string
-      min?: number
-      max?: number
-      options?: {
-        name: string
-        value: string | number
-      }[]
-    }
-  }
+  props: VisualEditorComponentProps
   dragMode?: string // 拖拽模式
   widthAdaption100?: boolean // 宽度调整方式
   group: string // 所属分组
