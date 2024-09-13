@@ -35,7 +35,7 @@ export function controlView(
     <div style="height: 100%">
       {!currentBlockInfo.value.focusBlock.length ? (
         <div class="control-container">
-          <a-tabs type="line" size="large" style="height: 100%">
+          <a-tabs type="line" size="large" style="height: 100%" key={1}>
             <a-tab-pane key="0" title="页面基础设置">
               <div class="control-form-comtainer">
                 <a-form
@@ -45,14 +45,6 @@ export function controlView(
                   model={{}}
                   layout="vertical"
                 >
-                  <a-form-item tooltip="设置表单的背景色" label="背景色">
-                    <a-color-picker
-                      defaultValue={modelValue.container.backgroundColor}
-                      onChange={colorChange}
-                      showText
-                      disabledAlpha
-                    />
-                  </a-form-item>
                   <a-form-item
                     tooltip="设置页面缩放大小，不会影响h5端"
                     label="页面缩放"
@@ -68,6 +60,14 @@ export function controlView(
                     />
                     <span style="margin-left: 6px">%</span>
                   </a-form-item>
+                  <a-form-item label="背景色">
+                    <a-color-picker
+                      defaultValue={modelValue.container.backgroundColor}
+                      onChange={colorChange}
+                      showText
+                      disabledAlpha
+                    />
+                  </a-form-item>
                 </a-form>
               </div>
             </a-tab-pane>
@@ -75,7 +75,7 @@ export function controlView(
         </div>
       ) : (
         <div class="control-container">
-          <a-tabs type="line" size="large">
+          <a-tabs type="line" size="large" key={2}>
             <a-tab-pane key="1" title="组件设置">
               <div class="control-form-comtainer">
                 {/* 这里是内置属性 */}
