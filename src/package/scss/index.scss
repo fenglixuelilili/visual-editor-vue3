@@ -28,23 +28,10 @@
     &>.visual-editor-topMenu {
       flex-shrink: 0;
       // height: 100%;
-      width: 50px;
+      width: 40px;
       // background-color: aquamarine;
       border-right: 1px solid #eee;
-      .buttons {
-        display: flex;
-        align-items: center;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: flex-start;
-        .button {
-          button {
-            cursor: pointer;
-          }
-        }
-      }
+      padding-top: 10px;
     }
     &>.visual-editor-leftComponentsMenu {
       flex-shrink: 0;
@@ -79,7 +66,7 @@
               width: 48px;
               height: 76px;
               position: relative;
-              margin-right: 14px;
+              margin-right: 8px;
               &:nth-child(3n){
                 margin-right: 0;
               }

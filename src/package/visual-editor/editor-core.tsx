@@ -1,4 +1,12 @@
-import { computed, defineComponent, PropType, reactive, ref, watch } from "vue"
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  PropType,
+  reactive,
+  ref,
+  watch,
+} from "vue"
 import "../scss/index.scss"
 import {
   visualEditorModelValue,
@@ -19,6 +27,7 @@ import renderIconComponents from "./help-coms/render-icon-components"
 import { deepClone, getBtns } from "../utils/index"
 import { registorBuiltIn } from "../../built-in-registor/index"
 import leftNav from "./help-coms/leftNav.vue"
+import shortcutButton from "./help-coms/shortcut-button.vue"
 // import VueGridLayout from "vue-grid-layout"
 import { Message } from "@arco-design/web-vue"
 // 编辑器
@@ -28,6 +37,7 @@ export const visualEditor = defineComponent({
     // GridLayout: VueGridLayout.GridLayout,
     renderIconComponents,
     leftNav,
+    shortcutButton,
   },
   props: {
     modelValue: {
@@ -517,9 +527,6 @@ export const visualEditor = defineComponent({
     function delBlock(block: block) {
       commder.delete(block)
     }
-    // function getNewBlock() {
-    //   return currentBlockInfo.value.cBlock as block
-    // }
     // 控制器中的信息
     const controlMethods = {
       // 操作的原数据
@@ -701,13 +708,7 @@ export const visualEditor = defineComponent({
           </div>
           {/* 操作按钮 */}
           <div class="visual-editor-topMenu">
-            <div class="buttons">
-              {buttons.map((btn) => (
-                <div class="button">
-                  <button onClick={btn.handler}>{btn.label}</button>
-                </div>
-              ))}
-            </div>
+            <shortcut-button buttons={buttons}></shortcut-button>
           </div>
           <div class="visual-editor-right-seting">
             {/* 右侧操作 */}

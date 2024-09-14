@@ -86,12 +86,12 @@ export function controlView(
                 <div>{cacheView}</div>
               </div>
             </a-tab-pane>
-            <a-tab-pane key="2" title="动画">
+            {/* <a-tab-pane key="2" title="动画">
               <span>暂不支持</span>
             </a-tab-pane>
             <a-tab-pane key="3" title="规则">
               <span>暂不支持</span>
-            </a-tab-pane>
+            </a-tab-pane> */}
           </a-tabs>
         </div>
       )}

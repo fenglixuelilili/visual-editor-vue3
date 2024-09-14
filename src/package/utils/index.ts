@@ -1,6 +1,4 @@
-import { visualCommand, block } from "../../types/editor.d" 
 import { useVisualCommand } from "./visual.command"
-// import { useVisualCommand } from ''
 // 深拷贝
  export function deepClone(data: any): any {
   if (data && typeof data === "object") {
@@ -35,7 +33,6 @@ import { useVisualCommand } from "./visual.command"
         return obj
     }
   } else {
-    //string,number,bool,null,undefined,symbol
     return data
   }
  }
@@ -44,7 +41,7 @@ export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentB
   const buttons = [
     {
       label: "删除",
-      icon: "",
+      icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726286985855114a17262869858559088_dl.png",
       handler: () => {
         if (!currentBlockInfo.value.focusBlock?.length) {
           return
@@ -55,7 +52,7 @@ export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentB
     },
     {
       label: "清空",
-      icon: "",
+      icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262860792458a37172628607924683951_clean.png",
       handler: () => {
         if (!currentBlockInfo.value.focusBlock?.length) {
           return
@@ -66,25 +63,25 @@ export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentB
     },
     {
       label: "撤销",
-      icon: "",
+      icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726286118186292f172628611818673562_undo.png",
       handler: commder.undo,
       tip: "ctrl + z",
     },
     {
       label: "重做",
-      icon: "",
+      icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262861296832676172628612968393295_redo.png",
       handler: commder.redo,
       tip: "ctrl + y",
     },
     {
       label: "上移",
-      icon: "",
+      icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262861408486588172628614084821011_up.png",
       handler: commder.up,
       tip: "alt + up",
     },
     {
       label: "下移",
-      icon: "",
+      icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262861510304f96172628615103083185_down.png",
       handler: commder.down,
       tip: "alt + down",
     },

@@ -7,19 +7,32 @@ import { vitePluginForArco } from '@arco-plugins/vite-vue'
 export default defineConfig({
   css: {
     preprocessorOptions: {
-      less: {
-        modifyVars: {
-          'arcoblue-6': '#f85959',
-        },
-        javascriptEnabled: true,
-      }
+      // less: {
+      //   modifyVars: {
+      //     'arcoblue-6': '#780341',
+      //     "primary-6": '#780341',
+      //   },
+      //   javascriptEnabled: true,
+      // },
+      // less: {
+      //   modifyVars: {
+      //     // 引入`base.less`
+      //     hack: `true; @import (reference) "${path.resolve('./src/styles/base.less')}";`,
+      //     'arcoblue-6': '#780341',
+      //   },
+      //   javascriptEnabled: true,
+      // }
     }
   },
   plugins: [
     vue(),
     vueJsx(),
     vitePluginForArco({
-      style: 'css'
+      style: 'less' as any,
+      modifyVars: {
+        'arcoblue-6': '#00a680',
+        // "primary-6": '#780341',
+      }
     })
   ],
   // 配置组件库打包模式
