@@ -5,6 +5,7 @@ export type container = {
   width: number
   height: number
   backgroundColor: string
+  backgroundImage: string
   scale: number
   wrapper?: number
 }

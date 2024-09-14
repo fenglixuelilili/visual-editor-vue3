@@ -25,6 +25,7 @@ export default defineComponent({
           height: 600,
           backgroundColor: "#fff",
           scale: 100,
+          backgroundImage: "",
           // wrapper: 600,
         },
         blocks: [

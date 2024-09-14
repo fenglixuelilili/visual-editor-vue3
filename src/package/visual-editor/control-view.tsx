@@ -3,6 +3,7 @@ import { Message } from "@arco-design/web-vue"
 import { defineComponent, ref, createVNode } from "vue"
 import builtInControl from "./help-coms/built-in-control.vue"
 import { controlViewConfigtype } from "@/types/editor"
+import uploadImg from "./help-coms/control-views/upload-img.vue"
 export function controlView(
   controlView: () => JSX.Element | string | null,
   currentBlockInfo: any,
@@ -10,16 +11,6 @@ export function controlView(
   updateBlock: (block: any) => void
 ) {
   let cacheView = controlView()
-  function colorChange(val: string) {
-    modelValue.container.backgroundColor = val
-  }
-  function scalChange(val: number) {
-    if (!val || val * 1 < 40) {
-      Message.warning("设置不合理！")
-      return
-    }
-    modelValue.container.scale = val
-  }
   // 当前正在操作的
   let currentBlock = currentBlockInfo.value.cBlock || {}
   let editorPros = currentBlock.props ? currentBlock.props : {}
@@ -31,6 +22,7 @@ export function controlView(
     }
   })
   let builtInControlCom = createVNode(builtInControl)
+  let uploadImgCom = createVNode(uploadImg)
   return (
     <div style="height: 100%">
       {!currentBlockInfo.value.focusBlock.length ? (
@@ -51,10 +43,9 @@ export function controlView(
                   >
                     <a-input-number
                       placeholder="请输入正整数"
-                      default-value={modelValue.container.scale}
                       mode="button"
                       style="width: 140px;text-align: center;"
-                      onChange={scalChange}
+                      v-model={modelValue.container.scale}
                       min={40}
                       max={200}
                     />
@@ -62,11 +53,21 @@ export function controlView(
                   </a-form-item>
                   <a-form-item label="背景色">
                     <a-color-picker
+                      v-model={modelValue.container.backgroundColor}
+                      showText
+                      disabledAlpha
+                    />
+                  </a-form-item>
+                  <a-form-item label="背景图">
+                    {/* <a-color-picker
                       defaultValue={modelValue.container.backgroundColor}
                       onChange={colorChange}
                       showText
                       disabledAlpha
-                    />
+                    /> */}
+                    <uploadImgCom
+                      v-model={modelValue.container.backgroundImage}
+                    ></uploadImgCom>
                   </a-form-item>
                 </a-form>
               </div>

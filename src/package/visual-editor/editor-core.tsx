@@ -111,8 +111,10 @@ export const visualEditor = defineComponent({
     let containerStyle = computed(() => ({
       width: model.value.container.width + "px",
       minHeight: model.value.container.height + "px",
-      backgroundColor: model.value.container.backgroundColor,
       transform: `scale(${model.value.container.scale / 100})`,
+      background: `url(${model.value.container.backgroundImage}) no-repeat top center`,
+      backgroundColor: model.value.container.backgroundColor,
+      backgroundSize: "cover",
     }))
     // 清除选中状态
     function clearFocus() {
