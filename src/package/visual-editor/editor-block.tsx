@@ -48,7 +48,7 @@ export default defineComponent({
           zIndex: props.block.zIndex,
           width: props.block.widthAdaption100 ? "100%" : "auto",
         }
-        return componentRenderInfo.editorBlockShellStyle
+        return componentRenderInfo?.editorBlockShellStyle
           ? componentRenderInfo.editorBlockShellStyle(props.block, baseStyle)
           : baseStyle
       } else if (
@@ -65,7 +65,7 @@ export default defineComponent({
           //   : props.container.width + "px",
           position: "relative",
         }
-        return componentRenderInfo.editorBlockShellStyle
+        return componentRenderInfo?.editorBlockShellStyle
           ? componentRenderInfo.editorBlockShellStyle(props.block, baseStyle)
           : baseStyle
       }

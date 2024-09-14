@@ -26,6 +26,7 @@ import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import renderIconComponents from "./help-coms/render-icon-components"
 import { deepClone, getBtns } from "../utils/index"
 import { registorBuiltIn } from "../../built-in-registor/index"
+import { builtInArrComs } from "../utils/registorBuiltInComUtils"
 import leftNav from "./help-coms/leftNav.vue"
 import shortcutButton from "./help-coms/shortcut-button.vue"
 // import VueGridLayout from "vue-grid-layout"
@@ -57,23 +58,7 @@ export const visualEditor = defineComponent({
     },
     builtInComs: {
       type: Array as PropType<builtIn[]>,
-      default: () => [
-        "baseImg",
-        "baseSubmit",
-        "baseText",
-        "baseTitle",
-        "baseSuccess",
-        "checkPhone",
-        "personName",
-        "personOther",
-        "personPhone",
-        "personProvince",
-        "personSchool",
-        "personUpload",
-        "personYear",
-        "commenMultiple",
-        "commenRadio",
-      ],
+      default: () => builtInArrComs,
     },
     visableHead: {
       type: Boolean,
@@ -82,6 +67,10 @@ export const visualEditor = defineComponent({
     visableNavbar: {
       type: Boolean,
       default: true,
+    },
+    debug: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: ["update:modelValue"],
@@ -97,6 +86,7 @@ export const visualEditor = defineComponent({
       }
     }
     if (props?.builtInComs?.length) {
+      // 注册内置组件
       registorBuiltIn(editorInstance, props.builtInComs)
     }
     // markLine = false,
@@ -181,8 +171,6 @@ export const visualEditor = defineComponent({
           dragStart.emit()
         },
         dragenter(e: DragEvent) {
-          // visual-editor-area-content
-          // console.log(e.target.classList)
           if (
             Array.from((e.target as HTMLElement).classList).includes(
               "editor-bloack"
@@ -526,7 +514,7 @@ export const visualEditor = defineComponent({
       shortcutKeys,
     })
     // 所有的顶部按钮
-    const buttons = getBtns(commder, currentBlockInfo)
+    const buttons = getBtns(commder, currentBlockInfo, props.debug, props)
     function delBlock(block: block) {
       commder.delete(block)
     }

@@ -37,7 +37,7 @@ import { useVisualCommand } from "./visual.command"
   }
  }
 // 获取所有快捷按钮
-export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentBlockInfo: any) {
+export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentBlockInfo: any, debug: boolean, props: any) {
   const buttons = [
     {
       label: "删除",
@@ -86,5 +86,16 @@ export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentB
       tip: "alt + down",
     },
   ]
+  if (debug) { 
+    buttons.push( {
+      label: "导出json",
+      icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17263054455271570172630544552753846_export.png",
+      handler: () => {
+        console.log( props )
+        console.log( JSON.stringify( props.modelValue.blocks ) )
+      },
+      tip: "",
+    },)
+  }
   return buttons
 }

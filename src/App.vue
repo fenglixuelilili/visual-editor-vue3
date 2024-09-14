@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%; height: 100%">
-    <visualEditor v-model="data" :config="config" />
-    <!-- <priviewVisualEditor v-model="data" /> -->
+    <!-- <visualEditor v-model="data" :config="config" debug /> -->
+    <priviewVisualEditor v-model="data" />
   </div>
 </template>
 <script lang="ts">
@@ -11,7 +11,6 @@ import {
   logConfig,
   priviewVisualEditor,
 } from "./package/visual-editor/index"
-// import "./built-in-registor/textarea"
 export default defineComponent({
   components: {
     visualEditor,
@@ -23,12 +22,82 @@ export default defineComponent({
         container: {
           width: 350,
           height: 600,
-          backgroundColor: "#fff",
+          backgroundColor: "#BA2C2C",
           scale: 100,
           backgroundImage: "",
           // wrapper: 600,
         },
         blocks: [
+          {
+            adjustmentPosition: true,
+            focus: false,
+            zIndex: 0,
+            hasResize: false,
+            width: 0,
+            height: 0,
+            id: 47563894,
+            dragMode: "",
+            widthAdaption100: false,
+            top: 0,
+            left: 0,
+            componentKey: "baseSuccess",
+            props: {
+              successSrc: {
+                defaultValue:
+                  "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262956483528fb5172629564835229384_succ.png",
+                label: "成功图标",
+                type: "imgUpload",
+                key: "successSrc",
+              },
+              successText: {
+                defaultValue: "提交成功",
+                label: "成功标题",
+                type: "input",
+                key: "successText",
+              },
+              successColor: {
+                defaultValue: "#fff",
+                label: "成功标题文字颜色",
+                type: "color",
+                key: "successColor",
+              },
+              successDesc: {
+                defaultValue: "您的信息已经提交成功，感谢您的参与！",
+                label: "成功提示",
+                type: "input",
+                key: "successDesc",
+              },
+              successDescColor: {
+                defaultValue: "#fff",
+                label: "成功提示文字颜色",
+                type: "color",
+                key: "successDescColor",
+              },
+              successQR: {
+                defaultValue:
+                  "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262959890995db4172629598909914996_1.jpg",
+                label: "联系二维码",
+                type: "imgUpload",
+                key: "successQR",
+              },
+              successBottomText: {
+                defaultValue: "关注公众号，了解更多",
+                label: "相关提示信息",
+                type: "input",
+                key: "successBottomText",
+              },
+              successBottomColor: {
+                defaultValue: "#fff",
+                label: "相关提示信息文字颜色",
+                type: "color",
+                key: "successBottomColor",
+              },
+            },
+            x: 1,
+            y: 1,
+            w: 1,
+            h: 1,
+          },
           // {
           //   id: 1,
           //   i: 1,

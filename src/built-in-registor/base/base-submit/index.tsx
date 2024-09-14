@@ -31,11 +31,6 @@ export default {
     })
   },
   priview: () => <textarea placeholder="请输入内容"></textarea>,
-  // editorBlockShellStyle: (block, style) => {
-  //   return block.props.fixedBottom == "1"
-  //     ? { ...style, position: "absolute" }
-  //     : style
-  // },
   props: {
     text: {
       label: "按钮名称",
