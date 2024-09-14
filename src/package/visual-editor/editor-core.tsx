@@ -18,6 +18,7 @@ import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import renderIconComponents from "./help-coms/render-icon-components"
 import { deepClone, getBtns } from "../utils/index"
 import { registorBuiltIn } from "../../built-in-registor/index"
+import leftNav from "./help-coms/leftNav.vue"
 // import VueGridLayout from "vue-grid-layout"
 import { Message } from "@arco-design/web-vue"
 // 编辑器
@@ -26,6 +27,7 @@ export const visualEditor = defineComponent({
     editorBlock,
     // GridLayout: VueGridLayout.GridLayout,
     renderIconComponents,
+    leftNav,
   },
   props: {
     modelValue: {
@@ -42,7 +44,6 @@ export const visualEditor = defineComponent({
     fileUploadHandler: {
       // 文件上传的函数
       type: Function,
-      default: () => () => {},
     },
     builtInComs: {
       type: Array as PropType<builtIn[]>,
@@ -63,9 +64,17 @@ export const visualEditor = defineComponent({
         "commenRadio",
       ],
     },
+    visableHead: {
+      type: Boolean,
+      default: true,
+    },
+    visableNavbar: {
+      type: Boolean,
+      default: true,
+    },
   },
   emits: ["update:modelValue"],
-  setup(props, { emit }) {
+  setup(props, { emit, slots }) {
     if (!props.modelValue?.container) {
       throw new Error("请检查传入的container！")
     } else {
@@ -427,17 +436,17 @@ export const visualEditor = defineComponent({
         let { clientX: moveX, clientY: moveY } = e
         let { startX, startY } = info
         // 按住shift键的时候处理的逻辑
-        if (e.shiftKey && shiftMove) {
-          if (Math.abs(moveX - startX) > Math.abs(moveY - startY)) {
-            moveY = startY
-          } else {
-            moveX = startX
-          }
-        } else if (e.shiftKey && !shiftMove) {
-          console.warn(
-            "您没有开启按住shift键移动元素功能！请将配置项中的shiftMove置为true"
-          )
-        }
+        // if (e.shiftKey && shiftMove) {
+        //   if (Math.abs(moveX - startX) > Math.abs(moveY - startY)) {
+        //     moveY = startY
+        //   } else {
+        //     moveX = startX
+        //   }
+        // } else if (e.shiftKey && !shiftMove) {
+        //   console.warn(
+        //     "您没有开启按住shift键移动元素功能！请将配置项中的shiftMove置为true"
+        //   )
+        // }
         // if (markLine) {
         //   let currentLeft: number = info.startLeft + moveX - startX
         //   let currentTop: number = info.startTop + moveY - startY
@@ -606,28 +615,37 @@ export const visualEditor = defineComponent({
     //     )
     //   }
     // }
+    let type = ref("1")
     return () => (
       <div class="visual-editor-container">
-        <div class="visual-editor-header">
-          <button>发布</button>
-          <button>退出</button>
-        </div>
+        {props.visableHead && slots.header ? (
+          <div class="visual-editor-header">
+            {slots.header ? slots.header() : null}
+          </div>
+        ) : null}
         <div class="visual-editor-core visual-editor">
           <div class="visual-editor-leftComponentsMenu">
-            <div class="visual-tab-type">
-              <div class="visual-tab-type-com">
-                <span>组件</span>
-              </div>
-              <div class="visual-tab-type-com">
-                <span>模版</span>
-              </div>
-            </div>
-            <div class="visual-com-group">
+            {props.visableNavbar ? (
+              <leftNav
+                modelValue={type.value}
+                onChange={(val: string) => (type.value = val)}
+              ></leftNav>
+            ) : null}
+            <div
+              class={[
+                "visual-com-group",
+                props.visableNavbar ? "" : "visual-com-group-not-navbar",
+              ]}
+            >
               {/* 左侧所有在服役的组件 */}
-              <renderIconComponents
-                componentLists={editorInstance?.componentLists}
-                menuDragInfo={menuDragInfo}
-              ></renderIconComponents>
+              {type.value == "1" ? (
+                <renderIconComponents
+                  componentLists={editorInstance?.componentLists}
+                  menuDragInfo={menuDragInfo}
+                ></renderIconComponents>
+              ) : (
+                <div>{slots.tempList && slots.tempList()}</div>
+              )}
             </div>
           </div>
           <div class="visual-editor-area-body">
