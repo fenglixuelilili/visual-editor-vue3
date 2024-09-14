@@ -3,6 +3,7 @@ import baseText from "./base/base-text"
 import baseImg from "./base/base-img"
 import baseSubmit from "./base/base-submit"
 import baseTitle from "./base/base-title"
+import baseSuccess from "./base/base-success"
 import commenMultiple from "./commen/commen-multiple"
 import commenRadio from "./commen/commen-radio"
 import checkPhone from "./person/check-phone"
@@ -18,6 +19,7 @@ const registorMap: any = {
   baseImg,
   baseSubmit,
   baseTitle,
+  baseSuccess,
   commenMultiple,
   commenRadio,
   checkPhone,

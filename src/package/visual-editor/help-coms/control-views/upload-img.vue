@@ -55,6 +55,7 @@ const methods = {
   .real-img {
     margin-bottom: 10px;
     position: relative;
+    background-color: #00a680;
     img {
       width: 100%;
     }

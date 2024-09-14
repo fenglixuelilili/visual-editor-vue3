@@ -62,6 +62,7 @@ export const visualEditor = defineComponent({
         "baseSubmit",
         "baseText",
         "baseTitle",
+        "baseSuccess",
         "checkPhone",
         "personName",
         "personOther",
