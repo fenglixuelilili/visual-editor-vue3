@@ -21,6 +21,7 @@ const props = defineProps({
 <style lang="scss" scoped>
 .editor-built-in-registor-base-title {
   .text {
+    text-indent: 20px;
     &.minHeight {
       min-height: 150px;
       text-align: center;

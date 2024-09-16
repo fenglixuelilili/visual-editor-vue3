@@ -100,6 +100,7 @@ type  VisualEditorComponentProps = {
 // 这是具体的组件类型
 export interface VisualEditorComponent {
   name: string
+  value?: any
   label: string
   disabled?: boolean
   props: VisualEditorComponentProps
