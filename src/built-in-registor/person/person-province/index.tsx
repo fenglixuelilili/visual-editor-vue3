@@ -5,6 +5,8 @@ import control from "./control.vue"
 export default {
   group: "个人信息",
   name: "personProvince",
+  value: "",
+  isFormItem: "1",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726021191023168617260211910248143_4.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726021191023168617260211910248143_4.png",

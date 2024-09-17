@@ -6,6 +6,7 @@ export default {
   group: "个人信息（自定义）",
   name: "commenRadio",
   value: "",
+  isFormItem: "1",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623195284521e2172623195284525206_r.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623195284521e2172623195284525206_r.png",

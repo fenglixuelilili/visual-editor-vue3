@@ -104,6 +104,7 @@ export interface VisualEditorComponent {
   label: string
   disabled?: boolean
   props: VisualEditorComponentProps
+  isFormItem?: boolean | string // 是否是需要提交表单的
   dragMode?: string // 拖拽模式
   widthAdaption100?: boolean // 宽度调整方式
   group: string // 所属分组

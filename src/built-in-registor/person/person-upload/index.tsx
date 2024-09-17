@@ -6,6 +6,8 @@ export default {
   group: "个人信息",
   label: "上传文件",
   name: "personUpload",
+  value: [],
+  isFormItem: "1",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260213405494db1172602134054932870_8.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260213405494db1172602134054932870_8.png",
