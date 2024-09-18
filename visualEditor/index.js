@@ -27,7 +27,7 @@ function Js() {
         ...l,
         name: n
       };
-      t[n] = o, e.push(o);
+      e.find((a) => a.name == n) || (t[n] = o, e.push(o));
     },
     componentLists: e,
     componentMap: t

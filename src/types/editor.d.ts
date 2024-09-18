@@ -142,6 +142,13 @@ export function createVisuaEditorComponents() {
         ...component,
         name,
       }
+      let isHave = componentLists.find(item => { 
+        return item.name == name
+      })
+      if (isHave) {
+        // 有了就不要注册了
+        return
+      }
       componentMap[name] = comp
       componentLists.push(comp)
     },
