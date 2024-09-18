@@ -24,7 +24,7 @@ import { dragStart, dragEnd } from "../utils/event"
 import { controlView } from "./control-view" // 控制台渲染器
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import renderIconComponents from "./help-coms/render-icon-components"
-import { deepClone, getBtns } from "../utils/index"
+import { deepClone, getBtns, isPass } from "../utils/index"
 import { registorBuiltIn } from "../../built-in-registor/index"
 import { builtInArrComs } from "../utils/registorBuiltInComUtils"
 import leftNav from "./help-coms/leftNav.vue"
@@ -61,10 +61,17 @@ export const visualEditor = defineComponent({
       default: () => builtInArrComs,
     },
     visableHead: {
+      // 显示顶部导航条
       type: Boolean,
       default: true,
     },
     visableNavbar: {
+      // 显示左侧导航条
+      type: Boolean,
+      default: true,
+    },
+    visableNavMenu: {
+      // 显示菜单
       type: Boolean,
       default: true,
     },
@@ -230,7 +237,13 @@ export const visualEditor = defineComponent({
             w: 1,
             h: 1,
           })
-
+          if (component?.addOnly) {
+            // 说明是需要唯一的 要检测画布中有没有
+            if (!isPass(block, props.modelValue?.blocks as block[])) {
+              Message.warning("此组件不能添加多个哦！")
+              return
+            }
+          }
           let currenthtml = (e.target as HTMLElement).dataset
           if ("index" in currenthtml) {
             // 说明是插入
@@ -258,7 +271,6 @@ export const visualEditor = defineComponent({
           // props.modelValue?.blocks.push(block)
         },
         click(e: Event, component: VisualEditorComponent) {
-          console.log(component)
           // 新添加一个元素块
           let dragMode = component?.dragMode as string
           let block = createBlockData({
@@ -275,6 +287,13 @@ export const visualEditor = defineComponent({
             w: 1,
             h: 1,
           })
+          if (component?.addOnly) {
+            // 说明是需要唯一的 要检测画布中有没有
+            if (!isPass(block, props.modelValue?.blocks as block[])) {
+              Message.warning("此组件不能添加多个哦！")
+              return
+            }
+          }
           commder.add(block)
         },
       }
@@ -622,7 +641,12 @@ export const visualEditor = defineComponent({
           </div>
         ) : null}
         <div class="visual-editor-core visual-editor">
-          <div class="visual-editor-leftComponentsMenu">
+          <div
+            class={[
+              "visual-editor-leftComponentsMenu",
+              props.visableNavMenu ? "" : "hide",
+            ]}
+          >
             {props.visableNavbar ? (
               <leftNav
                 modelValue={type.value}

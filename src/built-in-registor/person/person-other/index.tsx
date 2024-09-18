@@ -6,6 +6,7 @@ export default {
   group: "个人信息",
   name: "personOther",
   value: "",
+  addOnly: true,
   isFormItem: "1",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",
   activeIcon:

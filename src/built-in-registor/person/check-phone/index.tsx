@@ -5,6 +5,7 @@ import control from "./control.vue"
 export default {
   group: "个人信息",
   name: "checkPhone",
+  addOnly: true,
   value: ["", ""],
   isFormItem: "1",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",

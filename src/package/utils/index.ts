@@ -1,3 +1,4 @@
+import { block } from "@/types/editor"
 import { useVisualCommand } from "./visual.command"
 // 深拷贝
  export function deepClone(data: any): any {
@@ -98,4 +99,9 @@ export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentB
     },)
   }
   return buttons
+}
+// 检测某些画布组件唯一性（只能添加一个）
+export function isPass( block: block, blocks: block[] ): boolean {
+  let currentKey = block.componentKey
+  return !!!blocks.find(cblock => cblock.componentKey === currentKey)
 }

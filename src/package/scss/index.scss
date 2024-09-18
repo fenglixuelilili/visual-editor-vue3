@@ -133,6 +133,10 @@
           }
         }
       }
+      &.hide{
+        width: 0;
+        overflow: hidden;
+      }
     }
     &>.visual-editor-right-seting {
       width: $rightMenuWidth;

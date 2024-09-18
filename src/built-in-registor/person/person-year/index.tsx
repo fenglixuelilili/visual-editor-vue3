@@ -7,6 +7,7 @@ export default {
   name: "personYear",
   value: "",
   isFormItem: "1",
+  addOnly: true,
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260212731331ddc172602127313340233_6.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260212731331ddc172602127313340233_6.png",

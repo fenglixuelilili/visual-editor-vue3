@@ -110,6 +110,7 @@ export interface VisualEditorComponent {
   group: string // 所属分组
   icon: string // 默认icon
   activeIcon: string // 激活icon
+  addOnly?: boolean // 在画布中只能有一条数据
   editorBlockShellStyle?: (block: block, style: T) => T // 每个组件的外壳的样式
   priview: () => JSX.Element | string
   render: (...args) => JSX.Element | string
