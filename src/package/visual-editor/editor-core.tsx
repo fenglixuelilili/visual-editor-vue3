@@ -23,7 +23,7 @@ import { useVisualCommand } from "../utils/visual.command"
 import { dragStart, dragEnd } from "../utils/event"
 import { controlView } from "./control-view" // 控制台渲染器
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
-import renderIconComponents from "./help-coms/render-icon-components"
+import renderIconComponents from "./help-coms/render-icon-components" // 所有在注册的组件
 import { deepClone, getBtns, isPass } from "../utils/index"
 import { registorBuiltIn } from "../../built-in-registor/index"
 import { builtInArrComs } from "../utils/registorBuiltInComUtils"

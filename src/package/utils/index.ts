@@ -52,12 +52,12 @@ export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentB
       tip: "delete",
     },
     {
-      label: "清空",
+      label: "清空画布",
       icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262860792458a37172628607924683951_clean.png",
       handler: () => {
-        if (!currentBlockInfo.value.focusBlock?.length) {
-          return
-        }
+        // if (!currentBlockInfo.value.focusBlock?.length) {
+        //   return
+        // }
         commder.clear()
       },
       tip: "ctrl + alt + d",
