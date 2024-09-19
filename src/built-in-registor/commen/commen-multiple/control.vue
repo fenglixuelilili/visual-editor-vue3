@@ -6,7 +6,7 @@
       <ul class="select-group">
         <li
           v-for="(item, i) in block.props.options.defaultValue"
-          :key="i"
+          :key="item.id"
           class="useDrag"
         >
           <div class="drag">
@@ -187,7 +187,7 @@ onMounted(() => {
     // },
     // // 结束拖拽
     onEnd: function (/**Event*/ evt: any) {
-      console.log(evt)
+      // console.log(evt)
       // var itemEl = evt.item;  // dragged HTMLElement
       // evt.to;    // target list
       // evt.from;  // previous list
