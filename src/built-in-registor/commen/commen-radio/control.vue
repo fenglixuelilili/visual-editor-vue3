@@ -6,7 +6,7 @@
       <ul class="select-group">
         <li
           v-for="(item, i) in block.props.options.defaultValue"
-          :key="item.id"
+          :key="item.key"
           class="useDrag"
         >
           <div class="drag">
@@ -73,6 +73,7 @@ function add() {
   let obj = {
     name: "",
     id: "",
+    key: Math.random() * 10000 + "",
   }
   props.block.props["options"].defaultValue.push(obj)
 }

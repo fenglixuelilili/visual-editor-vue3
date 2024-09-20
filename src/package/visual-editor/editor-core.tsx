@@ -236,6 +236,9 @@ export const visualEditor = defineComponent({
             y: 1,
             w: 1,
             h: 1,
+            formItemField: component.formItemField
+              ? component.formItemField
+              : "",
           })
           if (component?.addOnly) {
             // 说明是需要唯一的 要检测画布中有没有
@@ -286,6 +289,9 @@ export const visualEditor = defineComponent({
             y: 1,
             w: 1,
             h: 1,
+            formItemField: component.formItemField
+              ? component.formItemField
+              : "",
           })
           if (component?.addOnly) {
             // 说明是需要唯一的 要检测画布中有没有

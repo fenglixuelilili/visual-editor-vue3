@@ -39,6 +39,7 @@ export default {
         {
           name: "",
           id: "",
+          key: Math.random() * 10000 + "",
         },
       ],
     },
