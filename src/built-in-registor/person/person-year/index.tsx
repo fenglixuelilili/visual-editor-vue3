@@ -6,7 +6,7 @@ export default {
   group: "个人信息",
   name: "personYear",
   value: "",
-  isFormItem: "1",
+  formItemField: "person_year",
   addOnly: true,
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260212731331ddc172602127313340233_6.png",
   activeIcon:

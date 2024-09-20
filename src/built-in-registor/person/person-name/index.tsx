@@ -7,7 +7,7 @@ export default {
   name: "personName",
   value: "",
   addOnly: true,
-  isFormItem: "1",
+  formItemField: "person_name",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",

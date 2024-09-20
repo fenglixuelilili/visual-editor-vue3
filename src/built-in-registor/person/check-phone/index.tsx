@@ -7,7 +7,7 @@ export default {
   name: "checkPhone",
   addOnly: true,
   value: ["", ""],
-  isFormItem: "1",
+  formItemField: "check_phone",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",
