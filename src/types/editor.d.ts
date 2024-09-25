@@ -44,7 +44,7 @@ export const createBlockData = function (data: {
     hasResize: false,
     width: 0,
     height: 0,
-    id: Math.floor(Math.random() * 100000000),
+    id: '$i'+Math.floor(Math.random() * 100000000000000000) + '',
     ...data,
   }
 }
