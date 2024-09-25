@@ -19,7 +19,7 @@ export default {
       options: props.options.defaultValue,
     })
   },
-  priview: () => <textarea placeholder="请输入内容"></textarea>,
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "多选",
   props: {
     title: {

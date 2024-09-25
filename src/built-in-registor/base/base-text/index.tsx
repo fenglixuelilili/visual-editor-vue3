@@ -51,7 +51,7 @@ export default {
       style: style.value,
     })
   },
-  priview: () => <textarea placeholder="请输入内容"></textarea>,
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "文本",
   props: {
     text: {

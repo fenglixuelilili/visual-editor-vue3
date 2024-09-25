@@ -21,7 +21,7 @@ export default {
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
     })
   },
-  priview: () => <textarea placeholder="请输入内容"></textarea>,
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "省份",
   props: {
     title: {

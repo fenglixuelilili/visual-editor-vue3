@@ -24,7 +24,7 @@ export default {
       max: props.max.defaultValue * 1,
     })
   },
-  priview: () => <textarea placeholder="请输入内容"></textarea>,
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "姓名",
   props: {
     title: {

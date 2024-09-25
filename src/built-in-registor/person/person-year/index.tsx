@@ -20,7 +20,7 @@ export default {
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
     })
   },
-  priview: () => <textarea placeholder="请输入内容"></textarea>,
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "考试年份",
   props: {
     title: {

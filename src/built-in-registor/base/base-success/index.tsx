@@ -20,7 +20,7 @@ export default {
       successBottomColor: props.successBottomColor.defaultValue,
     })
   },
-  priview: () => <textarea placeholder="请输入内容"></textarea>,
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "成功页",
   props: {
     successSrc: {

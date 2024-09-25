@@ -21,7 +21,7 @@ export default {
       only: props.only.defaultValue == "1" ? true : false,
     })
   },
-  priview: () => <textarea placeholder="请输入内容"></textarea>,
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "手机验证",
   props: {
     title: {

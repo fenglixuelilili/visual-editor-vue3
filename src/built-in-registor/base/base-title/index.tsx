@@ -24,7 +24,7 @@ export default {
       text: block.props.text.defaultValue,
     })
   },
-  priview: () => <textarea placeholder="请输入内容"></textarea>,
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   props: {
     text: {
       defaultValue: "报名表单",

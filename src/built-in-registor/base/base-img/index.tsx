@@ -10,7 +10,7 @@ export default {
   render: (block) => {
     return createVNode(render, { src: block.props.src.defaultValue })
   },
-  priview: () => <textarea placeholder="请输入内容"></textarea>,
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "图片",
   props: {
     src: {

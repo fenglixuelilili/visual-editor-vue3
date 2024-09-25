@@ -22,7 +22,7 @@ export default {
       tip: props.tip.defaultValue,
     })
   },
-  priview: () => <textarea placeholder="请输入内容"></textarea>,
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   props: {
     title: {
       label: "标题",

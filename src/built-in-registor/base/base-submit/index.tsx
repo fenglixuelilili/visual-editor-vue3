@@ -30,7 +30,7 @@ export default {
       submitTip: props.submitTip.defaultValue,
     })
   },
-  priview: () => <textarea placeholder="请输入内容"></textarea>,
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   props: {
     text: {
       label: "按钮名称",
