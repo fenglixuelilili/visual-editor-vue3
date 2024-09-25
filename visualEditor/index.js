@@ -10,7 +10,7 @@ const Ya = function(e) {
     hasResize: !1,
     width: 0,
     height: 0,
-    id: Math.floor(Math.random() * 1e8),
+    id: "$i" + Math.floor(Math.random() * 1e17),
     ...e
   };
 };
@@ -12509,9 +12509,7 @@ const Ug = /* @__PURE__ */ Ve(Wg, [["__scopeId", "data-v-ad83ebe6"]]), Kg = {
       style: t.value
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "文本",
   props: {
     text: {
@@ -12646,9 +12644,7 @@ const Qg = /* @__PURE__ */ Ve(Zg, [["__scopeId", "data-v-9c2db7e4"]]), Jg = {
   render: (e) => c(Qg, {
     src: e.props.src.defaultValue
   }),
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "图片",
   props: {
     src: {
@@ -12800,9 +12796,7 @@ const gb = /* @__PURE__ */ Ve(mb, [["__scopeId", "data-v-e66b9f5d"]]), bb = {
       submitTip: t.submitTip.defaultValue
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   props: {
     text: {
       label: "按钮名称",
@@ -12905,9 +12899,7 @@ const _b = /* @__PURE__ */ Ve(yb, [["__scopeId", "data-v-5fff6b35"]]), $b = {
       text: e.props.text.defaultValue
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   props: {
     text: {
       defaultValue: "报名表单",
@@ -13036,9 +13028,7 @@ const Bb = /* @__PURE__ */ Ve(xb, [["__scopeId", "data-v-837d1f06"]]), Ib = {
       successBottomColor: t.successBottomColor.defaultValue
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "成功页",
   props: {
     successSrc: {
@@ -14674,9 +14664,7 @@ const Iy = /* @__PURE__ */ Ve(By, [["__scopeId", "data-v-09483bfa"]]), Py = {
       options: t.options.defaultValue
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "多选",
   props: {
     title: {
@@ -15004,9 +14992,7 @@ const t0 = /* @__PURE__ */ Ve(e0, [["__scopeId", "data-v-6565436c"]]), n0 = {
       placeholder: t.placeholder.defaultValue
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "单选",
   props: {
     title: {
@@ -15159,7 +15145,7 @@ const C0 = /* @__PURE__ */ Ve(k0, [["__scopeId", "data-v-f4a10f1d"]]), S0 = {
   name: "checkPhone",
   addOnly: !0,
   value: ["", ""],
-  formItemField: "phone",
+  formItemField: "sms_code",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",
   render: (e) => {
@@ -15172,9 +15158,7 @@ const C0 = /* @__PURE__ */ Ve(k0, [["__scopeId", "data-v-f4a10f1d"]]), S0 = {
       only: t.only.defaultValue == "1"
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "手机验证",
   props: {
     title: {
@@ -15356,9 +15340,7 @@ const W0 = /* @__PURE__ */ Ve(H0, [["__scopeId", "data-v-05a6c9a4"]]), U0 = {
       max: t.max.defaultValue * 1
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "姓名",
   props: {
     title: {
@@ -15480,9 +15462,7 @@ const r1 = /* @__PURE__ */ Ve(a1, [["__scopeId", "data-v-3fd74b8f"]]), i1 = {
       max: t.max.defaultValue * 1
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "其他信息",
   props: {
     title: {
@@ -15590,9 +15570,7 @@ const y1 = /* @__PURE__ */ Ve(b1, [["__scopeId", "data-v-df798f6e"]]), _1 = {
       only: t.only.defaultValue == "1"
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "电话",
   props: {
     title: {
@@ -15676,9 +15654,7 @@ const O1 = /* @__PURE__ */ Ve(V1, [["__scopeId", "data-v-fcdbe6a9"]]), E1 = {
       isRequire: t.isRequire.defaultValue == "1"
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "省份",
   props: {
     title: {
@@ -15788,9 +15764,7 @@ const R1 = /* @__PURE__ */ Ve(N1, [["__scopeId", "data-v-1418313e"]]), q1 = {
       max: t.max.defaultValue * 1
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "学校",
   props: {
     title: {
@@ -15921,9 +15895,7 @@ const o_ = /* @__PURE__ */ Ve(l_, [["__scopeId", "data-v-be68881f"]]), a_ = {
       tip: t.tip.defaultValue
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   props: {
     title: {
       label: "标题",
@@ -16133,9 +16105,7 @@ const g_ = /* @__PURE__ */ Ve(m_, [["__scopeId", "data-v-4752fc19"]]), b_ = {
       isRequire: t.isRequire.defaultValue == "1"
     });
   },
-  priview: () => c("textarea", {
-    placeholder: "请输入内容"
-  }, null),
+  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   label: "考试年份",
   props: {
     title: {
