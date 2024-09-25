@@ -1,5 +1,6 @@
 import { block } from "@/types/editor"
 import { useVisualCommand } from "./visual.command"
+import { Message } from "@arco-design/web-vue"
 // 深拷贝
  export function deepClone(data: any): any {
   if (data && typeof data === "object") {
@@ -92,6 +93,7 @@ export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentB
       label: "导出json",
       icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17263054455271570172630544552753846_export.png",
       handler: () => {
+        Message.success('导出成功，请在控制台查看！')
         console.log( props )
         console.log( JSON.stringify( props.modelValue.blocks ) )
       },

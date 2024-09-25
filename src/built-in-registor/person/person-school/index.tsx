@@ -6,7 +6,7 @@ export default {
   group: "个人信息",
   name: "personSchool",
   value: "",
-  formItemField: "person_school",
+  formItemField: "school_id",
   addOnly: true,
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262318368565036172623183685718112_school.png",
   activeIcon:

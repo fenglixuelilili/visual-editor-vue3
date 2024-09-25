@@ -7,7 +7,7 @@ export default {
   label: "上传文件",
   name: "personUpload",
   value: [],
-  formItemField: "person_upload",
+  formItemField: "file_url",
   addOnly: true,
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260213405494db1172602134054932870_8.png",
   activeIcon:
