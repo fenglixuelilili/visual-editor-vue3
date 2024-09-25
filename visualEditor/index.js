@@ -843,7 +843,7 @@ function Au(e, t, n, l, o, r) {
     }])
   }, [re(e.$slots, "default")], 2);
 }
-var ct = /* @__PURE__ */ ce(zu, [["render", Au]]);
+var dt = /* @__PURE__ */ ce(zu, [["render", Au]]);
 const Lu = L({
   name: "IconClose",
   props: {
@@ -1240,13 +1240,13 @@ var ir = function(e, t) {
     var $ = m[x], H = $.getBoundingClientRect(), Y = H.height, W = H.width, Z = H.top, U = H.right, te = H.bottom, j = H.left;
     if (l === "if-needed" && D >= 0 && F >= 0 && O <= _ && w <= g && D >= Z && O <= te && F >= j && w <= U)
       return b;
-    var C = getComputedStyle($), K = parseInt(C.borderLeftWidth, 10), J = parseInt(C.borderTopWidth, 10), he = parseInt(C.borderRightWidth, 10), we = parseInt(C.borderBottomWidth, 10), fe = 0, Ae = 0, Ce = "offsetWidth" in $ ? $.offsetWidth - $.clientWidth - K - he : 0, Be = "offsetHeight" in $ ? $.offsetHeight - $.clientHeight - J - we : 0, dt = "offsetWidth" in $ ? $.offsetWidth === 0 ? 0 : W / $.offsetWidth : 0, tt = "offsetHeight" in $ ? $.offsetHeight === 0 ? 0 : Y / $.offsetHeight : 0;
+    var C = getComputedStyle($), K = parseInt(C.borderLeftWidth, 10), J = parseInt(C.borderTopWidth, 10), he = parseInt(C.borderRightWidth, 10), we = parseInt(C.borderBottomWidth, 10), fe = 0, Ae = 0, Ce = "offsetWidth" in $ ? $.offsetWidth - $.clientWidth - K - he : 0, Be = "offsetHeight" in $ ? $.offsetHeight - $.clientHeight - J - we : 0, ft = "offsetWidth" in $ ? $.offsetWidth === 0 ? 0 : W / $.offsetWidth : 0, tt = "offsetHeight" in $ ? $.offsetHeight === 0 ? 0 : Y / $.offsetHeight : 0;
     if (f === $)
       fe = o === "start" ? q : o === "end" ? q - _ : o === "nearest" ? rl(P, P + _, _, J, we, P + q, P + q + S, S) : q - _ / 2, Ae = r === "start" ? E : r === "center" ? E - g / 2 : r === "end" ? E - g : rl(z, z + g, g, K, he, z + E, z + E + k, k), fe = Math.max(0, fe + P), Ae = Math.max(0, Ae + z);
     else {
       fe = o === "start" ? q - Z - J : o === "end" ? q - te + we + Be : o === "nearest" ? rl(Z, te, Y, J, we + Be, q, q + S, S) : q - (Z + Y / 2) + Be / 2, Ae = r === "start" ? E - j - K : r === "center" ? E - (j + W / 2) + Ce / 2 : r === "end" ? E - U + he + Ce : rl(j, U, W, K, he + Ce, E, E + k, k);
       var at = $.scrollLeft, A = $.scrollTop;
-      q += A - (fe = Math.max(0, Math.min(A + fe / tt, $.scrollHeight - Y / tt + Be))), E += at - (Ae = Math.max(0, Math.min(at + Ae / dt, $.scrollWidth - W / dt + Ce)));
+      q += A - (fe = Math.max(0, Math.min(A + fe / tt, $.scrollHeight - Y / tt + Be))), E += at - (Ae = Math.max(0, Math.min(at + Ae / ft, $.scrollWidth - W / ft + Ce)));
     }
     b.push({ el: $, top: fe, left: Ae });
   }
@@ -1627,7 +1627,7 @@ var Cc = Object.defineProperty, cr = Object.getOwnPropertySymbols, Sc = Object.p
       [`${s}-error`]: b.value,
       [`${s}-disabled`]: f.value,
       [`${s}-focus`]: D.value
-    }]), Ae = h(() => [s, `${s}-size-${_.value}`]), Ce = h(() => Yn(l, Rt)), Be = h(() => Xn(l, Rt)), dt = h(() => {
+    }]), Ae = h(() => [s, `${s}-size-${_.value}`]), Ce = h(() => Yn(l, Rt)), Be = h(() => Xn(l, Rt)), ft = h(() => {
       const A = fr(fr({}, Be.value), e.inputAttrs);
       return b.value && (A["aria-invalid"] = !0), A;
     }), tt = (A) => {
@@ -1652,7 +1652,7 @@ var Cc = Object.defineProperty, cr = Object.getOwnPropertySymbols, Sc = Object.p
         onCompositionstart: j,
         onCompositionupdate: j,
         onCompositionend: j
-      }, dt.value), null), w.value && c(ct, {
+      }, ft.value), null), w.value && c(dt, {
         prefix: s,
         class: `${s}-clear-btn`,
         onClick: J
@@ -1966,7 +1966,7 @@ var mo = L({
       a.value.inputRef && t("search", a.value.inputRef.value, f);
     }, s = () => {
       var f;
-      return c(je, null, [e.loading ? c(Ut, null, null) : c(ct, {
+      return c(je, null, [e.loading ? c(Ut, null, null) : c(dt, {
         onClick: i
       }, {
         default: () => [c(ia, null, null)]
@@ -2177,7 +2177,7 @@ const Jc = L({
   components: {
     IconEye: Hc,
     IconEyeInvisible: Zc,
-    AIconHover: ct,
+    AIconHover: dt,
     AInput: Dn
   },
   props: {
@@ -2946,10 +2946,10 @@ var $o = L({
         scrollRight: k.value.left,
         width: 0,
         height: 0
-      } : hr(m.value, T), ae = () => hr(v.value, T), ft = ae(), {
+      } : hr(m.value, T), ae = () => hr(v.value, T), pt = ae(), {
         style: nt,
         position: un
-      } = cd(e.position, T, R, ft, {
+      } = cd(e.position, T, R, pt, {
         offset: e.popupOffset,
         translate: e.popupTranslate,
         customStyle: e.popupStyle,
@@ -3006,23 +3006,23 @@ var $o = L({
     }));
     const Ce = () => {
       $n(document.documentElement, "mousedown", tt), x = !1;
-    }, Be = pd(n, "content"), dt = h(() => {
+    }, Be = pd(n, "content"), ft = h(() => {
       var T;
       return e.hideEmpty && Iu((T = Be.value) == null ? void 0 : T.call(Be));
     }), tt = (T) => {
-      var R, ae, ft;
+      var R, ae, pt;
       if (!((R = m.value) != null && R.contains(T.target) || (ae = v.value) != null && ae.contains(T.target))) {
         for (const nt of u)
-          if ((ft = nt.value) != null && ft.contains(T.target))
+          if ((pt = nt.value) != null && pt.contains(T.target))
             return;
         Ce(), Z(!1);
       }
     }, at = (T, R) => {
-      const [ae, ft] = T, {
+      const [ae, pt] = T, {
         scrollTop: nt,
         scrollLeft: un
       } = R;
-      return Math.abs(nt - ae) >= e.scrollToCloseDistance || Math.abs(un - ft) >= e.scrollToCloseDistance;
+      return Math.abs(nt - ae) >= e.scrollToCloseDistance || Math.abs(un - pt) >= e.scrollToCloseDistance;
     }, A = lr((T) => {
       if (O.value)
         if (e.scrollToClose || i != null && i.scrollToClose) {
@@ -3111,7 +3111,7 @@ var $o = L({
           to: F.value,
           disabled: !e.renderToBody
         }, {
-          default: () => [(!e.unmountOnClose || O.value || xn.value) && !dt.value && c(Bl, {
+          default: () => [(!e.unmountOnClose || O.value || xn.value) && !ft.value && c(Bl, {
             onResize: oe
           }, {
             default: () => [c("div", Se({
@@ -3791,7 +3791,7 @@ var gl = L({
   name: "Checkbox",
   components: {
     IconCheck: kr,
-    IconHover: ct
+    IconHover: dt
   },
   props: {
     modelValue: {
@@ -3891,7 +3891,7 @@ var gl = L({
       }, null), (O = (w = (D = n.checkbox) != null ? D : (k = i == null ? void 0 : i.slots) == null ? void 0 : k.checkbox) == null ? void 0 : w({
         checked: v.value,
         disabled: g.value
-      })) != null ? O : c(ct, {
+      })) != null ? O : c(dt, {
         class: `${r}-icon-hover`,
         disabled: g.value || v.value
       }, {
@@ -5146,7 +5146,7 @@ const Zf = (e, t) => {
 }, Tr = ["red", "orangered", "orange", "gold", "lime", "green", "cyan", "blue", "arcoblue", "purple", "pinkpurple", "magenta", "gray"], Qf = L({
   name: "Tag",
   components: {
-    IconHover: ct,
+    IconHover: dt,
     IconClose: an,
     IconLoading: Ut
   },
@@ -5502,7 +5502,7 @@ var Io = L({
     ge(H, (M) => {
       d.value && !w.value && M !== d.value.value && (d.value.value = M);
     });
-    const dt = h(() => [u, `${u}-size-${P.value}`, {
+    const ft = h(() => [u, `${u}-size-${P.value}`, {
       [`${u}-disabled`]: v.value,
       [`${u}-disabled-input`]: e.disabledInput,
       [`${u}-error`]: g.value,
@@ -5518,7 +5518,7 @@ var Io = L({
       render: () => {
         var M;
         return c("span", Se({
-          class: dt.value,
+          class: ft.value,
           onMousedown: Y
         }, tt.value), [c(xl, {
           onResize: Be
@@ -5567,7 +5567,7 @@ var Io = L({
             onCompositionupdate: x,
             onCompositionend: x
           }), null)]
-        }), K.value && c(ct, {
+        }), K.value && c(dt, {
           class: `${u}-clear-btn`,
           onClick: C,
           onMousedown: (X) => X.stopPropagation()
@@ -5704,7 +5704,7 @@ var zr = L({
       return e.loading ? (x = (b = n["loading-icon"]) == null ? void 0 : b.call(n)) != null ? x : c(Ut, null, null) : e.allowSearch && e.opened ? (H = ($ = n["search-icon"]) == null ? void 0 : $.call(n)) != null ? H : c(ia, null, null) : n["arrow-icon"] ? n["arrow-icon"]() : c(Pa, {
         class: `${a}-arrow-icon`
       }, null);
-    }, F = () => c(je, null, [V.value && c(ct, {
+    }, F = () => c(je, null, [V.value && c(dt, {
       class: `${a}-clear-btn`,
       onClick: w,
       onMousedown: (b) => b.stopPropagation()
@@ -6103,8 +6103,8 @@ var Po = L({
     const Ae = (N) => {
       var T, R;
       return e.multiple ? N.map((ae) => {
-        var ft, nt;
-        return (nt = (ft = Me.get(ae)) == null ? void 0 : ft.value) != null ? nt : "";
+        var pt, nt;
+        return (nt = (pt = Me.get(ae)) == null ? void 0 : pt.value) != null ? nt : "";
       }) : (R = (T = Me.get(N[0])) == null ? void 0 : T.value) != null ? R : uf(Me) ? void 0 : "";
     }, Ce = (N) => {
       var T, R;
@@ -6112,7 +6112,7 @@ var Po = L({
       H.value = ae, n("update:modelValue", ae), n("change", ae), (R = (T = w.value) == null ? void 0 : T.onChange) == null || R.call(T), j(N);
     }, Be = (N) => {
       we.value = N, n("update:inputValue", N), n("inputValueChange", N);
-    }, dt = (N, T) => {
+    }, ft = (N, T) => {
       if (e.multiple) {
         if (W.value.includes(N)) {
           const R = W.value.filter((ae) => ae !== N);
@@ -6174,7 +6174,7 @@ var Po = L({
       optionRefs: E,
       virtualListRef: b,
       defaultActiveFirstOption: P,
-      onSelect: dt,
+      onSelect: ft,
       onPopupVisibleChange: $
     }), lo = h(() => {
       var N;
@@ -6251,7 +6251,7 @@ var Po = L({
     }), oo = ({
       data: N
     }) => {
-      var T, R, ae, ft;
+      var T, R, ae, pt;
       if ((t.label || et(e.formatLabel)) && N) {
         const nt = Me.get(N.value);
         if (nt != null && nt.raw)
@@ -6259,7 +6259,7 @@ var Po = L({
             data: nt.raw
           })) != null ? ae : (R = e.formatLabel) == null ? void 0 : R.call(e, nt.raw);
       }
-      return (ft = N == null ? void 0 : N.label) != null ? ft : "";
+      return (pt = N == null ? void 0 : N.label) != null ? pt : "";
     };
     return () => c(Il, Se({
       trigger: "click",
@@ -9331,7 +9331,7 @@ const _s = Object.assign(Lo, {
   name: "Textarea",
   components: {
     ResizeObserver: xl,
-    IconHover: ct,
+    IconHover: dt,
     IconClose: an
   },
   inheritAttrs: !1,
@@ -9480,7 +9480,7 @@ const _s = Object.assign(Lo, {
     Ee(() => {
       d.value && (he = window.getComputedStyle(d.value), e.autoSize && Be()), at();
     });
-    const dt = () => {
+    const ft = () => {
       e.autoSize && m.value && Be(), at();
     }, tt = (A) => {
       d.value && A.target !== d.value && (A.preventDefault(), d.value.focus());
@@ -9508,7 +9508,7 @@ const _s = Object.assign(Lo, {
       handleBlur: Z,
       handleComposition: U,
       handleClear: j,
-      handleResize: dt,
+      handleResize: ft,
       handleMousedown: tt
     };
   },
@@ -9575,7 +9575,7 @@ const Fh = Object.assign(qo, {
 }), Nh = L({
   name: "Message",
   components: {
-    AIconHover: ct,
+    AIconHover: dt,
     IconInfoCircleFill: Yu,
     IconCheckCircleFill: Ki,
     IconExclamationCircleFill: Gi,
@@ -9788,7 +9788,7 @@ class Zh {
       onClose: this.remove,
       onAfterClose: this.destroy
     });
-    (n ?? vt._context) && (o.appContext = n ?? vt._context), Ga(o, this.container), document.body.appendChild(this.container);
+    (n ?? ct._context) && (o.appContext = n ?? ct._context), Ga(o, this.container), document.body.appendChild(this.container);
   }
 }
 const gn = {}, ws = [...dc, "loading", "normal"], yl = ws.reduce((e, t) => (e[t] = (n, l) => {
@@ -9806,7 +9806,7 @@ yl.clear = (e) => {
   var t;
   e ? (t = gn[e]) == null || t.clear() : Object.values(gn).forEach((n) => n == null ? void 0 : n.clear());
 };
-const vt = $s(Ml({}, yl), {
+const ct = $s(Ml({}, yl), {
   install: (e) => {
     const t = {
       clear: yl.clear
@@ -10624,7 +10624,7 @@ const $t = Object.assign(Uo, {
 }, La = Symbol("ArcoTabs"), $m = L({
   name: "TabsTab",
   components: {
-    IconHover: ct,
+    IconHover: dt,
     IconClose: an
   },
   props: {
@@ -10721,7 +10721,7 @@ var hi = L({
       return c("div", {
         class: r.value,
         onClick: l
-      }, [c(ct, {
+      }, [c(dt, {
         disabled: e.disabled
       }, Cm(a = o()) ? a : {
         default: () => [a]
@@ -10880,7 +10880,7 @@ var Om = /* @__PURE__ */ ce(Sm, [["render", Vm]]), Em = L({
     const Y = () => !v.value || !e.showAddButton ? null : c("div", {
       class: `${i}-add-btn`,
       onClick: (j) => t("add", j)
-    }, [c(ct, null, {
+    }, [c(dt, null, {
       default: () => [c(ds, null, null)]
     })]), W = h(() => [i, `${i}-${e.direction}`, `${i}-${e.position}`, `${i}-size-${e.size}`, `${i}-type-${e.type}`]), Z = h(() => [`${i}-tab-list`, {
       [`${i}-tab-list-no-padding`]: !e.headerPadding && ["line", "text"].includes(e.type) && e.direction === "horizontal"
@@ -11615,7 +11615,7 @@ function Fm(e, t, n, l) {
     label: "导出json",
     icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17263054455271570172630544552753846_export.png",
     handler: () => {
-      console.log(l), console.log(JSON.stringify(l.modelValue.blocks));
+      ct.success("导出成功，请在控制台查看！"), console.log(l), console.log(JSON.stringify(l.modelValue.blocks));
     },
     tip: ""
   }), o;
@@ -11820,16 +11820,16 @@ function Nm({
         redo() {
           let a = n.value.blocks;
           if (a.length <= 1) {
-            vt.warning("元素不需要移动！");
+            ct.warning("元素不需要移动！");
             return;
           }
           let i = a.findIndex((d) => d.focus);
           if (i < 0) {
-            vt.warning("当前没有要移动的元素！");
+            ct.warning("当前没有要移动的元素！");
             return;
           }
           if (i == 0) {
-            vt.warning("移动无效！");
+            ct.warning("移动无效！");
             return;
           }
           r.before = Je(a);
@@ -11856,16 +11856,16 @@ function Nm({
         redo() {
           let a = n.value.blocks;
           if (a.length <= 1) {
-            vt.warning("移动无效！");
+            ct.warning("移动无效！");
             return;
           }
           let i = a.findIndex((d) => d.focus);
           if (i < 0) {
-            vt.warning("当前没有要移动的元素！");
+            ct.warning("当前没有要移动的元素！");
             return;
           }
           if (i == a.length - 1) {
-            vt.warning("移动的无效！");
+            ct.warning("移动的无效！");
             return;
           }
           r.before = Je(a);
@@ -13338,7 +13338,7 @@ function Na(e, t) {
     n = n.previousElementSibling;
   return n || null;
 }
-function pt(e, t) {
+function vt(e, t) {
   var n = 0;
   if (!e || !e.parentNode)
     return -1;
@@ -13745,7 +13745,7 @@ ie.prototype = /** @lends Sortable.prototype */
     if (t.cancelable) {
       var n = this, l = this.el, o = this.options, r = o.preventOnFilter, a = t.type, i = t.touches && t.touches[0] || t.pointerType && t.pointerType === "touch" && t, s = (i || t).target, u = t.target.shadowRoot && (t.path && t.path[0] || t.composedPath && t.composedPath()[0]) || s, d = o.filter;
       if (uy(l), !Q && !(/mousedown|pointerdown/.test(a) && t.button !== 0 || o.disabled) && !u.isContentEditable && !(!this.nativeDraggable && Ln && s && s.tagName.toUpperCase() === "SELECT") && (s = gt(s, o.draggable, l, !1), !(s && s.animated) && $l !== s)) {
-        if (vn = pt(s), Nn = pt(s, o.draggable), typeof d == "function") {
+        if (vn = vt(s), Nn = vt(s, o.draggable), typeof d == "function") {
           if (d.call(this, t, s, this)) {
             lt({
               sortable: n,
@@ -13952,7 +13952,7 @@ ie.prototype = /** @lends Sortable.prototype */
       }), g !== m && (m.animateAll(), m._ignoreWhileAnimating = null)), (l === Q && !Q.animated || l === n && !l.animated) && (dn = null), !i.dragoverBubble && !t.rootEl && l !== document && (Q.parentNode[it]._isOutsideThisEl(t.target), !U && Xt(t)), !i.dragoverBubble && t.stopPropagation && t.stopPropagation(), _ = !0;
     }
     function S() {
-      ut = pt(Q), At = pt(Q, i.draggable), lt({
+      ut = vt(Q), At = vt(Q, i.draggable), lt({
         sortable: g,
         name: "change",
         toEl: n,
@@ -13988,7 +13988,7 @@ ie.prototype = /** @lends Sortable.prototype */
         dn !== l && (O = r[E], qn = !1, pl = !q && i.invertSwap || F), w = ry(t, l, r, v, q ? 1 : i.swapThreshold, i.invertedSwapThreshold == null ? i.swapThreshold : i.invertedSwapThreshold, pl, dn === l);
         var $;
         if (w !== 0) {
-          var H = pt(Q);
+          var H = vt(Q);
           do
             H -= w, $ = De.children[H];
           while ($ && (de($, "display") === "none" || $ === ve));
@@ -14017,9 +14017,9 @@ ie.prototype = /** @lends Sortable.prototype */
   },
   _onDrop: function(t) {
     var n = this.el, l = this.options;
-    if (ut = pt(Q), At = pt(Q, l.draggable), rt("drop", this, {
+    if (ut = vt(Q), At = vt(Q, l.draggable), rt("drop", this, {
       evt: t
-    }), De = Q && Q.parentNode, ut = pt(Q), At = pt(Q, l.draggable), ie.eventCanceled) {
+    }), De = Q && Q.parentNode, ut = vt(Q), At = vt(Q, l.draggable), ie.eventCanceled) {
       this._nulling();
       return;
     }
@@ -14207,7 +14207,7 @@ function ry(e, t, n, l, o, r, a, i) {
   return m = m || a, m && (s < d + u * r / 2 || s > f - u * r / 2) ? s > d + u / 2 ? 1 : -1 : 0;
 }
 function iy(e) {
-  return pt(Q) < pt(e) ? 1 : -1;
+  return vt(Q) < vt(e) ? 1 : -1;
 }
 function sy(e) {
   for (var t = e.tagName + e.className + e.src + e.href + e.textContent, n = t.length, l = 0; n--; )
@@ -14243,7 +14243,7 @@ ie.utils = {
   closest: gt,
   toggleClass: st,
   clone: Ps,
-  index: pt,
+  index: vt,
   nextTick: kl,
   cancelNextTick: ha,
   detectDirection: Ms,
@@ -14454,7 +14454,7 @@ const Tt = (e) => (Ke("data-v-09483bfa"), e = e(), Ge(), e), dy = {
     }
     function o(a) {
       if (t.block.props.options.defaultValue.length == 1) {
-        vt.warning("至少保留一项哦！");
+        ct.warning("至少保留一项哦！");
         return;
       }
       t.block.props.options.defaultValue.splice(a, 1);
@@ -14801,7 +14801,7 @@ const Fy = /* @__PURE__ */ Ve(Ly, [["__scopeId", "data-v-6aba8687"]]), rn = (e) 
     }
     function o(a) {
       if (t.block.props.options.defaultValue.length == 1) {
-        vt.warning("至少保留一项哦！");
+        ct.warning("至少保留一项哦！");
         return;
       }
       t.block.props.options.defaultValue.splice(a, 1);
@@ -15159,7 +15159,7 @@ const C0 = /* @__PURE__ */ Ve(k0, [["__scopeId", "data-v-f4a10f1d"]]), S0 = {
   name: "checkPhone",
   addOnly: !0,
   value: ["", ""],
-  formItemField: "check_phone",
+  formItemField: "phone",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",
   render: (e) => {
@@ -15340,7 +15340,7 @@ const W0 = /* @__PURE__ */ Ve(H0, [["__scopeId", "data-v-05a6c9a4"]]), U0 = {
   name: "personName",
   value: "",
   addOnly: !0,
-  formItemField: "person_name",
+  formItemField: "name",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
   render: (e) => {
@@ -15465,7 +15465,7 @@ const r1 = /* @__PURE__ */ Ve(a1, [["__scopeId", "data-v-3fd74b8f"]]), i1 = {
   name: "personOther",
   value: "",
   addOnly: !0,
-  formItemField: "person_other",
+  formItemField: "remark",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",
   render: (e) => {
@@ -15576,7 +15576,7 @@ const y1 = /* @__PURE__ */ Ve(b1, [["__scopeId", "data-v-df798f6e"]]), _1 = {
   name: "personPhone",
   value: "",
   addOnly: !0,
-  formItemField: "person_phone",
+  formItemField: "phone",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262317879488159172623178794864654_phone.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262317879488159172623178794864654_phone.png",
   render: (e) => {
@@ -15662,7 +15662,7 @@ const O1 = /* @__PURE__ */ Ve(V1, [["__scopeId", "data-v-fcdbe6a9"]]), E1 = {
   group: "个人信息",
   name: "personProvince",
   value: "",
-  formItemField: "person_province",
+  formItemField: "province_id",
   addOnly: !0,
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726021191023168617260211910248143_4.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726021191023168617260211910248143_4.png",
@@ -15772,7 +15772,7 @@ const R1 = /* @__PURE__ */ Ve(N1, [["__scopeId", "data-v-1418313e"]]), q1 = {
   group: "个人信息",
   name: "personSchool",
   value: "",
-  formItemField: "person_school",
+  formItemField: "school_id",
   addOnly: !0,
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262318368565036172623183685718112_school.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262318368565036172623183685718112_school.png",
@@ -15907,7 +15907,7 @@ const o_ = /* @__PURE__ */ Ve(l_, [["__scopeId", "data-v-be68881f"]]), a_ = {
   label: "上传文件",
   name: "personUpload",
   value: [],
-  formItemField: "person_upload",
+  formItemField: "file_url",
   addOnly: !0,
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260213405494db1172602134054932870_8.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260213405494db1172602134054932870_8.png",
@@ -16120,7 +16120,7 @@ const g_ = /* @__PURE__ */ Ve(m_, [["__scopeId", "data-v-4752fc19"]]), b_ = {
   group: "个人信息",
   name: "personYear",
   value: "",
-  formItemField: "person_year",
+  formItemField: "year",
   addOnly: !0,
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260212731331ddc172602127313340233_6.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260212731331ddc172602127313340233_6.png",
@@ -16448,7 +16448,7 @@ const I_ = /* @__PURE__ */ Ve(B_, [["__scopeId", "data-v-b334d714"]]), P_ = /* @
             formItemField: $.formItemField ? $.formItemField : ""
           });
           if ($ != null && $.addOnly && !yi(Y, (Z = e.modelValue) == null ? void 0 : Z.blocks)) {
-            vt.warning("此组件不能添加多个哦！");
+            ct.warning("此组件不能添加多个哦！");
             return;
           }
           let W = x.target.dataset;
@@ -16470,7 +16470,7 @@ const I_ = /* @__PURE__ */ Ve(B_, [["__scopeId", "data-v-b334d714"]]), P_ = /* @
             formItemField: $.formItemField ? $.formItemField : ""
           });
           if ($ != null && $.addOnly && !yi(Y, (W = e.modelValue) == null ? void 0 : W.blocks)) {
-            vt.warning("此组件不能添加多个哦！");
+            ct.warning("此组件不能添加多个哦！");
             return;
           }
           P.add(Y);
