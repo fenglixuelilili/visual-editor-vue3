@@ -16626,7 +16626,7 @@ const j_ = /* @__PURE__ */ L({
     Rs(Le, qs);
     let n = Ti(() => e.modelValue, (o) => t("update:modelValue", o)), l = h(() => ({
       width: n.value.container.width + "px",
-      height: n.value.container.height + "px",
+      // height: model.value.container.height + "px",
       background: `url(${n.value.container.backgroundImage}) no-repeat top center`,
       backgroundColor: n.value.container.backgroundColor,
       backgroundSize: "cover"

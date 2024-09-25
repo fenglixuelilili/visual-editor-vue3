@@ -26,7 +26,7 @@ export const priviewVisualEditor = defineComponent({
     )
     let containerStyle = computed(() => ({
       width: model.value.container.width + "px",
-      height: model.value.container.height + "px",
+      // height: model.value.container.height + "px",
       background: `url(${model.value.container.backgroundImage}) no-repeat top center`,
       backgroundColor: model.value.container.backgroundColor,
       backgroundSize: "cover",

@@ -13,7 +13,11 @@
         position: relative;
         padding-top: 20px;
         background-color: #fff;
-        padding-bottom: 100px;
+        // padding-bottom: 150px;
+        .visual-editor-area-content{
+          // position: relative!important;
+          position: relative;
+        }
     }
   }
 }
