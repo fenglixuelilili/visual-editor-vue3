@@ -19,6 +19,6 @@ declare module '*.scss' {
   export default classes
 }
 interface Window {
-  system: { [key: string]: any };
+  visualSystem: { [key: string]: any };
 }
 declare module 'sortablejs'

@@ -9,7 +9,7 @@
         />
       </div>
     </div>
-    <a-button style="width: 100%" class="file-btn">
+    <a-button style="width: 100%" class="file-btn" :loading="loading">
       {{ modelValue ? "替换图片" : "上传图片" }}
       <input
         type="file"
@@ -22,7 +22,7 @@
 </template>
 <script lang="ts" setup>
 import { convertBase64 } from "../../../../utils/index"
-import { defineProps, defineEmits } from "vue"
+import { defineProps, defineEmits, ref } from "vue"
 const props = defineProps({
   modelValue: {
     type: String,
@@ -31,14 +31,20 @@ const props = defineProps({
 })
 const emit = defineEmits(["update:modelValue", "change"])
 // console.log(props.currentBlock, props.editorControlView, "内部属性")
+let loading = ref(false)
 const methods = {
   fileChange(e: any) {
-    console.log(e.target.files[0])
     let file: File = e.target.files[0]
-    convertBase64(file).then((res) => {
-      emit("update:modelValue", res)
-      emit("change", res)
-    })
+    loading.value = true
+    convertBase64(file)
+      .then((res) => {
+        emit("update:modelValue", res)
+        emit("change", res)
+        loading.value = false
+      })
+      .catch(() => {
+        loading.value = false
+      })
   },
   del() {
     emit("update:modelValue", "")

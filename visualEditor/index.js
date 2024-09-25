@@ -11895,12 +11895,21 @@ function Nm({
   };
 }
 const Rm = (e) => new Promise((t, n) => {
-  const l = new FileReader();
-  l.readAsDataURL(e), l.onload = () => {
-    t(l.result);
-  }, l.onerror = (o) => {
-    n(o);
-  };
+  var l;
+  if ((l = window == null ? void 0 : window.visualSystem) != null && l.fileUploadHandler)
+    window.visualSystem.fileUploadHandler(e).then((o) => {
+      t(o.path);
+    }).catch((o) => {
+      n(o);
+    });
+  else {
+    const o = new FileReader();
+    o.readAsDataURL(e), o.onload = () => {
+      t(o.result);
+    }, o.onerror = (r) => {
+      n(r);
+    };
+  }
 }), qm = (e) => (Ke("data-v-bfe27548"), e = e(), Ge(), e), Hm = {
   class: "img-upload-container w100"
 }, Wm = {
@@ -16338,11 +16347,15 @@ const I_ = /* @__PURE__ */ Ve(B_, [["__scopeId", "data-v-b334d714"]]), P_ = /* @
     slots: n
   }) {
     var w, O, F, q;
-    if ((w = e.modelValue) != null && w.container)
+    if (window.visualSystem = {}, (w = e.modelValue) != null && w.container)
       (O = e.modelValue) != null && O.container.width || (e.modelValue.container.width = 350), (F = e.modelValue) != null && F.container.height || (e.modelValue.container.height = 600);
     else
       throw new Error("请检查传入的container！");
-    (q = e == null ? void 0 : e.builtInComs) != null && q.length && Ns(Le, e.builtInComs);
+    (q = e == null ? void 0 : e.builtInComs) != null && q.length && Ns(Le, e.builtInComs), console.log(e.fileUploadHandler, "???传过来了吗"), e.fileUploadHandler && Object.defineProperty(window.visualSystem, "fileUploadHandler", {
+      get() {
+        return e.fileUploadHandler;
+      }
+    });
     const {
       shiftMove: l = !1,
       shortcutKeys: o = !1

@@ -82,6 +82,8 @@ export const visualEditor = defineComponent({
   },
   emits: ["update:modelValue"],
   setup(props, { emit, slots }) {
+    // 初始化系统变量
+    window.visualSystem = {}
     if (!props.modelValue?.container) {
       throw new Error("请检查传入的container！")
     } else {
@@ -95,6 +97,13 @@ export const visualEditor = defineComponent({
     if (props?.builtInComs?.length) {
       // 注册内置组件
       registorBuiltIn(editorInstance, props.builtInComs)
+    }
+    if (props.fileUploadHandler) {
+      Object.defineProperty(window.visualSystem, "fileUploadHandler", {
+        get() {
+          return props.fileUploadHandler
+        },
+      })
     }
     // markLine = false,
     const { shiftMove = false, shortcutKeys = false } = props.config
