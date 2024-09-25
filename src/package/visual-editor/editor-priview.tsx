@@ -34,9 +34,6 @@ export const priviewVisualEditor = defineComponent({
     let componentMap = editorInstance?.componentMap
       ? editorInstance?.componentMap
       : {}
-    model.value.blocks.forEach((block: block) => {
-      console.log(componentMap, componentMap[block.componentKey])
-    })
     return () => (
       <div class="priview-visual-editor">
         <div class="priview-visual-editor-area-body">
@@ -46,8 +43,21 @@ export const priviewVisualEditor = defineComponent({
               class="visual-editor-area-content"
               style={containerStyle.value}
             >
-              {model.value.blocks.map((block: block) => {
+              {/* {model.value.blocks.map((block: block) => {
                 return componentMap[block.componentKey]?.render(block)
+              })} */}
+              {model.value.blocks.map((block: block, index: number) => {
+                return (
+                  <div>
+                    <editorBlock
+                      index={index}
+                      block={block}
+                      priview={true}
+                      container={props.modelValue?.container}
+                      key={block.id}
+                    ></editorBlock>
+                  </div>
+                )
               })}
             </div>
           </div>

@@ -89,8 +89,8 @@ export default defineComponent({
       }
     })
     let classes = computed(() => [
-      "editor-bloack",
-      props.block.focus ? "editor-bloack-focus" : "",
+      props.priview ? "editor-bloack-priview" : "editor-bloack",
+      props.block.focus && !props.priview ? "editor-bloack-focus" : "",
     ])
     function operate(type: string) {
       emit(type)

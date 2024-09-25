@@ -1,14 +1,10 @@
 .visual-editor-area-content {   // 父节点
   padding-bottom: 80px;
   .editor-bloack {
-    // position: absolute;
-    // left: 0;
-    // top: 0;
     cursor: pointer;
     user-select: none;
     padding-top: 0;
     transition: all 0.25s;
-
     &:hover{
       &::after{
         content: '';
@@ -105,5 +101,11 @@
       cursor: pointer;
       background-color: rgba(37,124,250,0.15);
     }
+  }
+  .editor-bloack-priview{
+    cursor: pointer;
+    user-select: none;
+    padding-top: 0;
+    transition: all 0.25s;
   }
 }

@@ -60,7 +60,6 @@ const props = defineProps({
   },
 })
 onMounted(() => {
-  // visual-editor-area-content
   let visualEditorAreaContent = document.querySelector(
     ".visual-editor-area-content"
   ) as HTMLElement
