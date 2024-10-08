@@ -9,7 +9,7 @@
         <div class="control-input"></div>
         <div class="text">{{ item.name ? item.name : "请填写内容" }}</div>
       </div> -->
-      <div class="item">
+      <div class="item" @click="tip">
         <span>{{ placeholder }}</span>
         <div class="right">
           <img
@@ -22,6 +22,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { Message } from "@arco-design/web-vue"
 import { PropType } from "vue"
 const props = defineProps({
   style: {
@@ -45,6 +46,9 @@ const props = defineProps({
     default: () => [],
   },
 })
+function tip() {
+  Message.warning("请在移动端预览真机效果！")
+}
 </script>
 <style lang="scss" scoped>
 @import "../../commen.scss";
