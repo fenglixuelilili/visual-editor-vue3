@@ -12237,7 +12237,7 @@ const _i = /* @__PURE__ */ L({
       class: "title"
     }, [n]), c("div", {
       class: "group-container-content"
-    }, [t[n].map((l) => c("div", {
+    }, [t[n].map((l) => l != null && l.hide ? null : c("div", {
       class: "editer-menu-content-block",
       draggable: !0,
       onDragstart: (o) => e.menuDragInfo.dragstart(o, l),
@@ -13027,6 +13027,7 @@ const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-837d1f06"]]), Ib = {
   name: "baseSuccess",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726294902723b41a17262949027235096_ss.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726294902723b41a17262949027235096_ss.png",
+  hide: !0,
   render: (e) => {
     let t = e.props;
     return c(Bb, {

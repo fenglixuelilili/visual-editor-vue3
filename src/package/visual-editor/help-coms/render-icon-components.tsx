@@ -40,6 +40,9 @@ export default defineComponent({
               <div class="title">{key}</div>
               <div class="group-container-content">
                 {map[key].map((component) => {
+                  if (component?.hide) {
+                    return null
+                  }
                   return (
                     <div
                       class="editer-menu-content-block"

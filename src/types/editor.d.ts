@@ -109,6 +109,7 @@ export interface VisualEditorComponent {
   widthAdaption100?: boolean // 宽度调整方式
   group: string // 所属分组
   icon: string // 默认icon
+  hide?: boolean // 隐藏该组件
   activeIcon: string // 激活icon
   addOnly?: boolean // 在画布中只能有一条数据
   editorBlockShellStyle?: (block: block, style: T) => T // 每个组件的外壳的样式
