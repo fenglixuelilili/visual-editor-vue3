@@ -132,7 +132,7 @@ export default {
     },
     backgroundColor: {
       label: "背景颜色",
-      defaultValue: "#fff",
+      defaultValue: "rgba(255,255,255,0)",
     },
     backgroundImage: {
       label: "背景图",

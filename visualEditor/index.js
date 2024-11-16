@@ -12602,7 +12602,7 @@ const Ug = /* @__PURE__ */ Ce(Wg, [["__scopeId", "data-v-c4ac491a"]]), Kg = {
     },
     backgroundColor: {
       label: "背景颜色",
-      defaultValue: "#fff"
+      defaultValue: "rgba(255,255,255,0)"
     },
     backgroundImage: {
       label: "背景图",
