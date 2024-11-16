@@ -18,7 +18,7 @@
       <div class="bg-com">
         <div class="bg-img"></div>
       </div>
-      <span>模版</span>
+      <span>页面</span>
     </div>
   </div>
 </template>
