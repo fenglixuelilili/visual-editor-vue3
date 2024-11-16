@@ -4,6 +4,9 @@
       <span class="red" v-if="isRequire">*</span>
       <span>{{ title }}</span>
     </div>
+    <div class="base-tip" style="margin-top: 6px" v-if="tip.trim().length > 0">
+      {{ tip }}
+    </div>
     <div class="form-item">
       <a-select
         style="height: 40px; line-height: 40px; width: 100%"
@@ -39,6 +42,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  tip: {
+    type: String,
+    default: "",
+  },
   placeholder: {
     type: String,
     default: "",
@@ -56,7 +63,7 @@ const props = defineProps({
   // line-height: 48px;
   // text-align: center;
   // font-weight: 800;
-  height: 94px;
+  min-height: 94px;
   padding: 10px 24px;
 }
 </style>

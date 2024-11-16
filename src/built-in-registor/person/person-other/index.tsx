@@ -16,8 +16,9 @@ export default {
     return createVNode(render, {
       style: {},
       title: props.title.defaultValue,
-      value: props.value.defaultValue,
+      // value: props.value.defaultValue,
       placeholder: props.placeholder.defaultValue,
+      tip: props.tip.defaultValue,
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
       min: props.min.defaultValue * 1,
       max: props.max.defaultValue * 1,
@@ -31,15 +32,20 @@ export default {
       type: "input",
       defaultValue: "其他信息",
     },
-    value: {
-      label: "默认文本",
-      type: "input",
-      defaultValue: "",
-    },
+    // value: {
+    //   label: "默认文本",
+    //   type: "input",
+    //   defaultValue: "",
+    // },
     placeholder: {
-      label: "提示",
+      label: "默认文案",
       type: "input",
       defaultValue: "请输入其他信息",
+    },
+    tip: {
+      label: "提示",
+      type: "input",
+      defaultValue: "",
     },
     isRequire: {
       label: "设为必填",

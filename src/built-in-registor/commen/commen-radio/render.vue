@@ -4,12 +4,19 @@
       <span class="red" v-if="isRequire">*</span>
       <span>{{ title }}</span>
     </div>
+    <div
+      class="base-tip"
+      v-if="tip.trim().length > 0"
+      style="margin-top: 8px; margin-bottom: 12px"
+    >
+      {{ tip }}
+    </div>
     <div class="form-item">
       <!-- <div class="item" v-for="(item, i) in options" :key="i">
         <div class="control-input"></div>
         <div class="text">{{ item.name ? item.name : "请填写内容" }}</div>
       </div> -->
-      <div class="item" @click="tip">
+      <div class="item" @click="tipMessage">
         <span>{{ placeholder }}</span>
         <div class="right">
           <img
@@ -45,8 +52,12 @@ const props = defineProps({
     type: Array as PropType<{ id: string; name: string }[]>,
     default: () => [],
   },
+  tip: {
+    type: String,
+    default: "",
+  },
 })
-function tip() {
+function tipMessage() {
   Message.warning("请在移动端预览真机效果！")
 }
 </script>

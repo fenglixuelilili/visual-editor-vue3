@@ -4,6 +4,7 @@
       <span class="red" v-if="isRequire">*</span>
       <span>{{ title }}</span>
     </div>
+    <div class="base-tip" v-if="tip.trim().length > 0">{{ tip }}</div>
     <div class="form-item">
       <div class="item">
         <a-input
@@ -46,6 +47,10 @@ const props = defineProps({
   isRequire: {
     type: Boolean,
     default: false,
+  },
+  tip: {
+    type: String,
+    default: "",
   },
 })
 </script>

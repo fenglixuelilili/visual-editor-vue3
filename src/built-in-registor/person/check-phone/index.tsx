@@ -17,6 +17,7 @@ export default {
       style: {},
       title: props.title.defaultValue,
       placeholder: props.placeholder.defaultValue,
+      tip: props.tip.defaultValue,
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
       only: props.only.defaultValue == "1" ? true : false,
     })
@@ -30,9 +31,14 @@ export default {
       defaultValue: "电话",
     },
     placeholder: {
-      label: "提示",
+      label: "默认文案",
       type: "input",
       defaultValue: "请输入电话",
+    },
+    tip: {
+      label: "提示",
+      type: "input",
+      defaultValue: "",
     },
     isRequire: {
       label: "设为必填",

@@ -4,6 +4,13 @@
       <span class="red" v-if="isRequire">*</span>
       <span>{{ title }}</span>
     </div>
+    <div
+      class="base-tip"
+      v-if="tip.trim().length > 0"
+      style="margin-top: 8px; margin-bottom: 2px"
+    >
+      {{ tip }}
+    </div>
     <div class="form-item">
       <div class="item" v-for="(item, i) in options" :key="i">
         <div class="control-input"></div>
@@ -30,6 +37,10 @@ const props = defineProps({
   options: {
     type: Array as PropType<{ id: string; name: string }[]>,
     default: () => [],
+  },
+  tip: {
+    type: String,
+    default: "",
   },
 })
 </script>

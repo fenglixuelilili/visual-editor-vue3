@@ -15,6 +15,7 @@ export default {
     return createVNode(render, {
       style: {},
       title: props.title.defaultValue,
+      tip: props.tip.defaultValue,
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
       options: props.options.defaultValue,
     })
@@ -26,6 +27,11 @@ export default {
       label: "标题",
       type: "input",
       defaultValue: "多选",
+    },
+    tip: {
+      label: "提示",
+      type: "input",
+      defaultValue: "",
     },
     options: {
       label: "选项",

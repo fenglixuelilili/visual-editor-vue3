@@ -17,6 +17,7 @@ export default {
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
       options: props.options.defaultValue,
       placeholder: props.placeholder.defaultValue,
+      tip: props.tip.defaultValue,
     })
   },
   label: "单选",
@@ -27,9 +28,14 @@ export default {
       defaultValue: "单选",
     },
     placeholder: {
-      label: "提示",
+      label: "默认文案",
       type: "input",
       defaultValue: "请选择内容",
+    },
+    tip: {
+      label: "提示",
+      type: "input",
+      defaultValue: "",
     },
     options: {
       label: "选项",

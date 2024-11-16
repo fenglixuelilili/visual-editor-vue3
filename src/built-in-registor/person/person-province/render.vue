@@ -4,7 +4,10 @@
       <span class="red" v-if="isRequire">*</span>
       <span>{{ title }}</span>
     </div>
-    <div class="form-item" @click="tip">
+    <div class="base-tip" style="margin-top: 6px" v-if="tip.trim().length > 0">
+      {{ tip }}
+    </div>
+    <div class="form-item" @click="tipMessage">
       <div class="item">
         <span>{{ placeholder }}</span>
         <div class="right">
@@ -37,8 +40,12 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  tip: {
+    type: String,
+    default: "",
+  },
 })
-function tip() {
+function tipMessage() {
   Message.warning("请在移动端预览真机效果！")
 }
 </script>

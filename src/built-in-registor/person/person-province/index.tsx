@@ -18,6 +18,7 @@ export default {
       title: props.title.defaultValue,
       // value: props.value.defaultValue,
       placeholder: props.placeholder.defaultValue,
+      tip: props.tip.defaultValue,
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
     })
   },
@@ -34,9 +35,14 @@ export default {
     //   defaultValue: "",
     // },
     placeholder: {
-      label: "提示",
+      label: "默认文案",
       type: "input",
       defaultValue: "请选择所在省份",
+    },
+    tip: {
+      label: "提示",
+      type: "input",
+      defaultValue: "",
     },
     isRequire: {
       label: "设为必填",
