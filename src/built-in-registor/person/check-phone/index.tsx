@@ -17,7 +17,7 @@ export default {
       style: {},
       title: props.title.defaultValue,
       placeholder: props.placeholder.defaultValue,
-      tip: props.tip.defaultValue,
+      tip: props?.tip?.defaultValue ? props.tip.defaultValue : "",
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
       only: props.only.defaultValue == "1" ? true : false,
     })

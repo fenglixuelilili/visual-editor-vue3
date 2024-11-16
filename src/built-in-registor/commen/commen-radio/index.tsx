@@ -17,7 +17,7 @@ export default {
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
       options: props.options.defaultValue,
       placeholder: props.placeholder.defaultValue,
-      tip: props.tip.defaultValue,
+      tip: props?.tip?.defaultValue ? props.tip.defaultValue : "",
     })
   },
   label: "单选",

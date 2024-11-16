@@ -15,7 +15,7 @@ export default {
     return createVNode(render, {
       style: {},
       title: props.title.defaultValue,
-      tip: props.tip.defaultValue,
+      tip: props?.tip?.defaultValue ? props.tip.defaultValue : "",
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
       options: props.options.defaultValue,
     })

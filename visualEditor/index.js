@@ -14680,11 +14680,12 @@ const Py = /* @__PURE__ */ Ce(Iy, [["__scopeId", "data-v-27fb113c"]]), jy = {
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262319235156e36172623192351612382_m.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262319235156e36172623192351612382_m.png",
   render: (e) => {
+    var n;
     let t = e.props;
     return c(Fb, {
       style: {},
       title: t.title.defaultValue,
-      tip: t.tip.defaultValue,
+      tip: (n = t == null ? void 0 : t.tip) != null && n.defaultValue ? t.tip.defaultValue : "",
       isRequire: t.isRequire.defaultValue == "1",
       options: t.options.defaultValue
     });
@@ -15027,6 +15028,7 @@ const n0 = /* @__PURE__ */ Ce(t0, [["__scopeId", "data-v-fbfa7983"]]), l0 = {
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623195284521e2172623195284525206_r.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623195284521e2172623195284525206_r.png",
   render: (e) => {
+    var n;
     let t = e.props;
     return c(Ny, {
       style: {},
@@ -15034,7 +15036,7 @@ const n0 = /* @__PURE__ */ Ce(t0, [["__scopeId", "data-v-fbfa7983"]]), l0 = {
       isRequire: t.isRequire.defaultValue == "1",
       options: t.options.defaultValue,
       placeholder: t.placeholder.defaultValue,
-      tip: t.tip.defaultValue
+      tip: (n = t == null ? void 0 : t.tip) != null && n.defaultValue ? t.tip.defaultValue : ""
     });
   },
   label: "单选",
@@ -15205,12 +15207,13 @@ const V0 = /* @__PURE__ */ Ce(S0, [["__scopeId", "data-v-db4167cd"]]), O0 = {
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",
   render: (e) => {
+    var n;
     let t = e.props;
     return c(v0, {
       style: {},
       title: t.title.defaultValue,
       placeholder: t.placeholder.defaultValue,
-      tip: t.tip.defaultValue,
+      tip: (n = t == null ? void 0 : t.tip) != null && n.defaultValue ? t.tip.defaultValue : "",
       isRequire: t.isRequire.defaultValue == "1",
       only: t.only.defaultValue == "1"
     });
@@ -15397,13 +15400,14 @@ const G0 = /* @__PURE__ */ Ce(K0, [["__scopeId", "data-v-22745730"]]), Y0 = {
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",
   render: (e) => {
+    var n;
     let t = e.props;
     return c(to, {
       style: {},
       title: t.title.defaultValue,
       // value: props.value.defaultValue,
       placeholder: t.placeholder.defaultValue,
-      tip: t.tip.defaultValue,
+      tip: (n = t == null ? void 0 : t.tip) != null && n.defaultValue ? t.tip.defaultValue : "",
       isRequire: t.isRequire.defaultValue == "1",
       only: t.only.defaultValue == "1",
       min: t.min.defaultValue * 1,
@@ -15526,13 +15530,14 @@ const u1 = /* @__PURE__ */ Ce(s1, [["__scopeId", "data-v-a3cd79e3"]]), c1 = {
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",
   render: (e) => {
+    var n;
     let t = e.props;
     return c(to, {
       style: {},
       title: t.title.defaultValue,
       // value: props.value.defaultValue,
       placeholder: t.placeholder.defaultValue,
-      tip: t.tip.defaultValue,
+      tip: (n = t == null ? void 0 : t.tip) != null && n.defaultValue ? t.tip.defaultValue : "",
       isRequire: t.isRequire.defaultValue == "1",
       min: t.min.defaultValue * 1,
       max: t.max.defaultValue * 1
@@ -15641,13 +15646,14 @@ const w1 = /* @__PURE__ */ Ce($1, [["__scopeId", "data-v-1e356ef8"]]), k1 = {
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262317879488159172623178794864654_phone.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262317879488159172623178794864654_phone.png",
   render: (e) => {
+    var n;
     let t = e.props;
     return c(to, {
       style: {},
       title: t.title.defaultValue,
       // value: props.value.defaultValue,
       placeholder: t.placeholder.defaultValue,
-      tip: t.tip.defaultValue,
+      tip: (n = t == null ? void 0 : t.tip) != null && n.defaultValue ? t.tip.defaultValue : "",
       isRequire: t.isRequire.defaultValue == "1",
       only: t.only.defaultValue == "1"
     });
@@ -15787,13 +15793,14 @@ const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-8d9dfe41"]]), L1 = {
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726021191023168617260211910248143_4.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726021191023168617260211910248143_4.png",
   render: (e) => {
+    var n;
     let t = e.props;
     return c(I1, {
       style: {},
       title: t.title.defaultValue,
       // value: props.value.defaultValue,
       placeholder: t.placeholder.defaultValue,
-      tip: t.tip.defaultValue,
+      tip: (n = t == null ? void 0 : t.tip) != null && n.defaultValue ? t.tip.defaultValue : "",
       isRequire: t.isRequire.defaultValue == "1"
     });
   },
@@ -15900,13 +15907,14 @@ const J1 = /* @__PURE__ */ Ce(Q1, [["__scopeId", "data-v-c7c964bd"]]), e_ = {
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262318368565036172623183685718112_school.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262318368565036172623183685718112_school.png",
   render: (e) => {
+    var n;
     let t = e.props;
     return c(to, {
       style: {},
       title: t.title.defaultValue,
       // value: props.value.defaultValue,
       placeholder: t.placeholder.defaultValue,
-      tip: t.tip.defaultValue,
+      tip: (n = t == null ? void 0 : t.tip) != null && n.defaultValue ? t.tip.defaultValue : "",
       isRequire: t.isRequire.defaultValue == "1",
       min: t.min.defaultValue * 1,
       max: t.max.defaultValue * 1
@@ -16039,13 +16047,14 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-10a00a3b"]]), m_ = {
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260213405494db1172602134054932870_8.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260213405494db1172602134054932870_8.png",
   render: (e) => {
+    var n;
     let t = e.props;
     return c(s_, {
       style: {},
       title: t.title.defaultValue,
       max: t.max.defaultValue,
       isRequire: t.isRequire.defaultValue == "1",
-      tip: t.tip.defaultValue
+      tip: (n = t == null ? void 0 : t.tip) != null && n.defaultValue ? t.tip.defaultValue : ""
     });
   },
   // priview: () => <textarea placeholder="请输入内容"></textarea>,
@@ -16260,12 +16269,13 @@ const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-274c33e1"]]), B_ = {
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260212731331ddc172602127313340233_6.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260212731331ddc172602127313340233_6.png",
   render: (e) => {
+    var n;
     let t = e.props;
     return c(x_, {
       title: t.title.defaultValue,
       value: t.value.defaultValue,
       placeholder: t.placeholder.defaultValue,
-      tip: t.tip.defaultValue,
+      tip: (n = t == null ? void 0 : t.tip) != null && n.defaultValue ? t.tip.defaultValue : "",
       isRequire: t.isRequire.defaultValue == "1"
     });
   },

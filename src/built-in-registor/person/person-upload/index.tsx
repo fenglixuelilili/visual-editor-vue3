@@ -19,7 +19,7 @@ export default {
       title: props.title.defaultValue,
       max: props.max.defaultValue,
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
-      tip: props.tip.defaultValue,
+      tip: props?.tip?.defaultValue ? props.tip.defaultValue : "",
     })
   },
   // priview: () => <textarea placeholder="请输入内容"></textarea>,
