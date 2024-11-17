@@ -1,4 +1,4 @@
-import { VisualEditorComponent } from "@/types/editor"
+import { builtIn, VisualEditorComponent } from "@/types/editor"
 import { defineComponent, PropType } from "vue"
 export default defineComponent({
   props: {
@@ -18,6 +18,13 @@ export default defineComponent({
         click: () => {},
       }),
     },
+    builtInComsControlView: {
+      type: Boolean,
+      default: false,
+    },
+    builtInComs: {
+      type: Array as PropType<builtIn[]>,
+    },
   },
   setup(props) {
     let map: { [key: string]: VisualEditorComponent[] } = {}
@@ -31,6 +38,28 @@ export default defineComponent({
         }
         map[item.group].push(item)
       })
+    for (let key in map) {
+      map[key] = map[key].filter((item, i) => {
+        if (!props.builtInComsControlView) {
+          return true
+        }
+        return props.builtInComs?.includes(item.name as builtIn)
+      })
+      if (!map[key] || !map[key].length) {
+        delete map[key]
+      }
+    }
+    // .filter((key) => {
+    //   if (!props.builtInComsControlView) {
+    //     return true
+    //   } else {
+    //     if (props.builtInComs && props.builtInComs.length) {
+    //       return props.builtInComs?.includes(map[key].name)
+    //     } else {
+    //       return false
+    //     }
+    //   }
+    // })
     return () => (
       <>
         {/* 左侧所有在服役的组件 */}

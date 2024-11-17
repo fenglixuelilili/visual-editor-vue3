@@ -12225,13 +12225,26 @@ const _i = /* @__PURE__ */ L({
         click: () => {
         }
       })
+    },
+    builtInComsControlView: {
+      type: Boolean,
+      default: !1
+    },
+    builtInComs: {
+      type: Array
     }
   },
   setup(e) {
     let t = {};
-    return e.componentLists.filter((n) => n.disabled == null ? !0 : !n.disabled).forEach((n) => {
+    e.componentLists.filter((n) => n.disabled == null ? !0 : !n.disabled).forEach((n) => {
       t[n.group] || (t[n.group] = []), t[n.group].push(n);
-    }), () => c(je, null, [Object.keys(t).map((n) => c("div", {
+    });
+    for (let n in t)
+      t[n] = t[n].filter((l, o) => {
+        var r;
+        return e.builtInComsControlView ? (r = e.builtInComs) == null ? void 0 : r.includes(l.name) : !0;
+      }), (!t[n] || !t[n].length) && delete t[n];
+    return () => c(je, null, [Object.keys(t).map((n) => c("div", {
       class: "group-container"
     }, [c("div", {
       class: "title"
@@ -13027,7 +13040,7 @@ const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-0e3e6447"]]), Ib = {
   name: "baseSuccess",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726294902723b41a17262949027235096_ss.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726294902723b41a17262949027235096_ss.png",
-  hide: !0,
+  hide: !1,
   render: (e) => {
     let t = e.props;
     return c(Bb, {
@@ -16509,6 +16522,11 @@ const q_ = /* @__PURE__ */ Ce(R_, [["__scopeId", "data-v-d6c03a7c"]]), H_ = /* @
     debug: {
       type: Boolean,
       default: !1
+    },
+    builtInComsControlView: {
+      // 通过传入的组件强控制显示与否
+      type: Boolean,
+      default: !1
     }
   },
   emits: ["update:modelValue"],
@@ -16745,7 +16763,10 @@ const q_ = /* @__PURE__ */ Ce(R_, [["__scopeId", "data-v-d6c03a7c"]]), H_ = /* @
       class: ["visual-com-group", e.visableNavbar ? "" : "visual-com-group-not-navbar"]
     }, [D.value == "1" ? c(_i, {
       componentLists: Le == null ? void 0 : Le.componentLists,
-      menuDragInfo: v
+      menuDragInfo: v,
+      builtInComsControlView: e.builtInComsControlView,
+      key: e == null ? void 0 : e.builtInComs,
+      builtInComs: e.builtInComs
     }, null) : c("div", null, [n.tempList && n.tempList()])])]), c("div", {
       class: "visual-editor-area-body"
     }, [c("div", {

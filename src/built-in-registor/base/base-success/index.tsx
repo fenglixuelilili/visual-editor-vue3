@@ -7,7 +7,7 @@ export default {
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726294902723b41a17262949027235096_ss.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726294902723b41a17262949027235096_ss.png",
-  hide: true,
+  hide: false,
   render: (block) => {
     let props = block.props
     return createVNode(render, {

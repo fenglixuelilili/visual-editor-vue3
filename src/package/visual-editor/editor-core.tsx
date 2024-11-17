@@ -79,6 +79,11 @@ export const visualEditor = defineComponent({
       type: Boolean,
       default: false,
     },
+    builtInComsControlView: {
+      // 通过传入的组件强控制显示与否
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ["update:modelValue"],
   setup(props, { emit, slots }) {
@@ -679,6 +684,9 @@ export const visualEditor = defineComponent({
                 <renderIconComponents
                   componentLists={editorInstance?.componentLists}
                   menuDragInfo={menuDragInfo}
+                  builtInComsControlView={props.builtInComsControlView}
+                  key={props?.builtInComs}
+                  builtInComs={props.builtInComs}
                 ></renderIconComponents>
               ) : (
                 <div>{slots.tempList && slots.tempList()}</div>
