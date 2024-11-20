@@ -103,7 +103,9 @@
                 }
               }
               &:hover {
-                cursor: pointer;
+                // cursor: pointer;
+                cursor: grab;
+                filter: brightness(90%);
                 .icon-box{
                   background: #E5E8EB;
                   .activeIcon{
@@ -115,6 +117,9 @@
                 }
                 .editor-priview-label {
                 }
+              }
+              &:active{
+                cursor: grabbing;
               }
             }
           }
