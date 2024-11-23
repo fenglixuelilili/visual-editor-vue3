@@ -19,6 +19,7 @@ export default {
       successColor: props.successColor.defaultValue,
       successDescColor: props.successDescColor.defaultValue,
       successBottomColor: props.successBottomColor.defaultValue,
+      successLink: props.successLink.defaultValue,
     })
   },
   // priview: () => <textarea placeholder="请输入内容"></textarea>,
@@ -59,6 +60,11 @@ export default {
     successBottomText: {
       defaultValue: "关注公众号，了解更多",
       label: "相关提示信息",
+      type: "input",
+    },
+    successLink: {
+      defaultValue: "",
+      label: "跳转链接",
       type: "input",
     },
     successBottomColor: {
