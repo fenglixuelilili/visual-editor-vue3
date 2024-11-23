@@ -90,6 +90,72 @@
 
 # api
 
-# 核心组件
+# 开始
 
-# 开发组件
+## 打包
+
+## 使用
+
+## 注意事项
+
+# 内置组件
+
+# 开发自定义组件
+
+## 一个组件的基本构成规则
+
+## 基础属性
+
+```javascript
+  props: {
+    successSrc: {
+      defaultValue:
+        "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262956483528fb5172629564835229384_succ.png",
+      label: "成功图标",
+      type: "imgUpload",
+    }
+  }
+```
+
+- type 控制器中的类型解析成什么组件，如果不写 type 则不渲染（一般用于自定义渲染，见下文）
+  color：颜色取值组件
+  input：输入框组件
+  textarea: 文本与输入组件
+  imgUpload：基础上传组件
+  number： 数字输入框
+  select: 下拉选择，配合 options 使用，例如下面这个例子
+
+  ```javascript
+    // 一个选择字体类型的控制器
+    fontFamily: {
+      label: "字体",
+      defaultValue: '"SF Pro Display"',
+      type: "select",
+      options: [
+        // "SF Pro Display",无衬线体 Roboto,Noto,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif
+        {
+          name: "跟随系统",
+          value: '"SF Pro Display"',
+        },
+        {
+          name: "微软雅黑",
+          value: '"Microsoft YaHei"',
+        },
+        {
+          name: "平方",
+          value: '"PingFang SC"',
+        },
+        {
+          name: "无衬线",
+          value: '"sans-serif"',
+        },
+      ],
+    }
+  ```
+
+- defaultValue
+  这个属性用于传递默认值
+- label
+  就是 title
+
+## 自定义属性与高级用法
