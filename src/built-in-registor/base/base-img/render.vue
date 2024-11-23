@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-built-in-registor-base-img">
+  <div class="editor-built-in-registor-base-img" :style="style">
     <img class="render-img" :src="src" alt="" v-if="src" />
     <div class="empty" v-else>请在控制器中上传图片+</div>
   </div>
@@ -9,6 +9,10 @@ const props = defineProps({
   src: {
     type: String,
     default: "",
+  },
+  style: {
+    type: Object,
+    default: () => ({}),
   },
 })
 </script>
