@@ -19,7 +19,7 @@ export default {
       successColor: props.successColor.defaultValue,
       successDescColor: props.successDescColor.defaultValue,
       successBottomColor: props.successBottomColor.defaultValue,
-      successLink: props.successLink.defaultValue,
+      successLink: props?.successLink ? props.successLink.defaultValue : "",
     })
   },
   // priview: () => <textarea placeholder="请输入内容"></textarea>,

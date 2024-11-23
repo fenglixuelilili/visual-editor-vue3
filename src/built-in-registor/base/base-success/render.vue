@@ -15,7 +15,7 @@
     <div class="successQR">
       <img :src="successQR" alt="" />
     </div>
-    <div class="successBottomText">
+    <div class="successBottomText" @click="goLink">
       <span :style="{ color: successBottomColor }">
         {{ successBottomText }}
       </span>
@@ -58,6 +58,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  successLink: {
+    type: String,
+    default: "",
+  },
 })
 onMounted(() => {
   let visualEditorAreaContent = document.querySelector(
@@ -68,6 +72,18 @@ onMounted(() => {
     ? visualEditorAreaContent?.offsetHeight
     : 600
 })
+function goLink() {
+  const inputString: string = props.successLink
+  // 正则表达式模式，用于匹配 URL
+  const urlPattern = /https?:\/\/[^\s]+/
+  // 使用正则表达式匹配 URL
+  const firstUrl = inputString.match(urlPattern)
+    ? (inputString.match(urlPattern) as string[])[0]
+    : null
+  if (firstUrl) {
+    window.open(firstUrl)
+  }
+}
 </script>
 <style lang="scss" scoped>
 .editor-built-in-registor-base-success {

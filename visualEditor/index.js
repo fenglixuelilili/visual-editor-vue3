@@ -12966,9 +12966,7 @@ const _b = /* @__PURE__ */ Ce(yb, [["__scopeId", "data-v-5fff6b35"]]), $b = {
   class: "successDesc"
 }, Vb = {
   class: "successQR"
-}, Ob = ["src"], Eb = {
-  class: "successBottomText"
-}, xb = /* @__PURE__ */ L({
+}, Ob = ["src"], Eb = /* @__PURE__ */ L({
   __name: "render",
   props: {
     successSrc: {
@@ -13002,17 +13000,27 @@ const _b = /* @__PURE__ */ Ce(yb, [["__scopeId", "data-v-5fff6b35"]]), $b = {
     successBottomColor: {
       type: String,
       default: ""
+    },
+    successLink: {
+      type: String,
+      default: ""
     }
   },
   setup(e) {
-    let t = I(0);
-    return Ee(() => {
-      let n = document.querySelector(".visual-editor-area-content");
-      console.log(n.offsetHeight), t.value = n != null && n.offsetHeight ? n == null ? void 0 : n.offsetHeight : 600;
-    }), (n, l) => (y(), x("div", {
+    const t = e;
+    let n = I(0);
+    Ee(() => {
+      let o = document.querySelector(".visual-editor-area-content");
+      console.log(o.offsetHeight), n.value = o != null && o.offsetHeight ? o == null ? void 0 : o.offsetHeight : 600;
+    });
+    function l() {
+      const o = t.successLink, r = /https?:\/\/[^\s]+/, a = o.match(r) ? o.match(r)[0] : null;
+      a && window.open(a);
+    }
+    return (o, r) => (y(), x("div", {
       class: "editor-built-in-registor-base-success",
       style: pe({
-        height: ji(t) + "px"
+        height: ji(n) + "px"
       })
     }, [p("div", wb, [p("img", {
       src: e.successSrc,
@@ -13028,14 +13036,17 @@ const _b = /* @__PURE__ */ Ce(yb, [["__scopeId", "data-v-5fff6b35"]]), $b = {
     }, ve(e.successDesc), 5)]), p("div", Vb, [p("img", {
       src: e.successQR,
       alt: ""
-    }, null, 8, Ob)]), p("div", Eb, [p("span", {
+    }, null, 8, Ob)]), p("div", {
+      class: "successBottomText",
+      onClick: l
+    }, [p("span", {
       style: pe({
         color: e.successBottomColor
       })
     }, ve(e.successBottomText), 5)])], 4));
   }
 });
-const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-837d1f06"]]), Ib = {
+const xb = /* @__PURE__ */ Ce(Eb, [["__scopeId", "data-v-ee4a195b"]]), Bb = {
   group: "基础组件",
   name: "baseSuccess",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726294902723b41a17262949027235096_ss.png",
@@ -13043,7 +13054,7 @@ const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-837d1f06"]]), Ib = {
   hide: !1,
   render: (e) => {
     let t = e.props;
-    return c(Bb, {
+    return c(xb, {
       successSrc: t.successSrc.defaultValue,
       successText: t.successText.defaultValue,
       successDesc: t.successDesc.defaultValue,
@@ -13051,7 +13062,8 @@ const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-837d1f06"]]), Ib = {
       successBottomText: t.successBottomText.defaultValue,
       successColor: t.successColor.defaultValue,
       successDescColor: t.successDescColor.defaultValue,
-      successBottomColor: t.successBottomColor.defaultValue
+      successBottomColor: t.successBottomColor.defaultValue,
+      successLink: t != null && t.successLink ? t.successLink.defaultValue : ""
     });
   },
   // priview: () => <textarea placeholder="请输入内容"></textarea>,
@@ -13092,6 +13104,11 @@ const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-837d1f06"]]), Ib = {
       label: "相关提示信息",
       type: "input"
     },
+    successLink: {
+      defaultValue: "",
+      label: "跳转链接",
+      type: "input"
+    },
     successBottomColor: {
       defaultValue: "#fff",
       label: "相关提示信息文字颜色",
@@ -13099,25 +13116,25 @@ const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-837d1f06"]]), Ib = {
     }
   },
   controlView: (e, t) => c("div", null, null)
-}, Pb = (e) => (He("data-v-01b7c41b"), e = e(), We(), e), jb = {
+}, Ib = (e) => (He("data-v-01b7c41b"), e = e(), We(), e), Pb = {
   class: "title-tip"
-}, Tb = {
+}, jb = {
   key: 0,
   class: "red"
-}, Mb = {
+}, Tb = {
   key: 0,
   class: "base-tip",
   style: {
     "margin-top": "8px",
     "margin-bottom": "2px"
   }
-}, Db = {
+}, Mb = {
   class: "form-item"
-}, zb = /* @__PURE__ */ Pb(() => /* @__PURE__ */ p("div", {
+}, Db = /* @__PURE__ */ Ib(() => /* @__PURE__ */ p("div", {
   class: "control-input"
-}, null, -1)), Ab = {
+}, null, -1)), zb = {
   class: "text"
-}, Lb = /* @__PURE__ */ L({
+}, Ab = /* @__PURE__ */ L({
   __name: "render",
   props: {
     style: {
@@ -13145,13 +13162,13 @@ const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-837d1f06"]]), Ib = {
     return (t, n) => (y(), x("div", {
       class: "editor-built-in-commen-multiple",
       style: pe(e.style)
-    }, [p("div", jb, [e.isRequire ? (y(), x("span", Tb, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", Mb, ve(e.tip), 1)) : ee("", !0), p("div", Db, [(y(!0), x(je, null, bt(e.options, (l, o) => (y(), x("div", {
+    }, [p("div", Pb, [e.isRequire ? (y(), x("span", jb, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", Tb, ve(e.tip), 1)) : ee("", !0), p("div", Mb, [(y(!0), x(je, null, bt(e.options, (l, o) => (y(), x("div", {
       class: "item",
       key: o
-    }, [zb, p("div", Ab, ve(l.name ? l.name : "请填写内容"), 1)]))), 128))])], 4));
+    }, [Db, p("div", zb, ve(l.name ? l.name : "请填写内容"), 1)]))), 128))])], 4));
   }
 });
-const Fb = /* @__PURE__ */ Ce(Lb, [["__scopeId", "data-v-01b7c41b"]]);
+const Lb = /* @__PURE__ */ Ce(Ab, [["__scopeId", "data-v-01b7c41b"]]);
 /**!
  * Sortable 1.15.3
  * @author	RubaXa   <trash@rubaxa.org>
@@ -13172,7 +13189,7 @@ function St(e) {
   for (var t = 1; t < arguments.length; t++) {
     var n = arguments[t] != null ? arguments[t] : {};
     t % 2 ? $i(Object(n), !0).forEach(function(l) {
-      Nb(e, l, n[l]);
+      Fb(e, l, n[l]);
     }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n)) : $i(Object(n)).forEach(function(l) {
       Object.defineProperty(e, l, Object.getOwnPropertyDescriptor(n, l));
     });
@@ -13186,7 +13203,7 @@ function yl(e) {
     return t && typeof Symbol == "function" && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;
   }, yl(e);
 }
-function Nb(e, t, n) {
+function Fb(e, t, n) {
   return t in e ? Object.defineProperty(e, t, {
     value: n,
     enumerable: !0,
@@ -13204,7 +13221,7 @@ function It() {
     return e;
   }, It.apply(this, arguments);
 }
-function Rb(e, t) {
+function Nb(e, t) {
   if (e == null)
     return {};
   var n = {}, l = Object.keys(e), o, r;
@@ -13212,10 +13229,10 @@ function Rb(e, t) {
     o = l[r], !(t.indexOf(o) >= 0) && (n[o] = e[o]);
   return n;
 }
-function qb(e, t) {
+function Rb(e, t) {
   if (e == null)
     return {};
-  var n = Rb(e, t), l, o;
+  var n = Nb(e, t), l, o;
   if (Object.getOwnPropertySymbols) {
     var r = Object.getOwnPropertySymbols(e);
     for (o = 0; o < r.length; o++)
@@ -13223,7 +13240,7 @@ function qb(e, t) {
   }
   return n;
 }
-var Hb = "1.15.3";
+var qb = "1.15.3";
 function Bt(e) {
   if (typeof window < "u" && window.navigator)
     return !!/* @__PURE__ */ navigator.userAgent.match(e);
@@ -13382,7 +13399,7 @@ function Si(e) {
     } while (e !== l && (e = e.parentNode));
   return [t, n];
 }
-function Wb(e, t) {
+function Hb(e, t) {
   for (var n in e)
     if (e.hasOwnProperty(n)) {
       for (var l in t)
@@ -13409,7 +13426,7 @@ function Nt(e, t) {
   while (n = n.parentNode);
   return wt();
 }
-function Ub(e, t) {
+function Wb(e, t) {
   if (e && t)
     for (var n in t)
       t.hasOwnProperty(n) && (e[n] = t[n]);
@@ -13429,7 +13446,7 @@ function Is(e, t) {
     }
   };
 }
-function Kb() {
+function Ub() {
   clearTimeout(Fn), Fn = void 0;
 }
 function Ps(e, t, n) {
@@ -13450,7 +13467,7 @@ function Ts(e, t, n) {
   }), l.width = l.right - l.left, l.height = l.bottom - l.top, l.x = l.left, l.y = l.top, l;
 }
 var st = "Sortable" + new Date().getTime();
-function Gb() {
+function Kb() {
   var e = [], t;
   return {
     captureAnimationState: function() {
@@ -13476,7 +13493,7 @@ function Gb() {
       e.push(l);
     },
     removeAnimationState: function(l) {
-      e.splice(Wb(e, {
+      e.splice(Hb(e, {
         target: l
       }), 1);
     },
@@ -13490,7 +13507,7 @@ function Gb() {
       e.forEach(function(i) {
         var s = 0, u = i.target, d = u.fromRect, f = Re(u), m = u.prevFromRect, v = u.prevToRect, g = i.rect, _ = yn(u, !0);
         _ && (f.top -= _.f, f.left -= _.e), u.toRect = f, u.thisAnimationDuration && Yo(m, f) && !Yo(d, f) && // Make sure animatingRect is on line between toRect & fromRect
-        (g.top - f.top) / (g.left - f.left) === (d.top - f.top) / (d.left - f.left) && (s = Xb(g, m, v, o.options)), Yo(f, d) || (u.prevFromRect = d, u.prevToRect = f, s || (s = o.options.animation), o.animate(u, g, f, s)), s && (r = !0, a = Math.max(a, s), clearTimeout(u.animationResetTimer), u.animationResetTimer = setTimeout(function() {
+        (g.top - f.top) / (g.left - f.left) === (d.top - f.top) / (d.left - f.left) && (s = Yb(g, m, v, o.options)), Yo(f, d) || (u.prevFromRect = d, u.prevToRect = f, s || (s = o.options.animation), o.animate(u, g, f, s)), s && (r = !0, a = Math.max(a, s), clearTimeout(u.animationResetTimer), u.animationResetTimer = setTimeout(function() {
           u.animationTime = 0, u.prevFromRect = null, u.fromRect = null, u.prevToRect = null, u.thisAnimationDuration = null;
         }, s), u.thisAnimationDuration = s);
       }), clearTimeout(t), r ? t = setTimeout(function() {
@@ -13501,17 +13518,17 @@ function Gb() {
       if (a) {
         de(l, "transition", ""), de(l, "transform", "");
         var i = yn(this.el), s = i && i.a, u = i && i.d, d = (o.left - r.left) / (s || 1), f = (o.top - r.top) / (u || 1);
-        l.animatingX = !!d, l.animatingY = !!f, de(l, "transform", "translate3d(" + d + "px," + f + "px,0)"), this.forRepaintDummy = Yb(l), de(l, "transition", "transform " + a + "ms" + (this.options.easing ? " " + this.options.easing : "")), de(l, "transform", "translate3d(0,0,0)"), typeof l.animated == "number" && clearTimeout(l.animated), l.animated = setTimeout(function() {
+        l.animatingX = !!d, l.animatingY = !!f, de(l, "transform", "translate3d(" + d + "px," + f + "px,0)"), this.forRepaintDummy = Gb(l), de(l, "transition", "transform " + a + "ms" + (this.options.easing ? " " + this.options.easing : "")), de(l, "transform", "translate3d(0,0,0)"), typeof l.animated == "number" && clearTimeout(l.animated), l.animated = setTimeout(function() {
           de(l, "transition", ""), de(l, "transform", ""), l.animated = !1, l.animatingX = !1, l.animatingY = !1;
         }, a);
       }
     }
   };
 }
-function Yb(e) {
+function Gb(e) {
   return e.offsetWidth;
 }
-function Xb(e, t, n, l) {
+function Yb(e, t, n, l) {
   return Math.sqrt(Math.pow(t.top - e.top, 2) + Math.pow(t.left - e.left, 2)) / Math.sqrt(Math.pow(t.top - n.top, 2) + Math.pow(t.left - n.left, 2)) * l.animation;
 }
 var cn = [], Xo = {
@@ -13566,7 +13583,7 @@ var cn = [], Xo = {
     }), o;
   }
 };
-function Zb(e) {
+function Xb(e) {
   var t = e.sortable, n = e.rootEl, l = e.name, o = e.targetEl, r = e.cloneEl, a = e.toEl, i = e.fromEl, s = e.oldIndex, u = e.newIndex, d = e.oldDraggableIndex, f = e.newDraggableIndex, m = e.originalEvent, v = e.putSortable, g = e.extraEventProperties;
   if (t = t || n && n[st], !!t) {
     var _, z = t.options, P = "on" + l.charAt(0).toUpperCase() + l.substr(1);
@@ -13580,8 +13597,8 @@ function Zb(e) {
     n && n.dispatchEvent(_), z[P] && z[P].call(t, _);
   }
 }
-var Qb = ["evt"], it = function(t, n) {
-  var l = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {}, o = l.evt, r = qb(l, Qb);
+var Zb = ["evt"], it = function(t, n) {
+  var l = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {}, o = l.evt, r = Rb(l, Zb);
   el.pluginEvent.bind(ie)(t, n, St({
     dragEl: Q,
     parentEl: De,
@@ -13617,7 +13634,7 @@ var Qb = ["evt"], it = function(t, n) {
   }, r));
 };
 function ot(e) {
-  Zb(St({
+  Xb(St({
     putSortable: Ze,
     cloneEl: Ie,
     targetEl: Q,
@@ -13628,7 +13645,7 @@ function ot(e) {
     newDraggableIndex: At
   }, e));
 }
-var Q, De, he, xe, Qt, _l, Ie, Ft, vn, ct, Nn, At, dl, Ze, fn = !1, Ll = !1, Fl = [], Yt, mt, Zo, Qo, Vi, Oi, jn, dn, Rn, qn = !1, fl = !1, $l, Je, Jo = [], va = !1, Nl = [], eo = typeof document < "u", pl = Vs, Ei = Jn || jt ? "cssFloat" : "float", Jb = eo && !Os && !Vs && "draggable" in document.createElement("div"), Ms = function() {
+var Q, De, he, xe, Qt, _l, Ie, Ft, vn, ct, Nn, At, dl, Ze, fn = !1, Ll = !1, Fl = [], Yt, mt, Zo, Qo, Vi, Oi, jn, dn, Rn, qn = !1, fl = !1, $l, Je, Jo = [], va = !1, Nl = [], eo = typeof document < "u", pl = Vs, Ei = Jn || jt ? "cssFloat" : "float", Qb = eo && !Os && !Vs && "draggable" in document.createElement("div"), Ms = function() {
   if (eo) {
     if (jt)
       return !1;
@@ -13646,10 +13663,10 @@ var Q, De, he, xe, Qt, _l, Ie, Ft, vn, ct, Nn, At, dl, Ze, fn = !1, Ll = !1, Fl 
     return a && (s.clear === "both" || s.clear === f) ? "vertical" : "horizontal";
   }
   return r && (i.display === "block" || i.display === "flex" || i.display === "table" || i.display === "grid" || u >= o && l[Ei] === "none" || a && l[Ei] === "none" && u + d > o) ? "vertical" : "horizontal";
-}, ey = function(t, n, l) {
+}, Jb = function(t, n, l) {
   var o = l ? t.left : t.top, r = l ? t.right : t.bottom, a = l ? t.width : t.height, i = l ? n.left : n.top, s = l ? n.right : n.bottom, u = l ? n.width : n.height;
   return o === i || r === s || o + a / 2 === i + u / 2;
-}, ty = function(t, n) {
+}, ey = function(t, n) {
   var l;
   return Fl.some(function(o) {
     var r = o[st].options.emptyInsertThreshold;
@@ -13691,7 +13708,7 @@ eo && !Os && document.addEventListener("click", function(e) {
 var Xt = function(t) {
   if (Q) {
     t = t.touches ? t.touches[0] : t;
-    var n = ty(t.clientX, t.clientY);
+    var n = ey(t.clientX, t.clientY);
     if (n) {
       var l = {};
       for (var o in t)
@@ -13699,7 +13716,7 @@ var Xt = function(t) {
       l.target = l.rootEl = n, l.preventDefault = void 0, l.stopPropagation = void 0, n[st]._onDragOver(l);
     }
   }
-}, ny = function(t) {
+}, ty = function(t) {
   Q && Q.parentNode[st]._isOutsideThisEl(t.target);
 };
 function ie(e, t) {
@@ -13757,7 +13774,7 @@ function ie(e, t) {
   zs(t);
   for (var o in this)
     o.charAt(0) === "_" && typeof this[o] == "function" && (this[o] = this[o].bind(this));
-  this.nativeDraggable = t.forceFallback ? !1 : Jb, this.nativeDraggable && (this.options.touchStartThreshold = 1), t.supportPointer ? ke(e, "pointerdown", this._onTapStart) : (ke(e, "mousedown", this._onTapStart), ke(e, "touchstart", this._onTapStart)), this.nativeDraggable && (ke(e, "dragover", this), ke(e, "dragenter", this)), Fl.push(this.el), t.store && t.store.get && this.sort(t.store.get(this) || []), It(this, Gb());
+  this.nativeDraggable = t.forceFallback ? !1 : Qb, this.nativeDraggable && (this.options.touchStartThreshold = 1), t.supportPointer ? ke(e, "pointerdown", this._onTapStart) : (ke(e, "mousedown", this._onTapStart), ke(e, "touchstart", this._onTapStart)), this.nativeDraggable && (ke(e, "dragover", this), ke(e, "dragenter", this)), Fl.push(this.el), t.store && t.store.get && this.sort(t.store.get(this) || []), It(this, Kb());
 }
 ie.prototype = /** @lends Sortable.prototype */
 {
@@ -13771,7 +13788,7 @@ ie.prototype = /** @lends Sortable.prototype */
   _onTapStart: function(t) {
     if (t.cancelable) {
       var n = this, l = this.el, o = this.options, r = o.preventOnFilter, a = t.type, i = t.touches && t.touches[0] || t.pointerType && t.pointerType === "touch" && t, s = (i || t).target, u = t.target.shadowRoot && (t.path && t.path[0] || t.composedPath && t.composedPath()[0]) || s, d = o.filter;
-      if (cy(l), !Q && !(/mousedown|pointerdown/.test(a) && t.button !== 0 || o.disabled) && !u.isContentEditable && !(!this.nativeDraggable && Ln && s && s.tagName.toUpperCase() === "SELECT") && (s = gt(s, o.draggable, l, !1), !(s && s.animated) && _l !== s)) {
+      if (uy(l), !Q && !(/mousedown|pointerdown/.test(a) && t.button !== 0 || o.disabled) && !u.isContentEditable && !(!this.nativeDraggable && Ln && s && s.tagName.toUpperCase() === "SELECT") && (s = gt(s, o.draggable, l, !1), !(s && s.animated) && _l !== s)) {
         if (vn = vt(s), Nn = vt(s, o.draggable), typeof d == "function") {
           if (d.call(this, t, s, this)) {
             ot({
@@ -13864,7 +13881,7 @@ ie.prototype = /** @lends Sortable.prototype */
     if (fn = !1, xe && Q) {
       it("dragStarted", this, {
         evt: n
-      }), this.nativeDraggable && ke(document, "dragover", ny);
+      }), this.nativeDraggable && ke(document, "dragover", ty);
       var l = this.options;
       !t && ut(Q, l.dragClass, !1), ut(Q, l.ghostClass, !0), ie.active = this, t && this._appendGhost(), ot({
         sortable: this,
@@ -13998,12 +14015,12 @@ ie.prototype = /** @lends Sortable.prototype */
       if (a)
         return De = xe, P(), this._hideClone(), z("revert"), ie.eventCanceled || (Qt ? xe.insertBefore(Q, Qt) : xe.appendChild(Q)), V(!0);
       var k = Na(n, i.draggable);
-      if (!k || ry(t, v, this) && !k.animated) {
+      if (!k || ay(t, v, this) && !k.animated) {
         if (k === Q)
           return V(!1);
         if (k && n === t.target && (l = k), l && (r = Re(l)), vl(xe, n, Q, o, l, r, t, !!l) !== !1)
           return P(), k && k.nextSibling ? n.insertBefore(Q, k.nextSibling) : n.appendChild(Q), De = n, S(), V(!0);
-      } else if (k && ay(t, v, this)) {
+      } else if (k && oy(t, v, this)) {
         var D = kn(n, 0, i, !0);
         if (D === Q)
           return V(!1);
@@ -14011,8 +14028,8 @@ ie.prototype = /** @lends Sortable.prototype */
           return P(), n.insertBefore(Q, D), De = n, S(), V(!0);
       } else if (l.parentNode === n) {
         r = Re(l);
-        var w = 0, O, F = Q.parentNode !== n, q = !ey(Q.animated && Q.toRect || o, l.animated && l.toRect || r, v), E = v ? "top" : "left", b = Ci(l, "top", "top") || Ci(Q, "top", "top"), B = b ? b.scrollTop : void 0;
-        dn !== l && (O = r[E], qn = !1, fl = !q && i.invertSwap || F), w = iy(t, l, r, v, q ? 1 : i.swapThreshold, i.invertedSwapThreshold == null ? i.swapThreshold : i.invertedSwapThreshold, fl, dn === l);
+        var w = 0, O, F = Q.parentNode !== n, q = !Jb(Q.animated && Q.toRect || o, l.animated && l.toRect || r, v), E = v ? "top" : "left", b = Ci(l, "top", "top") || Ci(Q, "top", "top"), B = b ? b.scrollTop : void 0;
+        dn !== l && (O = r[E], qn = !1, fl = !q && i.invertSwap || F), w = ry(t, l, r, v, q ? 1 : i.swapThreshold, i.invertedSwapThreshold == null ? i.swapThreshold : i.invertedSwapThreshold, fl, dn === l);
         var $;
         if (w !== 0) {
           var H = vt(Q);
@@ -14027,7 +14044,7 @@ ie.prototype = /** @lends Sortable.prototype */
         W = w === 1;
         var Z = vl(xe, n, Q, o, l, r, t, W);
         if (Z !== !1)
-          return (Z === 1 || Z === -1) && (W = Z === 1), va = !0, setTimeout(oy, 30), P(), W && !Y ? n.appendChild(Q) : l.parentNode.insertBefore(Q, W ? Y : l), b && Ps(b, 0, B - b.scrollTop), De = Q.parentNode, O !== void 0 && !fl && ($l = Math.abs(O - Re(l)[E])), S(), V(!0);
+          return (Z === 1 || Z === -1) && (W = Z === 1), va = !0, setTimeout(ly, 30), P(), W && !Y ? n.appendChild(Q) : l.parentNode.insertBefore(Q, W ? Y : l), b && Ps(b, 0, B - b.scrollTop), De = Q.parentNode, O !== void 0 && !fl && ($l = Math.abs(O - Re(l)[E])), S(), V(!0);
       }
       if (n.contains(Q))
         return V(!1);
@@ -14109,7 +14126,7 @@ ie.prototype = /** @lends Sortable.prototype */
         break;
       case "dragenter":
       case "dragover":
-        Q && (this._onDragOver(t), ly(t));
+        Q && (this._onDragOver(t), ny(t));
         break;
       case "selectstart":
         t.preventDefault();
@@ -14122,7 +14139,7 @@ ie.prototype = /** @lends Sortable.prototype */
    */
   toArray: function() {
     for (var t = [], n, l = this.el.children, o = 0, r = l.length, a = this.options; o < r; o++)
-      n = l[o], gt(n, a.draggable, this.el, !1) && t.push(n.getAttribute(a.dataIdAttr) || uy(n));
+      n = l[o], gt(n, a.draggable, this.el, !1) && t.push(n.getAttribute(a.dataIdAttr) || sy(n));
     return t;
   },
   /**
@@ -14196,7 +14213,7 @@ ie.prototype = /** @lends Sortable.prototype */
     }
   }
 };
-function ly(e) {
+function ny(e) {
   e.dataTransfer && (e.dataTransfer.dropEffect = "move"), e.cancelable && e.preventDefault();
 }
 function vl(e, t, n, l, o, r, a, i) {
@@ -14209,18 +14226,18 @@ function vl(e, t, n, l, o, r, a, i) {
 function ea(e) {
   e.draggable = !1;
 }
-function oy() {
+function ly() {
   va = !1;
 }
-function ay(e, t, n) {
+function oy(e, t, n) {
   var l = Re(kn(n.el, 0, n.options, !0)), o = Ts(n.el, n.options, he), r = 10;
   return t ? e.clientX < o.left - r || e.clientY < l.top && e.clientX < l.right : e.clientY < o.top - r || e.clientY < l.bottom && e.clientX < l.left;
 }
-function ry(e, t, n) {
+function ay(e, t, n) {
   var l = Re(Na(n.el, n.options.draggable)), o = Ts(n.el, n.options, he), r = 10;
   return t ? e.clientX > o.right + r || e.clientY > l.bottom && e.clientX > l.left : e.clientY > o.bottom + r || e.clientX > l.right && e.clientY > l.top;
 }
-function iy(e, t, n, l, o, r, a, i) {
+function ry(e, t, n, l, o, r, a, i) {
   var s = l ? e.clientY : e.clientX, u = l ? n.height : n.width, d = l ? n.top : n.left, f = l ? n.bottom : n.right, m = !1;
   if (!a) {
     if (i && $l < u * o) {
@@ -14229,19 +14246,19 @@ function iy(e, t, n, l, o, r, a, i) {
       else if (Rn === 1 ? s < d + $l : s > f - $l)
         return -Rn;
     } else if (s > d + u * (1 - o) / 2 && s < f - u * (1 - o) / 2)
-      return sy(t);
+      return iy(t);
   }
   return m = m || a, m && (s < d + u * r / 2 || s > f - u * r / 2) ? s > d + u / 2 ? 1 : -1 : 0;
 }
-function sy(e) {
+function iy(e) {
   return vt(Q) < vt(e) ? 1 : -1;
 }
-function uy(e) {
+function sy(e) {
   for (var t = e.tagName + e.className + e.src + e.href + e.textContent, n = t.length, l = 0; n--; )
     l += t.charCodeAt(n);
   return l.toString(36);
 }
-function cy(e) {
+function uy(e) {
   Nl.length = 0;
   for (var t = e.getElementsByTagName("input"), n = t.length; n--; ) {
     var l = t[n];
@@ -14265,7 +14282,7 @@ ie.utils = {
   is: function(t, n) {
     return !!gt(t, n, t, !1);
   },
-  extend: Ub,
+  extend: Wb,
   throttle: Is,
   closest: gt,
   toggleClass: ut,
@@ -14292,9 +14309,9 @@ ie.mount = function() {
 ie.create = function(e, t) {
   return new ie(e, t);
 };
-ie.version = Hb;
+ie.version = qb;
 var Ne = [], Tn, ma, ga = !1, ta, na, Rl, Mn;
-function dy() {
+function cy() {
   function e() {
     this.defaults = {
       scroll: !0,
@@ -14316,7 +14333,7 @@ function dy() {
       !this.options.dragOverBubble && !l.rootEl && this._handleAutoScroll(l);
     },
     drop: function() {
-      this.sortable.nativeDraggable ? _e(document, "dragover", this._handleAutoScroll) : (_e(document, "pointermove", this._handleFallbackAutoScroll), _e(document, "touchmove", this._handleFallbackAutoScroll), _e(document, "mousemove", this._handleFallbackAutoScroll)), xi(), kl(), Kb();
+      this.sortable.nativeDraggable ? _e(document, "dragover", this._handleAutoScroll) : (_e(document, "pointermove", this._handleFallbackAutoScroll), _e(document, "touchmove", this._handleFallbackAutoScroll), _e(document, "mousemove", this._handleFallbackAutoScroll)), xi(), kl(), Ub();
     },
     nulling: function() {
       Rl = ma = Tn = ga = Mn = ta = na = null, Ne.length = 0;
@@ -14419,51 +14436,51 @@ qa.prototype = {
 It(qa, {
   pluginName: "removeOnSpill"
 });
-ie.mount(new dy());
+ie.mount(new cy());
 ie.mount(qa, Ra);
-const Tt = (e) => (He("data-v-09483bfa"), e = e(), We(), e), fy = {
+const Tt = (e) => (He("data-v-09483bfa"), e = e(), We(), e), dy = {
   class: "editor-built-in-control-commen-multiple"
-}, py = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("div", {
+}, fy = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("div", {
   class: "h-line"
-}, null, -1)), vy = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("div", {
+}, null, -1)), py = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("div", {
   class: "group-title"
-}, "选项", -1)), hy = {
+}, "选项", -1)), vy = {
   class: "flex mt24 options"
-}, my = {
+}, hy = {
   class: "select-group"
-}, gy = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("div", {
+}, my = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("div", {
   class: "drag"
 }, [/* @__PURE__ */ p("div", {
   class: "line"
 }), /* @__PURE__ */ p("div", {
   class: "line"
-})], -1)), by = ["onClick"], yy = {
+})], -1)), gy = ["onClick"], by = {
   class: "add-btn"
-}, _y = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("img", {
+}, yy = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("img", {
   style: {
     width: "16px"
   },
   src: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17261384607181c8a172613846071854799_add.png",
   alt: ""
-}, null, -1)), $y = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("span", null, "添加选项", -1)), wy = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("div", {
+}, null, -1)), _y = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("span", null, "添加选项", -1)), $y = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("div", {
   class: "group-title mt24"
-}, "校验", -1)), ky = {
+}, "校验", -1)), wy = {
   class: "flex mt24 options"
-}, Cy = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("span", {
+}, ky = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "设为必填", -1)), Sy = {
+}, "设为必填", -1)), Cy = {
   class: "flex mt24 options"
-}, Vy = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("span", {
+}, Sy = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "最少选择数", -1)), Oy = {
+}, "最少选择数", -1)), Vy = {
   class: "pl24"
-}, Ey = {
+}, Oy = {
   class: "flex mt24 options"
-}, xy = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("span", {
+}, Ey = /* @__PURE__ */ Tt(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "最多选择数", -1)), By = {
+}, "最多选择数", -1)), xy = {
   class: "pl24"
-}, Iy = /* @__PURE__ */ L({
+}, By = /* @__PURE__ */ L({
   __name: "control",
   props: {
     block: {
@@ -14638,10 +14655,10 @@ const Tt = (e) => (He("data-v-09483bfa"), e = e(), We(), e), fy = {
       });
     }), (a, i) => {
       const s = Kt, u = wn, d = $t;
-      return y(), x("div", fy, [py, vy, p("div", hy, [p("ul", my, [(y(!0), x(je, null, bt(e.block.props.options.defaultValue, (f, m) => (y(), x("li", {
+      return y(), x("div", dy, [fy, py, p("div", vy, [p("ul", hy, [(y(!0), x(je, null, bt(e.block.props.options.defaultValue, (f, m) => (y(), x("li", {
         key: f.key,
         class: "useDrag"
-      }, [gy, c(s, {
+      }, [my, c(s, {
         placeholder: "请输入选项内容",
         style: {
           width: "198px"
@@ -14652,18 +14669,18 @@ const Tt = (e) => (He("data-v-09483bfa"), e = e(), We(), e), fy = {
       }, null, 8, ["modelValue", "onUpdate:modelValue", "onInput"]), p("div", {
         class: "del",
         onClick: (v) => o(m)
-      }, null, 8, by)]))), 128)), p("div", yy, [c(u, {
+      }, null, 8, gy)]))), 128)), p("div", by, [c(u, {
         style: {
           width: "254px"
         },
         onClick: r
       }, {
-        default: le(() => [_y, $y]),
+        default: le(() => [yy, _y]),
         _: 1
-      })])])]), wy, p("div", ky, [Cy, p("div", null, [c(d, {
+      })])])]), $y, p("div", wy, [ky, p("div", null, [c(d, {
         "default-checked": e.block.props.isRequire.defaultValue == "1",
         onChange: i[0] || (i[0] = (f) => n(f, "isRequire"))
-      }, null, 8, ["default-checked"])])]), p("div", Sy, [Vy, p("div", Oy, [c(s, {
+      }, null, 8, ["default-checked"])])]), p("div", Cy, [Sy, p("div", Vy, [c(s, {
         modelValue: e.block.props.selectMin.defaultValue,
         "onUpdate:modelValue": i[1] || (i[1] = (f) => e.block.props.selectMin.defaultValue = f),
         placeholder: "不限制",
@@ -14672,7 +14689,7 @@ const Tt = (e) => (He("data-v-09483bfa"), e = e(), We(), e), fy = {
       }, {
         append: le(() => [ye(" 项 ")]),
         _: 1
-      }, 8, ["modelValue"])])]), p("div", Ey, [xy, p("div", By, [c(s, {
+      }, 8, ["modelValue"])])]), p("div", Oy, [Ey, p("div", xy, [c(s, {
         modelValue: e.block.props.selectMax.defaultValue,
         "onUpdate:modelValue": i[2] || (i[2] = (f) => e.block.props.selectMax.defaultValue = f),
         placeholder: "不限制",
@@ -14685,7 +14702,7 @@ const Tt = (e) => (He("data-v-09483bfa"), e = e(), We(), e), fy = {
     };
   }
 });
-const Py = /* @__PURE__ */ Ce(Iy, [["__scopeId", "data-v-09483bfa"]]), jy = {
+const Iy = /* @__PURE__ */ Ce(By, [["__scopeId", "data-v-09483bfa"]]), Py = {
   group: "个人信息（自定义）",
   name: "commenMultiple",
   // formItemField: "1",
@@ -14695,7 +14712,7 @@ const Py = /* @__PURE__ */ Ce(Iy, [["__scopeId", "data-v-09483bfa"]]), jy = {
   render: (e) => {
     var n;
     let t = e.props;
-    return c(Fb, {
+    return c(Lb, {
       style: {},
       title: t.title.defaultValue,
       tip: (n = t == null ? void 0 : t.tip) != null && n.defaultValue ? t.tip.defaultValue : "",
@@ -14737,29 +14754,29 @@ const Py = /* @__PURE__ */ Ce(Iy, [["__scopeId", "data-v-09483bfa"]]), jy = {
       defaultValue: ""
     }
   },
-  controlView: (e, t) => c(Py, {
+  controlView: (e, t) => c(Iy, {
     block: e
   })
-}, Ty = (e) => (He("data-v-97d898bf"), e = e(), We(), e), My = {
+}, jy = (e) => (He("data-v-97d898bf"), e = e(), We(), e), Ty = {
   class: "title-tip"
-}, Dy = {
+}, My = {
   key: 0,
   class: "red"
-}, zy = {
+}, Dy = {
   key: 0,
   class: "base-tip",
   style: {
     "margin-top": "8px",
     "margin-bottom": "12px"
   }
-}, Ay = {
+}, zy = {
   class: "form-item"
-}, Ly = /* @__PURE__ */ Ty(() => /* @__PURE__ */ p("div", {
+}, Ay = /* @__PURE__ */ jy(() => /* @__PURE__ */ p("div", {
   class: "right"
 }, [/* @__PURE__ */ p("img", {
   src: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262332381814dfe172623323818180331_right%20(1).png",
   alt: ""
-})], -1)), Fy = /* @__PURE__ */ L({
+})], -1)), Ly = /* @__PURE__ */ L({
   __name: "render",
   props: {
     style: {
@@ -14794,43 +14811,43 @@ const Py = /* @__PURE__ */ Ce(Iy, [["__scopeId", "data-v-09483bfa"]]), jy = {
     return (n, l) => (y(), x("div", {
       class: "editor-built-in-commen-radio",
       style: pe(e.style)
-    }, [p("div", My, [e.isRequire ? (y(), x("span", Dy, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", zy, ve(e.tip), 1)) : ee("", !0), p("div", Ay, [p("div", {
+    }, [p("div", Ty, [e.isRequire ? (y(), x("span", My, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", Dy, ve(e.tip), 1)) : ee("", !0), p("div", zy, [p("div", {
       class: "item",
       onClick: t
-    }, [p("span", null, ve(e.placeholder), 1), Ly])])], 4));
+    }, [p("span", null, ve(e.placeholder), 1), Ay])])], 4));
   }
 });
-const Ny = /* @__PURE__ */ Ce(Fy, [["__scopeId", "data-v-97d898bf"]]), rn = (e) => (He("data-v-6565436c"), e = e(), We(), e), Ry = {
+const Fy = /* @__PURE__ */ Ce(Ly, [["__scopeId", "data-v-97d898bf"]]), rn = (e) => (He("data-v-6565436c"), e = e(), We(), e), Ny = {
   class: "editor-built-in-control-commen-radio"
-}, qy = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("div", {
+}, Ry = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("div", {
   class: "h-line"
-}, null, -1)), Hy = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("div", {
+}, null, -1)), qy = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("div", {
   class: "group-title"
-}, "选项", -1)), Wy = {
+}, "选项", -1)), Hy = {
   class: "flex mt24 options"
-}, Uy = {
+}, Wy = {
   class: "select-group"
-}, Ky = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("div", {
+}, Uy = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("div", {
   class: "drag"
 }, [/* @__PURE__ */ p("div", {
   class: "line"
 }), /* @__PURE__ */ p("div", {
   class: "line"
-})], -1)), Gy = ["onClick"], Yy = {
+})], -1)), Ky = ["onClick"], Gy = {
   class: "add-btn"
-}, Xy = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("img", {
+}, Yy = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("img", {
   style: {
     width: "16px"
   },
   src: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17261384607181c8a172613846071854799_add.png",
   alt: ""
-}, null, -1)), Zy = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("span", null, "添加选项", -1)), Qy = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("div", {
+}, null, -1)), Xy = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("span", null, "添加选项", -1)), Zy = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("div", {
   class: "group-title mt24"
-}, "校验", -1)), Jy = {
+}, "校验", -1)), Qy = {
   class: "flex mt24 options"
-}, e0 = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("span", {
+}, Jy = /* @__PURE__ */ rn(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "设为必填", -1)), t0 = /* @__PURE__ */ L({
+}, "设为必填", -1)), e0 = /* @__PURE__ */ L({
   __name: "control",
   props: {
     block: {
@@ -15005,10 +15022,10 @@ const Ny = /* @__PURE__ */ Ce(Fy, [["__scopeId", "data-v-97d898bf"]]), rn = (e) 
       });
     }), (a, i) => {
       const s = Kt, u = wn, d = $t;
-      return y(), x("div", Ry, [qy, Hy, p("div", Wy, [p("ul", Uy, [(y(!0), x(je, null, bt(e.block.props.options.defaultValue, (f, m) => (y(), x("li", {
+      return y(), x("div", Ny, [Ry, qy, p("div", Hy, [p("ul", Wy, [(y(!0), x(je, null, bt(e.block.props.options.defaultValue, (f, m) => (y(), x("li", {
         key: f.key,
         class: "useDrag"
-      }, [Ky, c(s, {
+      }, [Uy, c(s, {
         placeholder: "请输入选项内容",
         style: {
           width: "198px"
@@ -15019,22 +15036,22 @@ const Ny = /* @__PURE__ */ Ce(Fy, [["__scopeId", "data-v-97d898bf"]]), rn = (e) 
       }, null, 8, ["modelValue", "onUpdate:modelValue", "onInput"]), p("div", {
         class: "del",
         onClick: (v) => o(m)
-      }, null, 8, Gy)]))), 128)), p("div", Yy, [c(u, {
+      }, null, 8, Ky)]))), 128)), p("div", Gy, [c(u, {
         style: {
           width: "254px"
         },
         onClick: r
       }, {
-        default: le(() => [Xy, Zy]),
+        default: le(() => [Yy, Xy]),
         _: 1
-      })])])]), Qy, p("div", Jy, [e0, p("div", null, [c(d, {
+      })])])]), Zy, p("div", Qy, [Jy, p("div", null, [c(d, {
         "default-checked": e.block.props.isRequire.defaultValue == "1",
         onChange: i[0] || (i[0] = (f) => n(f, "isRequire"))
       }, null, 8, ["default-checked"])])])]);
     };
   }
 });
-const n0 = /* @__PURE__ */ Ce(t0, [["__scopeId", "data-v-6565436c"]]), l0 = {
+const t0 = /* @__PURE__ */ Ce(e0, [["__scopeId", "data-v-6565436c"]]), n0 = {
   group: "个人信息（自定义）",
   name: "commenRadio",
   value: "",
@@ -15043,7 +15060,7 @@ const n0 = /* @__PURE__ */ Ce(t0, [["__scopeId", "data-v-6565436c"]]), l0 = {
   render: (e) => {
     var n;
     let t = e.props;
-    return c(Ny, {
+    return c(Fy, {
       style: {},
       title: t.title.defaultValue,
       isRequire: t.isRequire.defaultValue == "1",
@@ -15082,33 +15099,33 @@ const n0 = /* @__PURE__ */ Ce(t0, [["__scopeId", "data-v-6565436c"]]), l0 = {
       defaultValue: "2"
     }
   },
-  controlView: (e, t) => c(n0, {
+  controlView: (e, t) => c(t0, {
     block: e
   })
-}, Ns = (e) => (He("data-v-147689a0"), e = e(), We(), e), o0 = {
+}, Ns = (e) => (He("data-v-147689a0"), e = e(), We(), e), l0 = {
   class: "title-tip mb8"
-}, a0 = {
+}, o0 = {
   key: 0,
   class: "red"
-}, r0 = {
+}, a0 = {
   key: 0,
   class: "base-tip"
-}, i0 = {
+}, r0 = {
   class: "form-item"
-}, s0 = {
+}, i0 = {
   class: "item"
-}, u0 = {
+}, s0 = {
   class: "item flex"
-}, c0 = {
+}, u0 = {
   class: "input"
-}, d0 = /* @__PURE__ */ Ns(() => /* @__PURE__ */ p("div", {
+}, c0 = /* @__PURE__ */ Ns(() => /* @__PURE__ */ p("div", {
   class: "success"
 }, [/* @__PURE__ */ p("img", {
   src: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726134731750817f172613473175020802_dui.png",
   alt: ""
-})], -1)), f0 = /* @__PURE__ */ Ns(() => /* @__PURE__ */ p("div", {
+})], -1)), d0 = /* @__PURE__ */ Ns(() => /* @__PURE__ */ p("div", {
   class: "button"
-}, "发送验证码", -1)), p0 = /* @__PURE__ */ L({
+}, "发送验证码", -1)), f0 = /* @__PURE__ */ L({
   __name: "render",
   props: {
     style: {
@@ -15138,46 +15155,46 @@ const n0 = /* @__PURE__ */ Ce(t0, [["__scopeId", "data-v-6565436c"]]), l0 = {
       return y(), x("div", {
         class: "editor-built-in-check-phone",
         style: pe(e.style)
-      }, [p("div", o0, [e.isRequire ? (y(), x("span", a0, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", r0, ve(e.tip), 1)) : ee("", !0), p("div", i0, [p("div", s0, [c(l, {
+      }, [p("div", l0, [e.isRequire ? (y(), x("span", o0, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", a0, ve(e.tip), 1)) : ee("", !0), p("div", r0, [p("div", i0, [c(l, {
         style: {
           height: "40px",
           "line-height": "40px",
           width: "100%"
         },
         placeholder: e.placeholder
-      }, null, 8, ["placeholder"])]), p("div", u0, [p("div", c0, [c(l, {
+      }, null, 8, ["placeholder"])]), p("div", s0, [p("div", u0, [c(l, {
         style: {
           height: "40px",
           "line-height": "40px",
           flex: "1"
         },
         placeholder: "验证码"
-      }), d0]), f0])])], 4);
+      }), c0]), d0])])], 4);
     };
   }
 });
-const v0 = /* @__PURE__ */ Ce(p0, [["__scopeId", "data-v-147689a0"]]), tl = (e) => (He("data-v-f4a10f1d"), e = e(), We(), e), h0 = {
+const p0 = /* @__PURE__ */ Ce(f0, [["__scopeId", "data-v-147689a0"]]), tl = (e) => (He("data-v-f4a10f1d"), e = e(), We(), e), v0 = {
   class: "editor-built-in-control-check-phone"
-}, m0 = /* @__PURE__ */ tl(() => /* @__PURE__ */ p("div", {
+}, h0 = /* @__PURE__ */ tl(() => /* @__PURE__ */ p("div", {
   class: "h-line"
-}, null, -1)), g0 = /* @__PURE__ */ tl(() => /* @__PURE__ */ p("div", {
+}, null, -1)), m0 = /* @__PURE__ */ tl(() => /* @__PURE__ */ p("div", {
   class: "group-title"
-}, "校验", -1)), b0 = {
+}, "校验", -1)), g0 = {
   class: "flex mt24 options"
-}, y0 = /* @__PURE__ */ tl(() => /* @__PURE__ */ p("span", {
+}, b0 = /* @__PURE__ */ tl(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "设为必填", -1)), _0 = {
+}, "设为必填", -1)), y0 = {
   class: "flex mt24 options"
-}, $0 = /* @__PURE__ */ tl(() => /* @__PURE__ */ p("span", {
+}, _0 = /* @__PURE__ */ tl(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "提交时校验数据唯一性", -1)), w0 = {
+}, "提交时校验数据唯一性", -1)), $0 = {
   key: 0,
   class: "flex mt24 options"
-}, k0 = /* @__PURE__ */ tl(() => /* @__PURE__ */ p("span", {
+}, w0 = /* @__PURE__ */ tl(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "校验周期（h）", -1)), C0 = {
+}, "校验周期（h）", -1)), k0 = {
   class: "pl24"
-}, S0 = /* @__PURE__ */ L({
+}, C0 = /* @__PURE__ */ L({
   __name: "control",
   props: {
     block: {
@@ -15192,13 +15209,13 @@ const v0 = /* @__PURE__ */ Ce(p0, [["__scopeId", "data-v-147689a0"]]), tl = (e) 
     }
     return (l, o) => {
       const r = $t, a = Vt;
-      return y(), x("div", h0, [m0, g0, p("div", b0, [y0, p("div", null, [c(r, {
+      return y(), x("div", v0, [h0, m0, p("div", g0, [b0, p("div", null, [c(r, {
         "default-checked": e.block.props.isRequire.defaultValue == "1",
         onChange: o[0] || (o[0] = (i) => n(i, "isRequire"))
-      }, null, 8, ["default-checked"])])]), p("div", _0, [$0, p("div", null, [c(r, {
+      }, null, 8, ["default-checked"])])]), p("div", y0, [_0, p("div", null, [c(r, {
         "default-checked": e.block.props.only.defaultValue == "1",
         onChange: o[1] || (o[1] = (i) => n(i, "only"))
-      }, null, 8, ["default-checked"])])]), e.block.props.only.defaultValue == "1" ? (y(), x("div", w0, [k0, p("div", C0, [c(a, {
+      }, null, 8, ["default-checked"])])]), e.block.props.only.defaultValue == "1" ? (y(), x("div", $0, [w0, p("div", k0, [c(a, {
         modelValue: e.block.props.cycle.defaultValue,
         "onUpdate:modelValue": o[2] || (o[2] = (i) => e.block.props.cycle.defaultValue = i),
         placeholder: "正整数",
@@ -15211,7 +15228,7 @@ const v0 = /* @__PURE__ */ Ce(p0, [["__scopeId", "data-v-147689a0"]]), tl = (e) 
     };
   }
 });
-const V0 = /* @__PURE__ */ Ce(S0, [["__scopeId", "data-v-f4a10f1d"]]), O0 = {
+const S0 = /* @__PURE__ */ Ce(C0, [["__scopeId", "data-v-f4a10f1d"]]), V0 = {
   group: "个人信息",
   name: "checkPhone",
   addOnly: !0,
@@ -15222,7 +15239,7 @@ const V0 = /* @__PURE__ */ Ce(S0, [["__scopeId", "data-v-f4a10f1d"]]), O0 = {
   render: (e) => {
     var n;
     let t = e.props;
-    return c(v0, {
+    return c(p0, {
       style: {},
       title: t.title.defaultValue,
       placeholder: t.placeholder.defaultValue,
@@ -15262,20 +15279,20 @@ const V0 = /* @__PURE__ */ Ce(S0, [["__scopeId", "data-v-f4a10f1d"]]), O0 = {
       defaultValue: 0
     }
   },
-  controlView: (e, t) => c(V0, {
+  controlView: (e, t) => c(S0, {
     block: e
   })
-}, E0 = {
+}, O0 = {
   class: "title-tip mb8"
-}, x0 = {
+}, E0 = {
   key: 0,
   class: "red"
-}, B0 = {
+}, x0 = {
   key: 0,
   class: "base-tip"
-}, I0 = {
+}, B0 = {
   class: "form-item"
-}, P0 = /* @__PURE__ */ L({
+}, I0 = /* @__PURE__ */ L({
   __name: "base-input-render",
   props: {
     style: {
@@ -15321,7 +15338,7 @@ const V0 = /* @__PURE__ */ Ce(S0, [["__scopeId", "data-v-f4a10f1d"]]), O0 = {
       return y(), x("div", {
         class: "editor-built-in-registor-person-name",
         style: pe(e.style)
-      }, [p("div", E0, [e.isRequire ? (y(), x("span", x0, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", B0, ve(e.tip), 1)) : ee("", !0), p("div", I0, [c(l, {
+      }, [p("div", O0, [e.isRequire ? (y(), x("span", E0, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", x0, ve(e.tip), 1)) : ee("", !0), p("div", B0, [c(l, {
         style: {
           height: "40px",
           "line-height": "40px",
@@ -15333,35 +15350,35 @@ const V0 = /* @__PURE__ */ Ce(S0, [["__scopeId", "data-v-f4a10f1d"]]), O0 = {
     };
   }
 });
-const to = /* @__PURE__ */ Ce(P0, [["__scopeId", "data-v-c06a8f65"]]), sn = (e) => (He("data-v-05a6c9a4"), e = e(), We(), e), j0 = {
+const to = /* @__PURE__ */ Ce(I0, [["__scopeId", "data-v-c06a8f65"]]), sn = (e) => (He("data-v-05a6c9a4"), e = e(), We(), e), P0 = {
   class: "editor-built-in-control-person-name"
-}, T0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("div", {
+}, j0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("div", {
   class: "h-line"
-}, null, -1)), M0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("div", {
+}, null, -1)), T0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("div", {
   class: "group-title"
-}, "校验", -1)), D0 = {
+}, "校验", -1)), M0 = {
   class: "flex mt24 options"
-}, z0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("span", {
+}, D0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "设为必填", -1)), A0 = {
+}, "设为必填", -1)), z0 = {
   class: "flex mt24 options"
-}, L0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("span", {
+}, A0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "提交时校验数据唯一性", -1)), F0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("div", {
+}, "提交时校验数据唯一性", -1)), L0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("div", {
   class: "group-title mt24"
-}, "填写限制", -1)), N0 = {
+}, "填写限制", -1)), F0 = {
   class: "flex mt24 options"
-}, R0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("span", {
+}, N0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "最少填", -1)), q0 = {
+}, "最少填", -1)), R0 = {
   class: "pl24"
-}, H0 = {
+}, q0 = {
   class: "flex mt24 options"
-}, W0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("span", {
+}, H0 = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "最多填", -1)), U0 = {
+}, "最多填", -1)), W0 = {
   class: "pl24 flex"
-}, K0 = /* @__PURE__ */ L({
+}, U0 = /* @__PURE__ */ L({
   __name: "control",
   props: {
     block: {
@@ -15376,13 +15393,13 @@ const to = /* @__PURE__ */ Ce(P0, [["__scopeId", "data-v-c06a8f65"]]), sn = (e) 
     }
     return (l, o) => {
       const r = $t, a = Vt;
-      return y(), x("div", j0, [T0, M0, p("div", D0, [z0, p("div", null, [c(r, {
+      return y(), x("div", P0, [j0, T0, p("div", M0, [D0, p("div", null, [c(r, {
         "default-checked": e.block.props.isRequire.defaultValue == "1",
         onChange: o[0] || (o[0] = (i) => n(i, "isRequire"))
-      }, null, 8, ["default-checked"])])]), p("div", A0, [L0, p("div", null, [c(r, {
+      }, null, 8, ["default-checked"])])]), p("div", z0, [A0, p("div", null, [c(r, {
         "default-checked": e.block.props.only.defaultValue == "1",
         onChange: o[1] || (o[1] = (i) => n(i, "only"))
-      }, null, 8, ["default-checked"])])]), F0, p("div", N0, [R0, p("div", q0, [c(a, {
+      }, null, 8, ["default-checked"])])]), L0, p("div", F0, [N0, p("div", R0, [c(a, {
         modelValue: e.block.props.min.defaultValue,
         "onUpdate:modelValue": o[2] || (o[2] = (i) => e.block.props.min.defaultValue = i),
         placeholder: "请输入正整数",
@@ -15391,7 +15408,7 @@ const to = /* @__PURE__ */ Ce(P0, [["__scopeId", "data-v-c06a8f65"]]), sn = (e) 
       }, {
         append: le(() => [ye(" 字 ")]),
         _: 1
-      }, 8, ["modelValue"])])]), p("div", H0, [W0, p("div", U0, [c(a, {
+      }, 8, ["modelValue"])])]), p("div", q0, [H0, p("div", W0, [c(a, {
         modelValue: e.block.props.max.defaultValue,
         "onUpdate:modelValue": o[3] || (o[3] = (i) => e.block.props.max.defaultValue = i),
         placeholder: "请输入正整数",
@@ -15404,7 +15421,7 @@ const to = /* @__PURE__ */ Ce(P0, [["__scopeId", "data-v-c06a8f65"]]), sn = (e) 
     };
   }
 });
-const G0 = /* @__PURE__ */ Ce(K0, [["__scopeId", "data-v-05a6c9a4"]]), Y0 = {
+const K0 = /* @__PURE__ */ Ce(U0, [["__scopeId", "data-v-05a6c9a4"]]), G0 = {
   group: "个人信息",
   name: "personName",
   value: "",
@@ -15467,34 +15484,34 @@ const G0 = /* @__PURE__ */ Ce(K0, [["__scopeId", "data-v-05a6c9a4"]]), Y0 = {
       defaultValue: 100
     }
   },
-  controlView: (e, t) => c(G0, {
+  controlView: (e, t) => c(K0, {
     block: e
   })
-}, On = (e) => (He("data-v-3fd74b8f"), e = e(), We(), e), X0 = {
+}, On = (e) => (He("data-v-3fd74b8f"), e = e(), We(), e), Y0 = {
   class: "editor-built-in-control-person-other"
-}, Z0 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("div", {
+}, X0 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("div", {
   class: "h-line"
-}, null, -1)), Q0 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("div", {
+}, null, -1)), Z0 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("div", {
   class: "group-title"
-}, "校验", -1)), J0 = {
+}, "校验", -1)), Q0 = {
   class: "flex mt24 options"
-}, e1 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("span", {
+}, J0 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "设为必填", -1)), t1 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("div", {
+}, "设为必填", -1)), e1 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("div", {
   class: "group-title mt24"
-}, "填写限制", -1)), n1 = {
+}, "填写限制", -1)), t1 = {
   class: "flex mt24 options"
-}, l1 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("span", {
+}, n1 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "最少填", -1)), o1 = {
+}, "最少填", -1)), l1 = {
   class: "pl24"
-}, a1 = {
+}, o1 = {
   class: "flex mt24 options"
-}, r1 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("span", {
+}, a1 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "最多填", -1)), i1 = {
+}, "最多填", -1)), r1 = {
   class: "pl24 flex"
-}, s1 = /* @__PURE__ */ L({
+}, i1 = /* @__PURE__ */ L({
   __name: "control",
   props: {
     block: {
@@ -15509,10 +15526,10 @@ const G0 = /* @__PURE__ */ Ce(K0, [["__scopeId", "data-v-05a6c9a4"]]), Y0 = {
     }
     return (l, o) => {
       const r = $t, a = Vt;
-      return y(), x("div", X0, [Z0, Q0, p("div", J0, [e1, p("div", null, [c(r, {
+      return y(), x("div", Y0, [X0, Z0, p("div", Q0, [J0, p("div", null, [c(r, {
         "default-checked": e.block.props.isRequire.defaultValue == "1",
         onChange: o[0] || (o[0] = (i) => n(i, "isRequire"))
-      }, null, 8, ["default-checked"])])]), t1, p("div", n1, [l1, p("div", o1, [c(a, {
+      }, null, 8, ["default-checked"])])]), e1, p("div", t1, [n1, p("div", l1, [c(a, {
         modelValue: e.block.props.min.defaultValue,
         "onUpdate:modelValue": o[1] || (o[1] = (i) => e.block.props.min.defaultValue = i),
         placeholder: "请输入正整数",
@@ -15521,7 +15538,7 @@ const G0 = /* @__PURE__ */ Ce(K0, [["__scopeId", "data-v-05a6c9a4"]]), Y0 = {
       }, {
         append: le(() => [ye(" 字 ")]),
         _: 1
-      }, 8, ["modelValue"])])]), p("div", a1, [r1, p("div", i1, [c(a, {
+      }, 8, ["modelValue"])])]), p("div", o1, [a1, p("div", r1, [c(a, {
         modelValue: e.block.props.max.defaultValue,
         "onUpdate:modelValue": o[2] || (o[2] = (i) => e.block.props.max.defaultValue = i),
         placeholder: "请输入正整数",
@@ -15534,7 +15551,7 @@ const G0 = /* @__PURE__ */ Ce(K0, [["__scopeId", "data-v-05a6c9a4"]]), Y0 = {
     };
   }
 });
-const u1 = /* @__PURE__ */ Ce(s1, [["__scopeId", "data-v-3fd74b8f"]]), c1 = {
+const s1 = /* @__PURE__ */ Ce(i1, [["__scopeId", "data-v-3fd74b8f"]]), u1 = {
   group: "个人信息",
   name: "personOther",
   value: "",
@@ -15592,31 +15609,31 @@ const u1 = /* @__PURE__ */ Ce(s1, [["__scopeId", "data-v-3fd74b8f"]]), c1 = {
       defaultValue: 100
     }
   },
-  controlView: (e, t) => c(u1, {
+  controlView: (e, t) => c(s1, {
     block: e
   })
-}, nl = (e) => (He("data-v-df798f6e"), e = e(), We(), e), d1 = {
+}, nl = (e) => (He("data-v-df798f6e"), e = e(), We(), e), c1 = {
   class: "editor-built-in-control-person-phone"
-}, f1 = /* @__PURE__ */ nl(() => /* @__PURE__ */ p("div", {
+}, d1 = /* @__PURE__ */ nl(() => /* @__PURE__ */ p("div", {
   class: "h-line"
-}, null, -1)), p1 = /* @__PURE__ */ nl(() => /* @__PURE__ */ p("div", {
+}, null, -1)), f1 = /* @__PURE__ */ nl(() => /* @__PURE__ */ p("div", {
   class: "group-title"
-}, "校验", -1)), v1 = {
+}, "校验", -1)), p1 = {
   class: "flex mt24 options"
-}, h1 = /* @__PURE__ */ nl(() => /* @__PURE__ */ p("span", {
+}, v1 = /* @__PURE__ */ nl(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "设为必填", -1)), m1 = {
+}, "设为必填", -1)), h1 = {
   class: "flex mt24 options"
-}, g1 = /* @__PURE__ */ nl(() => /* @__PURE__ */ p("span", {
+}, m1 = /* @__PURE__ */ nl(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "提交时校验数据唯一性", -1)), b1 = {
+}, "提交时校验数据唯一性", -1)), g1 = {
   key: 0,
   class: "flex mt24 options"
-}, y1 = /* @__PURE__ */ nl(() => /* @__PURE__ */ p("span", {
+}, b1 = /* @__PURE__ */ nl(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "校验周期（h）", -1)), _1 = {
+}, "校验周期（h）", -1)), y1 = {
   class: "pl24"
-}, $1 = /* @__PURE__ */ L({
+}, _1 = /* @__PURE__ */ L({
   __name: "control",
   props: {
     block: {
@@ -15631,13 +15648,13 @@ const u1 = /* @__PURE__ */ Ce(s1, [["__scopeId", "data-v-3fd74b8f"]]), c1 = {
     }
     return (l, o) => {
       const r = $t, a = Vt;
-      return y(), x("div", d1, [f1, p1, p("div", v1, [h1, p("div", null, [c(r, {
+      return y(), x("div", c1, [d1, f1, p("div", p1, [v1, p("div", null, [c(r, {
         "default-checked": e.block.props.isRequire.defaultValue == "1",
         onChange: o[0] || (o[0] = (i) => n(i, "isRequire"))
-      }, null, 8, ["default-checked"])])]), p("div", m1, [g1, p("div", null, [c(r, {
+      }, null, 8, ["default-checked"])])]), p("div", h1, [m1, p("div", null, [c(r, {
         "default-checked": e.block.props.only.defaultValue == "1",
         onChange: o[1] || (o[1] = (i) => n(i, "only"))
-      }, null, 8, ["default-checked"])])]), e.block.props.only.defaultValue == "1" ? (y(), x("div", b1, [y1, p("div", _1, [c(a, {
+      }, null, 8, ["default-checked"])])]), e.block.props.only.defaultValue == "1" ? (y(), x("div", g1, [b1, p("div", y1, [c(a, {
         modelValue: e.block.props.cycle.defaultValue,
         "onUpdate:modelValue": o[2] || (o[2] = (i) => e.block.props.cycle.defaultValue = i),
         placeholder: "正整数",
@@ -15650,7 +15667,7 @@ const u1 = /* @__PURE__ */ Ce(s1, [["__scopeId", "data-v-3fd74b8f"]]), c1 = {
     };
   }
 });
-const w1 = /* @__PURE__ */ Ce($1, [["__scopeId", "data-v-df798f6e"]]), k1 = {
+const $1 = /* @__PURE__ */ Ce(_1, [["__scopeId", "data-v-df798f6e"]]), w1 = {
   group: "个人信息",
   name: "personPhone",
   value: "",
@@ -15707,28 +15724,28 @@ const w1 = /* @__PURE__ */ Ce($1, [["__scopeId", "data-v-df798f6e"]]), k1 = {
       defaultValue: 0
     }
   },
-  controlView: (e, t) => c(w1, {
+  controlView: (e, t) => c($1, {
     block: e
   })
-}, C1 = (e) => (He("data-v-0cd61663"), e = e(), We(), e), S1 = {
+}, k1 = (e) => (He("data-v-0cd61663"), e = e(), We(), e), C1 = {
   class: "title-tip"
-}, V1 = {
+}, S1 = {
   key: 0,
   class: "red"
-}, O1 = {
+}, V1 = {
   key: 0,
   class: "base-tip",
   style: {
     "margin-top": "6px"
   }
-}, E1 = {
+}, O1 = {
   class: "item"
-}, x1 = /* @__PURE__ */ C1(() => /* @__PURE__ */ p("div", {
+}, E1 = /* @__PURE__ */ k1(() => /* @__PURE__ */ p("div", {
   class: "right"
 }, [/* @__PURE__ */ p("img", {
   src: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262332381814dfe172623323818180331_right%20(1).png",
   alt: ""
-})], -1)), B1 = /* @__PURE__ */ L({
+})], -1)), x1 = /* @__PURE__ */ L({
   __name: "render",
   props: {
     style: {
@@ -15759,23 +15776,23 @@ const w1 = /* @__PURE__ */ Ce($1, [["__scopeId", "data-v-df798f6e"]]), k1 = {
     return (n, l) => (y(), x("div", {
       class: "editor-built-in-commen-radio",
       style: pe(e.style)
-    }, [p("div", S1, [e.isRequire ? (y(), x("span", V1, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", O1, ve(e.tip), 1)) : ee("", !0), p("div", {
+    }, [p("div", C1, [e.isRequire ? (y(), x("span", S1, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", V1, ve(e.tip), 1)) : ee("", !0), p("div", {
       class: "form-item",
       onClick: t
-    }, [p("div", E1, [p("span", null, ve(e.placeholder), 1), x1])])], 4));
+    }, [p("div", O1, [p("span", null, ve(e.placeholder), 1), E1])])], 4));
   }
 });
-const I1 = /* @__PURE__ */ Ce(B1, [["__scopeId", "data-v-0cd61663"]]), Ha = (e) => (He("data-v-fcdbe6a9"), e = e(), We(), e), P1 = {
+const B1 = /* @__PURE__ */ Ce(x1, [["__scopeId", "data-v-0cd61663"]]), Ha = (e) => (He("data-v-fcdbe6a9"), e = e(), We(), e), I1 = {
   class: "editor-built-in-control-person-school"
-}, j1 = /* @__PURE__ */ Ha(() => /* @__PURE__ */ p("div", {
+}, P1 = /* @__PURE__ */ Ha(() => /* @__PURE__ */ p("div", {
   class: "h-line"
-}, null, -1)), T1 = /* @__PURE__ */ Ha(() => /* @__PURE__ */ p("div", {
+}, null, -1)), j1 = /* @__PURE__ */ Ha(() => /* @__PURE__ */ p("div", {
   class: "group-title"
-}, "校验", -1)), M1 = {
+}, "校验", -1)), T1 = {
   class: "flex mt24 options"
-}, D1 = /* @__PURE__ */ Ha(() => /* @__PURE__ */ p("span", {
+}, M1 = /* @__PURE__ */ Ha(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "设为必填", -1)), z1 = /* @__PURE__ */ L({
+}, "设为必填", -1)), D1 = /* @__PURE__ */ L({
   __name: "control",
   props: {
     block: {
@@ -15790,14 +15807,14 @@ const I1 = /* @__PURE__ */ Ce(B1, [["__scopeId", "data-v-0cd61663"]]), Ha = (e) 
     }
     return (l, o) => {
       const r = $t;
-      return y(), x("div", P1, [j1, T1, p("div", M1, [D1, p("div", null, [c(r, {
+      return y(), x("div", I1, [P1, j1, p("div", T1, [M1, p("div", null, [c(r, {
         "default-checked": e.block.props.isRequire.defaultValue == "1",
         onChange: o[0] || (o[0] = (a) => n(a, "isRequire"))
       }, null, 8, ["default-checked"])])])]);
     };
   }
 });
-const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-fcdbe6a9"]]), L1 = {
+const z1 = /* @__PURE__ */ Ce(D1, [["__scopeId", "data-v-fcdbe6a9"]]), A1 = {
   group: "个人信息",
   name: "personProvince",
   value: "",
@@ -15808,7 +15825,7 @@ const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-fcdbe6a9"]]), L1 = {
   render: (e) => {
     var n;
     let t = e.props;
-    return c(I1, {
+    return c(B1, {
       style: {},
       title: t.title.defaultValue,
       // value: props.value.defaultValue,
@@ -15844,34 +15861,34 @@ const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-fcdbe6a9"]]), L1 = {
       defaultValue: "2"
     }
   },
-  controlView: (e, t) => c(A1, {
+  controlView: (e, t) => c(z1, {
     block: e
   })
-}, En = (e) => (He("data-v-1418313e"), e = e(), We(), e), F1 = {
+}, En = (e) => (He("data-v-1418313e"), e = e(), We(), e), L1 = {
   class: "editor-built-in-control-person-school"
-}, N1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("div", {
+}, F1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("div", {
   class: "h-line"
-}, null, -1)), R1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("div", {
+}, null, -1)), N1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("div", {
   class: "group-title"
-}, "校验", -1)), q1 = {
+}, "校验", -1)), R1 = {
   class: "flex mt24 options"
-}, H1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("span", {
+}, q1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "设为必填", -1)), W1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("div", {
+}, "设为必填", -1)), H1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("div", {
   class: "group-title mt24"
-}, "填写限制", -1)), U1 = {
+}, "填写限制", -1)), W1 = {
   class: "flex mt24 options"
-}, K1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("span", {
+}, U1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "最少填", -1)), G1 = {
+}, "最少填", -1)), K1 = {
   class: "pl24"
-}, Y1 = {
+}, G1 = {
   class: "flex mt24 options"
-}, X1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("span", {
+}, Y1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "最多填", -1)), Z1 = {
+}, "最多填", -1)), X1 = {
   class: "pl24 flex"
-}, Q1 = /* @__PURE__ */ L({
+}, Z1 = /* @__PURE__ */ L({
   __name: "control",
   props: {
     block: {
@@ -15886,10 +15903,10 @@ const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-fcdbe6a9"]]), L1 = {
     }
     return (l, o) => {
       const r = $t, a = Vt;
-      return y(), x("div", F1, [N1, R1, p("div", q1, [H1, p("div", null, [c(r, {
+      return y(), x("div", L1, [F1, N1, p("div", R1, [q1, p("div", null, [c(r, {
         "default-checked": e.block.props.isRequire.defaultValue == "1",
         onChange: o[0] || (o[0] = (i) => n(i, "isRequire"))
-      }, null, 8, ["default-checked"])])]), W1, p("div", U1, [K1, p("div", G1, [c(a, {
+      }, null, 8, ["default-checked"])])]), H1, p("div", W1, [U1, p("div", K1, [c(a, {
         modelValue: e.block.props.min.defaultValue,
         "onUpdate:modelValue": o[1] || (o[1] = (i) => e.block.props.min.defaultValue = i),
         placeholder: "请输入正整数",
@@ -15898,7 +15915,7 @@ const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-fcdbe6a9"]]), L1 = {
       }, {
         append: le(() => [ye(" 字 ")]),
         _: 1
-      }, 8, ["modelValue"])])]), p("div", Y1, [X1, p("div", Z1, [c(a, {
+      }, 8, ["modelValue"])])]), p("div", G1, [Y1, p("div", X1, [c(a, {
         modelValue: e.block.props.max.defaultValue,
         "onUpdate:modelValue": o[2] || (o[2] = (i) => e.block.props.max.defaultValue = i),
         placeholder: "请输入正整数",
@@ -15911,7 +15928,7 @@ const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-fcdbe6a9"]]), L1 = {
     };
   }
 });
-const J1 = /* @__PURE__ */ Ce(Q1, [["__scopeId", "data-v-1418313e"]]), e_ = {
+const Q1 = /* @__PURE__ */ Ce(Z1, [["__scopeId", "data-v-1418313e"]]), J1 = {
   group: "个人信息",
   name: "personSchool",
   value: "",
@@ -15969,25 +15986,25 @@ const J1 = /* @__PURE__ */ Ce(Q1, [["__scopeId", "data-v-1418313e"]]), e_ = {
       defaultValue: 100
     }
   },
-  controlView: (e, t) => c(J1, {
+  controlView: (e, t) => c(Q1, {
     block: e
   })
-}, t_ = (e) => (He("data-v-22530c73"), e = e(), We(), e), n_ = {
+}, e_ = (e) => (He("data-v-22530c73"), e = e(), We(), e), t_ = {
   class: "title-tip mb8"
-}, l_ = {
+}, n_ = {
   key: 0,
   class: "red"
-}, o_ = {
+}, l_ = {
   class: "form-item"
-}, a_ = /* @__PURE__ */ t_(() => /* @__PURE__ */ p("div", {
+}, o_ = /* @__PURE__ */ e_(() => /* @__PURE__ */ p("div", {
   class: "btn"
 }, [/* @__PURE__ */ p("span", null, "上传文件"), /* @__PURE__ */ p("input", {
   type: "file",
   class: "file"
-})], -1)), r_ = {
+})], -1)), a_ = {
   key: 0,
   class: "tip title-tip"
-}, i_ = /* @__PURE__ */ L({
+}, r_ = /* @__PURE__ */ L({
   __name: "render",
   props: {
     style: {
@@ -16015,20 +16032,20 @@ const J1 = /* @__PURE__ */ Ce(Q1, [["__scopeId", "data-v-1418313e"]]), e_ = {
     return (t, n) => (y(), x("div", {
       class: "editor-built-in-person-upload",
       style: pe(e.style)
-    }, [p("div", n_, [e.isRequire ? (y(), x("span", l_, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), p("div", o_, [a_, e.tip ? (y(), x("div", r_, ve(e.tip), 1)) : ee("", !0)])], 4));
+    }, [p("div", t_, [e.isRequire ? (y(), x("span", n_, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), p("div", l_, [o_, e.tip ? (y(), x("div", a_, ve(e.tip), 1)) : ee("", !0)])], 4));
   }
 });
-const s_ = /* @__PURE__ */ Ce(i_, [["__scopeId", "data-v-22530c73"]]), Wa = (e) => (He("data-v-be68881f"), e = e(), We(), e), u_ = {
+const i_ = /* @__PURE__ */ Ce(r_, [["__scopeId", "data-v-22530c73"]]), Wa = (e) => (He("data-v-be68881f"), e = e(), We(), e), s_ = {
   class: "editor-built-in-control-person-upload"
-}, c_ = /* @__PURE__ */ Wa(() => /* @__PURE__ */ p("div", {
+}, u_ = /* @__PURE__ */ Wa(() => /* @__PURE__ */ p("div", {
   class: "h-line"
-}, null, -1)), d_ = /* @__PURE__ */ Wa(() => /* @__PURE__ */ p("div", {
+}, null, -1)), c_ = /* @__PURE__ */ Wa(() => /* @__PURE__ */ p("div", {
   class: "group-title"
-}, "校验", -1)), f_ = {
+}, "校验", -1)), d_ = {
   class: "flex mt24 options"
-}, p_ = /* @__PURE__ */ Wa(() => /* @__PURE__ */ p("span", {
+}, f_ = /* @__PURE__ */ Wa(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "设为必填", -1)), v_ = /* @__PURE__ */ L({
+}, "设为必填", -1)), p_ = /* @__PURE__ */ L({
   __name: "control",
   props: {
     block: {
@@ -16043,14 +16060,14 @@ const s_ = /* @__PURE__ */ Ce(i_, [["__scopeId", "data-v-22530c73"]]), Wa = (e) 
     }
     return (l, o) => {
       const r = $t;
-      return y(), x("div", u_, [c_, d_, p("div", f_, [p_, p("div", null, [c(r, {
+      return y(), x("div", s_, [u_, c_, p("div", d_, [f_, p("div", null, [c(r, {
         "default-checked": e.block.props.isRequire.defaultValue == "1",
         onChange: o[0] || (o[0] = (a) => n(a, "isRequire"))
       }, null, 8, ["default-checked"])])])]);
     };
   }
 });
-const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-be68881f"]]), m_ = {
+const v_ = /* @__PURE__ */ Ce(p_, [["__scopeId", "data-v-be68881f"]]), h_ = {
   group: "个人信息",
   label: "上传文件",
   name: "personUpload",
@@ -16062,7 +16079,7 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-be68881f"]]), m_ = {
   render: (e) => {
     var n;
     let t = e.props;
-    return c(s_, {
+    return c(i_, {
       style: {},
       title: t.title.defaultValue,
       max: t.max.defaultValue,
@@ -16121,20 +16138,20 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-be68881f"]]), m_ = {
       defaultValue: "2"
     }
   },
-  controlView: (e, t) => c(h_, {
+  controlView: (e, t) => c(v_, {
     block: e
   })
-}, Ua = (e) => (He("data-v-169f549c"), e = e(), We(), e), g_ = {
+}, Ua = (e) => (He("data-v-169f549c"), e = e(), We(), e), m_ = {
   class: "editor-built-in-control-person-year"
-}, b_ = /* @__PURE__ */ Ua(() => /* @__PURE__ */ p("div", {
+}, g_ = /* @__PURE__ */ Ua(() => /* @__PURE__ */ p("div", {
   class: "h-line"
-}, null, -1)), y_ = /* @__PURE__ */ Ua(() => /* @__PURE__ */ p("div", {
+}, null, -1)), b_ = /* @__PURE__ */ Ua(() => /* @__PURE__ */ p("div", {
   class: "group-title"
-}, "校验", -1)), __ = {
+}, "校验", -1)), y_ = {
   class: "flex mt24 options"
-}, $_ = /* @__PURE__ */ Ua(() => /* @__PURE__ */ p("span", {
+}, __ = /* @__PURE__ */ Ua(() => /* @__PURE__ */ p("span", {
   class: "option-label"
-}, "设为必填", -1)), w_ = /* @__PURE__ */ L({
+}, "设为必填", -1)), $_ = /* @__PURE__ */ L({
   __name: "control",
   props: {
     block: {
@@ -16149,27 +16166,27 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-be68881f"]]), m_ = {
     }
     return (l, o) => {
       const r = $t;
-      return y(), x("div", g_, [b_, y_, p("div", __, [$_, p("div", null, [c(r, {
+      return y(), x("div", m_, [g_, b_, p("div", y_, [__, p("div", null, [c(r, {
         "default-checked": e.block.props.isRequire.defaultValue == "1",
         onChange: o[0] || (o[0] = (a) => n(a, "isRequire"))
       }, null, 8, ["default-checked"])])])]);
     };
   }
 });
-const k_ = /* @__PURE__ */ Ce(w_, [["__scopeId", "data-v-169f549c"]]), C_ = {
+const w_ = /* @__PURE__ */ Ce($_, [["__scopeId", "data-v-169f549c"]]), k_ = {
   class: "title-tip mb8"
-}, S_ = {
+}, C_ = {
   key: 0,
   class: "red"
-}, V_ = {
+}, S_ = {
   key: 0,
   class: "base-tip",
   style: {
     "margin-top": "6px"
   }
-}, O_ = {
+}, V_ = {
   class: "form-item"
-}, E_ = /* @__PURE__ */ L({
+}, O_ = /* @__PURE__ */ L({
   __name: "render",
   props: {
     style: {
@@ -16203,7 +16220,7 @@ const k_ = /* @__PURE__ */ Ce(w_, [["__scopeId", "data-v-169f549c"]]), C_ = {
       return y(), x("div", {
         class: "editor-built-in-person-year",
         style: pe(e.style)
-      }, [p("div", C_, [e.isRequire ? (y(), x("span", S_, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", V_, ve(e.tip), 1)) : ee("", !0), p("div", O_, [c(o, {
+      }, [p("div", k_, [e.isRequire ? (y(), x("span", C_, "*")) : ee("", !0), p("span", null, ve(e.title), 1)]), e.tip.trim().length > 0 ? (y(), x("div", S_, ve(e.tip), 1)) : ee("", !0), p("div", V_, [c(o, {
         style: {
           height: "40px",
           "line-height": "40px",
@@ -16273,7 +16290,7 @@ const k_ = /* @__PURE__ */ Ce(w_, [["__scopeId", "data-v-169f549c"]]), C_ = {
     };
   }
 });
-const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-a097dbfe"]]), B_ = {
+const E_ = /* @__PURE__ */ Ce(O_, [["__scopeId", "data-v-a097dbfe"]]), x_ = {
   group: "个人信息",
   name: "personYear",
   value: "",
@@ -16284,7 +16301,7 @@ const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-a097dbfe"]]), B_ = {
   render: (e) => {
     var n;
     let t = e.props;
-    return c(x_, {
+    return c(E_, {
       title: t.title.defaultValue,
       value: t.value.defaultValue,
       placeholder: t.placeholder.defaultValue,
@@ -16355,7 +16372,7 @@ const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-a097dbfe"]]), B_ = {
       defaultValue: "2"
     }
   },
-  controlView: (e, t) => c(k_, {
+  controlView: (e, t) => c(w_, {
     block: e
   })
 }, oa = {
@@ -16363,17 +16380,17 @@ const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-a097dbfe"]]), B_ = {
   baseImg: Jg,
   baseSubmit: bb,
   baseTitle: $b,
-  baseSuccess: Ib,
-  commenMultiple: jy,
-  commenRadio: l0,
-  checkPhone: O0,
-  personName: Y0,
-  personOther: c1,
-  personPhone: k1,
-  personProvince: L1,
-  personSchool: e_,
-  personUpload: m_,
-  personYear: B_
+  baseSuccess: Bb,
+  commenMultiple: Py,
+  commenRadio: n0,
+  checkPhone: V0,
+  personName: G0,
+  personOther: u1,
+  personPhone: w1,
+  personProvince: A1,
+  personSchool: J1,
+  personUpload: h_,
+  personYear: x_
 };
 function Rs(e, t) {
   t.forEach((n) => {
@@ -16401,17 +16418,17 @@ const qs = [
   "personYear",
   "commenMultiple",
   "commenRadio"
-], no = (e) => (He("data-v-a82634a3"), e = e(), We(), e), I_ = {
+], no = (e) => (He("data-v-a82634a3"), e = e(), We(), e), B_ = {
   class: "visual-tab-type"
-}, P_ = /* @__PURE__ */ no(() => /* @__PURE__ */ p("div", {
+}, I_ = /* @__PURE__ */ no(() => /* @__PURE__ */ p("div", {
   class: "bg-com"
 }, [/* @__PURE__ */ p("div", {
   class: "bg-img"
-})], -1)), j_ = /* @__PURE__ */ no(() => /* @__PURE__ */ p("span", null, "组件", -1)), T_ = [P_, j_], M_ = /* @__PURE__ */ no(() => /* @__PURE__ */ p("div", {
+})], -1)), P_ = /* @__PURE__ */ no(() => /* @__PURE__ */ p("span", null, "组件", -1)), j_ = [I_, P_], T_ = /* @__PURE__ */ no(() => /* @__PURE__ */ p("div", {
   class: "bg-com"
 }, [/* @__PURE__ */ p("div", {
   class: "bg-img"
-})], -1)), D_ = /* @__PURE__ */ no(() => /* @__PURE__ */ p("span", null, "页面", -1)), z_ = [M_, D_], A_ = /* @__PURE__ */ L({
+})], -1)), M_ = /* @__PURE__ */ no(() => /* @__PURE__ */ p("span", null, "页面", -1)), D_ = [T_, M_], z_ = /* @__PURE__ */ L({
   __name: "leftNav",
   props: {
     modelValue: {
@@ -16426,22 +16443,22 @@ const qs = [
     function n(l) {
       t("update:modelValue", l), t("change", l);
     }
-    return (l, o) => (y(), x("div", I_, [p("div", {
+    return (l, o) => (y(), x("div", B_, [p("div", {
       class: G(["visual-tab-type-com", {
         active: e.modelValue == "1"
       }]),
       onClick: o[0] || (o[0] = (r) => n("1"))
-    }, T_, 2), p("div", {
+    }, j_, 2), p("div", {
       class: G(["visual-tab-type-com visual-tab-type-template", {
         active: e.modelValue == "2"
       }]),
       onClick: o[1] || (o[1] = (r) => n("2"))
-    }, z_, 2)]));
+    }, D_, 2)]));
   }
 });
-const Bi = /* @__PURE__ */ Ce(A_, [["__scopeId", "data-v-a82634a3"]]), L_ = {
+const Bi = /* @__PURE__ */ Ce(z_, [["__scopeId", "data-v-a82634a3"]]), A_ = {
   class: "buttons"
-}, F_ = ["onClick"], N_ = ["src"], R_ = /* @__PURE__ */ L({
+}, L_ = ["onClick"], F_ = ["src"], N_ = /* @__PURE__ */ L({
   __name: "shortcut-button",
   props: {
     buttons: {
@@ -16455,7 +16472,7 @@ const Bi = /* @__PURE__ */ Ce(A_, [["__scopeId", "data-v-a82634a3"]]), L_ = {
     }
     return (n, l) => {
       const o = Zn;
-      return y(), x("div", L_, [(y(!0), x(je, null, bt(e.buttons, (r, a) => (y(), x("div", {
+      return y(), x("div", A_, [(y(!0), x(je, null, bt(e.buttons, (r, a) => (y(), x("div", {
         class: "button",
         key: a,
         onClick: r.handler
@@ -16467,19 +16484,19 @@ const Bi = /* @__PURE__ */ Ce(A_, [["__scopeId", "data-v-a82634a3"]]), L_ = {
         default: le(() => [p("img", {
           src: r.icon,
           alt: ""
-        }, null, 8, N_)]),
+        }, null, 8, F_)]),
         _: 2
-      }, 1032, ["content"]))], 8, F_))), 128))]);
+      }, 1032, ["content"]))], 8, L_))), 128))]);
     };
   }
 });
-const q_ = /* @__PURE__ */ Ce(R_, [["__scopeId", "data-v-b334d714"]]), H_ = /* @__PURE__ */ L({
+const R_ = /* @__PURE__ */ Ce(N_, [["__scopeId", "data-v-b334d714"]]), q_ = /* @__PURE__ */ L({
   components: {
     editorBlock: Ml,
     // GridLayout: VueGridLayout.GridLayout,
     renderIconComponents: _i,
     leftNav: Bi,
-    shortcutButton: q_
+    shortcutButton: R_
   },
   props: {
     modelValue: {
@@ -16798,7 +16815,7 @@ const q_ = /* @__PURE__ */ Ce(R_, [["__scopeId", "data-v-b334d714"]]), H_ = /* @
     }, [sg(k.controlRender.bind(k), g, e.modelValue)])])]);
   }
 });
-const W_ = /* @__PURE__ */ L({
+const H_ = /* @__PURE__ */ L({
   components: {
     editorBlock: Ml
   },
@@ -16839,26 +16856,26 @@ const W_ = /* @__PURE__ */ L({
       }, null)]);
     })])])])]);
   }
-}), Hs = Le.registry, Ws = H_, U_ = W_, K_ = function(e) {
+}), Hs = Le.registry, Ws = q_, W_ = H_, U_ = function(e) {
   Hs(e.name, e);
-}, G_ = function(e) {
+}, K_ = function(e) {
   Ws.batchRegistry(e);
-}, Y_ = function() {
+}, G_ = function() {
   return Le == null ? void 0 : Le.componentLists;
-}, Q_ = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}, Z_ = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   _registry: Hs,
-  batchRegistry: G_,
-  logConfig: Y_,
-  priviewVisualEditor: U_,
-  registry: K_,
+  batchRegistry: K_,
+  logConfig: G_,
+  priviewVisualEditor: W_,
+  registry: U_,
   visualEditor: Ws
 }, Symbol.toStringTag, { value: "Module" }));
 export {
-  G_ as batchRegistry,
-  Q_ as default,
-  Y_ as logConfig,
-  U_ as priviewVisualEditor,
-  K_ as registry,
+  K_ as batchRegistry,
+  Z_ as default,
+  G_ as logConfig,
+  W_ as priviewVisualEditor,
+  U_ as registry,
   Ws as visualEditor
 };
