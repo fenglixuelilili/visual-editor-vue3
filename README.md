@@ -100,6 +100,40 @@
 
 # 内置组件
 
+通过编辑器组件上的 builtInComs 属性来控制内置组件的显示与否
+内置组件有（有些可能跟业务有关的，只是文案不一样，用于快捷创建表单）：
+
+- baseImg
+  图片组件
+- baseSubmit
+  提交按钮
+- baseTitle
+  标题组件
+- baseText
+  文本描述组件
+- baseSuccess
+  一个成功页
+- checkPhone
+  手机号组件，走短信验证的
+- personName
+  姓名组件（就是输入框组件）
+- personOther
+  其他输入组件 （就是输入框组件）
+- personPhone
+  手机号组件，不走短信验证
+- personProvince
+  选择省份组件
+- personSchool
+  学校输入组件 （就是输入框组件）
+- personUpload
+  上传文件组件
+- personYear
+  选择年份组件（选择器组件）
+- commenMultiple
+  通用多选组件
+- commenRadio
+  单选组件
+
 # 开发自定义组件
 
 ## 一个组件的基本构成规则
@@ -132,7 +166,6 @@
       defaultValue: '"SF Pro Display"',
       type: "select",
       options: [
-        // "SF Pro Display",无衬线体 Roboto,Noto,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif
         {
           name: "跟随系统",
           value: '"SF Pro Display"',
