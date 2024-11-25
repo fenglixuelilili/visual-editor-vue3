@@ -137,6 +137,7 @@ function goLink() {
     width: 80%;
     text-align: center;
     line-height: 20px;
+    font-size: 18px;
   }
 }
 </style>

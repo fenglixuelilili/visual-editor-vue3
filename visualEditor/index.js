@@ -13071,7 +13071,7 @@ const yb = /* @__PURE__ */ Ce(bb, [["__scopeId", "data-v-5fff6b35"]]), _b = {
     }, ve(e.successBottomText), 5)])], 4));
   }
 });
-const Eb = /* @__PURE__ */ Ce(Ob, [["__scopeId", "data-v-ee4a195b"]]), xb = {
+const Eb = /* @__PURE__ */ Ce(Ob, [["__scopeId", "data-v-7960fd1b"]]), xb = {
   group: "基础组件",
   name: "baseSuccess",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726294902723b41a17262949027235096_ss.png",
