@@ -88,7 +88,7 @@ function goLink() {
 <style lang="scss" scoped>
 .editor-built-in-registor-base-success {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,13 +101,18 @@ function goLink() {
   }
   .successText {
     margin-bottom: 20px;
+    width: 80%;
+    text-align: center;
     span {
       font-weight: 800;
       font-size: 34px;
     }
   }
   .successDesc {
+    width: 80%;
+    text-align: center;
     margin-bottom: 40px;
+    line-height: 20px;
     span {
       font-size: 12px;
       margin-bottom: 50px;
@@ -127,6 +132,11 @@ function goLink() {
     img {
       width: 110px;
     }
+  }
+  .successBottomText {
+    width: 80%;
+    text-align: center;
+    line-height: 20px;
   }
 }
 </style>
