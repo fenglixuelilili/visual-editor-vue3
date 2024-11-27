@@ -1,5 +1,5 @@
 import { computed, createVNode } from "vue"
-import { VisualEditorComponent } from "../../../types/editor"
+import { VisualEditorComponent } from "../../../types/index"
 import render from "./render.vue"
 export default {
   group: "基础组件",

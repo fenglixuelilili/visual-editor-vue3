@@ -1,4 +1,4 @@
-import { VisualEditorComponent } from "../../../types/editor"
+import { VisualEditorComponent } from "../../../types/index"
 import render from "./render.vue"
 import control from "./control.vue"
 import { computed, createVNode } from "vue"

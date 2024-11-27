@@ -1,13 +1,13 @@
 import { createVNode } from "vue"
-import { VisualEditorComponent } from "../../../types/editor"
+import { VisualEditorComponent } from "../../../types/index"
 import render from "../../utils/base-input-render.vue"
 import control from "./control.vue"
 export default {
   group: "个人信息",
   name: "personOther",
-  value: "",
+  // value: "",
   addOnly: true,
-  formItemField: "remark",
+  // formItemField: "remark",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",

@@ -1,5 +1,5 @@
 import { createVNode } from "vue"
-import { VisualEditorComponent } from "../../../types/editor"
+import { VisualEditorComponent } from "../../../types/index"
 import control from "./control.vue"
 import render from "./render.vue"
 export default {
