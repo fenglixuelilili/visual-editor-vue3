@@ -1,5 +1,5 @@
 import { createCommanderManger } from "../plugins/command.plugins"
-import { visualCommand, block } from "../../types/editor.d"
+import { visualCommand, block } from "../../types/index.d"
 import { dragStart, dragEnd } from "../utils/event"
 import { deepClone } from "../utils/index"
 import { Message } from "@arco-design/web-vue"

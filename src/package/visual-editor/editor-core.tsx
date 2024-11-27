@@ -1,22 +1,16 @@
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  PropType,
-  reactive,
-  ref,
-  watch,
-} from "vue"
+import { computed, defineComponent, PropType, reactive, ref, watch } from "vue"
 import "../scss/index.scss"
 import {
-  visualEditorModelValue,
-  block,
-  VisualEditorComponent,
   createBlockData,
   // markline,
   config,
   builtIn,
 } from "../../types/editor.d"
+import {
+  visualEditorModelValue,
+  block,
+  VisualEditorComponent,
+} from "../../types/index.d"
 import useModel from "../../utils/useModel"
 import editorBlock from "./editor-block"
 import { useVisualCommand } from "../utils/visual.command"

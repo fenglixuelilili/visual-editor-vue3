@@ -1,4 +1,4 @@
-import { VisualEditorComponent } from "../../types/editor.d"
+import type { VisualEditorComponent } from "../../types/editor.d"
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import { visualEditor as visualEditorInstance } from "./editor-core"
 import { priviewVisualEditor as priviewVisualEditorInstance } from "./editor-priview"

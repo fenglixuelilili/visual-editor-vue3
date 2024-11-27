@@ -15579,9 +15579,9 @@ const U0 = /* @__PURE__ */ Ce(W0, [["__scopeId", "data-v-05a6c9a4"]]), K0 = {
 const i1 = /* @__PURE__ */ Ce(r1, [["__scopeId", "data-v-3fd74b8f"]]), s1 = {
   group: "个人信息",
   name: "personOther",
-  value: "",
+  // value: "",
   addOnly: !0,
-  formItemField: "remark",
+  // formItemField: "remark",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",
   activeIcon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",
   render: (e) => {
@@ -16887,18 +16887,24 @@ const q_ = /* @__PURE__ */ L({
   Ws.batchRegistry(e);
 }, K_ = function() {
   return Le == null ? void 0 : Le.componentLists;
-}, X_ = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+};
+function G_(e) {
+  return e;
+}
+const Z_ = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   _registry: Hs,
   batchRegistry: U_,
+  getVisualEditorComponent: G_,
   logConfig: K_,
   priviewVisualEditor: H_,
   registry: W_,
   visualEditor: Ws
 }, Symbol.toStringTag, { value: "Module" }));
 export {
+  Z_ as all,
   U_ as batchRegistry,
-  X_ as default,
+  Z_ as default,
   K_ as logConfig,
   H_ as priviewVisualEditor,
   W_ as registry,
