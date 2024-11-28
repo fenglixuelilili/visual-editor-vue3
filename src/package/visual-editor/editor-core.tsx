@@ -5,6 +5,7 @@ import {
   // markline,
   config,
   builtIn,
+  pushType,
 } from "../../types/editor.d"
 import {
   visualEditorModelValue,
@@ -78,6 +79,11 @@ export const visualEditor = defineComponent({
       type: Boolean,
       default: false,
     },
+    pushType: {
+      // 内置组件 是插入自定义组件 前 还是注册后
+      type: String as PropType<pushType>,
+      default: "push",
+    },
   },
   emits: ["update:modelValue"],
   setup(props, { emit, slots }) {
@@ -95,7 +101,7 @@ export const visualEditor = defineComponent({
     }
     if (props?.builtInComs?.length) {
       // 注册内置组件
-      registorBuiltIn(editorInstance, props.builtInComs)
+      registorBuiltIn(editorInstance, props.builtInComs, props.pushType)
     }
     if (props.fileUploadHandler) {
       Object.defineProperty(window.visualSystem, "fileUploadHandler", {

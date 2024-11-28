@@ -1,4 +1,4 @@
-import { builtIn, createVisuaEditorComponents } from "@/types/editor"
+import { builtIn, createVisuaEditorComponents, pushType } from "@/types/editor"
 import baseText from "./base/base-text"
 import baseImg from "./base/base-img"
 import baseSubmit from "./base/base-submit"
@@ -33,11 +33,12 @@ const registorMap: any = {
 }
 export function registorBuiltIn(
   editorInstance: ReturnType<typeof createVisuaEditorComponents>,
-  comStr: builtIn[]
+  comStr: builtIn[],
+  pushType: pushType = "push"
 ) {
   comStr.forEach((key) => {
     if (registorMap[key]) {
-      editorInstance.registry(key, registorMap[key])
+      editorInstance.registry(key, registorMap[key], pushType)
     } else {
       let keys = Object.keys(registorMap)
       console.error(

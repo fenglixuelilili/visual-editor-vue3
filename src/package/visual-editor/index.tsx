@@ -8,8 +8,11 @@ export const visualEditor = visualEditorInstance
 // 导出预览器
 export const priviewVisualEditor = priviewVisualEditorInstance
 // 单个注册
-export const registry = function (com: VisualEditorComponent) {
-  _registry(com.name, com)
+export const registry = function (
+  com: VisualEditorComponent,
+  pushType: "push" | "unshift" = "push"
+) {
+  _registry(com.name, com, pushType)
 }
 // 批量注册
 export const batchRegistry = function (

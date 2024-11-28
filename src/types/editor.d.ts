@@ -24,6 +24,7 @@ export const createBlockData = function (data: {
 
 // 内置控制器组件类型
 type builtInContrlComType = "color" | "input" | "number" | 'slider' | 'imgUpload' | 'textarea' | 'select'
+export type pushType =  'push' | 'unshift' 
 // 这是具体的组件类型
 export type { VisualEditorComponentProps, VisualEditorComponent, block, container, markline, config, visualCommand, visualEditorModelValue, controlViewConfigtype } from './index.d.ts'
 // 每次调用这个函数  就是创建一个组件
@@ -38,7 +39,7 @@ export function createVisuaEditorComponents() {
      * @component 组件
      * Omit类型是排除属性
      */
-    registry(name: string, component: Omit<VisualEditorComponent, "name">) {
+    registry(name: string, component: Omit<VisualEditorComponent, "name">, pushType: pushType = 'push') {
       let comp = {
         ...component,
         name,
@@ -51,7 +52,11 @@ export function createVisuaEditorComponents() {
         return
       }
       componentMap[name] = comp
-      componentLists.push(comp)
+      if (pushType == 'unshift') {
+        componentLists.unshift(comp)
+      } else { 
+        componentLists.push(comp)
+      }
     },
     componentLists,
     componentMap,
@@ -77,3 +82,4 @@ export type builtIn =
   | "personUpload"
   | "personYear"
   | 'baseSuccess'
+

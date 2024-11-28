@@ -31,9 +31,9 @@ export const priviewVisualEditor = defineComponent({
       backgroundColor: model.value.container.backgroundColor,
       backgroundSize: "cover",
     }))
-    let componentMap = editorInstance?.componentMap
-      ? editorInstance?.componentMap
-      : {}
+    // let componentMap = editorInstance?.componentMap
+    //   ? editorInstance?.componentMap
+    //   : {}
     return () => (
       <div class="priview-visual-editor">
         <div class="priview-visual-editor-area-body">
