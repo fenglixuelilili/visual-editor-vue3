@@ -1,5 +1,6 @@
 import { builtIn, VisualEditorComponent } from "@/types/editor"
-import { defineComponent, PropType } from "vue"
+import { defineComponent, PropType, ref } from "vue"
+import { registryEventer } from "../../utils/event"
 export default defineComponent({
   props: {
     componentLists: {
@@ -27,28 +28,44 @@ export default defineComponent({
     },
   },
   setup(props) {
-    let map: { [key: string]: VisualEditorComponent[] } = {}
-    props.componentLists
-      .filter((component) => {
-        return component.disabled == undefined ? true : !component.disabled
-      })
-      .forEach((item) => {
-        if (!map[item.group]) {
-          map[item.group] = []
+    let componentTable = ref<{ [key: string]: VisualEditorComponent[] }>({})
+    function getMenu() {
+      props.componentLists
+        .filter((component) => {
+          return component.disabled == undefined ? true : !component.disabled
+        })
+        .forEach((item) => {
+          if (!componentTable.value[item.group]) {
+            componentTable.value[item.group] = []
+          }
+          if (
+            componentTable.value[item.group].find(
+              (res) => item.name == res.name
+            )
+          ) {
+            // 如果数据已经往里面注册过了，则不执行push了
+            return
+          }
+          componentTable.value[item.group].push(item)
+        })
+      for (let key in componentTable.value) {
+        componentTable.value[key] = componentTable.value[key].filter(
+          (item, i) => {
+            if (!props.builtInComsControlView) {
+              return true
+            }
+            return props.builtInComs?.includes(item.name as builtIn)
+          }
+        )
+        if (!componentTable.value[key] || !componentTable.value[key].length) {
+          delete componentTable.value[key]
         }
-        map[item.group].push(item)
-      })
-    for (let key in map) {
-      map[key] = map[key].filter((item, i) => {
-        if (!props.builtInComsControlView) {
-          return true
-        }
-        return props.builtInComs?.includes(item.name as builtIn)
-      })
-      if (!map[key] || !map[key].length) {
-        delete map[key]
       }
     }
+    getMenu()
+    registryEventer.on(() => {
+      getMenu()
+    })
     // .filter((key) => {
     //   if (!props.builtInComsControlView) {
     //     return true
@@ -63,12 +80,12 @@ export default defineComponent({
     return () => (
       <>
         {/* 左侧所有在服役的组件 */}
-        {Object.keys(map).map((key) => {
+        {Object.keys(componentTable.value).map((key) => {
           return (
             <div class="group-container">
               <div class="title">{key}</div>
               <div class="group-container-content">
-                {map[key].map((component) => {
+                {componentTable.value[key].map((component) => {
                   if (component?.hide) {
                     return null
                   }

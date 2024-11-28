@@ -2,6 +2,7 @@ import type { VisualEditorComponent } from "../../types/editor.d"
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import { visualEditor as visualEditorInstance } from "./editor-core"
 import { priviewVisualEditor as priviewVisualEditorInstance } from "./editor-priview"
+import { registryEventer } from "../utils/event"
 export const _registry = editorInstance.registry
 // 导出编辑器
 export const visualEditor = visualEditorInstance
@@ -13,6 +14,7 @@ export const registry = function (
   pushType: "push" | "unshift" = "push"
 ) {
   _registry(com.name, com, pushType)
+  registryEventer.emit(com)
 }
 // 批量注册
 export const batchRegistry = function (

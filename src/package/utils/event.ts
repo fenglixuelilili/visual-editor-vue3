@@ -73,3 +73,15 @@ export const dragEnd = {
     event.off('dragend', cb)
   }
 }
+// 注册成功后的事件
+export const registryEventer = {
+  on: function (cb: cb) {
+    event.on('registryEventer', cb)
+  },
+  emit: function (...args: any) {
+    event.emit('registryEventer', ...args)
+  },
+  off: function (cb: cb) {
+    event.off('registryEventer', cb)
+  }
+}
