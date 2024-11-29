@@ -222,12 +222,45 @@ export function useVisualCommand({
             data.after = blocks
             updateBlocks(data.after)
           } else {
-            // console.log("插入数据", index, block)
             // 插入数据
             let blocks = (dataModel as any).value.blocks
             data.before = deepClone(blocks)
             // blocks.push(block) // 之后的数据
             blocks.splice(index, 0, block)
+            data.after = blocks
+            updateBlocks(data.after)
+          }
+        },
+      }
+    },
+  })
+  conmmander.registor({
+    name: "unshiftadd",
+    excute(block, index: any) {
+      // 保存数据
+      let data = {
+        before: [] as block[], // 保存之前
+        after: [] as block[], // 之后
+      }
+      return {
+        undo() {
+          // 撤销
+          updateBlocks(data.before)
+        },
+        redo() {
+          if (index === undefined) {
+            // 重做
+            let blocks = (dataModel as any).value.blocks
+            data.before = deepClone(blocks)
+            blocks.unshift(block) // 之后的数据
+            data.after = blocks
+            updateBlocks(data.after)
+          } else {
+            // 插入数据
+            let blocks = (dataModel as any).value.blocks
+            data.before = deepClone(blocks)
+            // blocks.push(block) // 之后的数据
+            blocks.splice(index - 1, 0, block)
             data.after = blocks
             updateBlocks(data.after)
           }
@@ -330,7 +363,9 @@ export function useVisualCommand({
     delete: (...arg: any) => conmmander.state.commandMap["delete"](...arg), // 删除
     drag: () => conmmander.state.commandMap["drag"](), // 拖拽
     clear: () => conmmander.state.commandMap["clear"](), // 清空
-    add: (...arg: any) => conmmander.state.commandMap["add"](...arg), // 添加一个新元素
+    add: (...arg: any) => conmmander.state.commandMap["add"](...arg), // 添加一个新元素（默认方向向后插入）
+    unshiftadd: (...arg: any) =>
+      conmmander.state.commandMap["unshiftadd"](...arg), // 添加一个新元素（默认方向向前插入）
     up: (...arg: any) => conmmander.state.commandMap["up"](...arg), // 元素向上移动
     down: (...arg: any) => conmmander.state.commandMap["down"](...arg), // 元素向下移动
   }

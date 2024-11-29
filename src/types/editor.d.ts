@@ -1,6 +1,8 @@
 type v<T extends any> = {
   [x in keyof k]: T[x]
 }
+// 这是具体的组件类型
+export type { VisualEditorComponentProps, VisualEditorComponent, block, container, markline, config, visualCommand, visualEditorModelValue, controlViewConfigtype } from './index.d.ts'
 export const createBlockData = function (data: {
   top: number
   left: number
@@ -25,8 +27,7 @@ export const createBlockData = function (data: {
 // 内置控制器组件类型
 type builtInContrlComType = "color" | "input" | "number" | 'slider' | 'imgUpload' | 'textarea' | 'select'
 export type pushType =  'push' | 'unshift' 
-// 这是具体的组件类型
-export type { VisualEditorComponentProps, VisualEditorComponent, block, container, markline, config, visualCommand, visualEditorModelValue, controlViewConfigtype } from './index.d.ts'
+
 // 每次调用这个函数  就是创建一个组件
 export function createVisuaEditorComponents() {
   // 所有组件队列

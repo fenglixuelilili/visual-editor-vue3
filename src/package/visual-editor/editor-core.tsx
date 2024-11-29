@@ -314,7 +314,11 @@ export const visualEditor = defineComponent({
               return
             }
           }
-          commder.add(block)
+          if (component.pushType && component.pushType == "unshift") {
+            commder.unshiftadd(block)
+          } else {
+            commder.add(block)
+          }
         },
       }
       return menuDrag

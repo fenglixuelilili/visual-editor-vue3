@@ -1,3 +1,5 @@
+import { pushType } from "./editor"
+
 type  VisualEditorComponentProps = {
   [key: string]: {
     defaultValue: number | string |  any[]
@@ -34,6 +36,7 @@ export interface VisualEditorComponent {
     block: block & { props: v<VisualEditorComponent.props> },
     updateBlock: (block: block) => void,
   ) => JSX.Element | string
+  pushType?: pushType
 }
 export interface block {
   left: number // 定位的left值

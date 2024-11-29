@@ -5,6 +5,7 @@ export default {
   group: "基础组件",
   label: "表单标题",
   name: "baseTitle",
+  pushType: "unshift",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260208210133537172602082101375623_1.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260208210133537172602082101375623_1.png",
