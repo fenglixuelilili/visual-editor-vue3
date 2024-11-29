@@ -12310,7 +12310,7 @@ const _i = /* @__PURE__ */ L({
       class: "editor-priview-label"
     }, [o.label])]))])]))]);
   }
-}), at = (e) => (qe("data-v-3eb71c99"), e = e(), He(), e), cg = {
+}), at = (e) => (qe("data-v-9674b51e"), e = e(), He(), e), cg = {
   class: "editor-built-in-control-base-title"
 }, dg = /* @__PURE__ */ at(() => /* @__PURE__ */ p("div", {
   class: "line"
@@ -12411,9 +12411,6 @@ const _i = /* @__PURE__ */ L({
             active: e.textAlign == "1"
           }]),
           viewBox: "0 0 1024 1024",
-          version: "1.1",
-          xmlns: "http://www.w3.org/2000/svg",
-          "p-id": "6371",
           width: "200",
           height: "200",
           onClick: o[0] || (o[0] = (s) => n("textAlign", e.textAlign == "1" ? "2" : "1"))
@@ -12522,7 +12519,7 @@ const _i = /* @__PURE__ */ L({
     };
   }
 });
-const Wg = /* @__PURE__ */ Ce(Hg, [["__scopeId", "data-v-3eb71c99"]]), Ug = /* @__PURE__ */ L({
+const Wg = /* @__PURE__ */ Ce(Hg, [["__scopeId", "data-v-9674b51e"]]), Ug = /* @__PURE__ */ L({
   __name: "render",
   props: {
     style: {

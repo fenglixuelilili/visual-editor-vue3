@@ -8,9 +8,6 @@
           class="icon"
           :class="{ active: textAlign == '1' }"
           viewBox="0 0 1024 1024"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          p-id="6371"
           width="200"
           height="200"
           @click="fontChange('textAlign', textAlign == '1' ? '2' : '1')"
@@ -244,8 +241,8 @@ function fontChange(type: string, value: any) {
       background-color: #e5e8eb;
     }
     .icon {
-      width: 15px;
-      height: 15px;
+      width: 26px;
+      height: 26px;
       stroke-width: 10;
       outline: none;
       cursor: pointer;
