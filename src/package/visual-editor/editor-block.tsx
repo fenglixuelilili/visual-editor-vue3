@@ -100,6 +100,10 @@ export default defineComponent({
     function operate(type: string) {
       emit(type)
     }
+    let id = ""
+    if (props?.block?.id) {
+      id = "block" + (props.block.id as string).replace("$", "")
+    }
     return () => {
       if (props.block.dragMode == "free") {
         // 自由拖拽模式
@@ -132,7 +136,7 @@ export default defineComponent({
             style={style.value as any}
             ref={blockInstance}
             data-index={props.index}
-            id={"block" + (props.block.id as string).replace("$", "")}
+            id={id}
           >
             {/* 组件核心 */}
             {componentRenderInfo?.render(props.block)}

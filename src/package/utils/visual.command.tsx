@@ -295,10 +295,7 @@ export function useVisualCommand({
             // 向上脱
             blocks = swapArrayElements(blocks, indexA, indexB)
           }
-          console.log(blocks, "blocks", indexA, indexB)
           updateBlocks(blocks)
-          // block.id
-          // sortEndBlock.id
           data.after = deepClone(blocks)
         },
       }

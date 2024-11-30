@@ -450,7 +450,7 @@ export const visualEditor = defineComponent({
         e.preventDefault()
         restore()
       }
-      return { mousedown, mousemove }
+      return { mousedown }
     })()
     // 画布区域中的内容点击相关事件
     let canvas = {
