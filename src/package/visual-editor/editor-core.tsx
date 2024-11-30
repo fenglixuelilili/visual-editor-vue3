@@ -357,6 +357,9 @@ export const visualEditor = defineComponent({
         const { pageX, pageY } = event
         let isSet = false
         model.value.blocks.forEach((block: block) => {
+          if (!block?.id) {
+            return
+          }
           let dom = document.querySelector(
             "#block" + (block.id as string).replace("$", "")
           ) as HTMLElement
