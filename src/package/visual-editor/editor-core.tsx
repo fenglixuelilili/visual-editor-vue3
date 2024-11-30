@@ -84,6 +84,10 @@ export const visualEditor = defineComponent({
       type: String as PropType<pushType>,
       default: "push",
     },
+    dragMove: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ["update:modelValue"],
   setup(props, { emit, slots }) {
@@ -123,7 +127,7 @@ export const visualEditor = defineComponent({
     let containerStyle = computed(() => ({
       width: model.value.container.width + "px",
       minHeight: model.value.container.height + "px",
-      transform: `scale(${model.value.container.scale / 100})`,
+      // transform: `scale(${model.value.container.scale / 100})`,
       background: `url(${model.value.container.backgroundImage}) no-repeat top center`,
       backgroundColor: model.value.container.backgroundColor,
       backgroundSize: "cover",
@@ -200,7 +204,7 @@ export const visualEditor = defineComponent({
             // 说明是拖拽到块上了
             updateDragBlock(e.target as HTMLElement)
           } else {
-            // console.log("拖拽到画布上了")
+            // 拖拽到画布上了
             updateDragBlock()
           }
           // 拖拽进入渲染器画布事件
@@ -333,6 +337,121 @@ export const visualEditor = defineComponent({
         cBlock: props.modelValue?.blocks.find((block) => block.focus), // 当前获得焦点的模块
       }
     })
+    // 画布中的块之间相互拖拽的时候的逻辑如下：
+    const blockDrag = (function () {
+      // 当鼠标按下的时候存储的信息
+      const info = {
+        sortEndBlock: {} as block,
+        block: {} as block,
+        ele: null as any,
+        positionInfo: {} as any,
+        startX: 0,
+        startY: 0,
+        clientY: 0,
+        draging: false, // 是否在拖拽
+        startLeft: 0,
+        startTop: 0,
+      }
+      // 碰撞检测
+      function jc(event: { pageX: number; pageY: number }) {
+        const { pageX, pageY } = event
+        let isSet = false
+        model.value.blocks.forEach((block: block) => {
+          let dom = document.querySelector(
+            "#block" + (block.id as string).replace("$", "")
+          ) as HTMLElement
+          const { width, height, left, top } = dom.getBoundingClientRect()
+          if (
+            pageX < width + left &&
+            pageX > left &&
+            pageY < height + top &&
+            pageY > top &&
+            info.block.id != block.id
+          ) {
+            updateDragBlock(dom)
+            info.sortEndBlock = block
+            isSet = true
+          }
+        })
+        if (!isSet) {
+          updateDragBlock()
+          info.sortEndBlock = {} as block
+        }
+      }
+      function restore() {
+        ;(info.ele as HTMLElement).style["position"] = "relative"
+        ;(info.ele as HTMLElement).style["transition"] = "none"
+        ;(info.ele as HTMLElement).style["left"] = 0 + "px"
+        ;(info.ele as HTMLElement).style["top"] = 0 + "px"
+        ;(info.ele as HTMLElement).style["width"] = "100%"
+        ;(info.ele as HTMLElement).style["height"] = "auto"
+        setTimeout(() => {
+          ;(info.ele as HTMLElement).style["transition"] = "all 0.25s"
+        }, 100)
+      }
+      function mousedown(e: MouseEvent, block: block) {
+        info.block = block
+        e.stopPropagation()
+        e.preventDefault()
+        info.ele = e.target
+        info.positionInfo = (e.target as HTMLElement).getBoundingClientRect()
+        info.startX = e.pageX
+        info.startY = e.pageY
+        info.clientY = e.clientY
+        info.draging = false
+        document.addEventListener("mousemove", mousemove)
+        document.addEventListener("mouseup", mouseup)
+        document.addEventListener("contextmenu", contextmenu)
+      }
+      function mousemove(e: MouseEvent) {
+        let left = e.pageX - (info.startX - info.positionInfo.left)
+        let top = e.pageY - (info.startY - info.positionInfo.top)
+        if (Math.abs(e.clientY - info.clientY) > 10) {
+          if (!info.draging) {
+            info.draging = true
+          }
+          ;(info.ele as HTMLElement).style["width"] =
+            info.positionInfo.width + "px"
+          ;(info.ele as HTMLElement).style["height"] =
+            info.positionInfo.height + "px"
+          ;(info.ele as HTMLElement).style["left"] = left + "px"
+          ;(info.ele as HTMLElement).style["top"] = top + "px"
+          ;(info.ele as HTMLElement).style["position"] = "fixed"
+          ;(info.ele as HTMLElement).style["zIndex"] = "10"
+          ;(info.ele as HTMLElement).style["transition"] = "none"
+          jc({ pageX: e.pageX, pageY: e.pageY })
+        }
+      }
+      function mouseup(e: MouseEvent) {
+        document.removeEventListener("mousemove", mousemove)
+        document.removeEventListener("mouseup", mouseup)
+        updateDragBlock()
+        if (!info.draging) {
+          return
+        }
+        info.draging = false
+        if (info.sortEndBlock.id) {
+          // 说明要交换了 执行交换命令
+          commder.transposition(info.block, info.sortEndBlock)
+        }
+        ;(info.ele as HTMLElement).style["transition"] = "all 0.25s"
+        ;(info.ele as HTMLElement).style["left"] = info.positionInfo.left + "px"
+        ;(info.ele as HTMLElement).style["top"] = info.positionInfo.top + "px"
+        ;(info.ele as HTMLElement).style["zIndex"] = "0"
+        ;(info.ele as HTMLElement).style["position"] = "fixed"
+        ;(info.ele as HTMLElement).style["width"] =
+          info.positionInfo.width + "px"
+        ;(info.ele as HTMLElement).style["height"] =
+          info.positionInfo.height + "px"
+        setTimeout(restore, 100)
+      }
+      function contextmenu(e: MouseEvent) {
+        // 阻止默认的右键菜单
+        e.preventDefault()
+        restore()
+      }
+      return { mousedown, mousemove }
+    })()
     // 画布区域中的内容点击相关事件
     let canvas = {
       block: {
@@ -356,6 +475,9 @@ export const visualEditor = defineComponent({
           block.focus = !block.focus
           state.selectedBlock = block
           canvasDrag.mousedown(e)
+          if (props.dragMove) {
+            blockDrag.mousedown(e, block)
+          }
         },
       },
       container: {
@@ -550,6 +672,7 @@ export const visualEditor = defineComponent({
       // mark
       return { mousedown }
     })()
+
     const commder = useVisualCommand({
       currentBlockInfo: currentBlockInfo as any,
       updateBlocks: updateBlocks,
@@ -656,6 +779,8 @@ export const visualEditor = defineComponent({
     //     )
     //   }
     // }
+    // 拖拽block块的时候产生的事件
+
     let type = ref("1")
     return () => (
       <div class="visual-editor-container">

@@ -1,7 +1,7 @@
 import { createCommanderManger } from "../plugins/command.plugins"
 import { visualCommand, block } from "../../types/index.d"
 import { dragStart, dragEnd } from "../utils/event"
-import { deepClone } from "../utils/index"
+import { deepClone, swapArrayElements } from "../utils/index"
 import { Message } from "@arco-design/web-vue"
 // undo 撤销 redo 重做
 export function useVisualCommand({
@@ -269,6 +269,42 @@ export function useVisualCommand({
     },
   })
   conmmander.registor({
+    name: "transposition",
+    excute(block: block, sortEndBlock: block) {
+      // 保存数据
+      let data = {
+        before: [] as block[], // 保存之前
+        after: [] as block[], // 之后
+      }
+      return {
+        undo() {
+          // 撤销
+          updateBlocks(data.before)
+        },
+        redo() {
+          let blocks = (dataModel as any).value.blocks
+          data.before = deepClone(blocks)
+          let indexA = blocks.findIndex((blo: block) => blo.id == block.id)
+          let indexB = blocks.findIndex(
+            (blo: block) => blo.id == sortEndBlock.id
+          )
+          if (indexA < indexB) {
+            // 向下拖
+            blocks = swapArrayElements(blocks, indexA, indexB - 1)
+          } else {
+            // 向上脱
+            blocks = swapArrayElements(blocks, indexA, indexB)
+          }
+          console.log(blocks, "blocks", indexA, indexB)
+          updateBlocks(blocks)
+          // block.id
+          // sortEndBlock.id
+          data.after = deepClone(blocks)
+        },
+      }
+    },
+  })
+  conmmander.registor({
     name: "up", // 向上移动
     keyboard: ["ctrl + up", "alt + up"],
     excute() {
@@ -367,6 +403,8 @@ export function useVisualCommand({
     unshiftadd: (...arg: any) =>
       conmmander.state.commandMap["unshiftadd"](...arg), // 添加一个新元素（默认方向向前插入）
     up: (...arg: any) => conmmander.state.commandMap["up"](...arg), // 元素向上移动
+    transposition: (...arg: any) =>
+      conmmander.state.commandMap["transposition"](...arg), // 元素向上移动
     down: (...arg: any) => conmmander.state.commandMap["down"](...arg), // 元素向下移动
   }
 }

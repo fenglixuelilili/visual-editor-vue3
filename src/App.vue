@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%; height: 100%">
-    <visualEditor v-model="data" :config="config" debug />
+    <visualEditor v-model="data" :config="config" debug dragMove />
     <!-- <priviewVisualEditor v-model="data" /> -->
   </div>
 </template>

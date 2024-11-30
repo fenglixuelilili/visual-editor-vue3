@@ -2,7 +2,7 @@ import { block } from "@/types/editor"
 import { useVisualCommand } from "./visual.command"
 import { Message } from "@arco-design/web-vue"
 // 深拷贝
- export function deepClone(data: any): any {
+export function deepClone(data: any): any {
   if (data && typeof data === "object") {
     //针对函数的拷贝
     if (typeof data === "function") {
@@ -37,9 +37,14 @@ import { Message } from "@arco-design/web-vue"
   } else {
     return data
   }
- }
+}
 // 获取所有快捷按钮
-export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentBlockInfo: any, debug: boolean, props: any) {
+export function getBtns(
+  commder: ReturnType<typeof useVisualCommand>,
+  currentBlockInfo: any,
+  debug: boolean,
+  props: any
+) {
   const buttons = [
     {
       label: "删除",
@@ -88,22 +93,39 @@ export function getBtns(commder: ReturnType< typeof useVisualCommand >, currentB
       tip: "alt + down",
     },
   ]
-  if (debug) { 
-    buttons.push( {
+  if (debug) {
+    buttons.push({
       label: "导出json",
       icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17263054455271570172630544552753846_export.png",
       handler: () => {
-        Message.success('导出成功，请在控制台查看！')
-        console.log( props )
-        console.log( JSON.stringify( props.modelValue.blocks ) )
+        Message.success("导出成功，请在控制台查看！")
+        console.log(props)
+        console.log(JSON.stringify(props.modelValue.blocks))
       },
       tip: "",
-    },)
+    })
   }
   return buttons
 }
 // 检测某些画布组件唯一性（只能添加一个）
-export function isPass( block: block, blocks: block[] ): boolean {
+export function isPass(block: block, blocks: block[]): boolean {
   let currentKey = block.componentKey
-  return !!!blocks.find(cblock => cblock.componentKey === currentKey)
+  return !!!blocks.find((cblock) => cblock.componentKey === currentKey)
+}
+
+export function isOverlapping(el1: HTMLElement, el2: HTMLElement) {
+  const rect1 = el1.getBoundingClientRect()
+  const rect2 = el2.getBoundingClientRect()
+  return !(
+    rect1.left + rect1.width < rect2.left ||
+    rect1.right <= rect2.left ||
+    rect1.top + rect1.height < rect2.top ||
+    rect1.bottom <= rect2.top
+  )
+}
+export function swapArrayElements<T>(arr: T[], indexA: number, indexB: number) {
+  const temp = arr[indexA];
+  arr[indexA] = arr[indexB];
+  arr[indexB] = temp;
+  return arr
 }
