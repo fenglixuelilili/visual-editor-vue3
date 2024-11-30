@@ -2,6 +2,7 @@ import { computed, defineComponent, onMounted, PropType, ref } from "vue"
 import { block, container } from "../../types/editor.d"
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import editorBloackOperate from "./help-coms/editor-bloack-operate.vue"
+import { asString } from "../utils"
 // import VueGridLayout from "vue-grid-layout"
 // 每个组件上的外壳 + block组件
 export default defineComponent({
@@ -102,7 +103,7 @@ export default defineComponent({
     }
     let id = ""
     if (props?.block?.id) {
-      id = "block" + (props.block.id as string).replace("$", "")
+      id = "block" + asString(props.block.id).replace("$", "")
     }
     return () => {
       if (props.block.dragMode == "free") {

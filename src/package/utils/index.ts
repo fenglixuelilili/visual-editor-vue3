@@ -129,3 +129,6 @@ export function swapArrayElements<T>(arr: T[], indexA: number, indexB: number) {
   arr[indexB] = temp;
   return arr
 }
+export function asString<T>(t: T) { 
+  return t + ''
+}

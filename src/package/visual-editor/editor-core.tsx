@@ -19,7 +19,7 @@ import { dragStart, dragEnd } from "../utils/event"
 import { controlView } from "./control-view" // 控制台渲染器
 import editorInstance from "./visuaEditorComponents" // 编辑器组件注册机
 import renderIconComponents from "./help-coms/render-icon-components" // 所有在注册的组件
-import { deepClone, getBtns, isPass } from "../utils/index"
+import { asString, deepClone, getBtns, isPass } from "../utils/index"
 import { registorBuiltIn } from "../../built-in-registor/index"
 import { builtInArrComs } from "../utils/registorBuiltInComUtils"
 import leftNav from "./help-coms/leftNav.vue"
@@ -361,7 +361,7 @@ export const visualEditor = defineComponent({
             return
           }
           let dom = document.querySelector(
-            "#block" + (block.id as string).replace("$", "")
+            "#block" + asString(block.id).replace("$", "")
           ) as HTMLElement
           const { width, height, left, top } = dom.getBoundingClientRect()
           if (
