@@ -49,7 +49,7 @@ export interface block {
   widthAdaption100?: boolean // dragMode 在值为updown的情况下好使，宽度是否自适应： 如果为true的话 宽度和屏幕一样，如果为false则和设置的wrapper宽度一致
   height: number // 组件的高度
   hasResize: boolean // 是否调整过宽高
-  id: number // 每个组件的id
+  id: number | string // 每个组件的id
   props: v[VisualEditorComponent.props] // 组件的属性
   dragMode?: string // 拖拽模式 'free' | 'updown'('') 只有两种
   x: number
