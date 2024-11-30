@@ -11301,6 +11301,10 @@ const Ml = /* @__PURE__ */ F({
     index: {
       type: Number,
       default: 0
+    },
+    dragMove: {
+      type: Boolean,
+      default: !1
     }
   },
   components: {
@@ -11337,7 +11341,7 @@ const Ml = /* @__PURE__ */ F({
     Ee(() => {
       e.block.adjustmentPosition && e.block.dragMode == "free" && (e.block.left = e.block.left - o.value.offsetWidth / 2, e.block.top = e.block.top - o.value.offsetHeight / 2, e.block.adjustmentPosition = !1, e.block.width = o.value.offsetWidth, e.block.height = o.value.offsetHeight);
     });
-    let i = m(() => [e.priview ? "editor-bloack-priview" : "editor-bloack", e.block.focus && !e.priview ? "editor-bloack-focus" : ""]);
+    let i = m(() => [e.priview ? "editor-bloack-priview" : "editor-bloack", e.block.focus && !e.priview ? "editor-bloack-focus" : "", e.dragMove ? "editor-bloack-dragmove" : ""]);
     function a(r) {
       t(r);
     }
@@ -16954,6 +16958,7 @@ const q_ = /* @__PURE__ */ Ce(R_, [["__scopeId", "data-v-b334d714"]]), H_ = /* @
       var S;
       return d("div", null, [d(Ml, {
         index: E,
+        dragMove: e.dragMove,
         block: v,
         container: (S = e.modelValue) == null ? void 0 : S.container,
         onMousedown: (z) => D.block.onMousedown(z, v),

@@ -854,6 +854,7 @@ export const visualEditor = defineComponent({
                     <div>
                       <editorBlock
                         index={index}
+                        dragMove={props.dragMove}
                         block={block}
                         container={props.modelValue?.container}
                         onMousedown={(e: MouseEvent) =>

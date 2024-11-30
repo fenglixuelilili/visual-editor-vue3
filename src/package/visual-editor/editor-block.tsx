@@ -30,6 +30,10 @@ export default defineComponent({
       type: Number,
       default: 0,
     },
+    dragMove: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     // GridItem: VueGridLayout.GridItem,
@@ -91,6 +95,7 @@ export default defineComponent({
     let classes = computed(() => [
       props.priview ? "editor-bloack-priview" : "editor-bloack",
       props.block.focus && !props.priview ? "editor-bloack-focus" : "",
+      props.dragMove ? "editor-bloack-dragmove" : "",
     ])
     function operate(type: string) {
       emit(type)
