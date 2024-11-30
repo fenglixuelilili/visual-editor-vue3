@@ -288,13 +288,25 @@ export function useVisualCommand({
           let indexB = blocks.findIndex(
             (blo: block) => blo.id == sortEndBlock.id
           )
+          let blockA = blocks[indexA]
+          let blockB = blocks[indexB]
+
+          // blocks.
           if (indexA < indexB) {
             // 向下拖
-            blocks = swapArrayElements(blocks, indexA, indexB - 1)
+            // 例如：0的位置 拖到 3 的位置应该这么做： 1.先把0号位置删除， 此刻3号位变2号位；2. 依然插入3号位
+            // blocks = swapArrayElements(blocks, indexA, indexB - 1)
+            // blocks.splice( indexA, 1 )
+            blocks.splice(indexA, 1)
+            blocks.splice(indexB - 1, 0, blockA)
           } else {
-            // 向上脱
-            blocks = swapArrayElements(blocks, indexA, indexB)
+            // 向上拖
+            // 例如：3的位置 拖到 0 的位置应该这么做： 1.先把3号位置删除；2.插入至0号位
+            // blocks = swapArrayElements(blocks, indexA, indexB)
+            blocks.splice(indexA, 1)
+            blocks.splice(indexB, 0, blockA)
           }
+
           updateBlocks(blocks)
           data.after = deepClone(blocks)
         },
