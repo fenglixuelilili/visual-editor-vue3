@@ -15,7 +15,7 @@ export default {
         color: block.props.color.defaultValue,
         fontSize: block.props.fontSize.defaultValue + "px",
         lineHeight: block.props.lineHeight.defaultValue + "px",
-        height: block.props.lineHeight.defaultValue + "px",
+        // height: block.props.lineHeight.defaultValue + "px",
         marginBottom: block.props.marginBottom.defaultValue + "px",
         marginTop: block.props.marginTop.defaultValue + "px",
       }
@@ -25,11 +25,10 @@ export default {
       text: block.props.text.defaultValue,
     })
   },
-  // priview: () => <textarea placeholder="请输入内容"></textarea>,
   props: {
     text: {
       defaultValue: "报名表单",
-      type: "input",
+      type: "textarea",
       label: "文字内容",
     },
     color: {
@@ -43,7 +42,7 @@ export default {
       label: "字体大小",
     },
     lineHeight: {
-      defaultValue: 48,
+      defaultValue: 28,
       type: "number",
       label: "行高",
     },
