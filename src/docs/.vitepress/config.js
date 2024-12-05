@@ -18,7 +18,7 @@ export default {
     sidebar: {
       "/guide/": [
         {
-          text: "指南",
+          text: "指南1",
           items: [
             { text: "安装", link: "/guide/installation" },
             { text: "快速开始", link: "/guide/quieStart" },
@@ -27,7 +27,7 @@ export default {
       ],
       "/component/": [
         {
-          text: "基础组件",
+          text: "基础组件2",
           items: [{ text: "Icon", link: "/component/icon" }],
         },
       ],
