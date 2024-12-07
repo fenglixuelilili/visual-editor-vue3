@@ -39,12 +39,12 @@ export default {
     //   defaultValue: "",
     // },
     placeholder: {
-      label: "默认文案",
+      label: "默认提示文字",
       type: "input",
       defaultValue: "请输入姓名",
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: "",
     },

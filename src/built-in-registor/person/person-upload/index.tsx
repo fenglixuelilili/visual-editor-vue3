@@ -70,7 +70,7 @@ export default {
       unit: "MB",
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: "",
     },
