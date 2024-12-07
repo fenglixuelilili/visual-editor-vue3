@@ -11979,7 +11979,7 @@ const Hm = (e) => new Promise((t, n) => {
       n(i);
     };
   }
-}), Wm = (e) => (He("data-v-b129c912"), e = e(), We(), e), Um = {
+}), Wm = (e) => (He("data-v-1be3927d"), e = e(), We(), e), Um = {
   class: "img-upload-container w100"
 }, Km = {
   key: 0,
@@ -12046,7 +12046,7 @@ const Ce = (e, t) => {
   for (const [l, o] of t)
     n[l] = o;
   return n;
-}, Na = /* @__PURE__ */ Ce(Zm, [["__scopeId", "data-v-b129c912"]]), Qm = {
+}, Na = /* @__PURE__ */ Ce(Zm, [["__scopeId", "data-v-1be3927d"]]), Qm = {
   key: 0
 }, Jm = {
   key: 1
@@ -12192,7 +12192,7 @@ const Ce = (e, t) => {
     };
   }
 });
-const ug = /* @__PURE__ */ Ce(sg, [["__scopeId", "data-v-5efd1334"]]);
+const ug = /* @__PURE__ */ Ce(sg, [["__scopeId", "data-v-12943b6d"]]);
 function cg(e, t, n, l) {
   let o = e(), i = t.value.cBlock || {}, a = i.props ? i.props : {}, r = I([]);
   Object.keys(a).forEach((c) => {
@@ -12343,7 +12343,7 @@ const $r = /* @__PURE__ */ F({
       class: "editor-priview-label"
     }, [o.label])]))])]))]);
   }
-}), at = (e) => (He("data-v-9674b51e"), e = e(), We(), e), dg = {
+}), at = (e) => (He("data-v-ffe7a210"), e = e(), We(), e), dg = {
   class: "editor-built-in-control-base-title"
 }, fg = /* @__PURE__ */ at(() => /* @__PURE__ */ p("div", {
   class: "line"
@@ -12552,7 +12552,7 @@ const $r = /* @__PURE__ */ F({
     };
   }
 });
-const Ug = /* @__PURE__ */ Ce(Wg, [["__scopeId", "data-v-9674b51e"]]), Kg = /* @__PURE__ */ F({
+const Ug = /* @__PURE__ */ Ce(Wg, [["__scopeId", "data-v-ffe7a210"]]), Kg = /* @__PURE__ */ F({
   __name: "render",
   props: {
     style: {
@@ -12575,7 +12575,7 @@ const Ug = /* @__PURE__ */ Ce(Wg, [["__scopeId", "data-v-9674b51e"]]), Kg = /* @
     }, ve(e.text ? e.text : "请在右侧控制器中输入内容"), 3)], 4));
   }
 });
-const Yg = /* @__PURE__ */ Ce(Kg, [["__scopeId", "data-v-ad83ebe6"]]), Gg = {
+const Yg = /* @__PURE__ */ Ce(Kg, [["__scopeId", "data-v-c4ac491a"]]), Gg = {
   group: "基础组件",
   name: "baseText",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172602085635655aa172602085635629144_2.png",
@@ -12736,7 +12736,7 @@ const Yg = /* @__PURE__ */ Ce(Kg, [["__scopeId", "data-v-ad83ebe6"]]), Gg = {
     }, null, 8, Xg)) : (y(), x("div", Zg, "请在控制器中上传图片+"))], 4));
   }
 });
-const Jg = /* @__PURE__ */ Ce(Qg, [["__scopeId", "data-v-ac936ab1"]]), eb = {
+const Jg = /* @__PURE__ */ Ce(Qg, [["__scopeId", "data-v-607c2561"]]), eb = {
   group: "基础组件",
   name: "baseImg",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260208888133402172602088881394742_3.png",
@@ -12831,8 +12831,8 @@ const Jg = /* @__PURE__ */ Ce(Qg, [["__scopeId", "data-v-ac936ab1"]]), eb = {
     }, ve(e.text), 5), e.visibleSubmitNum ? (y(), x("div", tb, " ——" + ve(o(e.submitTip)) + "—— ", 1)) : te("", !0)], 512));
   }
 });
-const lb = /* @__PURE__ */ Ce(nb, [["__scopeId", "data-v-caa2b586"]]);
-const Qn = (e) => (He("data-v-e66b9f5d"), e = e(), We(), e), ob = {
+const lb = /* @__PURE__ */ Ce(nb, [["__scopeId", "data-v-9a7beed3"]]);
+const Qn = (e) => (He("data-v-64a561b9"), e = e(), We(), e), ob = {
   class: "editor-built-in-control-base-submit"
 }, ab = /* @__PURE__ */ Qn(() => /* @__PURE__ */ p("div", {
   class: "h-line"
@@ -12892,7 +12892,7 @@ const Qn = (e) => (He("data-v-e66b9f5d"), e = e(), We(), e), ob = {
     };
   }
 });
-const bb = /* @__PURE__ */ Ce(gb, [["__scopeId", "data-v-e66b9f5d"]]), yb = {
+const bb = /* @__PURE__ */ Ce(gb, [["__scopeId", "data-v-64a561b9"]]), yb = {
   group: "基础组件",
   name: "baseSubmit",
   label: "提交按钮",
@@ -13004,7 +13004,7 @@ const bb = /* @__PURE__ */ Ce(gb, [["__scopeId", "data-v-e66b9f5d"]]), yb = {
     }, [(y(!0), x(Ie, null, ht($a(n), (i) => (y(), x("div", null, ve(i), 1))), 256))], 4));
   }
 });
-const $b = /* @__PURE__ */ Ce(_b, [["__scopeId", "data-v-25916970"]]), wb = {
+const $b = /* @__PURE__ */ Ce(_b, [["__scopeId", "data-v-514ac7e6"]]), wb = {
   group: "基础组件",
   label: "表单标题",
   name: "baseTitle",
@@ -13146,7 +13146,7 @@ const $b = /* @__PURE__ */ Ce(_b, [["__scopeId", "data-v-25916970"]]), wb = {
     }, ve(e.successBottomText), 5)])], 4));
   }
 });
-const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-575da097"]]), Ib = {
+const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-120de421"]]), Ib = {
   group: "基础组件",
   name: "baseSuccess",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726294902723b41a17262949027235096_ss.png",
@@ -13216,7 +13216,7 @@ const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-575da097"]]), Ib = {
     }
   },
   controlView: (e, t) => d("div", null, null)
-}, Pb = (e) => (He("data-v-01b7c41b"), e = e(), We(), e), jb = {
+}, Pb = (e) => (He("data-v-b155361d"), e = e(), We(), e), jb = {
   class: "title-tip"
 }, Tb = {
   key: 0,
@@ -13268,7 +13268,7 @@ const Bb = /* @__PURE__ */ Ce(xb, [["__scopeId", "data-v-575da097"]]), Ib = {
     }, [zb, p("div", Ab, ve(l.name ? l.name : "请填写内容"), 1)]))), 128))])], 4));
   }
 });
-const Fb = /* @__PURE__ */ Ce(Lb, [["__scopeId", "data-v-01b7c41b"]]);
+const Fb = /* @__PURE__ */ Ce(Lb, [["__scopeId", "data-v-b155361d"]]);
 /**!
  * Sortable 1.15.3
  * @author	RubaXa   <trash@rubaxa.org>
@@ -14538,7 +14538,7 @@ Pt(Ha, {
 });
 se.mount(new dy());
 se.mount(Ha, qa);
-const Mt = (e) => (He("data-v-09483bfa"), e = e(), We(), e), fy = {
+const Mt = (e) => (He("data-v-27fb113c"), e = e(), We(), e), fy = {
   class: "editor-built-in-control-commen-multiple"
 }, py = /* @__PURE__ */ Mt(() => /* @__PURE__ */ p("div", {
   class: "h-line"
@@ -14802,7 +14802,7 @@ const Mt = (e) => (He("data-v-09483bfa"), e = e(), We(), e), fy = {
     };
   }
 });
-const Py = /* @__PURE__ */ Ce(Iy, [["__scopeId", "data-v-09483bfa"]]), jy = {
+const Py = /* @__PURE__ */ Ce(Iy, [["__scopeId", "data-v-27fb113c"]]), jy = {
   group: "个人信息（自定义）",
   name: "commenMultiple",
   // formItemField: "1",
@@ -14829,7 +14829,7 @@ const Py = /* @__PURE__ */ Ce(Iy, [["__scopeId", "data-v-09483bfa"]]), jy = {
       defaultValue: "多选"
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: ""
     },
@@ -14857,7 +14857,7 @@ const Py = /* @__PURE__ */ Ce(Iy, [["__scopeId", "data-v-09483bfa"]]), jy = {
   controlView: (e, t) => d(Py, {
     block: e
   })
-}, Ty = (e) => (He("data-v-97d898bf"), e = e(), We(), e), My = {
+}, Ty = (e) => (He("data-v-4fcf48e4"), e = e(), We(), e), My = {
   class: "title-tip"
 }, Dy = {
   key: 0,
@@ -14917,7 +14917,7 @@ const Py = /* @__PURE__ */ Ce(Iy, [["__scopeId", "data-v-09483bfa"]]), jy = {
     }, [p("span", null, ve(e.placeholder), 1), Ly])])], 4));
   }
 });
-const Ny = /* @__PURE__ */ Ce(Fy, [["__scopeId", "data-v-97d898bf"]]), sn = (e) => (He("data-v-6565436c"), e = e(), We(), e), Ry = {
+const Ny = /* @__PURE__ */ Ce(Fy, [["__scopeId", "data-v-4fcf48e4"]]), sn = (e) => (He("data-v-fbfa7983"), e = e(), We(), e), Ry = {
   class: "editor-built-in-control-commen-radio"
 }, qy = /* @__PURE__ */ sn(() => /* @__PURE__ */ p("div", {
   class: "h-line"
@@ -15151,7 +15151,7 @@ const Ny = /* @__PURE__ */ Ce(Fy, [["__scopeId", "data-v-97d898bf"]]), sn = (e) 
     };
   }
 });
-const n0 = /* @__PURE__ */ Ce(t0, [["__scopeId", "data-v-6565436c"]]), l0 = {
+const n0 = /* @__PURE__ */ Ce(t0, [["__scopeId", "data-v-fbfa7983"]]), l0 = {
   group: "个人信息（自定义）",
   name: "commenRadio",
   value: "",
@@ -15177,12 +15177,12 @@ const n0 = /* @__PURE__ */ Ce(t0, [["__scopeId", "data-v-6565436c"]]), l0 = {
       defaultValue: "单选"
     },
     placeholder: {
-      label: "默认文案",
+      label: "默认提示文字",
       type: "input",
       defaultValue: "请选择内容"
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: ""
     },
@@ -15202,7 +15202,7 @@ const n0 = /* @__PURE__ */ Ce(t0, [["__scopeId", "data-v-6565436c"]]), l0 = {
   controlView: (e, t) => d(n0, {
     block: e
   })
-}, qs = (e) => (He("data-v-147689a0"), e = e(), We(), e), o0 = {
+}, qs = (e) => (He("data-v-25abd448"), e = e(), We(), e), o0 = {
   class: "title-tip mb8"
 }, a0 = {
   key: 0,
@@ -15273,7 +15273,7 @@ const n0 = /* @__PURE__ */ Ce(t0, [["__scopeId", "data-v-6565436c"]]), l0 = {
     };
   }
 });
-const v0 = /* @__PURE__ */ Ce(p0, [["__scopeId", "data-v-147689a0"]]), tl = (e) => (He("data-v-f4a10f1d"), e = e(), We(), e), h0 = {
+const v0 = /* @__PURE__ */ Ce(p0, [["__scopeId", "data-v-25abd448"]]), tl = (e) => (He("data-v-db4167cd"), e = e(), We(), e), h0 = {
   class: "editor-built-in-control-check-phone"
 }, m0 = /* @__PURE__ */ tl(() => /* @__PURE__ */ p("div", {
   class: "h-line"
@@ -15328,7 +15328,7 @@ const v0 = /* @__PURE__ */ Ce(p0, [["__scopeId", "data-v-147689a0"]]), tl = (e) 
     };
   }
 });
-const V0 = /* @__PURE__ */ Ce(S0, [["__scopeId", "data-v-f4a10f1d"]]), O0 = {
+const V0 = /* @__PURE__ */ Ce(S0, [["__scopeId", "data-v-db4167cd"]]), O0 = {
   group: "个人信息",
   name: "checkPhone",
   addOnly: !0,
@@ -15357,12 +15357,12 @@ const V0 = /* @__PURE__ */ Ce(S0, [["__scopeId", "data-v-f4a10f1d"]]), O0 = {
       defaultValue: "电话"
     },
     placeholder: {
-      label: "默认文案",
+      label: "默认提示文字",
       type: "input",
       defaultValue: "请输入电话"
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: ""
     },
@@ -15450,7 +15450,7 @@ const V0 = /* @__PURE__ */ Ce(S0, [["__scopeId", "data-v-f4a10f1d"]]), O0 = {
     };
   }
 });
-const to = /* @__PURE__ */ Ce(P0, [["__scopeId", "data-v-c06a8f65"]]), un = (e) => (He("data-v-05a6c9a4"), e = e(), We(), e), j0 = {
+const to = /* @__PURE__ */ Ce(P0, [["__scopeId", "data-v-ed987c7f"]]), un = (e) => (He("data-v-22745730"), e = e(), We(), e), j0 = {
   class: "editor-built-in-control-person-name"
 }, T0 = /* @__PURE__ */ un(() => /* @__PURE__ */ p("div", {
   class: "h-line"
@@ -15521,7 +15521,7 @@ const to = /* @__PURE__ */ Ce(P0, [["__scopeId", "data-v-c06a8f65"]]), un = (e) 
     };
   }
 });
-const Y0 = /* @__PURE__ */ Ce(K0, [["__scopeId", "data-v-05a6c9a4"]]), G0 = {
+const Y0 = /* @__PURE__ */ Ce(K0, [["__scopeId", "data-v-22745730"]]), G0 = {
   group: "个人信息",
   name: "personName",
   value: "",
@@ -15558,12 +15558,12 @@ const Y0 = /* @__PURE__ */ Ce(K0, [["__scopeId", "data-v-05a6c9a4"]]), G0 = {
     //   defaultValue: "",
     // },
     placeholder: {
-      label: "默认文案",
+      label: "默认提示文字",
       type: "input",
       defaultValue: "请输入姓名"
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: ""
     },
@@ -15587,7 +15587,7 @@ const Y0 = /* @__PURE__ */ Ce(K0, [["__scopeId", "data-v-05a6c9a4"]]), G0 = {
   controlView: (e, t) => d(Y0, {
     block: e
   })
-}, On = (e) => (He("data-v-3fd74b8f"), e = e(), We(), e), X0 = {
+}, On = (e) => (He("data-v-a3cd79e3"), e = e(), We(), e), X0 = {
   class: "editor-built-in-control-person-other"
 }, Z0 = /* @__PURE__ */ On(() => /* @__PURE__ */ p("div", {
   class: "h-line"
@@ -15651,7 +15651,7 @@ const Y0 = /* @__PURE__ */ Ce(K0, [["__scopeId", "data-v-05a6c9a4"]]), G0 = {
     };
   }
 });
-const u1 = /* @__PURE__ */ Ce(s1, [["__scopeId", "data-v-3fd74b8f"]]), c1 = {
+const u1 = /* @__PURE__ */ Ce(s1, [["__scopeId", "data-v-a3cd79e3"]]), c1 = {
   group: "个人信息",
   name: "personOther",
   // value: "",
@@ -15687,12 +15687,12 @@ const u1 = /* @__PURE__ */ Ce(s1, [["__scopeId", "data-v-3fd74b8f"]]), c1 = {
     //   defaultValue: "",
     // },
     placeholder: {
-      label: "默认文案",
+      label: "默认提示文字",
       type: "input",
       defaultValue: "请输入其他信息"
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: ""
     },
@@ -15712,7 +15712,7 @@ const u1 = /* @__PURE__ */ Ce(s1, [["__scopeId", "data-v-3fd74b8f"]]), c1 = {
   controlView: (e, t) => d(u1, {
     block: e
   })
-}, nl = (e) => (He("data-v-df798f6e"), e = e(), We(), e), d1 = {
+}, nl = (e) => (He("data-v-1e356ef8"), e = e(), We(), e), d1 = {
   class: "editor-built-in-control-person-phone"
 }, f1 = /* @__PURE__ */ nl(() => /* @__PURE__ */ p("div", {
   class: "h-line"
@@ -15767,7 +15767,7 @@ const u1 = /* @__PURE__ */ Ce(s1, [["__scopeId", "data-v-3fd74b8f"]]), c1 = {
     };
   }
 });
-const w1 = /* @__PURE__ */ Ce($1, [["__scopeId", "data-v-df798f6e"]]), k1 = {
+const w1 = /* @__PURE__ */ Ce($1, [["__scopeId", "data-v-1e356ef8"]]), k1 = {
   group: "个人信息",
   name: "personPhone",
   value: "",
@@ -15802,12 +15802,12 @@ const w1 = /* @__PURE__ */ Ce($1, [["__scopeId", "data-v-df798f6e"]]), k1 = {
     //   defaultValue: "",
     // },
     placeholder: {
-      label: "默认文案",
+      label: "默认提示文字",
       type: "input",
       defaultValue: "请输入电话"
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: ""
     },
@@ -15827,7 +15827,7 @@ const w1 = /* @__PURE__ */ Ce($1, [["__scopeId", "data-v-df798f6e"]]), k1 = {
   controlView: (e, t) => d(w1, {
     block: e
   })
-}, C1 = (e) => (He("data-v-0cd61663"), e = e(), We(), e), S1 = {
+}, C1 = (e) => (He("data-v-f43a88e7"), e = e(), We(), e), S1 = {
   class: "title-tip"
 }, V1 = {
   key: 0,
@@ -15882,7 +15882,7 @@ const w1 = /* @__PURE__ */ Ce($1, [["__scopeId", "data-v-df798f6e"]]), k1 = {
     }, [p("div", E1, [p("span", null, ve(e.placeholder), 1), x1])])], 4));
   }
 });
-const I1 = /* @__PURE__ */ Ce(B1, [["__scopeId", "data-v-0cd61663"]]), Wa = (e) => (He("data-v-fcdbe6a9"), e = e(), We(), e), P1 = {
+const I1 = /* @__PURE__ */ Ce(B1, [["__scopeId", "data-v-f43a88e7"]]), Wa = (e) => (He("data-v-8d9dfe41"), e = e(), We(), e), P1 = {
   class: "editor-built-in-control-person-school"
 }, j1 = /* @__PURE__ */ Wa(() => /* @__PURE__ */ p("div", {
   class: "h-line"
@@ -15914,7 +15914,7 @@ const I1 = /* @__PURE__ */ Ce(B1, [["__scopeId", "data-v-0cd61663"]]), Wa = (e) 
     };
   }
 });
-const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-fcdbe6a9"]]), L1 = {
+const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-8d9dfe41"]]), L1 = {
   group: "个人信息",
   name: "personProvince",
   value: "",
@@ -15947,12 +15947,12 @@ const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-fcdbe6a9"]]), L1 = {
     //   defaultValue: "",
     // },
     placeholder: {
-      label: "默认文案",
+      label: "默认提示文字",
       type: "input",
       defaultValue: "请选择所在省份"
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: ""
     },
@@ -15964,7 +15964,7 @@ const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-fcdbe6a9"]]), L1 = {
   controlView: (e, t) => d(A1, {
     block: e
   })
-}, En = (e) => (He("data-v-1418313e"), e = e(), We(), e), F1 = {
+}, En = (e) => (He("data-v-c7c964bd"), e = e(), We(), e), F1 = {
   class: "editor-built-in-control-person-school"
 }, N1 = /* @__PURE__ */ En(() => /* @__PURE__ */ p("div", {
   class: "h-line"
@@ -16028,7 +16028,7 @@ const A1 = /* @__PURE__ */ Ce(z1, [["__scopeId", "data-v-fcdbe6a9"]]), L1 = {
     };
   }
 });
-const J1 = /* @__PURE__ */ Ce(Q1, [["__scopeId", "data-v-1418313e"]]), e_ = {
+const J1 = /* @__PURE__ */ Ce(Q1, [["__scopeId", "data-v-c7c964bd"]]), e_ = {
   group: "个人信息",
   name: "personSchool",
   value: "",
@@ -16064,12 +16064,12 @@ const J1 = /* @__PURE__ */ Ce(Q1, [["__scopeId", "data-v-1418313e"]]), e_ = {
     //   defaultValue: "",
     // },
     placeholder: {
-      label: "默认文案",
+      label: "默认提示文字",
       type: "input",
       defaultValue: "请输入所在中学"
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: ""
     },
@@ -16089,7 +16089,7 @@ const J1 = /* @__PURE__ */ Ce(Q1, [["__scopeId", "data-v-1418313e"]]), e_ = {
   controlView: (e, t) => d(J1, {
     block: e
   })
-}, t_ = (e) => (He("data-v-22530c73"), e = e(), We(), e), n_ = {
+}, t_ = (e) => (He("data-v-f5e40df8"), e = e(), We(), e), n_ = {
   class: "title-tip mb8"
 }, l_ = {
   key: 0,
@@ -16135,7 +16135,7 @@ const J1 = /* @__PURE__ */ Ce(Q1, [["__scopeId", "data-v-1418313e"]]), e_ = {
     }, [p("div", n_, [e.isRequire ? (y(), x("span", l_, "*")) : te("", !0), p("span", null, ve(e.title), 1)]), p("div", o_, [a_, e.tip ? (y(), x("div", i_, ve(e.tip), 1)) : te("", !0)])], 4));
   }
 });
-const s_ = /* @__PURE__ */ Ce(r_, [["__scopeId", "data-v-22530c73"]]), Ua = (e) => (He("data-v-be68881f"), e = e(), We(), e), u_ = {
+const s_ = /* @__PURE__ */ Ce(r_, [["__scopeId", "data-v-f5e40df8"]]), Ua = (e) => (He("data-v-10a00a3b"), e = e(), We(), e), u_ = {
   class: "editor-built-in-control-person-upload"
 }, c_ = /* @__PURE__ */ Ua(() => /* @__PURE__ */ p("div", {
   class: "h-line"
@@ -16167,7 +16167,7 @@ const s_ = /* @__PURE__ */ Ce(r_, [["__scopeId", "data-v-22530c73"]]), Ua = (e) 
     };
   }
 });
-const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-be68881f"]]), m_ = {
+const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-10a00a3b"]]), m_ = {
   group: "个人信息",
   label: "上传文件",
   name: "personUpload",
@@ -16229,7 +16229,7 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-be68881f"]]), m_ = {
       unit: "MB"
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: ""
     },
@@ -16241,7 +16241,7 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-be68881f"]]), m_ = {
   controlView: (e, t) => d(h_, {
     block: e
   })
-}, Ka = (e) => (He("data-v-169f549c"), e = e(), We(), e), g_ = {
+}, Ka = (e) => (He("data-v-43529695"), e = e(), We(), e), g_ = {
   class: "editor-built-in-control-person-year"
 }, b_ = /* @__PURE__ */ Ka(() => /* @__PURE__ */ p("div", {
   class: "h-line"
@@ -16273,7 +16273,7 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-be68881f"]]), m_ = {
     };
   }
 });
-const k_ = /* @__PURE__ */ Ce(w_, [["__scopeId", "data-v-169f549c"]]), C_ = {
+const k_ = /* @__PURE__ */ Ce(w_, [["__scopeId", "data-v-43529695"]]), C_ = {
   class: "title-tip mb8"
 }, S_ = {
   key: 0,
@@ -16390,7 +16390,7 @@ const k_ = /* @__PURE__ */ Ce(w_, [["__scopeId", "data-v-169f549c"]]), C_ = {
     };
   }
 });
-const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-a097dbfe"]]), B_ = {
+const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-274c33e1"]]), B_ = {
   group: "个人信息",
   name: "personYear",
   value: "",
@@ -16458,12 +16458,12 @@ const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-a097dbfe"]]), B_ = {
       }]
     },
     placeholder: {
-      label: "默认文案",
+      label: "默认提示文字",
       type: "input",
       defaultValue: "请选择参加高考年份"
     },
     tip: {
-      label: "提示",
+      label: "描述",
       type: "input",
       defaultValue: ""
     },
@@ -16518,7 +16518,7 @@ const Ws = [
   "personYear",
   "commenMultiple",
   "commenRadio"
-], no = (e) => (He("data-v-a82634a3"), e = e(), We(), e), I_ = {
+], no = (e) => (He("data-v-17496e46"), e = e(), We(), e), I_ = {
   class: "visual-tab-type"
 }, P_ = /* @__PURE__ */ no(() => /* @__PURE__ */ p("div", {
   class: "bg-com"
@@ -16556,7 +16556,7 @@ const Ws = [
     }, z_, 2)]));
   }
 });
-const Ir = /* @__PURE__ */ Ce(A_, [["__scopeId", "data-v-a82634a3"]]), L_ = {
+const Ir = /* @__PURE__ */ Ce(A_, [["__scopeId", "data-v-17496e46"]]), L_ = {
   class: "buttons"
 }, F_ = ["onClick"], N_ = ["src"], R_ = /* @__PURE__ */ F({
   __name: "shortcut-button",
@@ -16590,7 +16590,7 @@ const Ir = /* @__PURE__ */ Ce(A_, [["__scopeId", "data-v-a82634a3"]]), L_ = {
     };
   }
 });
-const q_ = /* @__PURE__ */ Ce(R_, [["__scopeId", "data-v-b334d714"]]), H_ = /* @__PURE__ */ F({
+const q_ = /* @__PURE__ */ Ce(R_, [["__scopeId", "data-v-d6c03a7c"]]), H_ = /* @__PURE__ */ F({
   components: {
     editorBlock: Ml,
     // GridLayout: VueGridLayout.GridLayout,
