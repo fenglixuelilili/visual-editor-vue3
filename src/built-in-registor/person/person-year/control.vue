@@ -11,7 +11,7 @@
             "
             @change="defaultChange"
           >
-            <a-option :value="item.id" v-for="(item, i) in getOptions()">
+            <a-option :value="item.value" v-for="(item, i) in getOptions()">
               {{ item.name }}
             </a-option>
           </a-select>
@@ -22,7 +22,7 @@
         <div class="opts">
           <a-checkbox-group :default-value="getDefaultValue()" @change="change">
             <a-checkbox
-              :value="item.id"
+              :value="item.value"
               class="opt"
               v-for="(item, i) in options"
             >
@@ -57,29 +57,29 @@ const props = defineProps({
 function switchChange(bol: any, type: string) {
   props.block.props[type].defaultValue = bol ? "1" : "2"
 }
-let options = ref<{ name: string; id: string }[]>([])
+let options = ref<{ name: string; value: string }[]>([])
 function getAsyncApi() {
   setTimeout(() => {
     options.value = [
       {
         name: "六年级（小学2031）",
-        id: "1",
+        value: "1",
       },
       {
         name: "五年级（小学2031）",
-        id: "2",
+        value: "2",
       },
       {
         name: "四年级（小学2031）",
-        id: "3",
+        value: "3",
       },
       {
         name: "三年级（小学2031）",
-        id: "4",
+        value: "4",
       },
       {
         name: "二年级（小学2031）",
-        id: "5",
+        value: "5",
       },
     ]
   }, 100)
@@ -89,26 +89,24 @@ function getDefaultValue() {
   let opts = props?.block?.props?.options
     ? props.block.props.options.defaultValue
     : []
-  return opts.map((item: any) => item.id)
+  return opts.map((item: any) => item.value)
 }
-function getOptions(): { id: string; name: string }[] {
+function getOptions(): { value: string; name: string }[] {
   return props.block?.props?.options?.defaultValue
     ? props.block.props.options.defaultValue
     : []
 }
 function change(val: any[]) {
-  console.log(val)
   let result = [] as any[]
-  val.forEach((id) => {
+  val.forEach((value) => {
     let res: any
-    if ((res = options.value.find((item) => item.id == id))) {
+    if ((res = options.value.find((item) => item.value == value))) {
       result.push(res)
     }
   })
   props.block.props.options.defaultValue = result
 }
 function defaultChange(val: any) {
-  console.log(val)
   props.block.props.value.defaultValue = val
 }
 </script>

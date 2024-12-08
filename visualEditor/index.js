@@ -16241,7 +16241,7 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-10a00a3b"]]), m_ = {
   controlView: (e, t) => d(h_, {
     block: e
   })
-}, ll = (e) => (He("data-v-d4c25248"), e = e(), We(), e), g_ = {
+}, ll = (e) => (He("data-v-941832c1"), e = e(), We(), e), g_ = {
   class: "editor-built-in-control-person-year"
 }, b_ = {
   class: "form-item"
@@ -16281,41 +16281,40 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-10a00a3b"]]), m_ = {
       setTimeout(() => {
         l.value = [{
           name: "六年级（小学2031）",
-          id: "1"
+          value: "1"
         }, {
           name: "五年级（小学2031）",
-          id: "2"
+          value: "2"
         }, {
           name: "四年级（小学2031）",
-          id: "3"
+          value: "3"
         }, {
           name: "三年级（小学2031）",
-          id: "4"
+          value: "4"
         }, {
           name: "二年级（小学2031）",
-          id: "5"
+          value: "5"
         }];
       }, 100);
     }
     o();
     function i() {
       var c, f;
-      return ((f = (c = t == null ? void 0 : t.block) == null ? void 0 : c.props) != null && f.options ? t.block.props.options.defaultValue : []).map((g) => g.id);
+      return ((f = (c = t == null ? void 0 : t.block) == null ? void 0 : c.props) != null && f.options ? t.block.props.options.defaultValue : []).map((g) => g.value);
     }
     function a() {
       var u, c, f;
       return (f = (c = (u = t.block) == null ? void 0 : u.props) == null ? void 0 : c.options) != null && f.defaultValue ? t.block.props.options.defaultValue : [];
     }
     function r(u) {
-      console.log(u);
       let c = [];
       u.forEach((f) => {
         let g;
-        (g = l.value.find((h) => h.id == f)) && c.push(g);
+        (g = l.value.find((h) => h.value == f)) && c.push(g);
       }), t.block.props.options.defaultValue = c;
     }
     function s(u) {
-      console.log(u), t.block.props.value.defaultValue = u;
+      t.block.props.value.defaultValue = u;
     }
     return (u, c) => {
       const f = nn, g = Ql, h = ns, b = bl, _ = $t;
@@ -16325,7 +16324,7 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-10a00a3b"]]), m_ = {
         onChange: s
       }, {
         default: le(() => [(y(!0), x(Oe, null, at(a(), (P, T) => (y(), ie(f, {
-          value: P.id
+          value: P.value
         }, {
           default: le(() => [ke(de(P.name), 1)]),
           _: 2
@@ -16336,7 +16335,7 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-10a00a3b"]]), m_ = {
         onChange: r
       }, {
         default: le(() => [(y(!0), x(Oe, null, at(Kl(l), (P, T) => (y(), ie(h, {
-          value: P.id,
+          value: P.value,
           class: "opt"
         }, {
           default: le(() => [ke(de(P.name), 1)]),
@@ -16350,7 +16349,7 @@ const h_ = /* @__PURE__ */ Ce(v_, [["__scopeId", "data-v-10a00a3b"]]), m_ = {
     };
   }
 });
-const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-d4c25248"]]), B_ = {
+const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-941832c1"]]), B_ = {
   class: "title-tip mb8"
 }, I_ = {
   key: 0,
