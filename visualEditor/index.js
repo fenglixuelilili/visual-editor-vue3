@@ -16411,7 +16411,7 @@ const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-d4c25248"]]), B_ = {
         "model-value": e.value
       }, {
         default: le(() => [(y(!0), x(Oe, null, at(e.options, (i) => (y(), ie(l, {
-          value: i.id
+          value: i.id + ""
         }, {
           default: le(() => [ke(de(i.name), 1)]),
           _: 2
@@ -16421,7 +16421,7 @@ const x_ = /* @__PURE__ */ Ce(E_, [["__scopeId", "data-v-d4c25248"]]), B_ = {
     };
   }
 });
-const M_ = /* @__PURE__ */ Ce(T_, [["__scopeId", "data-v-0db56cf1"]]), D_ = {
+const M_ = /* @__PURE__ */ Ce(T_, [["__scopeId", "data-v-32b00230"]]), D_ = {
   group: "个人信息",
   name: "personYear",
   value: "",

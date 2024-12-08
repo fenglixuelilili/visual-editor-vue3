@@ -13,7 +13,7 @@
         :placeholder="placeholder"
         :model-value="value"
       >
-        <a-option :value="item.id" v-for="item in options">
+        <a-option :value="item.id + ''" v-for="item in options">
           {{ item.name }}
         </a-option>
       </a-select>
