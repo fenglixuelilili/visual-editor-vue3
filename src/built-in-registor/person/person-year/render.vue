@@ -13,26 +13,24 @@
         :placeholder="placeholder"
         :model-value="value"
       >
-        <a-option :value="2020">2020</a-option>
-        <a-option :value="2021">2021</a-option>
-        <a-option :value="2022">2022</a-option>
-        <a-option :value="2023">2023</a-option>
-        <a-option :value="2024">2024</a-option>
-        <a-option :value="2025">2025</a-option>
-        <a-option :value="2026">2026</a-option>
-        <a-option :value="2027">2027</a-option>
-        <a-option :value="2028">2028</a-option>
-        <a-option :value="2029">2029</a-option>
-        <a-option :value="2030">2030</a-option>
+        <a-option :value="item.id" v-for="item in options">
+          {{ item.name }}
+        </a-option>
       </a-select>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+import { PropType } from "vue"
+
 const props = defineProps({
   style: {
     type: Object,
     default: () => ({}),
+  },
+  options: {
+    type: Array as PropType<{ id: string; name: string }[]>,
+    default: () => [],
   },
   title: {
     type: String,

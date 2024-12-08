@@ -18,6 +18,7 @@ export default {
       value: props.value.defaultValue,
       placeholder: props.placeholder.defaultValue,
       tip: props?.tip?.defaultValue ? props.tip.defaultValue : "",
+      options: props?.options?.defaultValue ? props.options.defaultValue : [],
       isRequire: props.isRequire.defaultValue == "1" ? true : false,
     })
   },
@@ -29,57 +30,7 @@ export default {
       type: "input",
       defaultValue: "参加高考年份",
     },
-    value: {
-      label: "默认值",
-      type: "select",
-      defaultValue: "", //new Date().getFullYear()
-      options: [
-        {
-          name: "2020",
-          value: "2020",
-        },
-        {
-          name: "2021",
-          value: "2021",
-        },
-        {
-          name: "2022",
-          value: "2022",
-        },
-        {
-          name: "2023",
-          value: "2023",
-        },
-        {
-          name: "2024",
-          value: "2024",
-        },
-        {
-          name: "2025",
-          value: "2025",
-        },
-        {
-          name: "2026",
-          value: "2026",
-        },
-        {
-          name: "2027",
-          value: "2027",
-        },
-        {
-          name: "2028",
-          value: "2028",
-        },
-        {
-          name: "2029",
-          value: "2029",
-        },
-        {
-          name: "2030",
-          value: "2030",
-        },
-      ],
-    },
+
     placeholder: {
       label: "默认提示文字",
       type: "input",
@@ -89,6 +40,61 @@ export default {
       label: "描述",
       type: "input",
       defaultValue: "",
+    },
+    value: {
+      label: "默认值",
+      // type: "select",
+      defaultValue: "", //new Date().getFullYear()
+      // options: [
+      //   {
+      //     name: "2020",
+      //     value: "2020",
+      //   },
+      //   {
+      //     name: "2021",
+      //     value: "2021",
+      //   },
+      //   {
+      //     name: "2022",
+      //     value: "2022",
+      //   },
+      //   {
+      //     name: "2023",
+      //     value: "2023",
+      //   },
+      //   {
+      //     name: "2024",
+      //     value: "2024",
+      //   },
+      //   {
+      //     name: "2025",
+      //     value: "2025",
+      //   },
+      //   {
+      //     name: "2026",
+      //     value: "2026",
+      //   },
+      //   {
+      //     name: "2027",
+      //     value: "2027",
+      //   },
+      //   {
+      //     name: "2028",
+      //     value: "2028",
+      //   },
+      //   {
+      //     name: "2029",
+      //     value: "2029",
+      //   },
+      //   {
+      //     name: "2030",
+      //     value: "2030",
+      //   },
+      // ],
+    },
+    options: {
+      label: "设置年级选项",
+      defaultValue: [],
     },
     isRequire: {
       label: "设为必填",
