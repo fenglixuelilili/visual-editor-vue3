@@ -59,30 +59,72 @@ function switchChange(bol: any, type: string) {
 }
 let options = ref<{ name: string; value: string }[]>([])
 function getAsyncApi() {
-  setTimeout(() => {
-    options.value = [
-      {
-        name: "六年级（小学2031）",
-        value: "1",
-      },
-      {
-        name: "五年级（小学2031）",
-        value: "2",
-      },
-      {
-        name: "四年级（小学2031）",
-        value: "3",
-      },
-      {
-        name: "三年级（小学2031）",
-        value: "4",
-      },
-      {
-        name: "二年级（小学2031）",
-        value: "5",
-      },
-    ]
-  }, 100)
+  options.value = [
+    {
+      name: "大四（2021届）",
+      value: "2021",
+    },
+    {
+      name: "大三（2022届）",
+      value: "2022",
+    },
+    {
+      name: "大二（2023届）",
+      value: "2023",
+    },
+    {
+      name: "大一（2024届）",
+      value: "2024",
+    },
+    {
+      name: "高三（2025届）",
+      value: "2025",
+    },
+    {
+      name: "高二（2026届）",
+      value: "2026",
+    },
+    {
+      name: "高一（2027届）",
+      value: "2027",
+    },
+    {
+      name: "初三（2028届）",
+      value: "2028",
+    },
+    {
+      name: "初二（2029届）",
+      value: "2029",
+    },
+    {
+      name: "初一（2030届）",
+      value: "2030",
+    },
+    {
+      name: "六年级（2031届）",
+      value: "2031",
+    },
+    {
+      name: "五年级（2032届）",
+      value: "2032",
+    },
+    {
+      name: "四年级（2033届）",
+      value: "2033",
+    },
+    {
+      name: "三年级（2034届）",
+      value: "2034",
+    },
+    {
+      name: "二年级（2035届）",
+      value: "2035",
+    },
+    {
+      name: "一年级（2036届）",
+      value: "2036",
+    },
+  ]
 }
 getAsyncApi()
 function getDefaultValue() {
