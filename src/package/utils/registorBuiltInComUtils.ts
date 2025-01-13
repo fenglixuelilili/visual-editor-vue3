@@ -3,7 +3,7 @@ export const builtInArrComs = [
   "baseSubmit",
   "baseText",
   "baseTitle",
-  // "baseSuccess",
+  "baseSuccess",
   "checkPhone",
   "personName",
   "personOther",

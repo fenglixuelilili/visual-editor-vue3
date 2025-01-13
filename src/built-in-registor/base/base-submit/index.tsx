@@ -37,6 +37,11 @@ export default {
       type: "input",
       defaultValue: "提交",
     },
+    link: {
+      label: "超链接",
+      type: "input",
+      defaultValue: "",
+    },
     backgroundColor: {
       label: "按钮颜色",
       type: "color",
@@ -68,7 +73,6 @@ export default {
       min: 0,
       max: 30,
     },
-
     width: {
       label: "宽度",
       type: "number",

@@ -10,15 +10,21 @@
       <span :style="{ color: successColor }">{{ successText }}</span>
     </div>
     <div class="successDesc">
-      <span :style="{ color: successDescColor }">{{ successDesc }}</span>
+      <div v-for="item in getSuccessDesc()">
+        <span :style="{ color: successDescColor }">
+          {{ item }}
+        </span>
+      </div>
     </div>
     <div class="successQR">
       <img :src="successQR" alt="" />
     </div>
     <div class="successBottomText" @click="goLink">
-      <span :style="{ color: successBottomColor }">
-        {{ successBottomText }}
-      </span>
+      <div v-for="(item, i) in getSuccessBottomText()" :key="i">
+        <span :style="{ color: successBottomColor }">
+          {{ item }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -84,6 +90,12 @@ function goLink() {
     window.open(firstUrl)
   }
 }
+function getSuccessDesc() {
+  return props.successDesc.split("\n")
+}
+function getSuccessBottomText() {
+  return props.successBottomText.split("\n")
+}
 </script>
 <style lang="scss" scoped>
 .editor-built-in-registor-base-success {
@@ -136,7 +148,7 @@ function goLink() {
   .successBottomText {
     width: 80%;
     text-align: center;
-    line-height: 20px;
+    line-height: 28px;
     font-size: 18px;
   }
 }

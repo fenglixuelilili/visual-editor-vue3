@@ -44,7 +44,7 @@ export default {
     successDesc: {
       defaultValue: "您的信息已经提交成功，感谢您的参与！",
       label: "成功提示",
-      type: "input",
+      type: "textarea",
     },
     successDescColor: {
       defaultValue: "#fff",
@@ -60,7 +60,7 @@ export default {
     successBottomText: {
       defaultValue: "关注公众号，了解更多",
       label: "相关提示信息",
-      type: "input",
+      type: "textarea",
     },
     successLink: {
       defaultValue: "",
