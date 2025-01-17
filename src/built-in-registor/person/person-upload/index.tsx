@@ -66,7 +66,7 @@ export default {
     MB: {
       label: "单文件最大",
       type: "number",
-      defaultValue: 1,
+      defaultValue: 5,
       unit: "MB",
     },
     tip: {
