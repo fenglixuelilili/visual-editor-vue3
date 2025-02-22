@@ -11,7 +11,7 @@
     >
       {{ tip }}
     </div>
-    <div class="form-item">
+    <div class="form-item" v-if="showType == '1'">
       <!-- <div class="item" v-for="(item, i) in options" :key="i">
         <div class="control-input"></div>
         <div class="text">{{ item.name ? item.name : "请填写内容" }}</div>
@@ -24,6 +24,12 @@
             alt=""
           />
         </div>
+      </div>
+    </div>
+    <div class="form-item-pu" v-if="showType == '2'">
+      <div class="item" v-for="(item, i) in options" :key="i">
+        <div class="control-input"></div>
+        <div class="text">{{ item.name ? item.name : "请填写内容" }}</div>
       </div>
     </div>
   </div>
@@ -55,6 +61,10 @@ const props = defineProps({
   tip: {
     type: String,
     default: "",
+  },
+  showType: {
+    type: String,
+    default: "1",
   },
 })
 function tipMessage() {
@@ -89,6 +99,41 @@ function tipMessage() {
         img {
           width: 16px;
         }
+      }
+    }
+  }
+  .form-item-pu {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: -8px;
+    .item {
+      min-width: 50%;
+      display: flex;
+      align-items: center;
+      margin-top: 16px;
+      .control-input {
+        width: 14px;
+        height: 14px;
+        background: #ffffff;
+        border-radius: 2px;
+        border: 1px solid rgba(3, 32, 61, 0.35);
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+      .text {
+        flex: 1;
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 400;
+        font-size: 16px;
+        color: #03203d;
+        line-height: 22px;
+        text-align: left;
+        font-style: normal;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1; /* 显示三行，超出部分使用省略号 */
+        overflow: hidden;
       }
     }
   }

@@ -18,6 +18,9 @@ export default {
       options: props.options.defaultValue,
       placeholder: props.placeholder.defaultValue,
       tip: props?.tip?.defaultValue ? props.tip.defaultValue : "",
+      showType: props?.showType?.defaultValue
+        ? props.showType.defaultValue
+        : "1",
     })
   },
   label: "单选",
@@ -36,6 +39,21 @@ export default {
       label: "描述",
       type: "input",
       defaultValue: "",
+    },
+    showType: {
+      label: "交互形式",
+      type: "select",
+      defaultValue: "1", //new Date().getFullYear()
+      options: [
+        {
+          name: "下拉选择",
+          value: "1",
+        },
+        {
+          name: "平铺选择",
+          value: "2",
+        },
+      ],
     },
     options: {
       label: "选项",

@@ -54,7 +54,8 @@ const props = defineProps({
     flex-wrap: wrap;
     margin-top: -8px;
     .item {
-      width: 50%;
+      // width: 50%;
+      min-width: 50%;
       display: flex;
       align-items: center;
       margin-top: 16px;
