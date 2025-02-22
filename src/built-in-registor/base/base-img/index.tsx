@@ -4,6 +4,7 @@ import render from "./render.vue"
 export default {
   group: "基础组件",
   name: "baseImg",
+  sort: 3,
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260208888133402172602088881394742_3.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17260208888133402172602088881394742_3.png",

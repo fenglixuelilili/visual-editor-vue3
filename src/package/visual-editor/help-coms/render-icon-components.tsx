@@ -77,6 +77,12 @@ export default defineComponent({
     //     }
     //   }
     // })
+    // 获取排序后的数据
+    function getSortComponents(components: VisualEditorComponent[]) {
+      return components.sort((a, b) => {
+        return (a.sort ? a.sort : 0) - (b.sort ? b.sort : 0)
+      })
+    }
     return () => (
       <>
         {/* 左侧所有在服役的组件 */}
@@ -85,37 +91,39 @@ export default defineComponent({
             <div class="group-container">
               <div class="title">{key}</div>
               <div class="group-container-content">
-                {componentTable.value[key].map((component) => {
-                  if (component?.hide) {
-                    return null
-                  }
-                  return (
-                    <div
-                      class="editer-menu-content-block"
-                      draggable
-                      onDragstart={(e) =>
-                        props.menuDragInfo.dragstart(e, component)
-                      }
-                      onDragend={props.menuDragInfo.dragend.bind(
-                        props.menuDragInfo
-                      )}
-                      onClick={(e) => props.menuDragInfo.click(e, component)}
-                    >
-                      <div class="icon-box">
-                        <img class="icon" src={component.icon} alt="" />
-                        <img
-                          class="activeIcon"
-                          src={component.activeIcon}
-                          alt=""
-                        />
+                {getSortComponents(componentTable.value[key]).map(
+                  (component) => {
+                    if (component?.hide) {
+                      return null
+                    }
+                    return (
+                      <div
+                        class="editer-menu-content-block"
+                        draggable
+                        onDragstart={(e) =>
+                          props.menuDragInfo.dragstart(e, component)
+                        }
+                        onDragend={props.menuDragInfo.dragend.bind(
+                          props.menuDragInfo
+                        )}
+                        onClick={(e) => props.menuDragInfo.click(e, component)}
+                      >
+                        <div class="icon-box">
+                          <img class="icon" src={component.icon} alt="" />
+                          <img
+                            class="activeIcon"
+                            src={component.activeIcon}
+                            alt=""
+                          />
+                        </div>
+                        <span class="editor-priview-label">
+                          {component.label}
+                        </span>
+                        {/* {component.priview()} */}
                       </div>
-                      <span class="editor-priview-label">
-                        {component.label}
-                      </span>
-                      {/* {component.priview()} */}
-                    </div>
-                  )
-                })}
+                    )
+                  }
+                )}
               </div>
             </div>
           )

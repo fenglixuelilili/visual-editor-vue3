@@ -5,6 +5,7 @@ import { createVNode } from "vue"
 export default {
   group: "个人信息",
   label: "上传文件",
+  sort: 7,
   name: "personUpload",
   value: [],
   formItemField: "file_url",

@@ -6,6 +6,7 @@ export default {
   group: "基础组件",
   name: "baseSubmit",
   label: "提交按钮",
+  sort: 4,
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726021435873459c17260214358742832_t.png",
   activeIcon:
     "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726021435873459c17260214358742832_t.png",

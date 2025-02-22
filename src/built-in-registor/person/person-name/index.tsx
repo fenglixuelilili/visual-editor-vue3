@@ -6,6 +6,7 @@ export default {
   group: "个人信息",
   name: "personName",
   value: "",
+  sort: 2,
   addOnly: true,
   formItemField: "name",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726020993661913c172602099366229853_1.png",

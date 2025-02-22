@@ -7,6 +7,7 @@ export default {
   name: "personOther",
   // value: "",
   addOnly: true,
+  sort: 6,
   formItemField: "remark",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/172623167655568f0172623167655537679_message.png",
   activeIcon:

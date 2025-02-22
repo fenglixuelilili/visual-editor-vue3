@@ -7,6 +7,7 @@ export default {
   name: "personPhone",
   value: "",
   addOnly: true,
+  sort: 3,
   formItemField: "phone",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262317879488159172623178794864654_phone.png",
   activeIcon:

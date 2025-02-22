@@ -29,6 +29,7 @@ export interface VisualEditorComponent {
   hide?: boolean // 隐藏该组件
   activeIcon: string // 激活icon
   addOnly?: boolean // 在画布中只能有一条数据
+  sort?: number
   editorBlockShellStyle?: (block: block, style: T) => T // 每个组件的外壳的样式
   // priview: () => JSX.Element | string
   render: (...args) => JSX.Element | string

@@ -6,6 +6,7 @@ export default {
   group: "个人信息",
   name: "checkPhone",
   addOnly: true,
+  sort: 8,
   value: ["", ""],
   formItemField: "sms_code",
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/17262316229585fdd172623162295874627_sj.png",

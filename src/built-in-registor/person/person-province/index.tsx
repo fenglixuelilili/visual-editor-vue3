@@ -7,6 +7,7 @@ export default {
   name: "personProvince",
   value: "",
   formItemField: "province_id",
+  sort: 1,
   addOnly: true,
   icon: "https://ysys-assets.oss-cn-beijing.aliyuncs.com/public/1726021191023168617260211910248143_4.png",
   activeIcon:
