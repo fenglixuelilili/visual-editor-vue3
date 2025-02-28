@@ -16300,7 +16300,7 @@ const b_ = /* @__PURE__ */ Se(g_, [["__scopeId", "data-v-be68881f"]]), y_ = {
   controlView: (e, t) => d(b_, {
     block: e
   })
-}, ll = (e) => (He("data-v-17dfd82c"), e = e(), We(), e), __ = {
+}, ll = (e) => (He("data-v-efa7717d"), e = e(), We(), e), __ = {
   class: "editor-built-in-control-person-year"
 }, $_ = {
   class: "form-item"
@@ -16385,6 +16385,9 @@ const b_ = /* @__PURE__ */ Se(g_, [["__scopeId", "data-v-be68881f"]]), y_ = {
       }, {
         name: "一年级（2036届）",
         value: "2036"
+      }, {
+        name: "未知",
+        value: "0"
       }];
     }
     o();
@@ -16439,7 +16442,7 @@ const b_ = /* @__PURE__ */ Se(g_, [["__scopeId", "data-v-be68881f"]]), y_ = {
     };
   }
 });
-const P_ = /* @__PURE__ */ Se(I_, [["__scopeId", "data-v-17dfd82c"]]), j_ = {
+const P_ = /* @__PURE__ */ Se(I_, [["__scopeId", "data-v-efa7717d"]]), j_ = {
   class: "title-tip mb8"
 }, T_ = {
   key: 0,

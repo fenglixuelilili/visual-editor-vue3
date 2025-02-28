@@ -124,6 +124,10 @@ function getAsyncApi() {
       name: "一年级（2036届）",
       value: "2036",
     },
+    {
+      name: "未知",
+      value: "0",
+    },
   ]
 }
 getAsyncApi()
