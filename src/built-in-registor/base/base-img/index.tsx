@@ -39,7 +39,7 @@ export default {
     marginBottom: {
       label: "下边距",
       type: "slider",
-      defaultValue: 0,
+      defaultValue: 12,
       min: 0,
       max: 100,
     },

@@ -12774,7 +12774,7 @@ const eb = /* @__PURE__ */ Se(Jg, [["__scopeId", "data-v-ac936ab1"]]), tb = {
     marginBottom: {
       label: "下边距",
       type: "slider",
-      defaultValue: 0,
+      defaultValue: 12,
       min: 0,
       max: 100
     }
