@@ -66,7 +66,7 @@ export default {
     successLinkType: {
       defaultValue: "1",
       label: "跳转类型",
-      type: "select",
+      type: "radio",
       options: [
         {
           name: "链接跳转",

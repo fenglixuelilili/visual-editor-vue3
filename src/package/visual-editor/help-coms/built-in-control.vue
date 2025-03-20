@@ -166,6 +166,26 @@
             </a-option>
           </a-select>
         </div>
+        <div
+          class="w100"
+          v-if="
+            config.type == 'radio' &&
+            'defaultValue' in currentBlock.props[config.key]
+          "
+        >
+          <a-radio-group
+            v-model="currentBlock.props[config.key].defaultValue"
+            allow-clear
+          >
+            <a-radio
+              v-for="(item, i) in currentBlock.props[config.key].options"
+              :key="i"
+              :value="item.value"
+            >
+              {{ item.name }}
+            </a-radio>
+          </a-radio-group>
+        </div>
       </a-form-item>
     </template>
   </a-form>
