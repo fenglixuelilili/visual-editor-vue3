@@ -1,6 +1,7 @@
 import { createVNode } from "vue"
 import { VisualEditorComponent } from "../../../types/index"
 import render from "./render.vue"
+import control from "./control.vue"
 export default {
   group: "基础组件",
   name: "baseSuccess",
@@ -62,10 +63,52 @@ export default {
       label: "相关提示信息",
       type: "textarea",
     },
+    successLinkType: {
+      defaultValue: "1",
+      label: "跳转类型",
+      type: "select",
+      options: [
+        {
+          name: "链接跳转",
+          value: "1",
+        },
+        {
+          name: "文件跳转",
+          value: "2",
+        },
+      ],
+    },
+    successFileLink: {
+      defaultValue: "",
+      label: "跳转文件",
+      type: "fileUpload",
+      isShowFunc(config: any) {
+        console.log(config)
+        try {
+          if (config.successLinkType && config.successLinkType.defaultValue) {
+            return config.successLinkType.defaultValue == "2"
+          }
+        } catch (error) {
+          console.log(error)
+        }
+        return true
+      },
+    },
     successLink: {
       defaultValue: "",
       label: "跳转链接",
       type: "input",
+      isShowFunc(config: any) {
+        console.log(config)
+        try {
+          if (config.successLinkType && config.successLinkType.defaultValue) {
+            return config.successLinkType.defaultValue == "1"
+          }
+        } catch (error) {
+          console.log(error)
+        }
+        return true
+      },
     },
     successBottomColor: {
       defaultValue: "#fff",
