@@ -14,12 +14,7 @@
     </div>
     <a-button style="width: 100%" class="file-btn" :loading="loading">
       {{ modelValue ? "替换文件" : "上传文件" }}
-      <input
-        type="file"
-        class="file-input"
-        accept="image/*"
-        @change="methods.fileChange"
-      />
+      <input type="file" class="file-input" @change="methods.fileChange" />
     </a-button>
   </div>
 </template>
