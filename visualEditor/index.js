@@ -12257,7 +12257,7 @@ const Se = (e, t) => {
   for (const [l, o] of t)
     n[l] = o;
   return n;
-}, Ha = /* @__PURE__ */ Se(ng, [["__scopeId", "data-v-b129c912"]]), lg = (e) => (He("data-v-3d6f0cae"), e = e(), We(), e), og = {
+}, Ha = /* @__PURE__ */ Se(ng, [["__scopeId", "data-v-b129c912"]]), lg = (e) => (He("data-v-0c82f75e"), e = e(), We(), e), og = {
   class: "img-upload-container w100"
 }, ag = {
   key: 0,
@@ -12309,7 +12309,6 @@ const Se = (e, t) => {
         default: le(() => [Ce(ie(e.modelValue ? "替换文件" : "上传文件") + " ", 1), v("input", {
           type: "file",
           class: "file-input",
-          accept: "image/*",
           onChange: r[1] || (r[1] = //@ts-ignore
           (...i) => l.fileChange && l.fileChange(...i))
         }, null, 32)]),
@@ -12318,7 +12317,7 @@ const Se = (e, t) => {
     };
   }
 });
-const cg = /* @__PURE__ */ Se(ug, [["__scopeId", "data-v-3d6f0cae"]]), dg = {
+const cg = /* @__PURE__ */ Se(ug, [["__scopeId", "data-v-0c82f75e"]]), dg = {
   key: 0
 }, fg = {
   key: 1
