@@ -19,6 +19,13 @@ export default {
         // height: block.props.lineHeight.defaultValue + "px",
         marginBottom: block.props.marginBottom.defaultValue + "px",
         marginTop: block.props.marginTop.defaultValue + "px",
+        background: `url(${
+          block.props.background ? block.props.background.defaultValue : ""
+        }) no-repeat center center`,
+        backgroundSize: `cover`,
+        backgroundColor: block.props.backgroundColor
+          ? block.props.backgroundColor.defaultValue
+          : "",
       }
     })
     return createVNode(render, {
@@ -36,6 +43,16 @@ export default {
       defaultValue: "#333333",
       type: "color",
       label: "文字颜色",
+    },
+    backgroundColor: {
+      defaultValue: "",
+      type: "color",
+      label: "背景颜色",
+    },
+    background: {
+      defaultValue: "",
+      type: "imgUpload",
+      label: "背景图",
     },
     fontSize: {
       defaultValue: 16,
