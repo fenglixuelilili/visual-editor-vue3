@@ -137,35 +137,7 @@ export default defineComponent({
   setup() {
     function createForm() {
       return {
-        form: {
-          owner_id: store.state?.User?.userInfo?.employee_id
-            ? store.state.User.userInfo.employee_id
-            : "", // 创建人
-          name: "", // 表单名称
-          activity_type_id: "", // 表单类型
-          sub_title: "", // 表单副标题
-          service_site_id: "", // 服务点
-          description: "", // 表单描述
-          cover_path: "", // 微信分享封面地址
-          share_content: "", // 分享内容
-          share_title: "", // 分享标题
-          field_maps: [], // 字段映射信息
-          channel_ids: [], // 渠道
-          target_type_data_id: [] as { name: string; id: string }[], // 推广人员id
-          target_info: [], // 推广人员id json
-          form_configs: [], // 主页面的json
-
-          start_time: `${curDate.year}-${curDate.month}-${curDate.day}`, // 当前日期 固定值
-          end_time: `${curDate.year}-${curDate.month}-${curDate.day}`, // 当前日期  固定值
-
-          class_form: 1, // 固定值
-          target_student_type: 1, // 固定值
-          target_type: 3, // 固定值
-          submit_base_num: 0, // 固定值 0
-          owner_campus_id: "", // 所在校区
-          theme_id: "1", // 默认主题
-          if_service_location: 2, // 是否是多校区 1 是 2 否
-        },
+        form: {},
         formData: {
           container: {
             width: 350,
