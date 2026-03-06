@@ -425,203 +425,23 @@ export default defineComponent({
         router.$back()
       },
       next() {
-        if (state.step == "1") {
-          if (!state.formData.blocks.length) {
-            ElMessage.warning("请检查表单是否添加！")
-            return
-          }
-          let result = state.formData.blocks.find((item: any) => {
-            return item.componentKey === "baseSubmit"
+        if (!state.formData.blocks.length) {
+          ElMessage.warning("请检查表单是否添加！")
+          return
+        }
+        let result = state.formData.blocks.find((item: any) => {
+          return item.componentKey === "baseSubmit"
+        })
+        if (!result) {
+          cusElMessageBox(
+            "温馨提示",
+            "您似乎忘记了添加提交按钮了,是否要继续添加?",
+            "确定",
+            "回去添加",
+          ).then(() => {
+            state.step = "2"
           })
-          if (!result) {
-            cusElMessageBox(
-              "温馨提示",
-              "您似乎忘记了添加提交按钮了,是否要继续添加?",
-              "确定",
-              "回去添加",
-            ).then(() => {
-              state.step = "2"
-            })
-            return
-          }
-          let repeatPhone = state.formData.blocks.filter((item: any) => {
-            return (
-              item.componentKey === "personPhone" ||
-              item.componentKey === "checkPhone"
-            )
-          })
-          if (repeatPhone.length >= 2) {
-            cusElMessage.warning("抱歉，收集电话组件重复，请检查！")
-            return
-          }
-          // 查找标题和描述
-          let titleInfo: any = state.formData.blocks.find(
-            (item: any) => item.componentKey == "baseTitle",
-          )
-          let descInfo: any = state.formData.blocks.find(
-            (item: any) => item.componentKey == "baseText",
-          )
-          try {
-            if (
-              titleInfo &&
-              !(state.type == "2" && state.id) &&
-              !state.form.name
-            ) {
-              if (titleInfo.props.text && titleInfo.props.text.defaultValue) {
-                state.form.name = getText(titleInfo.props.text.defaultValue)
-              }
-
-              if (
-                titleInfo.props.descText &&
-                titleInfo.props.descText.defaultValue
-              ) {
-                // state.form.sub_title = getText(
-                //   titleInfo.props.descText.defaultValue
-                // )
-                state.form.description = getText(
-                  titleInfo.props.descText.defaultValue,
-                )
-              }
-            }
-            if (
-              descInfo &&
-              !(state.type == "2" && state.id) &&
-              !state.form.description
-            ) {
-              state.form.description = descInfo.props.text.defaultValue
-            }
-          } catch (error) {}
-          state.step = "2"
-        } else {
-          mform.value &&
-            mform.value.validate((valid: any, fields: any) => {
-              if (valid) {
-                console.log(state.formData, "详情里面的state.formData???")
-                // 计算 field_maps
-                let field_maps: any[] = []
-                state.formData.blocks.forEach((block: any) => {
-                  if (block.formItemField) {
-                    let obj: any = {
-                      field_label: block?.props?.title?.defaultValue
-                        ? block.props.title.defaultValue
-                        : "暂无",
-                      field_name: block.formItemField,
-                      field_type: 1,
-                    }
-                    if (
-                      block.formItemField == "phone" ||
-                      block.formItemField == "sms_code"
-                    ) {
-                      obj.field_config = JSON.stringify({
-                        hours: (function () {
-                          if (block.props.only.defaultValue == "2") {
-                            return "0"
-                          }
-                          return block.props.cycle.defaultValue + ""
-                        })(),
-                      })
-                    }
-                    if (block.formItemField == "name") {
-                      obj.field_config = JSON.stringify({
-                        unique: block.props.only.defaultValue + "",
-                      })
-                    }
-                    field_maps.push(obj)
-                  }
-                  if (
-                    block.componentKey == "commenRadio" ||
-                    block.componentKey == "commenMultiple"
-                  ) {
-                    let obj: any = {
-                      field_label: block?.props?.title?.defaultValue
-                        ? block.props.title.defaultValue
-                        : "暂无",
-                      field_name: block.id,
-                      field_type: 2,
-                    }
-                    field_maps.push(obj)
-                  }
-                })
-                // 计算target_info
-                let target_info = state.form.target_type_data_id.map((item) => {
-                  return {
-                    data_id: item.id,
-                    target_amount: 0,
-                    target_num: 1,
-                    target_student_type_num: {
-                      activation_num: 0,
-                      deal_num: 0,
-                      new_num: 1,
-                    },
-                  }
-                })
-
-                let resultForm = {
-                  ...state.form,
-                  field_maps: JSON.stringify(field_maps),
-                  channel_ids: JSON.stringify(
-                    state.tableData.map((item) => item.id),
-                  ),
-                  target_type_data_id: JSON.stringify(
-                    state.form.target_type_data_id.map((item) => item.id),
-                  ),
-                  target_info: JSON.stringify(target_info),
-                  form_configs: JSON.stringify(state.formData),
-                  form_success_configs: JSON.stringify(state.successData),
-                  org_id: store.getters.orgId || "",
-                }
-                if (getSystem() == "schoolSystem") {
-                  if (
-                    !resultForm.owner_campus_id ||
-                    resultForm.owner_campus_id == "-1"
-                  ) {
-                    // 如果啥也没选  或者 选择了多校区 判断服务点表单必选
-                    let isHaveService = state.formData.blocks.find((block) => {
-                      return block.componentKey == "personServicesite"
-                    })
-                    if (!isHaveService) {
-                      cusElMessage.warning(
-                        "表单中的服务点组件必选，请退回上一步重新操作！",
-                      )
-                      return
-                    }
-                  }
-                  if (resultForm.owner_campus_id == "-1") {
-                    // 选择了多校区后 将值复位
-                    resultForm.owner_campus_id = "0"
-                    resultForm.if_service_location = 1
-                  } else {
-                    resultForm.if_service_location = 2
-                  }
-                }
-                if (state.type == "1" || state.type == "3") {
-                  // 新增
-                  formApi.add(resultForm).then(() => {
-                    resetForm()
-                    ElMessage.success("添加成功")
-                    closeTag()
-                    router.$go()
-                  })
-                } else if (state.type == "2" && state.id) {
-                  // 编辑
-                  formApi
-                    .edit({
-                      ...resultForm,
-                      id: state.id,
-                    })
-                    .then(() => {
-                      ElMessage.success("编辑成功")
-                      closeTag()
-                      router.$go()
-                      // resetForm()
-                    })
-                } else {
-                  ElMessage.warning("参数错误，请退出重进！")
-                }
-              } else {
-                ElMessage.warning("请检查表单！")
-              }
-            })
+          return
         }
       },
     }
